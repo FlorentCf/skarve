@@ -729,16 +729,29 @@ mod tests {
             };
             let mut result = [sentinel; 8];
             let mut meta = BulkMetadata::default();
-            let status = unsafe {
-                re_bulk(
-                    address as *mut Handle,
-                    &req,
-                    result.as_mut_ptr(),
-                    8,
-                    &mut meta,
-                    ptr::null_mut(),
-                    0,
-                )
+            // The observer below briefly owns the mutex while probing entry.
+            // If it wins that race, the public API correctly returns BUSY.
+            // Retry admission rather than mistaking that observer-induced
+            // contention for a cancellation failure.
+            let admission_start = Instant::now();
+            let status = loop {
+                let status = unsafe {
+                    re_bulk(
+                        address as *mut Handle,
+                        &req,
+                        result.as_mut_ptr(),
+                        8,
+                        &mut meta,
+                        ptr::null_mut(),
+                        0,
+                    )
+                };
+                if status != BUSY {
+                    break status;
+                }
+                assert_eq!(result, [sentinel; 8]);
+                assert!(admission_start.elapsed().as_secs() < 20);
+                std::thread::yield_now();
             };
             (status, result, sentinel)
         });
