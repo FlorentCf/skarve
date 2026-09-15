@@ -1,2 +1,6 @@
 # Preserve third-party notice bytes so recorded upstream hashes survive checkout.
 third_party/notices/** -text
+
+# Preserve supplied branding and hashed benchmark evidence across Git checkouts.
+assets/brand/** -text
+benchmarks/** -text
