@@ -41,7 +41,7 @@ jobs:
           npm ci --ignore-scripts --prefix bindings/node
           python scripts/build.py --test
           python scripts/test-rust-package.py --work scratch/rust-package --target-dir target/rust-package
-          python scripts/package_release.py --output-dir dist/release
+          python scripts/package_release.py --local-use-only --output-dir dist/release
           python -m pip download --only-binary=:all: numpy==2.5.3 rasterio==1.5.1 blake3==1.0.8 --dest scratch/wheelhouse
           python tests/standalone_suite.py --artifacts dist/release --wheelhouse scratch/wheelhouse --output scratch/installed.json
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

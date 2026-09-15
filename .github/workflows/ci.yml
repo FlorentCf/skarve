@@ -60,7 +60,7 @@ jobs:
           cc -std=c11 -Wall -Wextra -Werror -I include -c tests/support/bulk_layout.c -o target/bulk-layout.o
       - name: Build immutable packages and test fresh installed consumers
         run: |
-          python scripts/package_release.py --output-dir dist/ci
+          python scripts/package_release.py --local-use-only --output-dir dist/ci
           python -m pip download --only-binary=:all: numpy==2.5.3 rasterio==1.5.1 blake3==1.0.8 --dest scratch/wheelhouse
           python tests/standalone_suite.py --artifacts dist/ci --wheelhouse scratch/wheelhouse --output scratch/installed.json
       - name: Benchmark smoke

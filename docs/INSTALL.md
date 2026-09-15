@@ -64,14 +64,16 @@ Install Skarve into that environment first. Run Node examples from a source/cons
 Install the Rust toolchain declared in `rust-toolchain.toml`, a C linker, `pkg-config`, GDAL development headers and libdeflate headers (`libgdal-dev libdeflate-dev` on Ubuntu 24.04). Then:
 
 ```sh
-git clone --branch v0.1.1-alpha.1 https://github.com/FlorentCf/skarve.git
+git clone --branch main https://github.com/FlorentCf/skarve.git
 cd skarve
 python3 scripts/build.py --test
 python3 -m venv .venv
 .venv/bin/python -m pip install -r scripts/packaging-requirements.txt
 npm ci --ignore-scripts --prefix bindings/node
-.venv/bin/python scripts/package_release.py --output-dir dist/skv-v0/native
+.venv/bin/python scripts/package_release.py --local-use-only --output-dir dist/skv-v0/native
 ```
+
+The source-only alpha tag remains immutable. Use current `main` for the subsequent local-packaging portability correction, and record `git rev-parse HEAD` with your build. `--local-use-only` captures the installed system-library versions and copyright notices for local installation and CI. It does not qualify those binaries for redistribution; omitting it retains the strict reviewed-runtime checks.
 
 Builds use locked Rust dependencies and at most two workers. Packaging accepts a clean Git checkout or the complete source archive with its verified `SOURCE_MANIFEST.json`. Commit changes before packaging a modified checkout. An output directory must be new; existing artifacts are never overwritten under the same identity. A source build on another platform is not evidence that its binaries passed the supported-platform qualification.
 
@@ -86,7 +88,7 @@ these are ordinary `cmake`, `g++` and `libgeos-dev` prerequisites. Then:
 python3 native/exactextract/fetch.py
 python3 scripts/build.py --exactextract --target target/skv-v0 --test
 .venv/bin/python scripts/package_release.py \
-  --binary-dir target/skv-v0/release --output-dir dist/skv-v0/exactextract
+  --local-use-only --binary-dir target/skv-v0/release --output-dir dist/skv-v0/exactextract
 ```
 
 The fetch is explicit and validates a pinned upstream archive and source member
