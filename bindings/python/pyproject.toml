@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools==84.0.0", "wheel==0.48.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "skarve-engine"
+version = "0.1.1a1"
+description = "Skarve Linux x86-64 raster query engine"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+requires-python = ">=3.10"
+
+[project.scripts]
+skarve = "skarve.cli:main"
+
+[tool.setuptools]
+py-modules = ["raster_engine_lab", "skarve_bulk"]
+packages = ["skarve"]
+
+[tool.setuptools.package-data]
+skarve = ["_native/*", "_native/notices/*"]

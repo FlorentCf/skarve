@@ -1,0 +1,11 @@
+Skarve
+Copyright 2026 Florent Chif
+
+Skarve's project license does not replace the licenses of its dependencies.
+Third-party attribution and license texts are retained under third_party/.
+Binary distributions also include their dependency inventory and notices.
+
+The compatibility-policy names in the API identify numerical conventions.
+They do not imply affiliation with, endorsement by, or inclusion of any
+third-party application. No application source, production data or credentials
+are included in this distribution.

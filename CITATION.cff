@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use Skarve, cite this software and the upstream components relevant to your selected backend."
+title: Skarve
+authors:
+  - family-names: Chif
+    given-names: Florent
+version: 0.1.1-alpha.1
+type: software
+license: Apache-2.0
+abstract: "A raster query engine with explicit numerical policies, bounded source access and optional lossless SKV serving snapshots."

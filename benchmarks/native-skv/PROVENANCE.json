@@ -1,0 +1,205 @@
+{
+  "schema": "skarve_public_benchmark_export_v1",
+  "runtime_commit": "d15b0bccdf87654e6e6bd221ce114fb4f129e42d",
+  "evaluation_commit": "741e52805fea96ea781a23e345e072a7539b86a4",
+  "historical_original_report_sha256": "92456139c0fa5a0e920ed6316ff2344146de79f83da4824a17b622a4be1fafd1",
+  "new_query_operations": 0,
+  "files": [
+    {
+      "source_evidence_path": "main-analysis-01/revision-02/median-comparisons.csv",
+      "source_sha256": "8c508c781b91c922db16bbbd2be840e33c609cfb59cc3a7479f9385fe2c46a27",
+      "public_path": "data/median-comparisons.csv",
+      "public_sha256": "7cdd8dd3d8f1dce4019ff16db5b22b49140943be0fd44c2bbff5c07f8d646a4c",
+      "transformation": "private absolute path references replaced by stable logical IDs; numerical values preserved"
+    },
+    {
+      "source_evidence_path": "main-analysis-01/revision-02/raw-inputs.json",
+      "source_sha256": "9f1f2bfd9d0d98c322000a5e9312dee9924dde2c463168a49118c8889d497186",
+      "public_path": "data/raw-inputs.json",
+      "public_sha256": "5b134a23f47292aa860e73c8a323529e7586544afc3bd493f2e7bd27e4debfb2",
+      "transformation": "private absolute path references replaced by stable logical IDs; numerical values preserved"
+    },
+    {
+      "source_evidence_path": "main-analysis-01/revision-02/median-losses.csv",
+      "source_sha256": "48711f5bcbd26942af7fa9fb24573d96d67be6f0f11f268caddcb83356d3591b",
+      "public_path": "data/median-losses.csv",
+      "public_sha256": "4f4c88f7bdaffb5606bebb5a34a4126b56beabe7035983f267a91b0e8037dc84",
+      "transformation": "private absolute path references replaced by stable logical IDs; numerical values preserved"
+    },
+    {
+      "source_evidence_path": "main-analysis-01/revision-02/individual-comparisons.csv",
+      "source_sha256": "2fc168e2ab802583eb552ec7f5dbe2cbbd9973b850583dd4543cab2fd54bdc6a",
+      "public_path": "data/individual-comparisons.csv",
+      "public_sha256": "17c00e8b9155921224a7062ddee21b0a688f26088a6dc880584ab332f3287963",
+      "transformation": "private absolute path references replaced by stable logical IDs; numerical values preserved"
+    },
+    {
+      "source_evidence_path": "main-analysis-01/revision-02/objects.csv",
+      "source_sha256": "cebe14beba138f7b188c52b7b4ba8928faaf77b9902bc96b975d1eafb7b191ff",
+      "public_path": "data/objects.csv",
+      "public_sha256": "43a260b298c8ed693052641189ed54c7286ced98e75bdd64880452fc849554fa",
+      "transformation": "private absolute path references replaced by stable logical IDs; numerical values preserved"
+    },
+    {
+      "source_evidence_path": "main-analysis-01/revision-02/lane-cells.csv",
+      "source_sha256": "f8386f31982caf5ba0a088941398c0e9938961b915c5705161a7367470cffdb2",
+      "public_path": "data/lane-cells.csv",
+      "public_sha256": "8a7fca6b33bcdb49958b0bb7d6fb1bb795ead46983d74fb4d28cbed82b4413e7",
+      "transformation": "private absolute path references replaced by stable logical IDs; numerical values preserved"
+    },
+    {
+      "source_evidence_path": "main-analysis-01/revision-02/SUMMARY.json",
+      "source_sha256": "39bfa0d547946b80b3e9dfd7c0739e74d6d3adeefad0e2f801870af72ca636a9",
+      "public_path": "data/SUMMARY.json",
+      "public_sha256": "a4e422333553417ebcff12a87888131598145cc297e44f2f987ae1bba01e2c3f",
+      "transformation": "private absolute path references replaced by stable logical IDs; numerical values preserved"
+    },
+    {
+      "source_evidence_path": "main-analysis-01/revision-02/cross-policy-fields.csv",
+      "source_sha256": "2a2ea00fc7ec6402408b6a4b345161edeff2b14713347206258afb92c1b53ff8",
+      "public_path": "data/cross-policy-fields.csv",
+      "public_sha256": "c88c51c8df6fb1552b9c20fd7cd90cc76b6b483e513eb857782cabe3cd6631db",
+      "transformation": "private absolute path references replaced by stable logical IDs; numerical values preserved"
+    },
+    {
+      "source_evidence_path": "main-analysis-01/revision-02/lane-storage.csv",
+      "source_sha256": "ee146c84b4462bc85560fe29077564c74efe36919d2d7e628639844e6226f319",
+      "public_path": "data/lane-storage.csv",
+      "public_sha256": "1c6578d1b7c8377a9695b1a05402e6b5d15cdc1425ddede5693c65fa479b9b9d",
+      "transformation": "private absolute path references replaced by stable logical IDs; numerical values preserved"
+    },
+    {
+      "source_evidence_path": "main-analysis-01/revision-02/operations.csv",
+      "source_sha256": "3d93babfa7f1302e11b91e574fb1ba50de5edeaddfcc412a75ca099713722284",
+      "public_path": "data/operations.csv",
+      "public_sha256": "42ba96d57a1b31261d37c146dddf55699b0279dddbc0f47f131e33343e47763e",
+      "transformation": "private absolute path references replaced by stable logical IDs; numerical values preserved"
+    },
+    {
+      "source_evidence_path": "main-analysis-01/revision-02/individual-losses.csv",
+      "source_sha256": "887d58c792fe52130093639a5108d3b1a13463daa5e116e675f54c3a1be32506",
+      "public_path": "data/individual-losses.csv",
+      "public_sha256": "8e3a876a7a643630c73ca1910bf150a7a92672c6d10f3926872281149b63cca5",
+      "transformation": "private absolute path references replaced by stable logical IDs; numerical values preserved"
+    },
+    {
+      "source_evidence_path": "main-analysis-01/revision-02/fixed-summary-comparisons.csv",
+      "source_sha256": "77fe0e8bd786a250c6af85b5b535d4dae406ec19ae65f84686a0a57a01a04422",
+      "public_path": "data/fixed-summary-comparisons.csv",
+      "public_sha256": "d449db81fe6f925f189aeb5e0b9f9e1ce6396d41d236a4a68a0b1a05103d4b9f",
+      "transformation": "private absolute path references replaced by stable logical IDs; numerical values preserved"
+    },
+    {
+      "source_evidence_path": "coalescing-analysis-01/SUMMARY.json",
+      "source_sha256": "db277972f77b4700901577447739b68af10364f1b97b7ef917e1fcc1362ae6ac",
+      "public_path": "sentinel/SUMMARY.json",
+      "public_sha256": "5178b4decf0bbdc533c99c5b6b0c722c810c28c9a0428999fa6ab9c882605f29",
+      "transformation": "private absolute path references replaced by stable logical IDs; numerical values preserved"
+    },
+    {
+      "source_evidence_path": "coalescing-analysis-01/lifecycles.csv",
+      "source_sha256": "c0067bf98783dec241b32a49f2f2103c34743746006385f381b9d6313c307fca",
+      "public_path": "sentinel/lifecycles.csv",
+      "public_sha256": "331535c73740c038480acbee13ca6d1981852e345d944cd6ff2db2cd8747ca8b",
+      "transformation": "private absolute path references replaced by stable logical IDs; numerical values preserved"
+    },
+    {
+      "source_evidence_path": "coalescing-analysis-01/cells.csv",
+      "source_sha256": "b60414b424465cef746412250891dee5383c61643a45e308755239328a351a34",
+      "public_path": "sentinel/cells.csv",
+      "public_sha256": "6bd53c84c5845de1b744fee8c903fd2eb2b27860234ad829febf86bc8dc085e5",
+      "transformation": "private absolute path references replaced by stable logical IDs; numerical values preserved"
+    },
+    {
+      "source_evidence_path": "coalescing-analysis-01/pairs.csv",
+      "source_sha256": "1bcd2a600c73b42dffc085269424b6fb6106070a44d274314742c2081c7cbb05",
+      "public_path": "sentinel/pairs.csv",
+      "public_sha256": "04a756b248e6ee6ec69c224edd24f0f5c79f994208ccd33b144a895b499bf228",
+      "transformation": "private absolute path references replaced by stable logical IDs; numerical values preserved"
+    },
+    {
+      "source_evidence_path": "coalescing-analysis-01/operations.csv",
+      "source_sha256": "fd5a8ffbeb516b01371aa0e1818ac42745b8445b294b2c63bb0f9670a1c1837c",
+      "public_path": "sentinel/operations.csv",
+      "public_sha256": "90fef9806dcad7add1737cbafad45f96978cf8b2631cdd323541286617a7f80f",
+      "transformation": "private absolute path references replaced by stable logical IDs; numerical values preserved"
+    },
+    {
+      "source_evidence_path": "SUMMARY_ABLATION_MEDIANS_01.csv",
+      "source_sha256": "433939e8bd4702ecf2d1b84baaf333194fea3ed5c58c0e6aeaaf7cfb048faf20",
+      "public_path": "data/SUMMARY_ABLATION_MEDIANS_01.csv",
+      "public_sha256": "433939e8bd4702ecf2d1b84baaf333194fea3ed5c58c0e6aeaaf7cfb048faf20",
+      "transformation": "byte-identical"
+    },
+    {
+      "source_evidence_path": "SUMMARY_ABLATION_PAIRS_01.csv",
+      "source_sha256": "550394f6a760207453c98a0f22e8808c4f4a358dea8dbf94422d67743f882ed0",
+      "public_path": "data/SUMMARY_ABLATION_PAIRS_01.csv",
+      "public_sha256": "550394f6a760207453c98a0f22e8808c4f4a358dea8dbf94422d67743f882ed0",
+      "transformation": "byte-identical"
+    },
+    {
+      "source_evidence_path": "preparation-storage-01.csv",
+      "source_sha256": "1cfd2d132f93f60e82e9be2ad68fde077b72efe59bea1475aec995a8d5298e06",
+      "public_path": "data/preparation-storage-01.csv",
+      "public_sha256": "3518e5ea659bce03a54facf91916e95456c826a17c93eb9bf6c45bf9f91108db",
+      "transformation": "private absolute path references replaced by stable logical IDs; numerical values preserved"
+    },
+    {
+      "source_evidence_path": "SENTINEL_DIAGNOSTICS_01.json",
+      "source_sha256": "8c0702bb90779ee58a667e5bd975cda9fd12141fda1098ce2aee54832c4e9cbb",
+      "public_path": "data/SENTINEL_DIAGNOSTICS_01.json",
+      "public_sha256": "7d88d2006aadf65349f22095d436e6cd8ca78a5a2fa49803f2aad41d19cd0ff0",
+      "transformation": "private absolute path references replaced by stable logical IDs; numerical values preserved"
+    },
+    {
+      "source_evidence_path": "charts-02/02-speedup-matrix.png",
+      "source_sha256": "36a3242862c224a3a68f35d80e620b241f7f461b19c5b04651c9b43ce52ca704",
+      "public_path": "charts/02-speedup-matrix.png",
+      "public_sha256": "36a3242862c224a3a68f35d80e620b241f7f461b19c5b04651c9b43ce52ca704",
+      "transformation": "byte-identical"
+    },
+    {
+      "source_evidence_path": "charts-02/03-coalescing-regressions.svg",
+      "source_sha256": "c643dc7946527c76729b81eb64d8945ce4325ff340188b1ef6af089a49465c92",
+      "public_path": "charts/03-coalescing-regressions.svg",
+      "public_sha256": "c643dc7946527c76729b81eb64d8945ce4325ff340188b1ef6af089a49465c92",
+      "transformation": "byte-identical"
+    },
+    {
+      "source_evidence_path": "charts-02/03-coalescing-regressions.png",
+      "source_sha256": "00aadf20f39372e6b6a6d9b51369079ebba4152c67309f6010414972cc25b8ba",
+      "public_path": "charts/03-coalescing-regressions.png",
+      "public_sha256": "00aadf20f39372e6b6a6d9b51369079ebba4152c67309f6010414972cc25b8ba",
+      "transformation": "byte-identical"
+    },
+    {
+      "source_evidence_path": "charts-02/02-speedup-matrix.svg",
+      "source_sha256": "34e2afe7f97164b7d7e85e9909db5e7cd862b3351d46916e32b0e3d1de0d7eb9",
+      "public_path": "charts/02-speedup-matrix.svg",
+      "public_sha256": "34e2afe7f97164b7d7e85e9909db5e7cd862b3351d46916e32b0e3d1de0d7eb9",
+      "transformation": "byte-identical"
+    },
+    {
+      "source_evidence_path": "charts-02/01-complete-latency.svg",
+      "source_sha256": "52f99c733bdcc9b4e163564af70a8a609081810c37cab7da65e7ef82ce3e61a1",
+      "public_path": "charts/01-complete-latency.svg",
+      "public_sha256": "52f99c733bdcc9b4e163564af70a8a609081810c37cab7da65e7ef82ce3e61a1",
+      "transformation": "byte-identical"
+    },
+    {
+      "source_evidence_path": "charts-02/01-complete-latency.png",
+      "source_sha256": "06ca9914d0b3540f394673b4be87c2cff91841f9495cbcd36634741f7bc0627a",
+      "public_path": "charts/01-complete-latency.png",
+      "public_sha256": "06ca9914d0b3540f394673b4be87c2cff91841f9495cbcd36634741f7bc0627a",
+      "transformation": "byte-identical"
+    },
+    {
+      "source_evidence_path": "MAIN_FREEZE_01.json.gz",
+      "source_sha256": "25868ecb8a646c10b027d9cffe601993a1704d0185809cb4e942fb92cf2797db",
+      "public_path": "FROZEN_PROGRAMME.json",
+      "public_sha256": "8bb62e40c1e0053af7ce12056ec2b81f3a77e3e0b4f392fe82f8654ffa5a3e88",
+      "transformation": "Selected protocol fields; local paths pseudonymized; tasks/geometry/layout/budget/policy retained"
+    }
+  ]
+}

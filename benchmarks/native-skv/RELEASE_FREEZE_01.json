@@ -1,0 +1,77 @@
+{
+  "schema": "skarve_post_optimization_release_freeze_v1",
+  "frozen_utc": "2026-09-15T06:38:02.441994+00:00",
+  "source_commit": "d15b0bccdf87654e6e6bd221ce114fb4f129e42d",
+  "source_clean": true,
+  "runtime_identity": {
+    "path": "private-reference/574feb90681161eb/RUNTIME_IDENTITY_01.json",
+    "sha256": "53dcd2097704ea43c29d6b6e53c112bab797e90eaaf555c6eb8dd9fa679cf3b1"
+  },
+  "qualification": {
+    "path": "private-reference/bcb34f214ecf7711/QUALIFICATION_01.json",
+    "sha256": "ad33cdf375d9660265d2b710041e3ccceb72ce05f659d70bfb0991a654f71030"
+  },
+  "programmes": {
+    "main": {
+      "path": "private-reference/e58da0830a44fc81/freeze.json",
+      "sha256": "c450e98a310a38d7d4621a9656ae444419828934e78f9596789634354890e275",
+      "committed_gzip": "private-reference/aa0c4b0d3abe34b9/MAIN_FREEZE_01.json.gz",
+      "gzip_sha256": "25868ecb8a646c10b027d9cffe601993a1704d0185809cb4e942fb92cf2797db"
+    },
+    "sentinel": {
+      "path": "private-reference/4186da840d3ebe4e/freeze.json",
+      "sha256": "5b54757c1e822f8216a8bcc3ff34624cfddc2c60bce4a5b9d0a799c0e6bf463f",
+      "committed_gzip": "private-reference/3945015037256f21/SENTINEL_FREEZE_01.json.gz",
+      "gzip_sha256": "246823c0049ad1760d3b7f182001b64103d739459a4e55f2268b767daaf8384b"
+    }
+  },
+  "artifacts": {
+    "manifest.json": {
+      "path": "private-reference/ac117d9b5bf3b459/manifest.json",
+      "bytes": 87855,
+      "sha256": "4ac53cd7ad1d0c41f6a37b41872ac6d002e8aa49e6cf853363de947bcba450a6"
+    },
+    "skarve-0.1.1-alpha.0-linux-x86_64.tar.gz": {
+      "path": "private-reference/92b40546298767f5/skarve-0.1.1-alpha.0-linux-x86_64.tar.gz",
+      "bytes": 7315482,
+      "sha256": "e8c56a267db5879675ab013d0e353ca3388df469b035659c86f31133353b45f2"
+    },
+    "DEPENDENCIES.json": {
+      "path": "private-reference/75218cb888f90ed3/DEPENDENCIES.json",
+      "bytes": 116260,
+      "sha256": "e87db7523e3cbce826562fc6130de1215096d2ae5a0e946bdfd5f12782915c94"
+    },
+    "skarve-0.1.1-alpha.0-source.tar.gz": {
+      "path": "private-reference/d3515b67408a9d5e/skarve-0.1.1-alpha.0-source.tar.gz",
+      "bytes": 17644053,
+      "sha256": "e2d6e5ab67db36fb47db4a7b1c30f9fdf11293aa20c0d43095db822e8d90677a"
+    },
+    "skarve_engine-0.1.1a0-py3-none-linux_x86_64.whl": {
+      "path": "private-reference/fa4d42f9671aaf85/skarve_engine-0.1.1a0-py3-none-linux_x86_64.whl",
+      "bytes": 7659843,
+      "sha256": "6b01d89d20a890489bc47e85a8f3976f055fe1765c68a75b0c31b2d073b8a7f0"
+    },
+    "skarve-engine-0.1.1-alpha.0.tgz": {
+      "path": "private-reference/ec3533574574d8c2/skarve-engine-0.1.1-alpha.0.tgz",
+      "bytes": 4768894,
+      "sha256": "c63b6cc83481b78977af272c75a026ed5b829734360096529b7f72bfdb7e862d"
+    },
+    "SHA256SUMS": {
+      "path": "private-reference/b2bc211b215e2fd5/SHA256SUMS",
+      "bytes": 420,
+      "sha256": "b132967516730d7d1d83f62f9a7e190555d17572084b5d5aef387f7539329842"
+    }
+  },
+  "main_operations": 588,
+  "supplemental_operations": 60,
+  "main_lane_policy": "Fixed native SKV with embedded summaries; raw ablation and six applicable controls including natural EE under its separate numerical policy",
+  "execution_order": [
+    "main",
+    "sentinel"
+  ],
+  "timing_concurrency": 1,
+  "query_runs_before_freeze": 0,
+  "changes_after_qualification": 0,
+  "publication": false,
+  "scope": "Private reviewable RC; native performance only; no format, writer, source, policy, layout, route, resource or runtime edits after freeze. All outcomes retained."
+}

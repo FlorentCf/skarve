@@ -1,0 +1,3309 @@
+{
+  "schema": "skarve_optional_exactextract_calibration_v1",
+  "passed": true,
+  "enabled": true,
+  "binding_mode": "installed package",
+  "library_sha256": "4c20fbc0e5486c0f4d3a0a457664211074ff4c65c21fb412fa268943e7a57818",
+  "harness_sha256": "7153c8921fbb2a91e30f3e3e0f7e23bd67a78b018909899571725f502e11b747",
+  "common_sha256": "b5cf762aa7708a8cedb8b78fa976b00add70677193a2d8b335b7a9eeced76312",
+  "checks": [
+    {
+      "name": "native-binary_fraction",
+      "passed": true,
+      "bands": 1
+    },
+    {
+      "name": "matching-upstream-binary_fraction",
+      "passed": true,
+      "strategies": 2,
+      "bands": 1
+    },
+    {
+      "name": "auto-policy-eligibility-binary_fraction",
+      "passed": true
+    },
+    {
+      "name": "native-decimal_fraction",
+      "passed": true,
+      "bands": 1
+    },
+    {
+      "name": "matching-upstream-decimal_fraction",
+      "passed": true,
+      "strategies": 2,
+      "bands": 1
+    },
+    {
+      "name": "auto-policy-eligibility-decimal_fraction",
+      "passed": true
+    },
+    {
+      "name": "native-cancellation",
+      "passed": true,
+      "bands": 1
+    },
+    {
+      "name": "matching-upstream-cancellation",
+      "passed": true,
+      "strategies": 2,
+      "bands": 1
+    },
+    {
+      "name": "auto-policy-eligibility-cancellation",
+      "passed": true
+    },
+    {
+      "name": "native-positive_sliver",
+      "passed": true,
+      "bands": 1
+    },
+    {
+      "name": "matching-upstream-positive_sliver",
+      "passed": true,
+      "strategies": 2,
+      "bands": 1
+    },
+    {
+      "name": "auto-policy-eligibility-positive_sliver",
+      "passed": true
+    },
+    {
+      "name": "native-different_masks",
+      "passed": true,
+      "bands": 2
+    },
+    {
+      "name": "matching-upstream-different_masks",
+      "passed": true,
+      "strategies": 2,
+      "bands": 2
+    },
+    {
+      "name": "auto-policy-eligibility-different_masks",
+      "passed": true
+    },
+    {
+      "name": "native-scale_offset",
+      "passed": true,
+      "bands": 2
+    },
+    {
+      "name": "matching-upstream-scale_offset",
+      "passed": true,
+      "strategies": 2,
+      "bands": 2
+    },
+    {
+      "name": "auto-policy-eligibility-scale_offset",
+      "passed": true
+    },
+    {
+      "name": "native-all_masked",
+      "passed": true,
+      "bands": 1
+    },
+    {
+      "name": "matching-upstream-all_masked",
+      "passed": true,
+      "strategies": 2,
+      "bands": 1
+    },
+    {
+      "name": "auto-policy-eligibility-all_masked",
+      "passed": true
+    },
+    {
+      "name": "native-empty",
+      "passed": true,
+      "bands": 1
+    },
+    {
+      "name": "matching-upstream-empty",
+      "passed": true,
+      "strategies": 2,
+      "bands": 1
+    },
+    {
+      "name": "auto-policy-eligibility-empty",
+      "passed": true
+    },
+    {
+      "name": "native-partial",
+      "passed": true,
+      "bands": 1
+    },
+    {
+      "name": "matching-upstream-partial",
+      "passed": true,
+      "strategies": 2,
+      "bands": 1
+    },
+    {
+      "name": "auto-policy-eligibility-partial",
+      "passed": true
+    },
+    {
+      "name": "native-hole",
+      "passed": true,
+      "bands": 1
+    },
+    {
+      "name": "matching-upstream-hole",
+      "passed": true,
+      "strategies": 2,
+      "bands": 1
+    },
+    {
+      "name": "auto-policy-eligibility-hole",
+      "passed": true
+    },
+    {
+      "name": "native-multipart",
+      "passed": true,
+      "bands": 1
+    },
+    {
+      "name": "matching-upstream-multipart",
+      "passed": true,
+      "strategies": 2,
+      "bands": 1
+    },
+    {
+      "name": "auto-policy-eligibility-multipart",
+      "passed": true
+    },
+    {
+      "name": "native-non_power_two_mask",
+      "passed": true,
+      "bands": 1
+    },
+    {
+      "name": "matching-upstream-non_power_two_mask",
+      "passed": true,
+      "strategies": 2,
+      "bands": 1
+    },
+    {
+      "name": "auto-policy-eligibility-non_power_two_mask",
+      "passed": true
+    },
+    {
+      "name": "native-translated_affine",
+      "passed": true,
+      "bands": 1
+    },
+    {
+      "name": "matching-upstream-translated_affine",
+      "passed": true,
+      "strategies": 2,
+      "bands": 1
+    },
+    {
+      "name": "auto-policy-eligibility-translated_affine",
+      "passed": true
+    },
+    {
+      "name": "registered-source-band-remapping",
+      "passed": true
+    },
+    {
+      "name": "all-source-paged-five-field-full",
+      "passed": true,
+      "rows": 4,
+      "band_rows": 8
+    },
+    {
+      "name": "all-source-paged-five-field-numeric",
+      "passed": true,
+      "rows": 4,
+      "band_rows": 8
+    },
+    {
+      "name": "selected-feature-sequential-min",
+      "passed": true
+    },
+    {
+      "name": "selected-raster-sequential-min",
+      "passed": true
+    },
+    {
+      "name": "selected-feature-sequential-max",
+      "passed": true
+    },
+    {
+      "name": "selected-raster-sequential-max",
+      "passed": true
+    },
+    {
+      "name": "selected-feature-sequential-support",
+      "passed": true
+    },
+    {
+      "name": "selected-raster-sequential-support",
+      "passed": true
+    },
+    {
+      "name": "selected-feature-sequential-min-max",
+      "passed": true
+    },
+    {
+      "name": "selected-raster-sequential-min-max",
+      "passed": true
+    },
+    {
+      "name": "selected-extrema-batch-with-unrequested-overflow",
+      "passed": true
+    },
+    {
+      "name": "strict-conflict",
+      "passed": true,
+      "error_type": "EngineError",
+      "error": "selected backend conflicts with the accepted numerical policy"
+    },
+    {
+      "name": "hard-isolation",
+      "passed": true,
+      "error_type": "EngineError",
+      "error": "requested execution envelope is unavailable: installed embedded backends provide cooperative cancellation, not process isolation or hard termination"
+    },
+    {
+      "name": "extra-count",
+      "passed": true,
+      "error_type": "EngineError",
+      "error": "exactextract supports sum/support/mean/min/max only; support is fractional, not integer count"
+    },
+    {
+      "name": "empty-acceptance",
+      "passed": true,
+      "error_type": "EngineError",
+      "error": "accepted_policies requires one or two policy names"
+    },
+    {
+      "name": "window-limit",
+      "passed": true,
+      "error_type": "EngineError",
+      "error": "exactextract window_bytes must be in 4096..268435456"
+    },
+    {
+      "name": "output-limit",
+      "passed": true,
+      "error_type": "EngineError",
+      "error": "exactextract output_bytes must be in 4096..33554432"
+    },
+    {
+      "name": "reusable-after-rejections",
+      "passed": true
+    },
+    {
+      "name": "source-mutation",
+      "passed": true,
+      "error_type": "EngineError",
+      "error": "source changed since registration"
+    },
+    {
+      "name": "engine-and-source-context-cleanup",
+      "passed": true
+    }
+  ],
+  "rows": [
+    {
+      "fixture": "binary_fraction",
+      "source_sha256": "bab751d504d3fe5155bb4159b99ca0351dc63f18777955c5a1264b894c2048e1",
+      "strategy": "feature-sequential",
+      "input": {
+        "id": "binary_fraction",
+        "values": [
+          [
+            [
+              -7.0,
+              5.0
+            ],
+            [
+              3.0,
+              2.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              0.25,
+              0.5,
+              1.75,
+              1.5
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            -7.0,
+            5.0
+          ],
+          [
+            3.0,
+            2.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 1.125,
+          "support": 1.5,
+          "mean": 0.75,
+          "min": -7.0,
+          "max": 5.0,
+          "mass": 6.375
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 1.125,
+          "support": 1.5,
+          "mean": 0.75,
+          "min": -7.0,
+          "max": 5.0
+        }
+      ],
+      "actual": [
+        {
+          "sum": 1.125,
+          "support": 1.5,
+          "mean": 0.75,
+          "min": -7.0,
+          "max": 5.0
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "binary_fraction",
+      "source_sha256": "bab751d504d3fe5155bb4159b99ca0351dc63f18777955c5a1264b894c2048e1",
+      "strategy": "raster-sequential",
+      "input": {
+        "id": "binary_fraction",
+        "values": [
+          [
+            [
+              -7.0,
+              5.0
+            ],
+            [
+              3.0,
+              2.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              0.25,
+              0.5,
+              1.75,
+              1.5
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            -7.0,
+            5.0
+          ],
+          [
+            3.0,
+            2.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 1.125,
+          "support": 1.5,
+          "mean": 0.75,
+          "min": -7.0,
+          "max": 5.0,
+          "mass": 6.375
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 1.125,
+          "support": 1.5,
+          "mean": 0.75,
+          "min": -7.0,
+          "max": 5.0
+        }
+      ],
+      "actual": [
+        {
+          "sum": 1.125,
+          "support": 1.5,
+          "mean": 0.75,
+          "min": -7.0,
+          "max": 5.0
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "decimal_fraction",
+      "source_sha256": "dd075e76c2b6e404373f7df155b46072d6cf3039a47360ce0e0620a4a9b0498e",
+      "strategy": "feature-sequential",
+      "input": {
+        "id": "decimal_fraction",
+        "values": [
+          [
+            [
+              11.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              0.1,
+              0.2,
+              0.7,
+              0.9
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            11.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 4.62,
+          "support": 0.42,
+          "mean": 11.0,
+          "min": 11.0,
+          "max": 11.0,
+          "mass": 4.62
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 4.61999985575676,
+          "support": 0.41999998688697815,
+          "mean": 11.0,
+          "min": 11.0,
+          "max": 11.0
+        }
+      ],
+      "actual": [
+        {
+          "sum": 4.61999985575676,
+          "support": 0.41999998688697815,
+          "mean": 11.0,
+          "min": 11.0,
+          "max": 11.0
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [
+        {
+          "band": 0,
+          "field": "sum",
+          "actual": 4.61999985575676,
+          "expected": 4.62,
+          "absolute_error": 1.4424324046302672e-07,
+          "tolerance": 1.0462e-08
+        },
+        {
+          "band": 0,
+          "field": "support",
+          "actual": 0.41999998688697815,
+          "expected": 0.42,
+          "absolute_error": 1.3113021835042815e-08,
+          "tolerance": 1.0042e-08
+        }
+      ],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "decimal_fraction",
+      "source_sha256": "dd075e76c2b6e404373f7df155b46072d6cf3039a47360ce0e0620a4a9b0498e",
+      "strategy": "raster-sequential",
+      "input": {
+        "id": "decimal_fraction",
+        "values": [
+          [
+            [
+              11.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              0.1,
+              0.2,
+              0.7,
+              0.9
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            11.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 4.62,
+          "support": 0.42,
+          "mean": 11.0,
+          "min": 11.0,
+          "max": 11.0,
+          "mass": 4.62
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 4.61999985575676,
+          "support": 0.41999998688697815,
+          "mean": 11.0,
+          "min": 11.0,
+          "max": 11.0
+        }
+      ],
+      "actual": [
+        {
+          "sum": 4.61999985575676,
+          "support": 0.41999998688697815,
+          "mean": 11.0,
+          "min": 11.0,
+          "max": 11.0
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [
+        {
+          "band": 0,
+          "field": "sum",
+          "actual": 4.61999985575676,
+          "expected": 4.62,
+          "absolute_error": 1.4424324046302672e-07,
+          "tolerance": 1.0462e-08
+        },
+        {
+          "band": 0,
+          "field": "support",
+          "actual": 0.41999998688697815,
+          "expected": 0.42,
+          "absolute_error": 1.3113021835042815e-08,
+          "tolerance": 1.0042e-08
+        }
+      ],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "cancellation",
+      "source_sha256": "4a0ae1280ce094b1e4e1bdd8462037772ce4bc7cd180cd98f35f4a93e7960f44",
+      "strategy": "feature-sequential",
+      "input": {
+        "id": "cancellation",
+        "values": [
+          [
+            [
+              9007199254740992.0,
+              1.0,
+              -9007199254740992.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              0.0,
+              0.0,
+              3.0,
+              1.0
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            9007199254740992.0,
+            1.0,
+            -9007199254740992.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 1.0,
+          "support": 3.0,
+          "mean": 0.3333333333333333,
+          "min": -9007199254740992.0,
+          "max": 9007199254740992.0,
+          "mass": 1.8014398509481984e+16
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 0.0,
+          "support": 3.0,
+          "mean": 0.0,
+          "min": -9007199254740992.0,
+          "max": 9007199254740992.0
+        }
+      ],
+      "actual": [
+        {
+          "sum": 0.0,
+          "support": 3.0,
+          "mean": 0.0,
+          "min": -9007199254740992.0,
+          "max": 9007199254740992.0
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [
+        {
+          "band": 0,
+          "field": "mean",
+          "actual": 0.0,
+          "expected": 0.3333333333333333,
+          "absolute_error": 0.3333333333333333,
+          "tolerance": 1.0033333333333334e-08
+        }
+      ],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "cancellation",
+      "source_sha256": "4a0ae1280ce094b1e4e1bdd8462037772ce4bc7cd180cd98f35f4a93e7960f44",
+      "strategy": "raster-sequential",
+      "input": {
+        "id": "cancellation",
+        "values": [
+          [
+            [
+              9007199254740992.0,
+              1.0,
+              -9007199254740992.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              0.0,
+              0.0,
+              3.0,
+              1.0
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            9007199254740992.0,
+            1.0,
+            -9007199254740992.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 1.0,
+          "support": 3.0,
+          "mean": 0.3333333333333333,
+          "min": -9007199254740992.0,
+          "max": 9007199254740992.0,
+          "mass": 1.8014398509481984e+16
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 0.0,
+          "support": 3.0,
+          "mean": 0.0,
+          "min": -9007199254740992.0,
+          "max": 9007199254740992.0
+        }
+      ],
+      "actual": [
+        {
+          "sum": 0.0,
+          "support": 3.0,
+          "mean": 0.0,
+          "min": -9007199254740992.0,
+          "max": 9007199254740992.0
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [
+        {
+          "band": 0,
+          "field": "mean",
+          "actual": 0.0,
+          "expected": 0.3333333333333333,
+          "absolute_error": 0.3333333333333333,
+          "tolerance": 1.0033333333333334e-08
+        }
+      ],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "positive_sliver",
+      "source_sha256": "7b2a0c09a50094bc057c4a33e59c755cf139c85218176a51c31433778748cc43",
+      "strategy": "feature-sequential",
+      "input": {
+        "id": "positive_sliver",
+        "values": [
+          [
+            [
+              7.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              0.0,
+              0.0,
+              7.346839692639297e-40,
+              1.0
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            7.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 5.142787784847508e-39,
+          "support": 7.346839692639297e-40,
+          "mean": 7.0,
+          "min": 7.0,
+          "max": 7.0,
+          "mass": 5.142787784847508e-39
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 0.0,
+          "support": 0.0,
+          "mean": null,
+          "min": null,
+          "max": null
+        }
+      ],
+      "actual": [
+        {
+          "sum": 0.0,
+          "support": 0.0,
+          "mean": null,
+          "min": null,
+          "max": null
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [
+        {
+          "band": 0,
+          "field": "mean",
+          "actual": null,
+          "expected": 7.0,
+          "reason": "defined/null mismatch"
+        },
+        {
+          "band": 0,
+          "field": "min",
+          "actual": null,
+          "expected": 7.0,
+          "reason": "defined/null mismatch"
+        },
+        {
+          "band": 0,
+          "field": "max",
+          "actual": null,
+          "expected": 7.0,
+          "reason": "defined/null mismatch"
+        }
+      ],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "positive_sliver",
+      "source_sha256": "7b2a0c09a50094bc057c4a33e59c755cf139c85218176a51c31433778748cc43",
+      "strategy": "raster-sequential",
+      "input": {
+        "id": "positive_sliver",
+        "values": [
+          [
+            [
+              7.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              0.0,
+              0.0,
+              7.346839692639297e-40,
+              1.0
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            7.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 5.142787784847508e-39,
+          "support": 7.346839692639297e-40,
+          "mean": 7.0,
+          "min": 7.0,
+          "max": 7.0,
+          "mass": 5.142787784847508e-39
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 0.0,
+          "support": 0.0,
+          "mean": null,
+          "min": null,
+          "max": null
+        }
+      ],
+      "actual": [
+        {
+          "sum": 0.0,
+          "support": 0.0,
+          "mean": null,
+          "min": null,
+          "max": null
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [
+        {
+          "band": 0,
+          "field": "mean",
+          "actual": null,
+          "expected": 7.0,
+          "reason": "defined/null mismatch"
+        },
+        {
+          "band": 0,
+          "field": "min",
+          "actual": null,
+          "expected": 7.0,
+          "reason": "defined/null mismatch"
+        },
+        {
+          "band": 0,
+          "field": "max",
+          "actual": null,
+          "expected": 7.0,
+          "reason": "defined/null mismatch"
+        }
+      ],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "different_masks",
+      "source_sha256": "096874bf164712e4c72ff298a2ecf6c6e8efba6ea760a9e07f6987ecb4a1f104",
+      "strategy": "feature-sequential",
+      "input": {
+        "id": "different_masks",
+        "values": [
+          [
+            [
+              8.0,
+              -9999.0
+            ],
+            [
+              -2.0,
+              4.0
+            ]
+          ],
+          [
+            [
+              1.0,
+              5.0
+            ],
+            [
+              -9999.0,
+              9.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              0.0,
+              0.0,
+              2.0,
+              2.0
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            8.0,
+            -9999.0
+          ],
+          [
+            -2.0,
+            4.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            5.0
+          ],
+          [
+            -9999.0,
+            9.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 10.0,
+          "support": 3.0,
+          "mean": 3.3333333333333335,
+          "min": -2.0,
+          "max": 8.0,
+          "mass": 14.0
+        },
+        {
+          "sum": 15.0,
+          "support": 3.0,
+          "mean": 5.0,
+          "min": 1.0,
+          "max": 9.0,
+          "mass": 15.0
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 10.0,
+          "support": 3.0,
+          "mean": 3.3333333333333335,
+          "min": -2.0,
+          "max": 8.0
+        },
+        {
+          "sum": 15.0,
+          "support": 3.0,
+          "mean": 5.0,
+          "min": 1.0,
+          "max": 9.0
+        }
+      ],
+      "actual": [
+        {
+          "sum": 10.0,
+          "support": 3.0,
+          "mean": 3.3333333333333335,
+          "min": -2.0,
+          "max": 8.0
+        },
+        {
+          "sum": 15.0,
+          "support": 3.0,
+          "mean": 5.0,
+          "min": 1.0,
+          "max": 9.0
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "different_masks",
+      "source_sha256": "096874bf164712e4c72ff298a2ecf6c6e8efba6ea760a9e07f6987ecb4a1f104",
+      "strategy": "raster-sequential",
+      "input": {
+        "id": "different_masks",
+        "values": [
+          [
+            [
+              8.0,
+              -9999.0
+            ],
+            [
+              -2.0,
+              4.0
+            ]
+          ],
+          [
+            [
+              1.0,
+              5.0
+            ],
+            [
+              -9999.0,
+              9.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              0.0,
+              0.0,
+              2.0,
+              2.0
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            8.0,
+            -9999.0
+          ],
+          [
+            -2.0,
+            4.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            5.0
+          ],
+          [
+            -9999.0,
+            9.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 10.0,
+          "support": 3.0,
+          "mean": 3.3333333333333335,
+          "min": -2.0,
+          "max": 8.0,
+          "mass": 14.0
+        },
+        {
+          "sum": 15.0,
+          "support": 3.0,
+          "mean": 5.0,
+          "min": 1.0,
+          "max": 9.0,
+          "mass": 15.0
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 10.0,
+          "support": 3.0,
+          "mean": 3.3333333333333335,
+          "min": -2.0,
+          "max": 8.0
+        },
+        {
+          "sum": 15.0,
+          "support": 3.0,
+          "mean": 5.0,
+          "min": 1.0,
+          "max": 9.0
+        }
+      ],
+      "actual": [
+        {
+          "sum": 10.0,
+          "support": 3.0,
+          "mean": 3.3333333333333335,
+          "min": -2.0,
+          "max": 8.0
+        },
+        {
+          "sum": 15.0,
+          "support": 3.0,
+          "mean": 5.0,
+          "min": 1.0,
+          "max": 9.0
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "scale_offset",
+      "source_sha256": "6ac367079cfc02d7914af1781345ad0af087305e67608c99eb9fda354f9ebf33",
+      "strategy": "feature-sequential",
+      "input": {
+        "id": "scale_offset",
+        "dtype": "float32",
+        "scales": [
+          0.1,
+          -2.0
+        ],
+        "offsets": [
+          0.25,
+          17.0
+        ],
+        "values": [
+          [
+            [
+              11.0,
+              -9999.0
+            ],
+            [
+              3.0,
+              5.0
+            ]
+          ],
+          [
+            [
+              2.0,
+              6.0
+            ],
+            [
+              -9999.0,
+              9.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              0.125,
+              0.25,
+              1.75,
+              1.875
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            1.35,
+            -999.6500000000001
+          ],
+          [
+            0.55,
+            0.75
+          ]
+        ],
+        [
+          [
+            13.0,
+            5.0
+          ],
+          [
+            20015.0,
+            -1.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 1.81640625,
+          "support": 1.984375,
+          "mean": 0.9153543307086615,
+          "min": 0.55,
+          "max": 1.35,
+          "mass": 1.81640625
+        },
+        {
+          "sum": 12.671875,
+          "support": 1.984375,
+          "mean": 6.3858267716535435,
+          "min": -1.0,
+          "max": 13.0,
+          "mass": 13.796875
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 1.81640625,
+          "support": 1.984375,
+          "mean": 0.9153543307086615,
+          "min": 0.55,
+          "max": 1.35
+        },
+        {
+          "sum": 12.671875,
+          "support": 1.984375,
+          "mean": 6.3858267716535435,
+          "min": -1.0,
+          "max": 13.0
+        }
+      ],
+      "actual": [
+        {
+          "sum": 1.81640625,
+          "support": 1.984375,
+          "mean": 0.9153543307086615,
+          "min": 0.55,
+          "max": 1.35
+        },
+        {
+          "sum": 12.671875,
+          "support": 1.984375,
+          "mean": 6.3858267716535435,
+          "min": -1.0,
+          "max": 13.0
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "scale_offset",
+      "source_sha256": "6ac367079cfc02d7914af1781345ad0af087305e67608c99eb9fda354f9ebf33",
+      "strategy": "raster-sequential",
+      "input": {
+        "id": "scale_offset",
+        "dtype": "float32",
+        "scales": [
+          0.1,
+          -2.0
+        ],
+        "offsets": [
+          0.25,
+          17.0
+        ],
+        "values": [
+          [
+            [
+              11.0,
+              -9999.0
+            ],
+            [
+              3.0,
+              5.0
+            ]
+          ],
+          [
+            [
+              2.0,
+              6.0
+            ],
+            [
+              -9999.0,
+              9.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              0.125,
+              0.25,
+              1.75,
+              1.875
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            1.35,
+            -999.6500000000001
+          ],
+          [
+            0.55,
+            0.75
+          ]
+        ],
+        [
+          [
+            13.0,
+            5.0
+          ],
+          [
+            20015.0,
+            -1.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 1.81640625,
+          "support": 1.984375,
+          "mean": 0.9153543307086615,
+          "min": 0.55,
+          "max": 1.35,
+          "mass": 1.81640625
+        },
+        {
+          "sum": 12.671875,
+          "support": 1.984375,
+          "mean": 6.3858267716535435,
+          "min": -1.0,
+          "max": 13.0,
+          "mass": 13.796875
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 1.81640625,
+          "support": 1.984375,
+          "mean": 0.9153543307086615,
+          "min": 0.55,
+          "max": 1.35
+        },
+        {
+          "sum": 12.671875,
+          "support": 1.984375,
+          "mean": 6.3858267716535435,
+          "min": -1.0,
+          "max": 13.0
+        }
+      ],
+      "actual": [
+        {
+          "sum": 1.81640625,
+          "support": 1.984375,
+          "mean": 0.9153543307086615,
+          "min": 0.55,
+          "max": 1.35
+        },
+        {
+          "sum": 12.671875,
+          "support": 1.984375,
+          "mean": 6.3858267716535435,
+          "min": -1.0,
+          "max": 13.0
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "all_masked",
+      "source_sha256": "1386162ba51d2fc6dd3be635b415428d6e10dffe27ae2d3293eccaa49cf92b93",
+      "strategy": "feature-sequential",
+      "input": {
+        "id": "all_masked",
+        "values": [
+          [
+            [
+              -9999.0,
+              -9999.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              0.0,
+              0.0,
+              2.0,
+              1.0
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            -9999.0,
+            -9999.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            0,
+            0
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 0.0,
+          "support": 0.0,
+          "mean": null,
+          "min": null,
+          "max": null,
+          "mass": 0.0
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 0.0,
+          "support": 0.0,
+          "mean": null,
+          "min": null,
+          "max": null
+        }
+      ],
+      "actual": [
+        {
+          "sum": 0.0,
+          "support": 0.0,
+          "mean": null,
+          "min": null,
+          "max": null
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "all_masked",
+      "source_sha256": "1386162ba51d2fc6dd3be635b415428d6e10dffe27ae2d3293eccaa49cf92b93",
+      "strategy": "raster-sequential",
+      "input": {
+        "id": "all_masked",
+        "values": [
+          [
+            [
+              -9999.0,
+              -9999.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              0.0,
+              0.0,
+              2.0,
+              1.0
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            -9999.0,
+            -9999.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            0,
+            0
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 0.0,
+          "support": 0.0,
+          "mean": null,
+          "min": null,
+          "max": null,
+          "mass": 0.0
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 0.0,
+          "support": 0.0,
+          "mean": null,
+          "min": null,
+          "max": null
+        }
+      ],
+      "actual": [
+        {
+          "sum": 0.0,
+          "support": 0.0,
+          "mean": null,
+          "min": null,
+          "max": null
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "empty",
+      "source_sha256": "5ab093e0db0e8982a2c5c58f514c24503c4eddda736a46d4402e5fa6cfead8ff",
+      "strategy": "feature-sequential",
+      "input": {
+        "id": "empty",
+        "values": [
+          [
+            [
+              1.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              2.0,
+              2.0,
+              3.0,
+              3.0
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            1.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 0.0,
+          "support": 0.0,
+          "mean": null,
+          "min": null,
+          "max": null,
+          "mass": 0.0
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 0.0,
+          "support": 0.0,
+          "mean": null,
+          "min": null,
+          "max": null
+        }
+      ],
+      "actual": [
+        {
+          "sum": 0.0,
+          "support": 0.0,
+          "mean": null,
+          "min": null,
+          "max": null
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "empty",
+      "source_sha256": "5ab093e0db0e8982a2c5c58f514c24503c4eddda736a46d4402e5fa6cfead8ff",
+      "strategy": "raster-sequential",
+      "input": {
+        "id": "empty",
+        "values": [
+          [
+            [
+              1.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              2.0,
+              2.0,
+              3.0,
+              3.0
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            1.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 0.0,
+          "support": 0.0,
+          "mean": null,
+          "min": null,
+          "max": null,
+          "mass": 0.0
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 0.0,
+          "support": 0.0,
+          "mean": null,
+          "min": null,
+          "max": null
+        }
+      ],
+      "actual": [
+        {
+          "sum": 0.0,
+          "support": 0.0,
+          "mean": null,
+          "min": null,
+          "max": null
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "partial",
+      "source_sha256": "0805bc6f5f7321e6b9ba0e1d9987be5a2d31b889dbb2e3ee2d4e26cffe46e9d2",
+      "strategy": "feature-sequential",
+      "input": {
+        "id": "partial",
+        "values": [
+          [
+            [
+              1.0,
+              2.0
+            ],
+            [
+              3.0,
+              4.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              -0.5,
+              0.25,
+              1.5,
+              2.5
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            1.0,
+            2.0
+          ],
+          [
+            3.0,
+            4.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 5.75,
+          "support": 2.625,
+          "mean": 2.1904761904761907,
+          "min": 1.0,
+          "max": 4.0,
+          "mass": 5.75
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 5.75,
+          "support": 2.625,
+          "mean": 2.1904761904761907,
+          "min": 1.0,
+          "max": 4.0
+        }
+      ],
+      "actual": [
+        {
+          "sum": 5.75,
+          "support": 2.625,
+          "mean": 2.1904761904761907,
+          "min": 1.0,
+          "max": 4.0
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "partial",
+      "source_sha256": "0805bc6f5f7321e6b9ba0e1d9987be5a2d31b889dbb2e3ee2d4e26cffe46e9d2",
+      "strategy": "raster-sequential",
+      "input": {
+        "id": "partial",
+        "values": [
+          [
+            [
+              1.0,
+              2.0
+            ],
+            [
+              3.0,
+              4.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              -0.5,
+              0.25,
+              1.5,
+              2.5
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            1.0,
+            2.0
+          ],
+          [
+            3.0,
+            4.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 5.75,
+          "support": 2.625,
+          "mean": 2.1904761904761907,
+          "min": 1.0,
+          "max": 4.0,
+          "mass": 5.75
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 5.75,
+          "support": 2.625,
+          "mean": 2.1904761904761907,
+          "min": 1.0,
+          "max": 4.0
+        }
+      ],
+      "actual": [
+        {
+          "sum": 5.75,
+          "support": 2.625,
+          "mean": 2.1904761904761907,
+          "min": 1.0,
+          "max": 4.0
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "hole",
+      "source_sha256": "06100ac6634a3e8243e667b1f5e8e0bfdc3ed7793881b9000e3e0bde227fbef0",
+      "strategy": "feature-sequential",
+      "input": {
+        "id": "hole",
+        "values": [
+          [
+            [
+              1.0,
+              2.0,
+              3.0
+            ],
+            [
+              4.0,
+              5.0,
+              6.0
+            ],
+            [
+              7.0,
+              8.0,
+              9.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              0.0,
+              0.0,
+              3.0,
+              3.0
+            ]
+          ],
+          [
+            -1,
+            [
+              0.5,
+              0.75,
+              2.5,
+              2.25
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            1.0,
+            2.0,
+            3.0
+          ],
+          [
+            4.0,
+            5.0,
+            6.0
+          ],
+          [
+            7.0,
+            8.0,
+            9.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 30.0,
+          "support": 6.0,
+          "mean": 5.0,
+          "min": 1.0,
+          "max": 9.0,
+          "mass": 30.0
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 30.0,
+          "support": 6.0,
+          "mean": 5.0,
+          "min": 1.0,
+          "max": 9.0
+        }
+      ],
+      "actual": [
+        {
+          "sum": 30.0,
+          "support": 6.0,
+          "mean": 5.0,
+          "min": 1.0,
+          "max": 9.0
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "hole",
+      "source_sha256": "06100ac6634a3e8243e667b1f5e8e0bfdc3ed7793881b9000e3e0bde227fbef0",
+      "strategy": "raster-sequential",
+      "input": {
+        "id": "hole",
+        "values": [
+          [
+            [
+              1.0,
+              2.0,
+              3.0
+            ],
+            [
+              4.0,
+              5.0,
+              6.0
+            ],
+            [
+              7.0,
+              8.0,
+              9.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              0.0,
+              0.0,
+              3.0,
+              3.0
+            ]
+          ],
+          [
+            -1,
+            [
+              0.5,
+              0.75,
+              2.5,
+              2.25
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            1.0,
+            2.0,
+            3.0
+          ],
+          [
+            4.0,
+            5.0,
+            6.0
+          ],
+          [
+            7.0,
+            8.0,
+            9.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 30.0,
+          "support": 6.0,
+          "mean": 5.0,
+          "min": 1.0,
+          "max": 9.0,
+          "mass": 30.0
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 30.0,
+          "support": 6.0,
+          "mean": 5.0,
+          "min": 1.0,
+          "max": 9.0
+        }
+      ],
+      "actual": [
+        {
+          "sum": 30.0,
+          "support": 6.0,
+          "mean": 5.0,
+          "min": 1.0,
+          "max": 9.0
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "multipart",
+      "source_sha256": "b3ab69dfd215ab9b11426b1849389196cb31899cb9e177fc5dadb9db18fdd5d4",
+      "strategy": "feature-sequential",
+      "input": {
+        "id": "multipart",
+        "values": [
+          [
+            [
+              -1.0,
+              9.0,
+              2.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              0.0,
+              0.0,
+              0.5,
+              1.0
+            ]
+          ],
+          [
+            1,
+            [
+              2.25,
+              0.0,
+              3.0,
+              1.0
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            -1.0,
+            9.0,
+            2.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 1.0,
+          "support": 1.25,
+          "mean": 0.8,
+          "min": -1.0,
+          "max": 2.0,
+          "mass": 2.0
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 1.0,
+          "support": 1.25,
+          "mean": 0.8,
+          "min": -1.0,
+          "max": 2.0
+        }
+      ],
+      "actual": [
+        {
+          "sum": 1.0,
+          "support": 1.25,
+          "mean": 0.8,
+          "min": -1.0,
+          "max": 2.0
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "multipart",
+      "source_sha256": "b3ab69dfd215ab9b11426b1849389196cb31899cb9e177fc5dadb9db18fdd5d4",
+      "strategy": "raster-sequential",
+      "input": {
+        "id": "multipart",
+        "values": [
+          [
+            [
+              -1.0,
+              9.0,
+              2.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              0.0,
+              0.0,
+              0.5,
+              1.0
+            ]
+          ],
+          [
+            1,
+            [
+              2.25,
+              0.0,
+              3.0,
+              1.0
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            -1.0,
+            9.0,
+            2.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 1.0,
+          "support": 1.25,
+          "mean": 0.8,
+          "min": -1.0,
+          "max": 2.0,
+          "mass": 2.0
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 1.0,
+          "support": 1.25,
+          "mean": 0.8,
+          "min": -1.0,
+          "max": 2.0
+        }
+      ],
+      "actual": [
+        {
+          "sum": 1.0,
+          "support": 1.25,
+          "mean": 0.8,
+          "min": -1.0,
+          "max": 2.0
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "non_power_two_mask",
+      "source_sha256": "5b461efa63fe5ae97e96e5757e69522d637b20330ccb74aa6269070f6efa6752",
+      "strategy": "feature-sequential",
+      "input": {
+        "id": "non_power_two_mask",
+        "values": [
+          [
+            [
+              1.0,
+              -9999.0,
+              -3.0,
+              7.0,
+              11.0,
+              -2.0,
+              5.0
+            ],
+            [
+              8.0,
+              3.0,
+              -9999.0,
+              -4.0,
+              2.0,
+              9.0,
+              1.0
+            ],
+            [
+              0.0,
+              1.0,
+              2.0,
+              3.0,
+              4.0,
+              5.0,
+              6.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              0.125,
+              0.375,
+              6.875,
+              2.75
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            1.0,
+            -9999.0,
+            -3.0,
+            7.0,
+            11.0,
+            -2.0,
+            5.0
+          ],
+          [
+            8.0,
+            3.0,
+            -9999.0,
+            -4.0,
+            2.0,
+            9.0,
+            1.0
+          ],
+          [
+            0.0,
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0,
+            6.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 44.21875,
+          "support": 14.28125,
+          "mean": 3.096280087527352,
+          "min": -4.0,
+          "max": 11.0,
+          "mass": 59.71875
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 44.21875,
+          "support": 14.28125,
+          "mean": 3.096280087527352,
+          "min": -4.0,
+          "max": 11.0
+        }
+      ],
+      "actual": [
+        {
+          "sum": 44.21875,
+          "support": 14.28125,
+          "mean": 3.096280087527352,
+          "min": -4.0,
+          "max": 11.0
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "non_power_two_mask",
+      "source_sha256": "5b461efa63fe5ae97e96e5757e69522d637b20330ccb74aa6269070f6efa6752",
+      "strategy": "raster-sequential",
+      "input": {
+        "id": "non_power_two_mask",
+        "values": [
+          [
+            [
+              1.0,
+              -9999.0,
+              -3.0,
+              7.0,
+              11.0,
+              -2.0,
+              5.0
+            ],
+            [
+              8.0,
+              3.0,
+              -9999.0,
+              -4.0,
+              2.0,
+              9.0,
+              1.0
+            ],
+            [
+              0.0,
+              1.0,
+              2.0,
+              3.0,
+              4.0,
+              5.0,
+              6.0
+            ]
+          ]
+        ],
+        "parts": [
+          [
+            1,
+            [
+              0.125,
+              0.375,
+              6.875,
+              2.75
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            1.0,
+            -9999.0,
+            -3.0,
+            7.0,
+            11.0,
+            -2.0,
+            5.0
+          ],
+          [
+            8.0,
+            3.0,
+            -9999.0,
+            -4.0,
+            2.0,
+            9.0,
+            1.0
+          ],
+          [
+            0.0,
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0,
+            6.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 44.21875,
+          "support": 14.28125,
+          "mean": 3.096280087527352,
+          "min": -4.0,
+          "max": 11.0,
+          "mass": 59.71875
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 44.21875,
+          "support": 14.28125,
+          "mean": 3.096280087527352,
+          "min": -4.0,
+          "max": 11.0
+        }
+      ],
+      "actual": [
+        {
+          "sum": 44.21875,
+          "support": 14.28125,
+          "mean": 3.096280087527352,
+          "min": -4.0,
+          "max": 11.0
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "translated_affine",
+      "source_sha256": "0950ec4ca9345f9e0aa3a3e825932f9a5f5a3ea4f65d38db997e38e1f3a7adb4",
+      "strategy": "feature-sequential",
+      "input": {
+        "id": "translated_affine",
+        "values": [
+          [
+            [
+              3.0,
+              7.0,
+              2.0
+            ],
+            [
+              5.0,
+              -9999.0,
+              1.0
+            ]
+          ]
+        ],
+        "transform": [
+          1000000000.125,
+          0.03125,
+          0.0,
+          2000000000.25,
+          0.0,
+          -0.0625
+        ],
+        "parts": [
+          [
+            1,
+            [
+              1000000000.140625,
+              2000000000.15625,
+              1000000000.203125,
+              2000000000.234375
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            3.0,
+            7.0,
+            2.0
+          ],
+          [
+            5.0,
+            -9999.0,
+            1.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 8.625,
+          "support": 2.0,
+          "mean": 4.3125,
+          "min": 1.0,
+          "max": 7.0,
+          "mass": 8.625
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 8.625,
+          "support": 2.0,
+          "mean": 4.3125,
+          "min": 1.0,
+          "max": 7.0
+        }
+      ],
+      "actual": [
+        {
+          "sum": 8.625,
+          "support": 2.0,
+          "mean": 4.3125,
+          "min": 1.0,
+          "max": 7.0
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    },
+    {
+      "fixture": "translated_affine",
+      "source_sha256": "0950ec4ca9345f9e0aa3a3e825932f9a5f5a3ea4f65d38db997e38e1f3a7adb4",
+      "strategy": "raster-sequential",
+      "input": {
+        "id": "translated_affine",
+        "values": [
+          [
+            [
+              3.0,
+              7.0,
+              2.0
+            ],
+            [
+              5.0,
+              -9999.0,
+              1.0
+            ]
+          ]
+        ],
+        "transform": [
+          1000000000.125,
+          0.03125,
+          0.0,
+          2000000000.25,
+          0.0,
+          -0.0625
+        ],
+        "parts": [
+          [
+            1,
+            [
+              1000000000.140625,
+              2000000000.15625,
+              1000000000.203125,
+              2000000000.234375
+            ]
+          ]
+        ]
+      },
+      "interpreted_values": [
+        [
+          [
+            3.0,
+            7.0,
+            2.0
+          ],
+          [
+            5.0,
+            -9999.0,
+            1.0
+          ]
+        ]
+      ],
+      "validity": [
+        [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      ],
+      "exact_fraction_reference": [
+        {
+          "sum": 8.625,
+          "support": 2.0,
+          "mean": 4.3125,
+          "min": 1.0,
+          "max": 7.0,
+          "mass": 8.625
+        }
+      ],
+      "upstream_reference": [
+        {
+          "sum": 8.625,
+          "support": 2.0,
+          "mean": 4.3125,
+          "min": 1.0,
+          "max": 7.0
+        }
+      ],
+      "actual": [
+        {
+          "sum": 8.625,
+          "support": 2.0,
+          "mean": 4.3125,
+          "min": 1.0,
+          "max": 7.0
+        }
+      ],
+      "bridge_differences": [],
+      "strict_compatibility_differences": [],
+      "provenance": {
+        "accepted_policies": [
+          "exactextract_fractional_v030"
+        ],
+        "cross_policy_bitwise_equivalence": false,
+        "execution_envelope": "embedded_cooperative",
+        "hard_cancellation": false,
+        "hard_process_memory_limit": false,
+        "numerical_policy": "exactextract_fractional_v030",
+        "requested_backend": "exactextract",
+        "selected_backend": "exactextract",
+        "selection_reason": "explicit pinned exactextract fractional calculation over Skarve-interpreted values",
+        "source_interpretation": "skarve_normalized_f64_v1",
+        "upstream_version": "0.3.0"
+      }
+    }
+  ],
+  "failures": [],
+  "scope": "Exact Fraction affine-rectangle oracle plus independent pinned upstream over identically interpreted f64/masks. No measurements or network sources.",
+  "limitations": [
+    "No general numerical equivalence claim for upstream versus native strict.",
+    "Embedded cancellation timing, callback allocation and every failure path need separate focused coverage.",
+    "Independent mathematical/control agreement is limited to this explicit finite fixture set."
+  ]
+}

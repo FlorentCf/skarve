@@ -1,0 +1,3295 @@
+{
+  "schema": "skarve_dependency_inventory_v1",
+  "target": "x86_64-unknown-linux-gnu",
+  "cargo_lock_sha256": "e3dfcc97cc7c1c06dc9f2d7393bf728e023fb6e15409e0e9d227a62b82e5b51d",
+  "node_lock_sha256": "e706a609767aa272511019a255a9db1a2177309deda8dbb6f29948d984f1eb69",
+  "graph_provenance": "Resolved locked third-party dependencies before project-name/version metadata overrides; packaging independently verifies each dependency name, version and license against the current source graph.",
+  "scope": "Pinned Cargo target-resolution superset, bundled Node packages and optional C++ exactextract core; licenses remain distinct.",
+  "packages": [
+    {
+      "ecosystem": "Rust",
+      "name": "adler2",
+      "version": "2.0.1",
+      "license_expression": "0BSD OR MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/oyvindln/adler2",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/adler2-2.0.1/LICENSE-0BSD",
+          "sha256": "861399f8c21c042b110517e76dc6b63a2b334276c8cf17412fc3c8908ca8dc17"
+        },
+        {
+          "path": "third_party/notices/rust/adler2-2.0.1/LICENSE-APACHE",
+          "sha256": "8ada45cd9f843acf64e4722ae262c622a2b3b3007c7310ef36ac1061a30f6adb"
+        },
+        {
+          "path": "third_party/notices/rust/adler2-2.0.1/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "anyhow",
+      "version": "1.0.104",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/dtolnay/anyhow",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/anyhow-1.0.104/LICENSE-APACHE",
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "third_party/notices/rust/anyhow-1.0.104/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "approx",
+      "version": "0.5.1",
+      "license_expression": "Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/brendanzab/approx",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/approx-0.5.1/LICENSE",
+          "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "arrayvec",
+      "version": "0.7.8",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/bluss/arrayvec",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/arrayvec-0.7.8/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/arrayvec-0.7.8/LICENSE-MIT",
+          "sha256": "4da95ec4ecb65b738d470b7d762894ad9c97da93e6cbfb18b570fc2c96f4b871"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "atomic-waker",
+      "version": "1.1.2",
+      "license_expression": "Apache-2.0 OR MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/smol-rs/atomic-waker",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/atomic-waker-1.1.2/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/atomic-waker-1.1.2/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        },
+        {
+          "path": "third_party/notices/rust/atomic-waker-1.1.2/LICENSE-THIRD-PARTY",
+          "sha256": "6226d0632e2e1a80c23597e964da9812ae193c535fe058154afb034e94167aa5"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "autocfg",
+      "version": "1.5.1",
+      "license_expression": "Apache-2.0 OR MIT",
+      "scopes": [
+        "build"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/cuviper/autocfg",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/autocfg-1.5.1/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/autocfg-1.5.1/LICENSE-MIT",
+          "sha256": "27995d58ad5c1145c1a8cd86244ce844886958a35eb2b78c6b772748669999ac"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "base64",
+      "version": "0.22.1",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/marshallpierce/rust-base64",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/base64-0.22.1/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/base64-0.22.1/LICENSE-MIT",
+          "sha256": "0dd882e53de11566d50f8e8e2d5a651bcf3fabee4987d70f306233cf39094ba7"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "bitflags",
+      "version": "2.13.2",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime",
+        "test"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/bitflags/bitflags",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/bitflags-2.13.2/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/bitflags-2.13.2/LICENSE-MIT",
+          "sha256": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "blake3",
+      "version": "1.8.7",
+      "license_expression": "CC0-1.0 OR Apache-2.0 OR Apache-2.0 WITH LLVM-exception",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/BLAKE3-team/BLAKE3",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/blake3-1.8.7/LICENSE_A2",
+          "sha256": "00fcc7a934ddbc9ece2a7cc063ac788e284b703b1d705ccbba72d462aa97921e"
+        },
+        {
+          "path": "third_party/notices/rust/blake3-1.8.7/LICENSE_A2LLVM",
+          "sha256": "a5695f57ea0c221e0e8b7d784ff774c35e88c3d3270353646a925880bb3492cc"
+        },
+        {
+          "path": "third_party/notices/rust/blake3-1.8.7/LICENSE_CC0",
+          "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "block-buffer",
+      "version": "0.10.4",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/RustCrypto/utils",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/block-buffer-0.10.4/LICENSE-APACHE",
+          "sha256": "a9040321c3712d8fd0b09cf52b17445de04a23a10165049ae187cd39e5c86be5"
+        },
+        {
+          "path": "third_party/notices/rust/block-buffer-0.10.4/LICENSE-MIT",
+          "sha256": "d5c22aa3118d240e877ad41c5d9fa232f9c77d757d4aac0c2f943afc0a95e0ef"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "byteorder",
+      "version": "1.5.0",
+      "license_expression": "Unlicense OR MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/BurntSushi/byteorder",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/byteorder-1.5.0/COPYING",
+          "sha256": "01c266bced4a434da0051174d6bee16a4c82cf634e2679b6155d40d75012390f"
+        },
+        {
+          "path": "third_party/notices/rust/byteorder-1.5.0/LICENSE-MIT",
+          "sha256": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "bytes",
+      "version": "1.12.1",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/tokio-rs/bytes",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/bytes-1.12.1/LICENSE",
+          "sha256": "45f522cacecb1023856e46df79ca625dfc550c94910078bd8aec6e02880b3d42"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "cc",
+      "version": "1.4.5",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "build"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-lang/cc-rs",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/cc-1.4.5/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/cc-1.4.5/LICENSE-MIT",
+          "sha256": "378f5840b258e2779c39418f3f2d7b2ba96f1c7917dd6be0713f88305dbda397"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "cfg-if",
+      "version": "1.0.4",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime",
+        "test"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-lang/cfg-if",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/cfg-if-1.0.4/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/cfg-if-1.0.4/LICENSE-MIT",
+          "sha256": "378f5840b258e2779c39418f3f2d7b2ba96f1c7917dd6be0713f88305dbda397"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "cfg_aliases",
+      "version": "0.2.2",
+      "license_expression": "MIT",
+      "scopes": [
+        "build"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/katharostech/cfg_aliases",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/cfg_aliases-0.2.2/LICENSE",
+          "sha256": "31b94860253d8ec7b4529f51901044d3b459d6292d996504a36b1bae3a36a812"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "chacha20",
+      "version": "0.10.2",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/RustCrypto/stream-ciphers",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/chacha20-0.10.2/LICENSE-APACHE",
+          "sha256": "a9040321c3712d8fd0b09cf52b17445de04a23a10165049ae187cd39e5c86be5"
+        },
+        {
+          "path": "third_party/notices/rust/chacha20-0.10.2/LICENSE-MIT",
+          "sha256": "b8c6939380a400f53e11923d50fcc4dd2fa1ba8339fd9d04cda38a0251b6c9b0"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "chrono",
+      "version": "0.4.45",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/chronotope/chrono",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/chrono-0.4.45/LICENSE.txt",
+          "sha256": "946c9835d8034d24404f8cfec5f4654cee5dad17e944afc3d06d742cf2882831"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "constant_time_eq",
+      "version": "0.4.2",
+      "license_expression": "CC0-1.0 OR MIT-0 OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/cesarb/constant_time_eq",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/constant_time_eq-0.4.2/LICENSE-APACHE",
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "third_party/notices/rust/constant_time_eq-0.4.2/LICENSE-CC0",
+          "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+        },
+        {
+          "path": "third_party/notices/rust/constant_time_eq-0.4.2/LICENSE-MIT0",
+          "sha256": "9a3aeb3f63659c4c6302d315e1d98784d1e8559858a47ff9562e091bb922d28d"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "cpufeatures",
+      "version": "0.2.17",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/RustCrypto/utils",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/cpufeatures-0.2.17/LICENSE-APACHE",
+          "sha256": "a9040321c3712d8fd0b09cf52b17445de04a23a10165049ae187cd39e5c86be5"
+        },
+        {
+          "path": "third_party/notices/rust/cpufeatures-0.2.17/LICENSE-MIT",
+          "sha256": "ae9baa7beea910273c2f384c2a6b721fb7bd02bda3436074a1072e4ee689f985"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "cpufeatures",
+      "version": "0.3.1",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/RustCrypto/utils",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/cpufeatures-0.3.1/LICENSE-APACHE",
+          "sha256": "a9040321c3712d8fd0b09cf52b17445de04a23a10165049ae187cd39e5c86be5"
+        },
+        {
+          "path": "third_party/notices/rust/cpufeatures-0.3.1/LICENSE-MIT",
+          "sha256": "73b9dc2e79c7308998dd30296e073aefaefb944a68fb89aa412c23c0edcabcaa"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "crc32fast",
+      "version": "1.5.2",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/srijs/rust-crc32fast",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/crc32fast-1.5.2/LICENSE-APACHE",
+          "sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08"
+        },
+        {
+          "path": "third_party/notices/rust/crc32fast-1.5.2/LICENSE-MIT",
+          "sha256": "61d383b05b87d78f94d2937e2580cce47226d17823c0430fbcad09596537efcf"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "crypto-common",
+      "version": "0.1.7",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/RustCrypto/traits",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/crypto-common-0.1.7/LICENSE-APACHE",
+          "sha256": "a9040321c3712d8fd0b09cf52b17445de04a23a10165049ae187cd39e5c86be5"
+        },
+        {
+          "path": "third_party/notices/rust/crypto-common-0.1.7/LICENSE-MIT",
+          "sha256": "3521672491a3479422d5fe1aca6645dd2984090f85da6e5205abfb18fb7a6897"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "digest",
+      "version": "0.10.7",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/RustCrypto/traits",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/digest-0.10.7/LICENSE-APACHE",
+          "sha256": "a9040321c3712d8fd0b09cf52b17445de04a23a10165049ae187cd39e5c86be5"
+        },
+        {
+          "path": "third_party/notices/rust/digest-0.10.7/LICENSE-MIT",
+          "sha256": "9e0dfd2dd4173a530e238cb6adb37aa78c34c6bc7444e0e10c1ab5d8881f63ba"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "displaydoc",
+      "version": "0.2.7",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/yaahc/displaydoc",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/displaydoc-0.2.7/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/displaydoc-0.2.7/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "errno",
+      "version": "0.3.14",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "test"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/lambda-fairy/rust-errno",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/errno-0.3.14/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/errno-0.3.14/LICENSE-MIT",
+          "sha256": "8764a597675778ddfd4e25f81b08a05dbcf089ac05662df7613fe67f150e3aa2"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "fastrand",
+      "version": "2.5.0",
+      "license_expression": "Apache-2.0 OR MIT",
+      "scopes": [
+        "test"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/smol-rs/fastrand",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/fastrand-2.5.0/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/fastrand-2.5.0/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "find-msvc-tools",
+      "version": "0.1.12",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "build"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-lang/cc-rs",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/find-msvc-tools-0.1.12/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/find-msvc-tools-0.1.12/LICENSE-MIT",
+          "sha256": "378f5840b258e2779c39418f3f2d7b2ba96f1c7917dd6be0713f88305dbda397"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "flate2",
+      "version": "1.1.10",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-lang/flate2-rs",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/flate2-1.1.10/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/flate2-1.1.10/LICENSE-MIT",
+          "sha256": "025436edff4cfcdde17a5811fdea78892d8482efd1abdec5a17872d07a4f2112"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "float_next_after",
+      "version": "2.0.0",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://gitlab.com/bronsonbdevost/next_afterf",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/float_next_after-2.0.0/LICENSE",
+          "sha256": "0604d5817110dacc5c7d9b7de6b58b962794603d4823c357157bd5dec4198bc5"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "form_urlencoded",
+      "version": "1.2.2",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/servo/rust-url",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/form_urlencoded-1.2.2/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/form_urlencoded-1.2.2/LICENSE-MIT",
+          "sha256": "20c7855c364d57ea4c97889a5e8d98470a9952dade37bd9248b9a54431670e5e"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "futures-channel",
+      "version": "0.3.34",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-lang/futures-rs",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/futures-channel-0.3.34/LICENSE-APACHE",
+          "sha256": "275c491d6d1160553c32fd6127061d7f9606c3ea25abfad6ca3f6ed088785427"
+        },
+        {
+          "path": "third_party/notices/rust/futures-channel-0.3.34/LICENSE-MIT",
+          "sha256": "6652c868f35dfe5e8ef636810a4e576b9d663f3a17fb0f5613ad73583e1b88fd"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "futures-core",
+      "version": "0.3.34",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-lang/futures-rs",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/futures-core-0.3.34/LICENSE-APACHE",
+          "sha256": "275c491d6d1160553c32fd6127061d7f9606c3ea25abfad6ca3f6ed088785427"
+        },
+        {
+          "path": "third_party/notices/rust/futures-core-0.3.34/LICENSE-MIT",
+          "sha256": "6652c868f35dfe5e8ef636810a4e576b9d663f3a17fb0f5613ad73583e1b88fd"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "futures-io",
+      "version": "0.3.34",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-lang/futures-rs",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/futures-io-0.3.34/LICENSE-APACHE",
+          "sha256": "275c491d6d1160553c32fd6127061d7f9606c3ea25abfad6ca3f6ed088785427"
+        },
+        {
+          "path": "third_party/notices/rust/futures-io-0.3.34/LICENSE-MIT",
+          "sha256": "6652c868f35dfe5e8ef636810a4e576b9d663f3a17fb0f5613ad73583e1b88fd"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "futures-sink",
+      "version": "0.3.34",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-lang/futures-rs",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/futures-sink-0.3.34/LICENSE-APACHE",
+          "sha256": "275c491d6d1160553c32fd6127061d7f9606c3ea25abfad6ca3f6ed088785427"
+        },
+        {
+          "path": "third_party/notices/rust/futures-sink-0.3.34/LICENSE-MIT",
+          "sha256": "6652c868f35dfe5e8ef636810a4e576b9d663f3a17fb0f5613ad73583e1b88fd"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "futures-task",
+      "version": "0.3.34",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-lang/futures-rs",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/futures-task-0.3.34/LICENSE-APACHE",
+          "sha256": "275c491d6d1160553c32fd6127061d7f9606c3ea25abfad6ca3f6ed088785427"
+        },
+        {
+          "path": "third_party/notices/rust/futures-task-0.3.34/LICENSE-MIT",
+          "sha256": "6652c868f35dfe5e8ef636810a4e576b9d663f3a17fb0f5613ad73583e1b88fd"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "futures-util",
+      "version": "0.3.34",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-lang/futures-rs",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/futures-util-0.3.34/LICENSE-APACHE",
+          "sha256": "275c491d6d1160553c32fd6127061d7f9606c3ea25abfad6ca3f6ed088785427"
+        },
+        {
+          "path": "third_party/notices/rust/futures-util-0.3.34/LICENSE-MIT",
+          "sha256": "6652c868f35dfe5e8ef636810a4e576b9d663f3a17fb0f5613ad73583e1b88fd"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "gdal",
+      "version": "0.19.0",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/georust/gdal",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/gdal-0.19.0/LICENSE.txt",
+          "sha256": "5323761a1dfa4deb1a253260748902ffa9b5d8ebab7d8c97fc0eea330f742bfb",
+          "source": "https://raw.githubusercontent.com/georust/gdal/0b06a50a7d19ddd44f77e8c91599fd2d4384b12a/LICENSE.txt",
+          "recovery": "Exact .cargo_vcs_info.json revision; registry archive omitted license"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "gdal-sys",
+      "version": "0.12.0",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/georust/gdal",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/gdal-sys-0.12.0/LICENSE.txt",
+          "sha256": "5323761a1dfa4deb1a253260748902ffa9b5d8ebab7d8c97fc0eea330f742bfb",
+          "source": "https://raw.githubusercontent.com/georust/gdal/0b06a50a7d19ddd44f77e8c91599fd2d4384b12a/LICENSE.txt",
+          "recovery": "Exact .cargo_vcs_info.json revision; registry archive omitted license"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "generic-array",
+      "version": "0.14.7",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/fizyk20/generic-array.git",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/generic-array-0.14.7/LICENSE",
+          "sha256": "c09aae9d3c77b531f56351a9947bc7446511d6b025b3255312d3e3442a9a7583"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "geo",
+      "version": "0.33.1",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/georust/geo",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/geo-0.33.1/LICENSE-MIT",
+          "sha256": "2f8267b247fd81e9555a2e196e119a5b341bcae21011cd93985c312f1312f727",
+          "source": "https://raw.githubusercontent.com/georust/geo/5ab50b072e34a915a33eaa46c80763d51d61295e/LICENSE-MIT",
+          "recovery": "Exact .cargo_vcs_info.json revision; registry archive omitted license"
+        },
+        {
+          "path": "third_party/notices/rust/geo-0.33.1/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+          "source": "https://raw.githubusercontent.com/georust/geo/5ab50b072e34a915a33eaa46c80763d51d61295e/LICENSE-APACHE",
+          "recovery": "Exact .cargo_vcs_info.json revision; registry archive omitted license"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "geo-types",
+      "version": "0.7.20",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/georust/geo",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/geo-types-0.7.20/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/geo-types-0.7.20/LICENSE-MIT",
+          "sha256": "2f8267b247fd81e9555a2e196e119a5b341bcae21011cd93985c312f1312f727"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "geographiclib-rs",
+      "version": "0.2.7",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/georust/geographiclib-rs",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/geographiclib-rs-0.2.7/LICENSE",
+          "sha256": "feb87a2e0c305de3464cc44077da5393c52d8ca6362d37427157d04ec6f4510d"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "getrandom",
+      "version": "0.2.17",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-random/getrandom",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/getrandom-0.2.17/LICENSE-APACHE",
+          "sha256": "aaff376532ea30a0cd5330b9502ad4a4c8bf769c539c87ffe78819d188a18ebf"
+        },
+        {
+          "path": "third_party/notices/rust/getrandom-0.2.17/LICENSE-MIT",
+          "sha256": "42fa16951ce7f24b5a467a40e5b449a1d41e662f97ca779864f053f39e097737"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "getrandom",
+      "version": "0.4.3",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime",
+        "test"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-random/getrandom",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/getrandom-0.4.3/LICENSE-APACHE",
+          "sha256": "aaff376532ea30a0cd5330b9502ad4a4c8bf769c539c87ffe78819d188a18ebf"
+        },
+        {
+          "path": "third_party/notices/rust/getrandom-0.4.3/LICENSE-MIT",
+          "sha256": "523a42c25d245dde9c015f882cec7f4555aad883382a6cf19b4b7d9b2cd5419b"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "hash32",
+      "version": "0.3.1",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/japaric/hash32",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/hash32-0.3.1/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/hash32-0.3.1/LICENSE-MIT",
+          "sha256": "c986bcdb83103d4ddf58aeb7b5302359782e54dc4eea14a0cc27c62dcbd50729"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "heapless",
+      "version": "0.8.0",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-embedded/heapless",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/heapless-0.8.0/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/heapless-0.8.0/LICENSE-MIT",
+          "sha256": "035e70219855119df4273b3c5b97543ae82e0dd60c520416e759107c602f651b"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "http",
+      "version": "1.5.0",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/hyperium/http",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/http-1.5.0/LICENSE-APACHE",
+          "sha256": "8bb1b50b0e5c9399ae33bd35fab2769010fa6c14e8860c729a52295d84896b7a"
+        },
+        {
+          "path": "third_party/notices/rust/http-1.5.0/LICENSE-MIT",
+          "sha256": "dc91f8200e4b2a1f9261035d4c18c33c246911a6c0f7b543d75347e61b249cff"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "http-body",
+      "version": "1.1.0",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/hyperium/http-body",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/http-body-1.1.0/LICENSE",
+          "sha256": "248378d0a3383c173fb925f17141b88e71580b3ba17ddc6ac3d2a344683232ab"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "http-body-util",
+      "version": "0.1.5",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/hyperium/http-body",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/http-body-util-0.1.5/LICENSE",
+          "sha256": "248378d0a3383c173fb925f17141b88e71580b3ba17ddc6ac3d2a344683232ab"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "httparse",
+      "version": "1.10.1",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/seanmonstar/httparse",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/httparse-1.10.1/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/httparse-1.10.1/LICENSE-MIT",
+          "sha256": "391a5396cec6230bfabd4ef4eb2350eb895bc5efce377a2218f5702ed020d3e3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "hyper",
+      "version": "1.11.1",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/hyperium/hyper",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/hyper-1.11.1/LICENSE",
+          "sha256": "2d01890414494742ba4a509fcec8efa40f6d8be22cbd72be7cff08d6fda4ec89"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "hyper-rustls",
+      "version": "0.27.9",
+      "license_expression": "Apache-2.0 OR ISC OR MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rustls/hyper-rustls",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/hyper-rustls-0.27.9/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/hyper-rustls-0.27.9/LICENSE-ISC",
+          "sha256": "7cfafc877eccc46c0e346ccbaa5c51bb6b894d2b818e617d970211e232785ad4"
+        },
+        {
+          "path": "third_party/notices/rust/hyper-rustls-0.27.9/LICENSE-MIT",
+          "sha256": "709e3175b4212f7b13aa93971c9f62ff8c69ec45ad8c6532a7e0c41d7a7d6f8c"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "hyper-util",
+      "version": "0.1.20",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/hyperium/hyper-util",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/hyper-util-0.1.20/LICENSE",
+          "sha256": "9e0a97848ea543aef745c98e84fde696a9a3e0735538f6daefdd3cb1942effc1"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "i_float",
+      "version": "1.16.0",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/iShape-Rust/iFloat",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/i_float-1.16.0/LICENSE",
+          "sha256": "260cc580f53a756821a0f35475e2cd6da790f8fed0efc058252fe1bed8f2689e"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "i_key_sort",
+      "version": "0.10.3",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/iShape-Rust/iKeySort",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/i_key_sort-0.10.3/LICENSE",
+          "sha256": "47e00f18b265d350a2860d3899f17dd1c7689b966545e929df8ffa7033f5acdc",
+          "source": "https://raw.githubusercontent.com/iShape-Rust/iKeySort/10a9a72f0cdae785dd2185896eed138b09945515/LICENSE",
+          "recovery": "Exact .cargo_vcs_info.json revision; registry archive omitted license"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "i_overlay",
+      "version": "4.5.2",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/iShape-Rust/iOverlay",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/i_overlay-4.5.2/LICENSE-MIT",
+          "sha256": "260cc580f53a756821a0f35475e2cd6da790f8fed0efc058252fe1bed8f2689e",
+          "source": "https://raw.githubusercontent.com/iShape-Rust/iOverlay/9448d8da87e11f5b7aedcf994967b18ff640c734/LICENSE-MIT",
+          "recovery": "Exact .cargo_vcs_info.json revision; registry archive omitted license"
+        },
+        {
+          "path": "third_party/notices/rust/i_overlay-4.5.2/LICENSE-APACHE",
+          "sha256": "59899c6091b540582ed617e8eeaac4919dc985ccfc35459ee9752b699be5205b",
+          "source": "https://raw.githubusercontent.com/iShape-Rust/iOverlay/9448d8da87e11f5b7aedcf994967b18ff640c734/LICENSE-APACHE",
+          "recovery": "Exact .cargo_vcs_info.json revision; registry archive omitted license"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "i_shape",
+      "version": "1.18.0",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/iShape-Rust/iShape",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/i_shape-1.18.0/LICENSE",
+          "sha256": "260cc580f53a756821a0f35475e2cd6da790f8fed0efc058252fe1bed8f2689e"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "i_tree",
+      "version": "0.18.0",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/iShape-Rust/iTree",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/i_tree-0.18.0/LICENSE",
+          "sha256": "47e00f18b265d350a2860d3899f17dd1c7689b966545e929df8ffa7033f5acdc"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "icu_collections",
+      "version": "2.3.0",
+      "license_expression": "Unicode-3.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/icu_collections-2.3.0/LICENSE",
+          "sha256": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "icu_locale_core",
+      "version": "2.3.0",
+      "license_expression": "Unicode-3.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/icu_locale_core-2.3.0/LICENSE",
+          "sha256": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "icu_normalizer",
+      "version": "2.3.0",
+      "license_expression": "Unicode-3.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/icu_normalizer-2.3.0/LICENSE",
+          "sha256": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "icu_normalizer_data",
+      "version": "2.3.0",
+      "license_expression": "Unicode-3.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/icu_normalizer_data-2.3.0/LICENSE",
+          "sha256": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "icu_properties",
+      "version": "2.3.0",
+      "license_expression": "Unicode-3.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/icu_properties-2.3.0/LICENSE",
+          "sha256": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "icu_properties_data",
+      "version": "2.3.0",
+      "license_expression": "Unicode-3.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/icu_properties_data-2.3.0/LICENSE",
+          "sha256": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "icu_provider",
+      "version": "2.3.1",
+      "license_expression": "Unicode-3.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/icu_provider-2.3.1/LICENSE",
+          "sha256": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "idna",
+      "version": "1.1.0",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/servo/rust-url/",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/idna-1.1.0/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/idna-1.1.0/LICENSE-MIT",
+          "sha256": "b38f11f6096706e6de553dabe2a7ed142d59b6fa8c97e290c67496154745cdd5"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "idna_adapter",
+      "version": "1.2.2",
+      "license_expression": "Apache-2.0 OR MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/hsivonen/idna_adapter",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/idna_adapter-1.2.2/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/idna_adapter-1.2.2/LICENSE-MIT",
+          "sha256": "8b43ce8accd61e9d370b5ca9e9c4f953279b5c239926c62315b40e24df51b726"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "ipnet",
+      "version": "2.12.2",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/krisprice/ipnet",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/ipnet-2.12.2/LICENSE-APACHE",
+          "sha256": "87d9feb9238c6bd8e0024fc4733b06cff036f89f36d93b7df1c8a0549bbb7a5b"
+        },
+        {
+          "path": "third_party/notices/rust/ipnet-2.12.2/LICENSE-MIT",
+          "sha256": "47dc9ff29128ddfb4d6a0435383c9f89120bc374dbcc1dd00b933a0b28aa7865"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "itoa",
+      "version": "1.0.18",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/dtolnay/itoa",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/itoa-1.0.18/LICENSE-APACHE",
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "third_party/notices/rust/itoa-1.0.18/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "libc",
+      "version": "0.2.189",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime",
+        "test"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-lang/libc",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/libc-0.2.189/LICENSE-APACHE",
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "third_party/notices/rust/libc-0.2.189/LICENSE-MIT",
+          "sha256": "123a331b5dbf04c30097fa43b8f858bc85df671fe776de498d01f3d6b7c1f69e"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "libm",
+      "version": "0.2.16",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-lang/compiler-builtins",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/libm-0.2.16/LICENSE.txt",
+          "sha256": "3823dda7cf046602f4b4e77ec8e227863dc4736037cc85bb33d9f19febe16bb7"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "linux-raw-sys",
+      "version": "0.12.1",
+      "license_expression": "Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT",
+      "scopes": [
+        "test"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/sunfishcode/linux-raw-sys",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/linux-raw-sys-0.12.1/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/linux-raw-sys-0.12.1/LICENSE-Apache-2.0_WITH_LLVM-exception",
+          "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5"
+        },
+        {
+          "path": "third_party/notices/rust/linux-raw-sys-0.12.1/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "litemap",
+      "version": "0.8.3",
+      "license_expression": "Unicode-3.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/litemap-0.8.3/LICENSE",
+          "sha256": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "log",
+      "version": "0.4.34",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-lang/log",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/log-0.4.34/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/log-0.4.34/LICENSE-MIT",
+          "sha256": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "lru-slab",
+      "version": "0.1.2",
+      "license_expression": "MIT OR Apache-2.0 OR Zlib",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/Ralith/lru-slab",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/lru-slab-0.1.2/LICENSE-APACHE",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        },
+        {
+          "path": "third_party/notices/rust/lru-slab-0.1.2/LICENSE-MIT",
+          "sha256": "1466d9b4f3a59bb8997fc8d5fa977ce3f6a24bb2358793c09bfdf007039f6486"
+        },
+        {
+          "path": "third_party/notices/rust/lru-slab-0.1.2/LICENSE-ZLIB",
+          "sha256": "09785877275ffada6c371b652a30e95c26b435126fc0fc62f1bc2d72171f80a4"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "memchr",
+      "version": "2.8.3",
+      "license_expression": "Unlicense OR MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/BurntSushi/memchr",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/memchr-2.8.3/COPYING",
+          "sha256": "01c266bced4a434da0051174d6bee16a4c82cf634e2679b6155d40d75012390f"
+        },
+        {
+          "path": "third_party/notices/rust/memchr-2.8.3/LICENSE-MIT",
+          "sha256": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "miniz_oxide",
+      "version": "0.9.1",
+      "license_expression": "MIT OR Zlib OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/Frommi/miniz_oxide/tree/master/miniz_oxide",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/miniz_oxide-0.9.1/LICENSE",
+          "sha256": "4108245a1f2df9d4e94df8abed5b4ba0759bb2f9b40a6b939f1be141077ae50b"
+        },
+        {
+          "path": "third_party/notices/rust/miniz_oxide-0.9.1/LICENSE-APACHE.md",
+          "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+        },
+        {
+          "path": "third_party/notices/rust/miniz_oxide-0.9.1/LICENSE-MIT.md",
+          "sha256": "799e9ca9d179295ef372f25d3769cdda7d25bb2668add6a6a1e22d1e4c678b8d"
+        },
+        {
+          "path": "third_party/notices/rust/miniz_oxide-0.9.1/LICENSE-ZLIB.md",
+          "sha256": "0a54e647fe54104658b5e563c04c6f9edf251710e47bce692e0bd990a4ddaa39"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "mio",
+      "version": "1.2.3",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/tokio-rs/mio",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/mio-1.2.3/LICENSE",
+          "sha256": "07919255c7e04793d8ea760d6c2ce32d19f9ff02bdbdde3ce90b1e1880929a9b"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "num-bigint",
+      "version": "0.4.8",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-num/num-bigint",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/num-bigint-0.4.8/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/num-bigint-0.4.8/LICENSE-MIT",
+          "sha256": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "num-integer",
+      "version": "0.1.47",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-num/num-integer",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/num-integer-0.1.47/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/num-integer-0.1.47/LICENSE-MIT",
+          "sha256": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "num-rational",
+      "version": "0.4.2",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-num/num-rational",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/num-rational-0.4.2/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/num-rational-0.4.2/LICENSE-MIT",
+          "sha256": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "num-traits",
+      "version": "0.2.19",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-num/num-traits",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/num-traits-0.2.19/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/num-traits-0.2.19/LICENSE-MIT",
+          "sha256": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "once_cell",
+      "version": "1.21.4",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime",
+        "test"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/matklad/once_cell",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/once_cell-1.21.4/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/once_cell-1.21.4/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "percent-encoding",
+      "version": "2.3.2",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/servo/rust-url/",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/percent-encoding-2.3.2/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/percent-encoding-2.3.2/LICENSE-MIT",
+          "sha256": "b38f11f6096706e6de553dabe2a7ed142d59b6fa8c97e290c67496154745cdd5"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "pin-project-lite",
+      "version": "0.2.17",
+      "license_expression": "Apache-2.0 OR MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/taiki-e/pin-project-lite",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/pin-project-lite-0.2.17/LICENSE-APACHE",
+          "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+        },
+        {
+          "path": "third_party/notices/rust/pin-project-lite-0.2.17/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "pkg-config",
+      "version": "0.3.34",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "build"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-lang/pkg-config-rs",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/pkg-config-0.3.34/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/pkg-config-0.3.34/LICENSE-MIT",
+          "sha256": "378f5840b258e2779c39418f3f2d7b2ba96f1c7917dd6be0713f88305dbda397"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "potential_utf",
+      "version": "0.1.6",
+      "license_expression": "Unicode-3.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/potential_utf-0.1.6/LICENSE",
+          "sha256": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "proc-macro2",
+      "version": "1.0.107",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/dtolnay/proc-macro2",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/proc-macro2-1.0.107/LICENSE-APACHE",
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "third_party/notices/rust/proc-macro2-1.0.107/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "quinn",
+      "version": "0.11.11",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/quinn-rs/quinn",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/quinn-0.11.11/LICENSE-APACHE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "path": "third_party/notices/rust/quinn-0.11.11/LICENSE-MIT",
+          "sha256": "4b2d0aca6789fa39e03d6738e869ea0988cceba210ca34ebb59c15c463e93a04"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "quinn-proto",
+      "version": "0.11.17",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/quinn-rs/quinn",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/quinn-proto-0.11.17/LICENSE-APACHE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "path": "third_party/notices/rust/quinn-proto-0.11.17/LICENSE-MIT",
+          "sha256": "4b2d0aca6789fa39e03d6738e869ea0988cceba210ca34ebb59c15c463e93a04"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "quinn-udp",
+      "version": "0.5.15",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/quinn-rs/quinn",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/quinn-udp-0.5.15/LICENSE-APACHE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "path": "third_party/notices/rust/quinn-udp-0.5.15/LICENSE-MIT",
+          "sha256": "4b2d0aca6789fa39e03d6738e869ea0988cceba210ca34ebb59c15c463e93a04"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "quote",
+      "version": "1.0.47",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/dtolnay/quote",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/quote-1.0.47/LICENSE-APACHE",
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "third_party/notices/rust/quote-1.0.47/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "rand",
+      "version": "0.10.2",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-random/rand",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/rand-0.10.2/LICENSE-APACHE",
+          "sha256": "35242e7a83f69875e6edeff02291e688c97caafe2f8902e4e19b49d3e78b4cab"
+        },
+        {
+          "path": "third_party/notices/rust/rand-0.10.2/LICENSE-MIT",
+          "sha256": "209fbbe0ad52d9235e37badf9cadfe4dbdc87203179c0899e738b39ade42177b"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "rand_core",
+      "version": "0.10.1",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime",
+        "test"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-random/rand_core",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/rand_core-0.10.1/LICENSE-APACHE",
+          "sha256": "6df43f6f4b5d4587f3d8d71e45532c688fd168afa5fe89d571cb32fa09c4ef51"
+        },
+        {
+          "path": "third_party/notices/rust/rand_core-0.10.1/LICENSE-MIT",
+          "sha256": "8b6e9feec03e7c9a5facb26855cecd31662bf989b636bcfe79521bdf8ac863f0"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "rand_pcg",
+      "version": "0.10.2",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-random/rngs",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/rand_pcg-0.10.2/LICENSE-APACHE",
+          "sha256": "6df43f6f4b5d4587f3d8d71e45532c688fd168afa5fe89d571cb32fa09c4ef51"
+        },
+        {
+          "path": "third_party/notices/rust/rand_pcg-0.10.2/LICENSE-MIT",
+          "sha256": "2234e3cefee876aeb686ad89e978bdb07bf118a1186ab1cf161bcdf69d4b4f57"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "reqwest",
+      "version": "0.12.28",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/seanmonstar/reqwest",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/reqwest-0.12.28/LICENSE-APACHE",
+          "sha256": "751963a8b88c0e3a9f27e98933079fbcf09b9998b2c13ac49c2e4d58444520d6"
+        },
+        {
+          "path": "third_party/notices/rust/reqwest-0.12.28/LICENSE-MIT",
+          "sha256": "47d4e1803702728e03d30f8a848ae2249ba274bbd9f8443e803f7924d83cd371"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "ring",
+      "version": "0.17.14",
+      "license_expression": "Apache-2.0 AND ISC",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/briansmith/ring",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/ring-0.17.14/LICENSE",
+          "sha256": "b3d734001a94efff3579978d953391aa7115f877657d25eb54037a43875d078a"
+        },
+        {
+          "path": "third_party/notices/rust/ring-0.17.14/LICENSE-BoringSSL",
+          "sha256": "005fc765ddc5115da796cca915baa9557abae13ff35e0a47c47affc56f6c414d"
+        },
+        {
+          "path": "third_party/notices/rust/ring-0.17.14/LICENSE-other-bits",
+          "sha256": "f025ccfb7dfb6bdfedc75ca0f67acc69e6fb4998143d834f7c2f38a29989680f"
+        },
+        {
+          "path": "third_party/notices/rust/ring-0.17.14/src/polyfill/once_cell/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/ring-0.17.14/src/polyfill/once_cell/LICENSE-MIT",
+          "sha256": "6ee2ed6c77710de911761acd5fc1ad1da00f476beb1a7ef27e78c2d1858deafc"
+        },
+        {
+          "path": "third_party/notices/rust/ring-0.17.14/third_party/fiat/LICENSE",
+          "sha256": "9eacbcb81be660840c714a560a9d65ba07913db98dd4baf969f78dd499fdd60f"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "robust",
+      "version": "1.2.0",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/georust/robust",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/robust-1.2.0/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/robust-1.2.0/LICENSE-MIT",
+          "sha256": "ddb606a4226673241b8dedb155a25b271178d028a2bf74c90ee47fe495f4d9bc"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "rstar",
+      "version": "0.12.2",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/georust/rstar",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/rstar-0.12.2/LICENSE-MIT",
+          "sha256": "9b3a76c27bac8f3e0ff2d1f64f65941c50310ae3ff69318cea230bd4a36822c5",
+          "source": "https://raw.githubusercontent.com/georust/rstar/c8c5bf9e41468281d030869d409e3f67f1aaf5b7/LICENSE-MIT",
+          "recovery": "Exact .cargo_vcs_info.json revision; registry archive omitted license"
+        },
+        {
+          "path": "third_party/notices/rust/rstar-0.12.2/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+          "source": "https://raw.githubusercontent.com/georust/rstar/c8c5bf9e41468281d030869d409e3f67f1aaf5b7/LICENSE-APACHE",
+          "recovery": "Exact .cargo_vcs_info.json revision; registry archive omitted license"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "rustc-hash",
+      "version": "2.1.3",
+      "license_expression": "Apache-2.0 OR MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-lang/rustc-hash",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/rustc-hash-2.1.3/LICENSE-APACHE",
+          "sha256": "95bd3988beee069fa2848f648dab43cc6e0b2add2ad6bcb17360caf749802bcc"
+        },
+        {
+          "path": "third_party/notices/rust/rustc-hash-2.1.3/LICENSE-MIT",
+          "sha256": "30fefc3a7d6a0041541858293bcbea2dde4caa4c0a5802f996a7f7e8c0085652"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "rustix",
+      "version": "1.1.4",
+      "license_expression": "Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT",
+      "scopes": [
+        "test"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/bytecodealliance/rustix",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/rustix-1.1.4/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/rustix-1.1.4/LICENSE-Apache-2.0_WITH_LLVM-exception",
+          "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5"
+        },
+        {
+          "path": "third_party/notices/rust/rustix-1.1.4/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "rustls",
+      "version": "0.23.44",
+      "license_expression": "Apache-2.0 OR ISC OR MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rustls/rustls",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/rustls-0.23.44/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/rustls-0.23.44/LICENSE-ISC",
+          "sha256": "7cfafc877eccc46c0e346ccbaa5c51bb6b894d2b818e617d970211e232785ad4"
+        },
+        {
+          "path": "third_party/notices/rust/rustls-0.23.44/LICENSE-MIT",
+          "sha256": "709e3175b4212f7b13aa93971c9f62ff8c69ec45ad8c6532a7e0c41d7a7d6f8c"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "rustls-pki-types",
+      "version": "1.15.1",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rustls/pki-types",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/rustls-pki-types-1.15.1/LICENSE-APACHE",
+          "sha256": "45fd05c4865e7c350b98ad7ac50e1b15462d49af4a91e9b0c9dd933dc9a69742"
+        },
+        {
+          "path": "third_party/notices/rust/rustls-pki-types-1.15.1/LICENSE-MIT",
+          "sha256": "9117d922e667125508dde62b02c1f57ed22f5ad21eb536aa2e2d99e1c796e639"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "rustls-webpki",
+      "version": "0.103.15",
+      "license_expression": "ISC",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rustls/webpki",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/rustls-webpki-0.103.15/LICENSE",
+          "sha256": "5b698ca13897be3afdb7174256fa1574f8c6892b8bea1a66dd6469d3fe27885a"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "ryu",
+      "version": "1.0.23",
+      "license_expression": "Apache-2.0 OR BSL-1.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/dtolnay/ryu",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/ryu-1.0.23/LICENSE-APACHE",
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "third_party/notices/rust/ryu-1.0.23/LICENSE-BOOST",
+          "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "semver",
+      "version": "1.0.28",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "build"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/dtolnay/semver",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/semver-1.0.28/LICENSE-APACHE",
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "third_party/notices/rust/semver-1.0.28/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "serde",
+      "version": "1.0.229",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/serde-rs/serde",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/serde-1.0.229/LICENSE-APACHE",
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "third_party/notices/rust/serde-1.0.229/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "serde_core",
+      "version": "1.0.229",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/serde-rs/serde",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/serde_core-1.0.229/LICENSE-APACHE",
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "third_party/notices/rust/serde_core-1.0.229/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "serde_derive",
+      "version": "1.0.229",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/serde-rs/serde",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/serde_derive-1.0.229/LICENSE-APACHE",
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "third_party/notices/rust/serde_derive-1.0.229/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "serde_json",
+      "version": "1.0.151",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/serde-rs/json",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/serde_json-1.0.151/LICENSE-APACHE",
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "third_party/notices/rust/serde_json-1.0.151/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "serde_urlencoded",
+      "version": "0.7.1",
+      "license_expression": "MIT/Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/nox/serde_urlencoded",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/serde_urlencoded-0.7.1/LICENSE-APACHE",
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "third_party/notices/rust/serde_urlencoded-0.7.1/LICENSE-MIT",
+          "sha256": "b9eb266294324f672cbe945fe8f2e32f85024f0d61a1a7d14382cdde0ac44769"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "sha2",
+      "version": "0.10.9",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/RustCrypto/hashes",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/sha2-0.10.9/LICENSE-APACHE",
+          "sha256": "a9040321c3712d8fd0b09cf52b17445de04a23a10165049ae187cd39e5c86be5"
+        },
+        {
+          "path": "third_party/notices/rust/sha2-0.10.9/LICENSE-MIT",
+          "sha256": "b4eb00df6e2a4d22518fcaa6a2b4646f249b3a3c9814509b22bd2091f1392ff1"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "shlex",
+      "version": "2.0.1",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "build"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/comex/rust-shlex",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/shlex-2.0.1/LICENSE-APACHE",
+          "sha256": "553fffcd9b1cb158bc3e9edc35da85ca5c3b3d7d2e61c883ebcfa8a65814b583"
+        },
+        {
+          "path": "third_party/notices/rust/shlex-2.0.1/LICENSE-MIT",
+          "sha256": "4455bf75a91154108304cb283e0fea9948c14f13e20d60887cf2552449dea3b1"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "sif-itree",
+      "version": "0.4.1",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://codeberg.org/adamreichold/sif-itree",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/sif-itree-0.4.1/LICENSE-APACHE",
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "third_party/notices/rust/sif-itree-0.4.1/LICENSE-MIT",
+          "sha256": "cf6287cf93399cbc46a241bdbafb2d4b6e42956046a886550883a7056f1914eb"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "simd-adler32",
+      "version": "0.3.10",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/mcountryman/simd-adler32",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/simd-adler32-0.3.10/LICENSE.md",
+          "sha256": "42a35170233e83e18856792e748de4c1ce4a63b2afce9a370c89ef3fe23f9f2d"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "slab",
+      "version": "0.4.12",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/tokio-rs/slab",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/slab-0.4.12/LICENSE",
+          "sha256": "8ce0830173fdac609dfb4ea603fdc002c2f4af0dc9b1a005653f5da9cf534b18"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "smallvec",
+      "version": "1.16.0",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/servo/rust-smallvec",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/smallvec-1.16.0/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/smallvec-1.16.0/LICENSE-MIT",
+          "sha256": "0b28172679e0009b655da42797c03fd163a3379d5cfa67ba1f1655e974a2a1a9"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "socket2",
+      "version": "0.6.5",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rust-lang/socket2",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/socket2-0.6.5/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/socket2-0.6.5/LICENSE-MIT",
+          "sha256": "378f5840b258e2779c39418f3f2d7b2ba96f1c7917dd6be0713f88305dbda397"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "stable_deref_trait",
+      "version": "1.2.1",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/storyyeller/stable_deref_trait",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/stable_deref_trait-1.2.1/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/stable_deref_trait-1.2.1/LICENSE-MIT",
+          "sha256": "5e05b024f653a5ce199e77cbbbd42fb5553562ec714b819421ed0c3e552a75d7"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "subtle",
+      "version": "2.6.1",
+      "license_expression": "BSD-3-Clause",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/dalek-cryptography/subtle",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/subtle-2.6.1/LICENSE",
+          "sha256": "d1fc1bc0d155df60b2e7705b6b2ae02a05c96f948e1cec6e2fb86360b09f346b"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "syn",
+      "version": "2.0.119",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/dtolnay/syn",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/syn-2.0.119/LICENSE-APACHE",
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "third_party/notices/rust/syn-2.0.119/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "syn",
+      "version": "3.0.5",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/dtolnay/syn",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/syn-3.0.5/LICENSE-APACHE",
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "third_party/notices/rust/syn-3.0.5/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "sync_wrapper",
+      "version": "1.0.2",
+      "license_expression": "Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/Actyx/sync_wrapper",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/sync_wrapper-1.0.2/LICENSE",
+          "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "synstructure",
+      "version": "0.13.2",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/mystor/synstructure",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/synstructure-0.13.2/LICENSE",
+          "sha256": "219920e865eee70b7dcfc948a86b099e7f4fe2de01bcca2ca9a20c0a033f2b59"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "tempfile",
+      "version": "3.27.0",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "test"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/Stebalien/tempfile",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/tempfile-3.27.0/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/tempfile-3.27.0/LICENSE-MIT",
+          "sha256": "8b427f5bc501764575e52ba4f9d95673cf8f6d80a86d0d06599852e1a9a20a36"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "thiserror",
+      "version": "2.0.20",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/dtolnay/thiserror",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/thiserror-2.0.20/LICENSE-APACHE",
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "third_party/notices/rust/thiserror-2.0.20/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "thiserror-impl",
+      "version": "2.0.20",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/dtolnay/thiserror",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/thiserror-impl-2.0.20/LICENSE-APACHE",
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "third_party/notices/rust/thiserror-impl-2.0.20/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "tinystr",
+      "version": "0.8.4",
+      "license_expression": "Unicode-3.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/tinystr-0.8.4/LICENSE",
+          "sha256": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "tinyvec",
+      "version": "1.13.2",
+      "license_expression": "Zlib OR Apache-2.0 OR MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/Lokathor/tinyvec",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/tinyvec-1.13.2/LICENSE-APACHE.md",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        },
+        {
+          "path": "third_party/notices/rust/tinyvec-1.13.2/LICENSE-MIT.md",
+          "sha256": "fd80a26fbb3f644af1fa994134446702932968519797227e07a1368dea80f0bc"
+        },
+        {
+          "path": "third_party/notices/rust/tinyvec-1.13.2/LICENSE-ZLIB.md",
+          "sha256": "84b34dd7608f7fb9b17bd588a6bf392bf7de504e2716f024a77d89f1b145a151"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "tinyvec_macros",
+      "version": "0.1.1",
+      "license_expression": "MIT OR Apache-2.0 OR Zlib",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/Soveu/tinyvec_macros",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/tinyvec_macros-0.1.1/LICENSE-APACHE.md",
+          "sha256": "4f44572785f35152c1fd2eadf565b7e079c0f300b4324f0af653419f9d76b735"
+        },
+        {
+          "path": "third_party/notices/rust/tinyvec_macros-0.1.1/LICENSE-MIT.md",
+          "sha256": "1dd8eca0f83669e75fa119e34fb9e1be9d16e3e9b6368962b8019db6e8ae5f7b"
+        },
+        {
+          "path": "third_party/notices/rust/tinyvec_macros-0.1.1/LICENSE-ZLIB.md",
+          "sha256": "41ace205715d9f19a3214218cc1c01d57c533e02cd0fef7c8e51a49a7fce5ac5"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "tokio",
+      "version": "1.53.1",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/tokio-rs/tokio",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/tokio-1.53.1/LICENSE",
+          "sha256": "253cd04c6714889df2d32f3f64d669179a1c95c76ac43c40882c52eb06bc3552"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "tokio-rustls",
+      "version": "0.26.5",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rustls/tokio-rustls",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/tokio-rustls-0.26.5/LICENSE-APACHE",
+          "sha256": "cc117d90b498b32b11a886f279b359da16a73c3b01efbb2f5cc004b20262334e"
+        },
+        {
+          "path": "third_party/notices/rust/tokio-rustls-0.26.5/LICENSE-MIT",
+          "sha256": "e20fa2b8e0a2565f24a792b94b4bf4b6c2b9d36f781d8a9516e218a036e6677a"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "tower",
+      "version": "0.5.3",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/tower-rs/tower",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/tower-0.5.3/LICENSE",
+          "sha256": "4249c8e6c5ebb85f97c77e6457c6fafc1066406eb8f1ef61e796fbdc5ff18482"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "tower-http",
+      "version": "0.6.11",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/tower-rs/tower-http",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/tower-http-0.6.11/LICENSE",
+          "sha256": "5049cf464977eff4b4fcfa7988d84e74116956a3eb9d5f1d451b3f828f945233"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "tower-layer",
+      "version": "0.3.3",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/tower-rs/tower",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/tower-layer-0.3.3/LICENSE",
+          "sha256": "4249c8e6c5ebb85f97c77e6457c6fafc1066406eb8f1ef61e796fbdc5ff18482"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "tower-service",
+      "version": "0.3.3",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/tower-rs/tower",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/tower-service-0.3.3/LICENSE",
+          "sha256": "4249c8e6c5ebb85f97c77e6457c6fafc1066406eb8f1ef61e796fbdc5ff18482"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "tracing",
+      "version": "0.1.44",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/tokio-rs/tracing",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/tracing-0.1.44/LICENSE",
+          "sha256": "898b1ae9821e98daf8964c8d6c7f61641f5f5aa78ad500020771c0939ee0dea1"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "tracing-core",
+      "version": "0.1.36",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/tokio-rs/tracing",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/tracing-core-0.1.36/LICENSE",
+          "sha256": "898b1ae9821e98daf8964c8d6c7f61641f5f5aa78ad500020771c0939ee0dea1"
+        },
+        {
+          "path": "third_party/notices/rust/tracing-core-0.1.36/src/spin/LICENSE",
+          "sha256": "58545fed1565e42d687aecec6897d35c6d37ccb71479a137c0deb2203e125c79"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "try-lock",
+      "version": "0.2.5",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/seanmonstar/try-lock",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/try-lock-0.2.5/LICENSE",
+          "sha256": "c816a0749cdc6bf062a5111c159723de51b2bfac66a1dac2655abd9e6b1583eb"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "typenum",
+      "version": "1.20.1",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/paholg/typenum",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/typenum-1.20.1/LICENSE",
+          "sha256": "db11fec9946737df39ca3898d9cd8c10ec6f6c3a884a6802b0ad0b81b4e8f23a"
+        },
+        {
+          "path": "third_party/notices/rust/typenum-1.20.1/LICENSE-APACHE",
+          "sha256": "516b24e051bf5630880ebbd55c40a25ce9552ebaf8970a53e8976eb70e522406"
+        },
+        {
+          "path": "third_party/notices/rust/typenum-1.20.1/LICENSE-MIT",
+          "sha256": "a825bd853ab71619a4923d7b4311221427848070ff44d990da39b0b274c1683f"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "unicode-ident",
+      "version": "1.0.24",
+      "license_expression": "(MIT OR Apache-2.0) AND Unicode-3.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/dtolnay/unicode-ident",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/unicode-ident-1.0.24/LICENSE-APACHE",
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "third_party/notices/rust/unicode-ident-1.0.24/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        },
+        {
+          "path": "third_party/notices/rust/unicode-ident-1.0.24/LICENSE-UNICODE",
+          "sha256": "f7db81051789b729fea528a63ec4c938fdcb93d9d61d97dc8cc2e9df6d47f2a1"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "untrusted",
+      "version": "0.9.0",
+      "license_expression": "ISC",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/briansmith/untrusted",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/untrusted-0.9.0/LICENSE.txt",
+          "sha256": "7abd9b6960dcf7d4d0a48606a5b71bfe37d472db68d70637f3a58a56785f1621"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "url",
+      "version": "2.5.8",
+      "license_expression": "MIT OR Apache-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/servo/rust-url",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/url-2.5.8/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/url-2.5.8/LICENSE-MIT",
+          "sha256": "b38f11f6096706e6de553dabe2a7ed142d59b6fa8c97e290c67496154745cdd5"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "utf8_iter",
+      "version": "1.0.4",
+      "license_expression": "Apache-2.0 OR MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/hsivonen/utf8_iter",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/utf8_iter-1.0.4/LICENSE-APACHE",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        },
+        {
+          "path": "third_party/notices/rust/utf8_iter-1.0.4/LICENSE-MIT",
+          "sha256": "3fa4ca83dcc9237839b1bdeb2e6d16bdfb5ec0c5ce42b24694d8bbf0dcbef72c"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "version_check",
+      "version": "0.9.5",
+      "license_expression": "MIT/Apache-2.0",
+      "scopes": [
+        "build"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/SergioBenitez/version_check",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/version_check-0.9.5/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "third_party/notices/rust/version_check-0.9.5/LICENSE-MIT",
+          "sha256": "b7e650f3fce5c53249d1cdc608b54df156a97edd636cf9d23498d0cfe7aec63e"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "want",
+      "version": "0.3.1",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/seanmonstar/want",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/want-0.3.1/LICENSE",
+          "sha256": "a65f5d0a945d267751344c95665945b90c030ea107faf5c85d518929886187da"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "webpki-roots",
+      "version": "1.0.9",
+      "license_expression": "CDLA-Permissive-2.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/rustls/webpki-roots",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/webpki-roots-1.0.9/LICENSE",
+          "sha256": "e271993808fec50ab29350b39539cdec611a9103f827e0aa26d61da70e2d33f8"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "writeable",
+      "version": "0.6.4",
+      "license_expression": "Unicode-3.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/writeable-0.6.4/LICENSE",
+          "sha256": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "yoke",
+      "version": "0.8.3",
+      "license_expression": "Unicode-3.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/yoke-0.8.3/LICENSE",
+          "sha256": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "yoke-derive",
+      "version": "0.8.2",
+      "license_expression": "Unicode-3.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/yoke-derive-0.8.2/LICENSE",
+          "sha256": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "zerofrom",
+      "version": "0.1.8",
+      "license_expression": "Unicode-3.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/zerofrom-0.1.8/LICENSE",
+          "sha256": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "zerofrom-derive",
+      "version": "0.1.7",
+      "license_expression": "Unicode-3.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/zerofrom-derive-0.1.7/LICENSE",
+          "sha256": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "zeroize",
+      "version": "1.9.0",
+      "license_expression": "Apache-2.0 OR MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/RustCrypto/utils",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/zeroize-1.9.0/LICENSE-APACHE",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        },
+        {
+          "path": "third_party/notices/rust/zeroize-1.9.0/LICENSE-MIT",
+          "sha256": "8c7516d4b27b1e495be5e38b612298b63de48d05f49cdac94f70f3cd70f8864b"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "zerotrie",
+      "version": "0.2.5",
+      "license_expression": "Unicode-3.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/zerotrie-0.2.5/LICENSE",
+          "sha256": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "zerovec",
+      "version": "0.11.8",
+      "license_expression": "Unicode-3.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/zerovec-0.11.8/LICENSE",
+          "sha256": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "zerovec-derive",
+      "version": "0.11.6",
+      "license_expression": "Unicode-3.0",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/zerovec-derive-0.11.6/LICENSE",
+          "sha256": "f367c1b8e1aa262435251e442901da4607b4650e0e63a026f5044473ecfb90f2"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Rust",
+      "name": "zmij",
+      "version": "1.0.23",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "Cargo dependency; target-resolution superset, not proof of machine-code inclusion",
+      "repository": "https://github.com/dtolnay/zmij",
+      "notices": [
+        {
+          "path": "third_party/notices/rust/zmij-1.0.23/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Node",
+      "name": "koffi",
+      "version": "3.2.1",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "bundled third-party FFI runtime",
+      "notices": [
+        {
+          "path": "third_party/notices/node/koffi/LICENSE.txt",
+          "sha256": "22bcbbbacd739b026a8dc484f62a31484ce4c4e31f3408b60b29b4e41d62b290"
+        },
+        {
+          "path": "third_party/notices/node/koffi/vendor/node-addon-api/LICENSE.md",
+          "sha256": "89024017b88a9f2b763f79b941a4f2db3b4428edfcacdc0b23866b2da633ad0c"
+        },
+        {
+          "path": "third_party/notices/node/koffi/vendor/node-api-headers/LICENSE",
+          "sha256": "a553508f516031c91f3af1148d44970cb81bbae6c4f091be6835d39cc252238c"
+        }
+      ],
+      "notice_coverage": "root and nested vendor notices"
+    },
+    {
+      "ecosystem": "Node",
+      "name": "@koromix/koffi-linux-x64",
+      "version": "3.2.1",
+      "license_expression": "MIT",
+      "scopes": [
+        "runtime"
+      ],
+      "relationship": "bundled third-party FFI runtime",
+      "notices": [
+        {
+          "path": "third_party/notices/node/koffi/LICENSE.txt",
+          "sha256": "22bcbbbacd739b026a8dc484f62a31484ce4c4e31f3408b60b29b4e41d62b290",
+          "coverage": "Koffi root MIT notice covers platform package; same pinned version"
+        }
+      ],
+      "notice_coverage": "root and nested vendor notices"
+    },
+    {
+      "ecosystem": "C++",
+      "name": "exactextract",
+      "version": "0.3.0",
+      "license_expression": "Apache-2.0",
+      "scopes": [
+        "optional runtime"
+      ],
+      "relationship": "Pinned unmodified upstream core statically linked only when feature exactextract is enabled; system GEOS remains external.",
+      "repository": "https://github.com/isciences/exactextract",
+      "notices": [
+        {
+          "path": "third_party/notices/cpp/exactextract-0.3.0/LICENSE",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        }
+      ]
+    }
+  ],
+  "external_runtime": [
+    {
+      "name": "GDAL",
+      "relationship": "dynamically linked, not bundled",
+      "license": "MIT in general; components and system dependencies retain their separate licenses",
+      "source": "https://gdal.org/en/stable/license.html"
+    },
+    {
+      "name": "glibc and Linux system libraries",
+      "relationship": "provided by host distribution, not bundled",
+      "license": "see the distribution package copyright records; no all-MIT claim"
+    }
+  ],
+  "python": [
+    {
+      "name": "Python ctypes",
+      "scope": "ordinary binding",
+      "relationship": "Python standard library, not bundled"
+    },
+    {
+      "name": "NumPy",
+      "scope": "optional typed-buffer convenience and tests",
+      "relationship": "caller-installed, not bundled",
+      "license": "BSD-3-Clause; wheel dependencies retain their own notices"
+    },
+    {
+      "name": "setuptools / wheel / build",
+      "scope": "build only",
+      "relationship": "caller-installed, not bundled"
+    },
+    {
+      "name": "pytest / Hypothesis / Rasterio / Shapely / SciPy / mpmath / affine",
+      "scope": "selected synthetic tests and independent oracles",
+      "relationship": "caller-installed, not bundled; Python wheels can include separately licensed native libraries"
+    }
+  ],
+  "excluded_references": [
+    "xagg",
+    "xESMF/ESMF",
+    "Raptor/Beast",
+    "private application source and fixtures",
+    "all external raster datasets"
+  ],
+  "interpretation": "License metadata and retained notice inventory, not an ownership determination or legal compatibility guarantee."
+}

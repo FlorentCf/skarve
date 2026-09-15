@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "seed": 193542725648087,
+  "recorded_utc": "2026-09-12T11:07:32.084595+00:00",
+  "library_sha256": "17e3546f7c526d5687b99641ce3f3adaa6d8d85cd7e4786fc84b2e0d2bf78c93",
+  "harness_sha256": "6771c888c4d182de8790ab63b75bcc445d2c1631158d86cdf4bdfbeb28ef4db8",
+  "quick": false,
+  "versions": {
+    "skarve-engine": "0.1.0b1",
+    "numpy": "2.5.3",
+    "rasterio": "1.5.1",
+    "shapely": "2.1.2",
+    "exactextract": "0.3.0",
+    "python": "3.12.3",
+    "native_gdal": "3.8.4",
+    "rasterio_gdal": "3.12.4",
+    "geos": "3.13.1"
+  },
+  "host": {
+    "system": "Linux",
+    "release": "6.6.87.2-microsoft-standard-WSL2",
+    "machine": "x86_64",
+    "cpu_model": "AMD Ryzen 7 8745HS w/ Radeon 780M Graphics",
+    "logical_cpus": 12
+  },
+  "limits": {
+    "process_address_space_bytes": 2147483648,
+    "gdal_cache_bytes": 67108864,
+    "single_decoded_cache_bytes": 1048576,
+    "serial_timed_workers": 1,
+    "threads": 1
+  },
+  "scope": "New deterministic synthetic fixtures and polygons generated only after this installed core was selected. Native-grid planar statistics; direct source-owning calls. No private data, credentials or network required.",
+  "source_files": 8,
+  "source_grid": [
+    512,
+    512
+  ],
+  "batch_zones": 64,
+  "date_slices": 24,
+  "distinct_files": 6,
+  "bands_per_distinct_file": 2,
+  "single_queries_per_pattern": 100,
+  "rounds": 3,
+  "external_empty_normalization": "NaN mean/min/max become null only when fractional support is zero; nonempty nonfinite values fail."
+}

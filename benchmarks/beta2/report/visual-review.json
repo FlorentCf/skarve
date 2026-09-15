@@ -1,0 +1,74 @@
+{
+  "schema": "skarve_beta2_report_review_v1",
+  "passed": true,
+  "chart_numeric_checks": 617,
+  "chart_rows": 208,
+  "local_links_checked": 62,
+  "missing_links": [],
+  "figures": [
+    {
+      "id": "01-singles",
+      "png_sha256": "a5d7d10fe2259247e0b925ef108ed7844eef97590fe567b912b27d31f98bbfd0",
+      "svg_sha256": "ac681ec88101c8b097b036b2393e9655d2f268076043df31a351abaa429b2160",
+      "png_identical_to_actual_visual_inspection": true
+    },
+    {
+      "id": "02-batches",
+      "png_sha256": "18e7e10df2535377036e55749f127c1fd25d51acc2c2b95955ab31952987e922",
+      "svg_sha256": "dfcb630c1a96a9e9fa50573bb2562ff03928010faa0d5a201374aa91140fe599",
+      "png_identical_to_actual_visual_inspection": true
+    },
+    {
+      "id": "03-preparation",
+      "png_sha256": "fe6b755060785c7cb0e55df8c4ee5709eba0dab2823aa0d7e5e1dcf385d135b0",
+      "svg_sha256": "b0efbf3cf43e5bfc858317828243b40abc1c31a0168621e3783ff7256b6d5dca",
+      "png_identical_to_actual_visual_inspection": true
+    },
+    {
+      "id": "04-remote-latency",
+      "png_sha256": "2947fb24b94edd1064a1ded389d1455437de576a7cdee69b2c6412f9e22c852c",
+      "svg_sha256": "5e3b6ee9d7764649ad75b8332b7f611fb9286273ec0b9e82996c55556ec562d7",
+      "png_identical_to_actual_visual_inspection": true
+    },
+    {
+      "id": "05-remote-traffic",
+      "png_sha256": "4b1294d2528bf44e8bed77289bc3dcf75f7ec84852e2c47ca589f2561fb451f1",
+      "svg_sha256": "2980866001b15dec7fda239439268dd5d9a37fdf79d3d5e7c348511183970a16",
+      "png_identical_to_actual_visual_inspection": true
+    },
+    {
+      "id": "06-cpp-control",
+      "png_sha256": "ec320ef371df07a2a1b054f444fd4b5ea9c9b4835d65c3aa9aa9d746e854a1ef",
+      "svg_sha256": "1c15658819c967fface9209b4d79a725832c7a7db7bb0a124f826d768b2d580b",
+      "png_identical_to_actual_visual_inspection": true
+    },
+    {
+      "id": "07-calibration",
+      "png_sha256": "9fbcefd84c6d15a8b91b63c69d18d72185602302d5d97f36f41d7ee109e62c67",
+      "svg_sha256": "e89aee923d1499dee1538194960349d8a70d5a0f40302d11f5ccef23d629b881",
+      "png_identical_to_actual_visual_inspection": true
+    },
+    {
+      "id": "summary",
+      "png_sha256": "a3817aa7572e315a06ed1c7200390fd968965f49f9769ac23d0d217bb0cf1604",
+      "svg_sha256": "aa57d4ea6e91c4183806f261ddf619261e1626b6ca9e77d01f53086215d43cb6",
+      "png_identical_to_actual_visual_inspection": true
+    }
+  ],
+  "decompressed_json_bytes": {
+    "history-01.json.gz": 1123400,
+    "history-02.json.gz": 41305,
+    "cpp-control.json.gz": 3711495,
+    "programme.json.gz": 73042719
+  },
+  "summary_sha256": "ecfe45ae2d7f8b9a6a78f8b08f845b83f0d81c0d76905245684f9f7afdaef316",
+  "html_sha256": "1df4dc03e66334886216aee0dc082af6a6afd7badb5d035a288165070c0d5476",
+  "markdown_sha256": "8dd2cb0e838223727a5c2e88ab9cee226eb4651dc6294b186dc3822ea1a58f33",
+  "verifier_sha256": "7228a7ba3c21dc01c09f41ca9ee65ab76a1f2ffcc10d262abe354c61b88915e9",
+  "visual_review": "All eight final PNGs were inspected through the image-view tool. Labels, values, spread and standalone policy/workload footers are visible. SVG font fallback was then checked in Edge; PNG bytes remained identical.",
+  "browser_review": "Local Edge desktop and 390x844 viewport; all eight SVG images loaded. Narrow document scroll width 375px within390px viewport; dense figures scroll only inside their containers. No application or WAN benchmark.",
+  "limitations": [
+    "Finite visual/source/statistic review, not an accessibility certification or hardware replication.",
+    "Chart clock arithmetic checks allow1e-9ms roundoff; engine result values are unchanged and governed by their separate strict/upstream gates."
+  ]
+}

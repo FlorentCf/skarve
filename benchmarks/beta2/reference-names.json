@@ -1,0 +1,158 @@
+{
+  "schema": "skarve_upstream_source_name_probe_v1",
+  "diagnosis_reproduced": true,
+  "upstream_version": "0.3.0",
+  "upstream_raster_module_sha256": "efe2560bf5de4215d92bf30b089bb1a752070fd35fb0cfc7fd5968af7937d979",
+  "harness_sha256": "7b0772437e8062e9ea74a39e04e3cbc290ecbfb9df381a575330fe7d28c885b0",
+  "rows": [
+    {
+      "unique_wrapper_names": false,
+      "strategy": "feature-sequential",
+      "actual": [
+        {
+          "sum": 10.0,
+          "support": 4.0,
+          "mean": 2.5,
+          "min": 1.0,
+          "max": 4.0
+        },
+        {
+          "sum": 10.0,
+          "support": 4.0,
+          "mean": 2.5,
+          "min": 1.0,
+          "max": 4.0
+        }
+      ],
+      "expected": [
+        {
+          "sum": 10.0,
+          "support": 4.0,
+          "mean": 2.5,
+          "min": 1.0,
+          "max": 4.0
+        },
+        {
+          "sum": 100.0,
+          "support": 4.0,
+          "mean": 25.0,
+          "min": 10.0,
+          "max": 40.0
+        }
+      ],
+      "matches": false
+    },
+    {
+      "unique_wrapper_names": false,
+      "strategy": "raster-sequential",
+      "actual": [
+        {
+          "sum": 10.0,
+          "support": 4.0,
+          "mean": 2.5,
+          "min": 1.0,
+          "max": 4.0
+        },
+        {
+          "sum": 10.0,
+          "support": 4.0,
+          "mean": 2.5,
+          "min": 1.0,
+          "max": 4.0
+        }
+      ],
+      "expected": [
+        {
+          "sum": 10.0,
+          "support": 4.0,
+          "mean": 2.5,
+          "min": 1.0,
+          "max": 4.0
+        },
+        {
+          "sum": 100.0,
+          "support": 4.0,
+          "mean": 25.0,
+          "min": 10.0,
+          "max": 40.0
+        }
+      ],
+      "matches": false
+    },
+    {
+      "unique_wrapper_names": true,
+      "strategy": "feature-sequential",
+      "actual": [
+        {
+          "sum": 10.0,
+          "support": 4.0,
+          "mean": 2.5,
+          "min": 1.0,
+          "max": 4.0
+        },
+        {
+          "sum": 100.0,
+          "support": 4.0,
+          "mean": 25.0,
+          "min": 10.0,
+          "max": 40.0
+        }
+      ],
+      "expected": [
+        {
+          "sum": 10.0,
+          "support": 4.0,
+          "mean": 2.5,
+          "min": 1.0,
+          "max": 4.0
+        },
+        {
+          "sum": 100.0,
+          "support": 4.0,
+          "mean": 25.0,
+          "min": 10.0,
+          "max": 40.0
+        }
+      ],
+      "matches": true
+    },
+    {
+      "unique_wrapper_names": true,
+      "strategy": "raster-sequential",
+      "actual": [
+        {
+          "sum": 10.0,
+          "support": 4.0,
+          "mean": 2.5,
+          "min": 1.0,
+          "max": 4.0
+        },
+        {
+          "sum": 100.0,
+          "support": 4.0,
+          "mean": 25.0,
+          "min": 10.0,
+          "max": 40.0
+        }
+      ],
+      "expected": [
+        {
+          "sum": 10.0,
+          "support": 4.0,
+          "mean": 2.5,
+          "min": 1.0,
+          "max": 4.0
+        },
+        {
+          "sum": 100.0,
+          "support": 4.0,
+          "mean": 25.0,
+          "min": 10.0,
+          "max": 40.0
+        }
+      ],
+      "matches": true
+    }
+  ],
+  "scope": "Untimed 2x2, two-band forwarding-source probe. No historical adapter, engine, file source, mask, or transport modification. Unique wrapper names are the sole changed input."
+}

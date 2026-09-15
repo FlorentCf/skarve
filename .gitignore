@@ -1,0 +1,17 @@
+/target/
+/dist/
+/.venv/
+node_modules/
+__pycache__/
+*.pyc
+*.so
+*.node
+*.whl
+*.tgz
+*.egg-info/
+**/build/
+.pytest_cache/
+.hypothesis/
+/scratch/
+/.env
+/.env.*

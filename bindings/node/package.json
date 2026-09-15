@@ -1,0 +1,43 @@
+{
+  "name": "@skarve/engine",
+  "version": "0.1.1-alpha.1",
+  "private": true,
+  "type": "module",
+  "main": "index.mjs",
+  "types": "index.d.ts",
+  "files": [
+    "index.mjs",
+    "bulk.mjs",
+    "index.d.ts",
+    "README.md",
+    "native",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test test.mjs"
+  },
+  "dependencies": {
+    "koffi": "3.2.1",
+    "@koromix/koffi-linux-x64": "3.2.1"
+  },
+  "description": "Skarve Linux x86-64 raster query engine",
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "bundledDependencies": [
+    "koffi",
+    "@koromix/koffi-linux-x64"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FlorentCf/skarve.git"
+  }
+}

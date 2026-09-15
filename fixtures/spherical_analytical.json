@@ -1,0 +1,836 @@
+{
+  "oracle": "Fraction clipping of submitted binary64 world coordinates; independent 90-digit mpmath cosine-difference edge integral; native HM snap threshold and nonnegative mask declared",
+  "sources": [
+    {
+      "id": "coarse",
+      "grid": {
+        "width": 4,
+        "height": 3,
+        "transform": [
+          4.0,
+          0.25,
+          0.0,
+          51.0,
+          0.0,
+          -0.25
+        ],
+        "crs": "EPSG:4326"
+      },
+      "values": [
+        100.0,
+        0.0,
+        250.0,
+        -10.0,
+        12.0,
+        15.0,
+        19.0,
+        1000.0,
+        2.0,
+        70.0,
+        -9999.0,
+        30.0
+      ],
+      "valid": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true
+      ]
+    }
+  ],
+  "queries": [
+    {
+      "id": "whole",
+      "source": "coarse",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              4.0,
+              50.25
+            ],
+            [
+              5.0,
+              50.25
+            ],
+            [
+              5.0,
+              51.0
+            ],
+            [
+              4.0,
+              51.0
+            ],
+            [
+              4.0,
+              50.25
+            ]
+          ]
+        ]
+      },
+      "expected": {
+        "mass": 1498.0,
+        "coveredPixelEquivalent": 12.0,
+        "validPopulationPixelEquivalent": 10.0,
+        "fullPixelCount": 12,
+        "boundaryPixelCount": 0,
+        "footprintCoverageFraction": 1.0
+      }
+    },
+    {
+      "id": "north-half-cell",
+      "source": "coarse",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              4.0,
+              50.875
+            ],
+            [
+              4.25,
+              50.875
+            ],
+            [
+              4.25,
+              51.0
+            ],
+            [
+              4.0,
+              51.0
+            ],
+            [
+              4.0,
+              50.875
+            ]
+          ]
+        ]
+      },
+      "expected": {
+        "mass": 49.93294642430231,
+        "coveredPixelEquivalent": 0.4993294642430231,
+        "validPopulationPixelEquivalent": 0.4993294642430231,
+        "fullPixelCount": 0,
+        "boundaryPixelCount": 1,
+        "footprintCoverageFraction": 1.0
+      }
+    },
+    {
+      "id": "partial-footprint",
+      "source": "coarse",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              3.5,
+              50.25
+            ],
+            [
+              4.5,
+              50.25
+            ],
+            [
+              4.5,
+              51.0
+            ],
+            [
+              3.5,
+              51.0
+            ],
+            [
+              3.5,
+              50.25
+            ]
+          ]
+        ]
+      },
+      "expected": {
+        "mass": 199.0,
+        "coveredPixelEquivalent": 6.0,
+        "validPopulationPixelEquivalent": 6.0,
+        "fullPixelCount": 6,
+        "boundaryPixelCount": 0,
+        "footprintCoverageFraction": 0.5
+      }
+    },
+    {
+      "id": "outside",
+      "source": "coarse",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              5.1,
+              50.3
+            ],
+            [
+              5.2,
+              50.3
+            ],
+            [
+              5.2,
+              50.4
+            ],
+            [
+              5.1,
+              50.4
+            ],
+            [
+              5.1,
+              50.3
+            ]
+          ]
+        ]
+      },
+      "expected": {
+        "mass": 0.0,
+        "coveredPixelEquivalent": 0.0,
+        "validPopulationPixelEquivalent": 0.0,
+        "fullPixelCount": 0,
+        "boundaryPixelCount": 0,
+        "footprintCoverageFraction": 0.0
+      }
+    },
+    {
+      "id": "oblique",
+      "source": "coarse",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              4.03,
+              50.31
+            ],
+            [
+              4.92,
+              50.67
+            ],
+            [
+              4.14,
+              50.97
+            ],
+            [
+              4.03,
+              50.31
+            ]
+          ]
+        ]
+      },
+      "expected": {
+        "mass": 311.5169793310973,
+        "coveredPixelEquivalent": 4.382243808992825,
+        "validPopulationPixelEquivalent": 4.382243808992825,
+        "fullPixelCount": 0,
+        "boundaryPixelCount": 9,
+        "footprintCoverageFraction": 1.0
+      }
+    },
+    {
+      "id": "hole",
+      "source": "coarse",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              4.02,
+              50.27
+            ],
+            [
+              4.98,
+              50.27
+            ],
+            [
+              4.98,
+              50.98
+            ],
+            [
+              4.02,
+              50.98
+            ],
+            [
+              4.02,
+              50.27
+            ]
+          ],
+          [
+            [
+              4.2,
+              50.42
+            ],
+            [
+              4.7,
+              50.42
+            ],
+            [
+              4.7,
+              50.82
+            ],
+            [
+              4.2,
+              50.82
+            ],
+            [
+              4.2,
+              50.42
+            ]
+          ]
+        ]
+      },
+      "expected": {
+        "mass": 1254.4065167112446,
+        "coveredPixelEquivalent": 7.705679893902988,
+        "validPopulationPixelEquivalent": 6.194833244657376,
+        "fullPixelCount": 0,
+        "boundaryPixelCount": 11,
+        "footprintCoverageFraction": 1.0
+      }
+    },
+    {
+      "id": "multipart",
+      "source": "coarse",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                4.01,
+                50.3
+              ],
+              [
+                4.3,
+                50.3
+              ],
+              [
+                4.3,
+                50.6
+              ],
+              [
+                4.01,
+                50.6
+              ],
+              [
+                4.01,
+                50.3
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                4.65,
+                50.65
+              ],
+              [
+                4.96,
+                50.65
+              ],
+              [
+                4.96,
+                50.96
+              ],
+              [
+                4.65,
+                50.96
+              ],
+              [
+                4.65,
+                50.65
+              ]
+            ]
+          ]
+        ]
+      },
+      "expected": {
+        "mass": 441.08177677901926,
+        "coveredPixelEquivalent": 2.9295071029284276,
+        "validPopulationPixelEquivalent": 2.2236041779663984,
+        "fullPixelCount": 0,
+        "boundaryPixelCount": 8,
+        "footprintCoverageFraction": 1.0
+      }
+    },
+    {
+      "id": "thin-axis-12",
+      "source": "coarse",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              4.125,
+              50.3
+            ],
+            [
+              4.125244140625,
+              50.3
+            ],
+            [
+              4.125244140625,
+              50.95
+            ],
+            [
+              4.125,
+              50.95
+            ],
+            [
+              4.125,
+              50.3
+            ]
+          ]
+        ]
+      },
+      "expected": {
+        "mass": 0.09144735026432124,
+        "coveredPixelEquivalent": 0.0025390701893216907,
+        "validPopulationPixelEquivalent": 0.0025390701893216907,
+        "fullPixelCount": 0,
+        "boundaryPixelCount": 3,
+        "footprintCoverageFraction": 1.0
+      }
+    },
+    {
+      "id": "thin-diagonal-12",
+      "source": "coarse",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              4.02,
+              50.31
+            ],
+            [
+              4.92,
+              50.91
+            ],
+            [
+              4.920244140625,
+              50.91
+            ],
+            [
+              4.020244140625,
+              50.31
+            ],
+            [
+              4.02,
+              50.31
+            ]
+          ]
+        ]
+      },
+      "expected": {
+        "mass": 0.07333749511519519,
+        "coveredPixelEquivalent": 0.0023438843990956884,
+        "validPopulationPixelEquivalent": 0.0019006515750529887,
+        "fullPixelCount": 0,
+        "boundaryPixelCount": 6,
+        "footprintCoverageFraction": 1.0
+      }
+    },
+    {
+      "id": "thin-axis-20",
+      "source": "coarse",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              4.125,
+              50.3
+            ],
+            [
+              4.125000953674316,
+              50.3
+            ],
+            [
+              4.125000953674316,
+              50.95
+            ],
+            [
+              4.125,
+              50.95
+            ],
+            [
+              4.125,
+              50.3
+            ]
+          ]
+        ]
+      },
+      "expected": {
+        "mass": 0.00035721621197000485,
+        "coveredPixelEquivalent": 9.918242927037854e-06,
+        "validPopulationPixelEquivalent": 9.918242927037854e-06,
+        "fullPixelCount": 0,
+        "boundaryPixelCount": 3,
+        "footprintCoverageFraction": 1.0
+      }
+    },
+    {
+      "id": "thin-diagonal-20",
+      "source": "coarse",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              4.02,
+              50.31
+            ],
+            [
+              4.92,
+              50.91
+            ],
+            [
+              4.920000953674316,
+              50.91
+            ],
+            [
+              4.020000953674316,
+              50.31
+            ],
+            [
+              4.02,
+              50.31
+            ]
+          ]
+        ]
+      },
+      "expected": {
+        "mass": 0.0002866954379039854,
+        "coveredPixelEquivalent": 9.155798433967533e-06,
+        "validPopulationPixelEquivalent": 7.425659208129412e-06,
+        "fullPixelCount": 0,
+        "boundaryPixelCount": 6,
+        "footprintCoverageFraction": 1.0
+      }
+    },
+    {
+      "id": "thin-axis-28",
+      "source": "coarse",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              4.125,
+              50.3
+            ],
+            [
+              4.12500000372529,
+              50.3
+            ],
+            [
+              4.12500000372529,
+              50.95
+            ],
+            [
+              4.125,
+              50.95
+            ],
+            [
+              4.125,
+              50.3
+            ]
+          ]
+        ]
+      },
+      "expected": {
+        "mass": 1.3953758280078315e-06,
+        "coveredPixelEquivalent": 3.874313643374162e-08,
+        "validPopulationPixelEquivalent": 3.874313643374162e-08,
+        "fullPixelCount": 0,
+        "boundaryPixelCount": 3,
+        "footprintCoverageFraction": 1.0
+      }
+    },
+    {
+      "id": "thin-diagonal-28",
+      "source": "coarse",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              4.02,
+              50.31
+            ],
+            [
+              4.92,
+              50.91
+            ],
+            [
+              4.92000000372529,
+              50.91
+            ],
+            [
+              4.02000000372529,
+              50.31
+            ],
+            [
+              4.02,
+              50.31
+            ]
+          ]
+        ]
+      },
+      "expected": {
+        "mass": 1.119907424175613e-06,
+        "coveredPixelEquivalent": 3.5764837632685675e-08,
+        "validPopulationPixelEquivalent": 2.9006500187267608e-08,
+        "fullPixelCount": 0,
+        "boundaryPixelCount": 6,
+        "footprintCoverageFraction": 1.0
+      }
+    },
+    {
+      "id": "thin-axis-35",
+      "source": "coarse",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              4.125,
+              50.3
+            ],
+            [
+              4.125000000029104,
+              50.3
+            ],
+            [
+              4.125000000029104,
+              50.95
+            ],
+            [
+              4.125,
+              50.95
+            ],
+            [
+              4.125,
+              50.3
+            ]
+          ]
+        ]
+      },
+      "expected": {
+        "mass": 1.0901373656311183e-08,
+        "coveredPixelEquivalent": 3.026807533886064e-10,
+        "validPopulationPixelEquivalent": 3.026807533886064e-10,
+        "fullPixelCount": 0,
+        "boundaryPixelCount": 3,
+        "footprintCoverageFraction": 1.0
+      }
+    },
+    {
+      "id": "thin-diagonal-35",
+      "source": "coarse",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              4.02,
+              50.31
+            ],
+            [
+              4.92,
+              50.91
+            ],
+            [
+              4.920000000029104,
+              50.91
+            ],
+            [
+              4.020000000029103,
+              50.31
+            ],
+            [
+              4.02,
+              50.31
+            ]
+          ]
+        ]
+      },
+      "expected": {
+        "mass": 8.749276853808742e-09,
+        "coveredPixelEquivalent": 2.7941279400535684e-10,
+        "validPopulationPixelEquivalent": 2.2661328328771608e-10,
+        "fullPixelCount": 0,
+        "boundaryPixelCount": 6,
+        "footprintCoverageFraction": 1.0
+      }
+    },
+    {
+      "id": "thin-axis-42",
+      "source": "coarse",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              4.125,
+              50.3
+            ],
+            [
+              4.125000000000227,
+              50.3
+            ],
+            [
+              4.125000000000227,
+              50.95
+            ],
+            [
+              4.125,
+              50.95
+            ],
+            [
+              4.125,
+              50.3
+            ]
+          ]
+        ]
+      },
+      "expected": {
+        "mass": 8.516698168993112e-11,
+        "coveredPixelEquivalent": 2.3646933858484875e-12,
+        "validPopulationPixelEquivalent": 2.3646933858484875e-12,
+        "fullPixelCount": 0,
+        "boundaryPixelCount": 3,
+        "footprintCoverageFraction": 1.0
+      }
+    },
+    {
+      "id": "thin-diagonal-42",
+      "source": "coarse",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              4.02,
+              50.31
+            ],
+            [
+              4.92,
+              50.91
+            ],
+            [
+              4.920000000000227,
+              50.91
+            ],
+            [
+              4.020000000000227,
+              50.31
+            ],
+            [
+              4.02,
+              50.31
+            ]
+          ]
+        ]
+      },
+      "expected": {
+        "mass": 6.835372542663304e-11,
+        "coveredPixelEquivalent": 2.1829124531668503e-12,
+        "validPopulationPixelEquivalent": 1.770416275720358e-12,
+        "fullPixelCount": 0,
+        "boundaryPixelCount": 6,
+        "footprintCoverageFraction": 1.0
+      }
+    },
+    {
+      "id": "thin-axis-47",
+      "source": "coarse",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              4.125,
+              50.3
+            ],
+            [
+              4.125000000000007,
+              50.3
+            ],
+            [
+              4.125000000000007,
+              50.95
+            ],
+            [
+              4.125,
+              50.95
+            ],
+            [
+              4.125,
+              50.3
+            ]
+          ]
+        ]
+      },
+      "expected": {
+        "mass": 2.6614681778103475e-12,
+        "coveredPixelEquivalent": 7.389666830776523e-14,
+        "validPopulationPixelEquivalent": 7.389666830776523e-14,
+        "fullPixelCount": 0,
+        "boundaryPixelCount": 3,
+        "footprintCoverageFraction": 1.0
+      }
+    },
+    {
+      "id": "thin-diagonal-47",
+      "source": "coarse",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              4.02,
+              50.31
+            ],
+            [
+              4.92,
+              50.91
+            ],
+            [
+              4.920000000000007,
+              50.91
+            ],
+            [
+              4.020000000000007,
+              50.31
+            ],
+            [
+              4.02,
+              50.31
+            ]
+          ]
+        ]
+      },
+      "expected": {
+        "mass": 2.136053919583773e-12,
+        "coveredPixelEquivalent": 6.821601416146407e-14,
+        "validPopulationPixelEquivalent": 5.5325508616269546e-14,
+        "fullPixelCount": 0,
+        "boundaryPixelCount": 6,
+        "footprintCoverageFraction": 1.0
+      }
+    }
+  ]
+}

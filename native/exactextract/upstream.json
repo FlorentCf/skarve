@@ -1,0 +1,20 @@
+{
+  "project": "exactextract",
+  "version": "0.3.0",
+  "commit": "94f5882ad6904d9d44d9199164d671fa48dc78eb",
+  "url": "https://codeload.github.com/isciences/exactextract/tar.gz/94f5882ad6904d9d44d9199164d671fa48dc78eb",
+  "archive_sha256": "d6b72056342bfa89839da2436575abaa1ad0cdd177e9901ec1abd5b74aee0c0e",
+  "archive_bytes": 303347,
+  "license": "Apache-2.0",
+  "modifications": "none",
+  "configuration": {
+    "BUILD_CLI": false,
+    "BUILD_TEST": false,
+    "BUILD_TESTING": false,
+    "BUILD_PYTHON": false,
+    "BUILD_DOC": false,
+    "BUILD_PARALLEL_TBB": false,
+    "BUILD_SHARED_LIBS": false,
+    "CMAKE_POSITION_INDEPENDENT_CODE": true
+  }
+}

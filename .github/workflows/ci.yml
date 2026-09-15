@@ -1,0 +1,96 @@
+name: Correctness and installed consumers
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  linux:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        backend: [native, exactextract]
+    env:
+      CARGO_BUILD_JOBS: '2'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      GDAL_CACHEMAX: '16'
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '20'
+      - name: Install declared build and test prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgdal-dev gdal-data libdeflate-dev
+          python -m pip install -r scripts/packaging-requirements.txt -r scripts/test-requirements.txt -r benchmarks/requirements.txt
+          npm ci --ignore-scripts --prefix bindings/node
+      - name: Install optional native bridge prerequisites and verified source
+        if: matrix.backend == 'exactextract'
+        run: |
+          sudo apt-get install -y cmake g++ libgeos-dev
+          python native/exactextract/fetch.py
+      - name: Rust formatting, numerical, resource and ABI tests
+        env:
+          OPTIONAL_BACKEND: ${{ matrix.backend }}
+        run: |
+          if [ "$OPTIONAL_BACKEND" = exactextract ]; then
+            python scripts/build.py --test --exactextract
+          else
+            python scripts/build.py --test
+          fi
+      - name: Rust external consumer from the packaged crate
+        if: matrix.backend == 'native'
+        run: |
+          python scripts/test-rust-package.py --work scratch/rust-package --target-dir target/rust-package
+      - name: Python and Node development contracts
+        run: |
+          python -m pytest -q tests
+          node --test bindings/node/*.test.mjs bindings/node/test.mjs tests/product_api.test.mjs
+          cc -std=c11 -Wall -Wextra -Werror -I include -c tests/support/bulk_layout.c -o target/bulk-layout.o
+      - name: Build immutable packages and test fresh installed consumers
+        run: |
+          python scripts/package_release.py --output-dir dist/ci
+          python -m pip download --only-binary=:all: numpy==2.5.3 rasterio==1.5.1 --dest scratch/wheelhouse
+          python tests/standalone_suite.py --artifacts dist/ci --wheelhouse scratch/wheelhouse --output scratch/installed.json
+      - name: Benchmark smoke
+        env:
+          OPTIONAL_BACKEND: ${{ matrix.backend }}
+        run: |
+          python -m pip install --no-deps dist/ci/*.whl
+          python benchmarks/quickbench.py --smoke --seed 20260912 --artifacts dist/ci --output scratch/benchmark-smoke
+          enabled=no
+          if [ "$OPTIONAL_BACKEND" = exactextract ]; then enabled=yes; fi
+          python tests/exactextract_contracts.py --enabled "$enabled" --scratch scratch/calibration-data --output scratch/calibration.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: linux-${{ matrix.backend }}-check-receipts
+          path: |
+            scratch/installed.json
+            scratch/benchmark-smoke/*.json
+            scratch/calibration.json
+            scratch/rust-package/RUST_PACKAGE_RECEIPT.json
+          retention-days: 7
+  dependency-review:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294
+        with:
+          fail-on-severity: high

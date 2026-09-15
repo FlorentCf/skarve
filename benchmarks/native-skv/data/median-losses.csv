@@ -1,0 +1,9 @@
+candidate_lane,candidate_median_ms,case,cell,comparison_scope,control_lane,control_median_ms,dataset,delta_ms,delta_pct,eligible,n,outcome,paired_losses,paired_unavailable,paired_wins,regime,speedup
+native-skv-raw,69.15826700003436,A,analytical40-1025x1031|A|http0,same native policy,native-rsi64,66.90111000000343,analytical40-1025x1031,2.2571570000309293,3.373870777376964,True,3,loss,2,0,1,http0,0.9673624412822576
+native-skv-raw,69.15826700003436,A,analytical40-1025x1031|A|http0,cross-policy latency,natural-ee,51.114096999981484,analytical40-1025x1031,18.044170000052873,35.30174855687935,True,3,loss,3,0,0,http0,0.7390887484204324
+native-skv-raw,92.92181500001107,B,analytical40-1025x1031|B|http0,same native policy,native-tiff,88.91749700001128,analytical40-1025x1031,4.004317999999785,4.503408367420958,True,3,loss,3,0,0,http0,0.9569065886196981
+native-skv-raw,92.92181500001107,B,analytical40-1025x1031|B|http0,cross-policy latency,natural-ee,80.63999499995589,analytical40-1025x1031,12.281820000055177,15.230432492043056,True,3,loss,3,0,0,http0,0.867826301067691
+native-skv-raw,75.26517100001229,A,worldpop1|A|http0,same native policy,native-rsi64,59.68978600003538,worldpop1,15.575384999976905,26.093886481629646,True,3,loss,3,0,0,http0,0.7930598603174055
+native-skv-raw,75.26517100001229,A,worldpop1|A|http0,same native policy,native-rsi256,70.06788599994707,worldpop1,5.1972850000652215,7.4174993663561395,True,3,loss,3,0,0,http0,0.9309470113332451
+native-skv-raw,75.26517100001229,A,worldpop1|A|http0,cross-policy latency,natural-ee,52.91023699999187,worldpop1,22.35493400002042,42.25067825726023,True,3,loss,3,0,0,http0,0.7029843458401659
+native-skv-raw,29.003049000039027,A,worldpop1|A|local,same native policy,native-rsi64,25.04543999998532,worldpop1,3.957609000053708,15.801714803397449,True,3,loss,3,0,0,local,0.863545070725206

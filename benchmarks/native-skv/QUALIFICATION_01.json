@@ -1,0 +1,72 @@
+{
+  "schema": "skarve_post_optimization_qualification_v1",
+  "passed": true,
+  "source_commit": "d15b0bccdf87654e6e6bd221ce114fb4f129e42d",
+  "library_sha256": "45cea7221247d815f1cf15ad0fe279ed2dd1b9253b675c033a3954a75eb7b67e",
+  "cli_elf_sha256": "afccf8363e842d9ffccda195da6405af2fe2df9f740377623a656aef661960e4",
+  "runtime_changes": 0,
+  "rust": {
+    "completed_targets": 43,
+    "test_executions_passed": 302,
+    "normal_ignored": 1,
+    "explicit_remote_modes_passed": 6,
+    "doc_tests": 0,
+    "test_configuration": "release, locked, offline, exactextract enabled, serial tests, two build workers,2GiB test-process AS"
+  },
+  "installed": {
+    "top_level_standalone_checks_passed": 62,
+    "includes_setup": true,
+    "actual_cli_python_node_queries": true,
+    "registered_python_batches": 8,
+    "registered_node_batches": 8,
+    "registered_cli_operations": 8,
+    "native_mask_rank_composition_jobs": 7,
+    "fresh_consumer": "private-reference/af6459f710cb2dc0/consumer",
+    "scope": "Same WSL host, new offline consumer; no independent hardware claim"
+  },
+  "pure_harness_guards": {
+    "coalescing_harness.test_harness.log": 10,
+    "main_harness.test_protocol.log": 18
+  },
+  "source_build_equivalence_verified": true,
+  "peak_rust_phase_task_storage_bytes": 8520699904,
+  "whole_task_storage_cap_bytes": 8589934592,
+  "retained_qualification_helper_failures": [
+    {
+      "path": "private-reference/06518f1730e8a61c/complete.json",
+      "cause": "CLI wrapper hash incorrectly compared with native ELF hash",
+      "source_queries": 0,
+      "disposition": "Version02 validates wrapper against pinned archive, validates ELF separately, then executes ordinary wrapper"
+    },
+    {
+      "path": "private-reference/a0181d525a8a3e68/results.json",
+      "cause": "Ad hoc8MiB test tile allowance cannot admit nonempty SKV window because existing reader scratch bound already equals8MiB",
+      "completed_query_results": 0,
+      "disposition": "Version02 functional test requests16MiB tile allowance with unchanged256MiB working and2GiB AS; no benchmark caps changed"
+    }
+  ],
+  "pins": {
+    "private-reference/19ba4d1a5dd60e94/complete.json": "4ed7ddbf5e7f5888a43bc81c9e017bcda5b67e6ecda151ab73aa6bfd4552f7a6",
+    "private-reference/c258d0c18a27f79c/complete.json": "576f2f8e00bd5b3b753f964ae00fe2cce47b04a2e0120f656120df2a49867df8",
+    "private-reference/ebdf665565442c8a/installed.json": "a5605c7a97415cbb4b112361031edcbe0dc99bae2443a12783e58013a8919ef8",
+    "private-reference/f785da88854ebf5f/complete.json": "3cf02f04f8bceeab351cbc7857ad5d6609310d80b2c88470ce210070e4114619",
+    "private-reference/f653decfffde37f6/results.json": "312c100bc010218a269e449272532bf1a7cd454b213492242a3f1c6b0a99f13c",
+    "private-reference/ee0b91eb0c7cacd8/results.json": "f0d69a46a18a5e5d3c92f505c42ca976f155073428e07c5a70750a8b1732e999",
+    "private-reference/bb018a7791f7767d/results.json": "047fa659455225bb2f752ee0892a600e80a4d6e7c2e99e2b29127c07c2e08ca6",
+    "private-reference/dc66a04dbea49253/results.json": "a08489637212ff2f50869ca66268479434621a04909538858b67eefa922952b8",
+    "private-reference/bc3d345e9f63f4d5/RESULT.json": "fcd859a6a2865ed263a46a2b0b35d489dc73332a60052bdd5682e3f715736ea6",
+    "private-reference/95b8604ab4f5ad62/RESULT.json": "8aacbf0bd4de3b4147b38464ba9a150ffdc7e5c8b271594a9350d89632fe829c",
+    "private-reference/eafd95ca7fd9631f/RESULT.json": "ad224457d3e8ec35a62706995b2d258a59686d27c2b527f42b5772c65a8bd3f9",
+    "private-reference/63a4fea37e396b04/RESULT.json": "247cee27f71022f5522f8fe95d3dc125b7dde9d1e377e6c00f950844e532132f",
+    "private-reference/227531d55422e19d/RESULT.json": "46fbcdd37abf45f176c5bd5035ed12ba784bbe9c04fda6be2b234656d6adba26",
+    "private-reference/574feb90681161eb/RUNTIME_IDENTITY_01.json": "53dcd2097704ea43c29d6b6e53c112bab797e90eaaf555c6eb8dd9fa679cf3b1",
+    "private-reference/19522e21028977e1/BUILD_SOURCE_EQUIVALENCE_01.json": "628c9fa9280f91e7011627bff1a1b1011fd57e183e31257534562b51940c6a8a",
+    "private-reference/7e8e84631175371a/COMBINED_STATIC_REVIEW_01.md": "5e3a1226b99060ac990539e2bc7573aa907d253051fda9babaa9e8ddd9ed5322",
+    "private-reference/e159d7c9fa75b675/COMPOSITION_BUDGET_CORRECTION_01.json": "6b69d0d1137f4dcd18993cd04d8b2b3fa870bd836ab5dce7d41d5d27681b4b91",
+    "private-reference/b9808aa2ac9de07b/HARNESS_CORRECTION_02.md": "ed6b0477453aa5b2ee14357f9a2a21c5536230899c7ebfc2b2e3612c421309f6",
+    "private-reference/06518f1730e8a61c/complete.json": "4680924376cf0d3b40eb9557b5c4df7ba5a9574a9b6be947e8b076518c9d92c4",
+    "private-reference/a0181d525a8a3e68/results.json": "3e2826dd9c493ead9ad83a70357be6bec74bd84c6b0a31ed87e944f427a30da9"
+  },
+  "publication": false,
+  "performance_claims": false
+}

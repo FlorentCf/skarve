@@ -1,0 +1,2988 @@
+{
+  "schema": "skarve_beta2_public_report_v1",
+  "complete_evidence_gates_passed": false,
+  "programme_passed": false,
+  "current_product_evidence_gates_passed": true,
+  "evaluation_gates": {
+    "aggregate_passed": false,
+    "current_product_and_natural_controls_passed": true,
+    "invalid_task_ids": [
+      "t020",
+      "t021",
+      "t042",
+      "t043",
+      "t070",
+      "t071",
+      "t092",
+      "t093",
+      "t120",
+      "t121",
+      "t142",
+      "t143"
+    ],
+    "historical_invalid_tasks": 12,
+    "historical_mismatching_fields": 72000,
+    "valid_tasks": 156,
+    "task_membership_complete": true
+  },
+  "calibration_passed": true,
+  "cpp_control_passed": true,
+  "failure_cancellation_cost_passed": true,
+  "source_commit": "961af37b3f618c4d9ea84e2166b7958a5079449b",
+  "harness_source_commit": "961af37b3f618c4d9ea84e2166b7958a5079449b",
+  "installed_package_source_commit": "131508f4b4a441c5247742c196cf9060b6ea5e81",
+  "report_checkout_commit": "b447c3cc543871de4e0ea8b067783ea11f1324db",
+  "report_generator_sha256": "e500b7978113d4a77ace67d94687fc0d248fc8cded9eb3e6776b6dd185dc5cad",
+  "native_library_sha256": "4c20fbc0e5486c0f4d3a0a457664211074ff4c65c21fb412fa268943e7a57818",
+  "retained_beta1_report": "../../report/index.html",
+  "seed": 164907040060856,
+  "figures": [
+    {
+      "id": "01-singles",
+      "title": "Retained sources, distinct polygons",
+      "caption": "Complete query plus canonical five-field sink. One process per method/state; p95 is over distinct geometry IDs. Panels use independent scales and speed order; cross-panel bar lengths are not comparable. Source registration and a separate distinct cache-fill query are charged in raw lifecycle data. OS cache is uncontrolled; reference GDAL cache remains enabled.",
+      "svg_sha256": "ac681ec88101c8b097b036b2393e9655d2f268076043df31a351abaa429b2160",
+      "png_sha256": "a5d7d10fe2259247e0b925ef108ed7844eef97590fe567b912b27d31f98bbfd0"
+    },
+    {
+      "id": "02-batches",
+      "title": "Complete source-owned batch lifecycles",
+      "caption": "Open/register, first all-zone call, one repeated aligned call, output normalization/sink, close. Full / 5 lanes request the same five statistics; rich metadata differs and is charged. Native numeric / 6 and native-selected auto also compute/return integer count as supplemental competent controls; projection follows the complete response. Natural and delegated numeric lanes request five. Bars are three-round medians with observed min\u2013max marks (smoke has one), not confidence intervals. Panels use independent scales and speed order. Historical isolation has its own lifecycle table.",
+      "svg_sha256": "dfcb630c1a96a9e9fa50573bb2562ff03928010faa0d5a201374aa91140fe599",
+      "png_sha256": "18e7e10df2535377036e55749f127c1fd25d51acc2c2b95955ab31952987e922"
+    },
+    {
+      "id": "03-preparation",
+      "title": "Preparation must repay its setup cost",
+      "caption": "Observed cumulative costs for the same large-interior polygon cohort. Native preparation retains original boundary values; index bytes and build/open costs are recorded. The shaded range is the observed three-round spread. A crossing is measured only within this cohort; no 1,000-query extrapolation is presented as a result.",
+      "svg_sha256": "b0efbf3cf43e5bfc858317828243b40abc1c31a0168621e3783ff7256b6d5dca",
+      "png_sha256": "fe6b755060785c7cb0e55df8c4ee5709eba0dab2823aa0d7e5e1dcf385d135b0"
+    },
+    {
+      "id": "04-remote-latency",
+      "title": "Loopback tiled TIFF: nearby, scattered and revisit queries",
+      "caption": "Fresh source session per round, stable conditional validators and 1 MiB native decoded cache. The coordinate sequence is labelled in advance; raw cache counters establish actual hits and evictions. Original encoded bytes travel through the same bounded source interface. The server runs on the same host with no injected network delay; these are not WAN/cloud benchmarks. Mutation rejection is retained.",
+      "svg_sha256": "5e3b6ee9d7764649ad75b8332b7f611fb9286273ec0b9e82996c55556ec562d7",
+      "png_sha256": "2947fb24b94edd1064a1ded389d1455437de576a7cdee69b2c6412f9e22c852c"
+    },
+    {
+      "id": "05-remote-traffic",
+      "title": "Source traffic and process memory remain part of execution",
+      "caption": "Server-observed body bytes and HTTP method counts for measured queries. Source registration, guard-failure probes and server setup are separate raw records; no HEAD/body double counting. Peak RSS covers each complete worker, including interpreter, imports and loopback server; bars show the median of three independent process peaks, not synchronized memory or a hard embedded limit. A cache can eliminate body transfers while identity requests remain.",
+      "svg_sha256": "2980866001b15dec7fda239439268dd5d9a37fdf79d3d5e7c348511183970a16",
+      "png_sha256": "4b1294d2528bf44e8bed77289bc3dcf75f7ec84852e2c47ca589f2561fb451f1"
+    },
+    {
+      "id": "06-cpp-control",
+      "title": "Same-build C++ diagnostic",
+      "caption": "Independent upstream ArraySource/MapWriter versus leased-window bridge. Both receive identical pre-normalized arrays/WKB. Bars pool first and repeated calls (two per process); marks are observed min/max across those calls, not independent-trial confidence intervals. Bridge callbacks copy windows; natural control views them. Complete C++ timers exclude binary snapshot load/JSON stdout, which remain separately charged. Do not divide these array timers into installed original-file calls and call the result pure bridge overhead.",
+      "svg_sha256": "1c15658819c967fface9209b4d79a725832c7a7db7bb0a124f826d768b2d580b",
+      "png_sha256": "ec320ef371df07a2a1b054f444fd4b5ea9c9b4835d65c3aa9aa9d746e854a1ef"
+    },
+    {
+      "id": "07-calibration",
+      "title": "Calculation policy is an explicit choice",
+      "caption": "Finite exact-Fraction calibration, including raw masks, scale/offset, empty support, signed cancellation and tiny positive cells. Upstream differences are not labelled an approximate center rule or a bridge bug. Strict-native default routing remains separate. The calibration does not establish universal equivalence or an upstream error bound.",
+      "svg_sha256": "e89aee923d1499dee1538194960349d8a70d5a0f40302d11f5ccef23d629b881",
+      "png_sha256": "9fbcefd84c6d15a8b91b63c69d18d72185602302d5d97f36f41d7ee109e62c67"
+    },
+    {
+      "id": "summary",
+      "title": "Optional execution, measured trade-offs",
+      "caption": "Paired native/full and delegated raster/full request the same five statistics for the larger generated batch. The natural control is the fastest measured natural strategy by median lifecycle, selected after measurement within each family. Native compact six-field controls and other losses remain visible in the full report. Medians shown; panel scales are independent and batch figures retain spread. Numerical policies and output metadata shapes differ; full receipt, projection and sink costs are charged.",
+      "svg_sha256": "aa57d4ea6e91c4183806f261ddf619261e1626b6ca9e77d01f53086215d43cb6",
+      "png_sha256": "a3817aa7572e315a06ed1c7200390fd968965f49f9769ac23d0d217bb0cf1604"
+    }
+  ],
+  "chart_rows": [
+    {
+      "figure": "01-singles",
+      "state": "default",
+      "method": "ee-feature-sequential",
+      "metric": "median_ms",
+      "value": 0.17242400281247683,
+      "p95_ms": 0.25650820316513995,
+      "n": 100
+    },
+    {
+      "figure": "01-singles",
+      "state": "default",
+      "method": "upstream-feature-sequential",
+      "metric": "median_ms",
+      "value": 0.2102150028804317,
+      "p95_ms": 0.34735150074993726,
+      "n": 100
+    },
+    {
+      "figure": "01-singles",
+      "state": "default",
+      "method": "auto-both",
+      "metric": "median_ms",
+      "value": 1.5803239984961692,
+      "p95_ms": 1.834377295745071,
+      "n": 100
+    },
+    {
+      "figure": "01-singles",
+      "state": "default",
+      "method": "native-layout",
+      "metric": "median_ms",
+      "value": 1.634186501178192,
+      "p95_ms": 2.064386153870146,
+      "n": 100
+    },
+    {
+      "figure": "01-singles",
+      "state": "default",
+      "method": "upstream-raster-sequential",
+      "metric": "median_ms",
+      "value": 2.177490503527224,
+      "p95_ms": 2.7413304527726723,
+      "n": 100
+    },
+    {
+      "figure": "01-singles",
+      "state": "default",
+      "method": "ee-raster-sequential",
+      "metric": "median_ms",
+      "value": 3.877457998896716,
+      "p95_ms": 4.485742351243971,
+      "n": 100
+    },
+    {
+      "figure": "01-singles",
+      "state": "warm",
+      "method": "native-layout",
+      "metric": "median_ms",
+      "value": 0.10807349826791324,
+      "p95_ms": 0.16625005191599485,
+      "n": 100
+    },
+    {
+      "figure": "01-singles",
+      "state": "warm",
+      "method": "auto-both",
+      "metric": "median_ms",
+      "value": 0.12934450205648318,
+      "p95_ms": 0.19832739708363079,
+      "n": 100
+    },
+    {
+      "figure": "01-singles",
+      "state": "warm",
+      "method": "upstream-feature-sequential",
+      "metric": "median_ms",
+      "value": 0.2045719993475359,
+      "p95_ms": 0.3586834551242646,
+      "n": 100
+    },
+    {
+      "figure": "01-singles",
+      "state": "warm",
+      "method": "ee-feature-sequential",
+      "metric": "median_ms",
+      "value": 0.22264050130615942,
+      "p95_ms": 0.33695510355755687,
+      "n": 100
+    },
+    {
+      "figure": "01-singles",
+      "state": "warm",
+      "method": "upstream-raster-sequential",
+      "metric": "median_ms",
+      "value": 2.1444465055537876,
+      "p95_ms": 3.0061434550589183,
+      "n": 100
+    },
+    {
+      "figure": "01-singles",
+      "state": "warm",
+      "method": "ee-raster-sequential",
+      "metric": "median_ms",
+      "value": 3.5948755030403845,
+      "p95_ms": 4.142815999148297,
+      "n": 100
+    },
+    {
+      "figure": "01-singles",
+      "state": "overflow",
+      "method": "ee-feature-sequential",
+      "metric": "median_ms",
+      "value": 0.1712279990897514,
+      "p95_ms": 0.2616105972265359,
+      "n": 100
+    },
+    {
+      "figure": "01-singles",
+      "state": "overflow",
+      "method": "upstream-feature-sequential",
+      "metric": "median_ms",
+      "value": 0.20234949988662265,
+      "p95_ms": 0.29266575111250853,
+      "n": 100
+    },
+    {
+      "figure": "01-singles",
+      "state": "overflow",
+      "method": "auto-both",
+      "metric": "median_ms",
+      "value": 1.5075299997988623,
+      "p95_ms": 2.0880284519080305,
+      "n": 100
+    },
+    {
+      "figure": "01-singles",
+      "state": "overflow",
+      "method": "native-layout",
+      "metric": "median_ms",
+      "value": 1.5946200001053512,
+      "p95_ms": 1.9357240038516466,
+      "n": 100
+    },
+    {
+      "figure": "01-singles",
+      "state": "overflow",
+      "method": "upstream-raster-sequential",
+      "metric": "median_ms",
+      "value": 2.015109497733647,
+      "p95_ms": 2.514546852762578,
+      "n": 100
+    },
+    {
+      "figure": "01-singles",
+      "state": "overflow",
+      "method": "ee-raster-sequential",
+      "metric": "median_ms",
+      "value": 3.4528979995229747,
+      "p95_ms": 3.957562449795659,
+      "n": 100
+    },
+    {
+      "figure": "02-batches",
+      "family": "dates",
+      "zones": 8,
+      "method": "ee-feature-sequential:numeric",
+      "metric": "median_ms",
+      "value": 69.57052000507247,
+      "min_ms": 69.22290199872805,
+      "max_ms": 71.9197409998742,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "dates",
+      "zones": 8,
+      "method": "native-layout:full",
+      "metric": "median_ms",
+      "value": 84.12735300225904,
+      "min_ms": 83.72461699764244,
+      "max_ms": 88.21326500037685,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "dates",
+      "zones": 8,
+      "method": "native-fixed:numeric",
+      "metric": "median_ms",
+      "value": 84.15445499849739,
+      "min_ms": 80.3228320000926,
+      "max_ms": 84.86257900221972,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "dates",
+      "zones": 8,
+      "method": "native-layout:numeric",
+      "metric": "median_ms",
+      "value": 85.06750800006557,
+      "min_ms": 84.84831800160464,
+      "max_ms": 94.42292000312591,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "dates",
+      "zones": 8,
+      "method": "upstream-feature-sequential:numeric",
+      "metric": "median_ms",
+      "value": 87.48385500075528,
+      "min_ms": 83.46908599924063,
+      "max_ms": 95.19222100061597,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "dates",
+      "zones": 8,
+      "method": "auto-both:numeric",
+      "metric": "median_ms",
+      "value": 101.92855000059353,
+      "min_ms": 94.6545819970197,
+      "max_ms": 105.2900659997249,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "dates",
+      "zones": 8,
+      "method": "upstream-raster-sequential:numeric",
+      "metric": "median_ms",
+      "value": 135.7291750027798,
+      "min_ms": 123.92130799707957,
+      "max_ms": 213.40384500217624,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "dates",
+      "zones": 8,
+      "method": "ee-raster-sequential:full",
+      "metric": "median_ms",
+      "value": 207.981400002609,
+      "min_ms": 200.26052900357172,
+      "max_ms": 216.94376500090584,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "dates",
+      "zones": 8,
+      "method": "auto-ee:numeric",
+      "metric": "median_ms",
+      "value": 210.70075599709526,
+      "min_ms": 193.14040699828183,
+      "max_ms": 236.1529870031518,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "dates",
+      "zones": 8,
+      "method": "ee-raster-sequential:numeric",
+      "metric": "median_ms",
+      "value": 213.79630100273062,
+      "min_ms": 211.9274399956339,
+      "max_ms": 255.47124500008067,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "files",
+      "zones": 8,
+      "method": "upstream-feature-sequential:numeric",
+      "metric": "median_ms",
+      "value": 50.67748100555036,
+      "min_ms": 49.459640998975374,
+      "max_ms": 61.89902799815172,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "files",
+      "zones": 8,
+      "method": "native-fixed:numeric",
+      "metric": "median_ms",
+      "value": 71.97077599994373,
+      "min_ms": 69.99919500231044,
+      "max_ms": 75.35846400423907,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "files",
+      "zones": 8,
+      "method": "upstream-raster-sequential:numeric",
+      "metric": "median_ms",
+      "value": 79.08724599838024,
+      "min_ms": 74.74283400370041,
+      "max_ms": 81.66097099456238,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "files",
+      "zones": 8,
+      "method": "native-layout:numeric",
+      "metric": "median_ms",
+      "value": 81.96241599944187,
+      "min_ms": 80.91460799914785,
+      "max_ms": 86.58419400308048,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "files",
+      "zones": 8,
+      "method": "ee-feature-sequential:numeric",
+      "metric": "median_ms",
+      "value": 84.65321700350614,
+      "min_ms": 82.43321000190917,
+      "max_ms": 90.0287059994298,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "files",
+      "zones": 8,
+      "method": "native-layout:full",
+      "metric": "median_ms",
+      "value": 85.25997899414506,
+      "min_ms": 80.00887399975909,
+      "max_ms": 86.82278599735582,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "files",
+      "zones": 8,
+      "method": "auto-both:numeric",
+      "metric": "median_ms",
+      "value": 114.77791899960721,
+      "min_ms": 111.0893510049209,
+      "max_ms": 120.69521899684332,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "files",
+      "zones": 8,
+      "method": "ee-raster-sequential:full",
+      "metric": "median_ms",
+      "value": 133.60562600428239,
+      "min_ms": 127.32516299729468,
+      "max_ms": 143.57201199891279,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "files",
+      "zones": 8,
+      "method": "auto-ee:numeric",
+      "metric": "median_ms",
+      "value": 133.97605899808696,
+      "min_ms": 127.97357000090415,
+      "max_ms": 142.86762599658687,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "files",
+      "zones": 8,
+      "method": "ee-raster-sequential:numeric",
+      "metric": "median_ms",
+      "value": 137.64755400188733,
+      "min_ms": 128.5152099953848,
+      "max_ms": 139.26819599873852,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "dates",
+      "zones": 64,
+      "method": "native-layout:numeric",
+      "metric": "median_ms",
+      "value": 176.8776640019496,
+      "min_ms": 171.44053499941947,
+      "max_ms": 190.90115099970717,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "dates",
+      "zones": 64,
+      "method": "upstream-raster-sequential:numeric",
+      "metric": "median_ms",
+      "value": 190.92823599930853,
+      "min_ms": 186.30492300144397,
+      "max_ms": 215.36489100253675,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "dates",
+      "zones": 64,
+      "method": "native-layout:full",
+      "metric": "median_ms",
+      "value": 202.35376399796223,
+      "min_ms": 196.22833999892464,
+      "max_ms": 213.59306100202957,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "dates",
+      "zones": 64,
+      "method": "native-fixed:numeric",
+      "metric": "median_ms",
+      "value": 205.56174599914812,
+      "min_ms": 193.02341699949466,
+      "max_ms": 210.16598400456132,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "dates",
+      "zones": 64,
+      "method": "ee-feature-sequential:numeric",
+      "metric": "median_ms",
+      "value": 220.83919499709737,
+      "min_ms": 216.73351500066929,
+      "max_ms": 241.61552000441588,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "dates",
+      "zones": 64,
+      "method": "ee-raster-sequential:numeric",
+      "metric": "median_ms",
+      "value": 245.89612399722682,
+      "min_ms": 238.12564100080635,
+      "max_ms": 267.09092600503936,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "dates",
+      "zones": 64,
+      "method": "auto-ee:numeric",
+      "metric": "median_ms",
+      "value": 262.42945000558393,
+      "min_ms": 252.18691699410556,
+      "max_ms": 273.0911959952209,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "dates",
+      "zones": 64,
+      "method": "ee-raster-sequential:full",
+      "metric": "median_ms",
+      "value": 265.364253995358,
+      "min_ms": 253.57906100543914,
+      "max_ms": 267.7567869977793,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "dates",
+      "zones": 64,
+      "method": "auto-both:numeric",
+      "metric": "median_ms",
+      "value": 279.2800500028534,
+      "min_ms": 278.45595899998443,
+      "max_ms": 286.1997389991302,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "dates",
+      "zones": 64,
+      "method": "upstream-feature-sequential:numeric",
+      "metric": "median_ms",
+      "value": 326.2457599994377,
+      "min_ms": 310.54880900046555,
+      "max_ms": 344.87463999539614,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "files",
+      "zones": 64,
+      "method": "upstream-raster-sequential:numeric",
+      "metric": "median_ms",
+      "value": 111.5862790029496,
+      "min_ms": 99.1244229953736,
+      "max_ms": 118.83910199685488,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "files",
+      "zones": 64,
+      "method": "auto-both:numeric",
+      "metric": "median_ms",
+      "value": 137.02453099540435,
+      "min_ms": 128.96622200059937,
+      "max_ms": 144.60084400343476,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "files",
+      "zones": 64,
+      "method": "auto-ee:numeric",
+      "metric": "median_ms",
+      "value": 161.4174220012501,
+      "min_ms": 158.12982400530018,
+      "max_ms": 176.85560999962036,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "files",
+      "zones": 64,
+      "method": "ee-raster-sequential:numeric",
+      "metric": "median_ms",
+      "value": 163.95223599829478,
+      "min_ms": 159.39431999868248,
+      "max_ms": 171.1407950060675,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "files",
+      "zones": 64,
+      "method": "ee-raster-sequential:full",
+      "metric": "median_ms",
+      "value": 169.98571300064214,
+      "min_ms": 166.42507500364445,
+      "max_ms": 183.10444099915912,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "files",
+      "zones": 64,
+      "method": "native-layout:numeric",
+      "metric": "median_ms",
+      "value": 175.11639399890555,
+      "min_ms": 171.69880100118462,
+      "max_ms": 179.79473000013968,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "files",
+      "zones": 64,
+      "method": "upstream-feature-sequential:numeric",
+      "metric": "median_ms",
+      "value": 188.41461000556592,
+      "min_ms": 173.93836999690393,
+      "max_ms": 189.04901699715992,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "files",
+      "zones": 64,
+      "method": "native-layout:full",
+      "metric": "median_ms",
+      "value": 193.4269260018482,
+      "min_ms": 181.84003299393225,
+      "max_ms": 202.3250510028447,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "files",
+      "zones": 64,
+      "method": "native-fixed:numeric",
+      "metric": "median_ms",
+      "value": 206.56458799930988,
+      "min_ms": 199.94204900285695,
+      "max_ms": 210.59569300268777,
+      "n": 3
+    },
+    {
+      "figure": "02-batches",
+      "family": "files",
+      "zones": 64,
+      "method": "ee-feature-sequential:numeric",
+      "metric": "median_ms",
+      "value": 359.17239800619427,
+      "min_ms": 319.66598000144586,
+      "max_ms": 380.5603470027563,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 0,
+      "value": 33.6091299977852,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 1,
+      "value": 41.4364860043861,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 2,
+      "value": 47.727304001455195,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 3,
+      "value": 52.40013800357701,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 4,
+      "value": 57.1228580083698,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 5,
+      "value": 61.65524400421418,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 6,
+      "value": 66.4861630066298,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 7,
+      "value": 71.37585900636623,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 8,
+      "value": 76.53575900621945,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 9,
+      "value": 81.3471419896814,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 10,
+      "value": 86.2088769863476,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 11,
+      "value": 90.74892198259477,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 12,
+      "value": 95.61286497773835,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 13,
+      "value": 100.49222397356061,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 14,
+      "value": 105.53255696868291,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 15,
+      "value": 110.33345196483424,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 16,
+      "value": 115.0714279647218,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 17,
+      "value": 120.47773196536582,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 18,
+      "value": 125.44913396413904,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 19,
+      "value": 129.8297699613613,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 20,
+      "value": 136.35085900023114,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 21,
+      "value": 140.97006199881434,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 22,
+      "value": 146.0771139973076,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 23,
+      "value": 151.1297819961328,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 24,
+      "value": 156.56024200143293,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 25,
+      "value": 161.80452900152886,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 26,
+      "value": 166.13703995244578,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 27,
+      "value": 170.86919895518804,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 28,
+      "value": 175.9615389528335,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 29,
+      "value": 180.65240595751675,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 30,
+      "value": 185.20554395217914,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 31,
+      "value": 190.14353895181557,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "ee-raster-sequential",
+      "metric": "cumulative_ms",
+      "queries": 32,
+      "value": 194.77030394773465,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 0,
+      "value": 34.96319199621212,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 1,
+      "value": 43.204720997891854,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 2,
+      "value": 49.784795999585185,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 3,
+      "value": 56.02494699996896,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 4,
+      "value": 62.134931999025866,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 5,
+      "value": 68.47318200016161,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 6,
+      "value": 75.08560200221837,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 7,
+      "value": 82.42499500192935,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 8,
+      "value": 89.46644000388915,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 9,
+      "value": 96.65132800728315,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 10,
+      "value": 102.98455401061801,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 11,
+      "value": 109.69191100593889,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 12,
+      "value": 116.44908200833015,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 13,
+      "value": 122.71308901108569,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 14,
+      "value": 129.7019380144775,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 15,
+      "value": 136.07411901466548,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 16,
+      "value": 142.3771690169815,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 17,
+      "value": 149.1028140153503,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 18,
+      "value": 156.19199001957895,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 19,
+      "value": 162.52555402024882,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 20,
+      "value": 169.262345021707,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 21,
+      "value": 175.96760201558936,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 22,
+      "value": 182.4088420107728,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 23,
+      "value": 189.1056790118455,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 24,
+      "value": 195.77176501479698,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 25,
+      "value": 202.02851001522504,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 26,
+      "value": 208.6275850160746,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 27,
+      "value": 215.45704601157922,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 28,
+      "value": 221.74063901184127,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 29,
+      "value": 228.50176001520595,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 30,
+      "value": 235.1371950135217,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 31,
+      "value": 241.49169201700715,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-layout",
+      "metric": "cumulative_ms",
+      "queries": 32,
+      "value": 248.21347301622154,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 0,
+      "value": 54.64091501198709,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 1,
+      "value": 63.79457400907995,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 2,
+      "value": 72.49523400969338,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 3,
+      "value": 81.96229800523724,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 4,
+      "value": 90.87474600528367,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 5,
+      "value": 99.96222800691612,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 6,
+      "value": 108.87753100541886,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 7,
+      "value": 118.06029700528597,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 8,
+      "value": 126.81867500941735,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 9,
+      "value": 136.16896601160988,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 10,
+      "value": 144.85937301651575,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 11,
+      "value": 154.28938401601044,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 12,
+      "value": 164.3280710122781,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 13,
+      "value": 172.86485200747848,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 14,
+      "value": 182.21524301043246,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 15,
+      "value": 190.89952700596768,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 16,
+      "value": 200.0273760058917,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 17,
+      "value": 209.89473500230815,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 18,
+      "value": 219.16073800821323,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 19,
+      "value": 227.69721400982235,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 20,
+      "value": 236.77459201280726,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 21,
+      "value": 245.63854601001367,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 22,
+      "value": 255.01121801062254,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 23,
+      "value": 264.040025009308,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 24,
+      "value": 273.68886900512734,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 25,
+      "value": 283.11432300688466,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 26,
+      "value": 291.63935501128435,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 27,
+      "value": 300.05726501258323,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 28,
+      "value": 309.060698011308,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 29,
+      "value": 318.018618010683,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 30,
+      "value": 327.5115360011114,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 31,
+      "value": 336.7757759988308,
+      "n": 3
+    },
+    {
+      "figure": "03-preparation",
+      "method": "native-prepared",
+      "metric": "cumulative_ms",
+      "queries": 32,
+      "value": 346.2823189984192,
+      "n": 3
+    },
+    {
+      "figure": "04-remote-latency",
+      "method": "ee-feature-sequential",
+      "query": "remote0",
+      "metric": "median_ms",
+      "value": 2.5139520002994686,
+      "n": 3
+    },
+    {
+      "figure": "04-remote-latency",
+      "method": "ee-feature-sequential",
+      "query": "remote1",
+      "metric": "median_ms",
+      "value": 1.5274379984475672,
+      "n": 3
+    },
+    {
+      "figure": "04-remote-latency",
+      "method": "ee-feature-sequential",
+      "query": "remote2",
+      "metric": "median_ms",
+      "value": 1.177065001684241,
+      "n": 3
+    },
+    {
+      "figure": "04-remote-latency",
+      "method": "ee-feature-sequential",
+      "query": "remote3",
+      "metric": "median_ms",
+      "value": 1.2083530018571764,
+      "n": 3
+    },
+    {
+      "figure": "04-remote-latency",
+      "method": "ee-feature-sequential",
+      "query": "remote4",
+      "metric": "median_ms",
+      "value": 1.232283997524064,
+      "n": 3
+    },
+    {
+      "figure": "04-remote-latency",
+      "method": "ee-feature-sequential",
+      "query": "remote5",
+      "metric": "median_ms",
+      "value": 1.2960150052094832,
+      "n": 3
+    },
+    {
+      "figure": "04-remote-latency",
+      "method": "ee-feature-sequential",
+      "query": "remote6",
+      "metric": "median_ms",
+      "value": 0.935855001443997,
+      "n": 3
+    },
+    {
+      "figure": "04-remote-latency",
+      "method": "ee-raster-sequential",
+      "query": "remote0",
+      "metric": "median_ms",
+      "value": 8.948805996624287,
+      "n": 3
+    },
+    {
+      "figure": "04-remote-latency",
+      "method": "ee-raster-sequential",
+      "query": "remote1",
+      "metric": "median_ms",
+      "value": 6.85515799705172,
+      "n": 3
+    },
+    {
+      "figure": "04-remote-latency",
+      "method": "ee-raster-sequential",
+      "query": "remote2",
+      "metric": "median_ms",
+      "value": 5.032258995925076,
+      "n": 3
+    },
+    {
+      "figure": "04-remote-latency",
+      "method": "ee-raster-sequential",
+      "query": "remote3",
+      "metric": "median_ms",
+      "value": 4.866586001298856,
+      "n": 3
+    },
+    {
+      "figure": "04-remote-latency",
+      "method": "ee-raster-sequential",
+      "query": "remote4",
+      "metric": "median_ms",
+      "value": 5.076841996924486,
+      "n": 3
+    },
+    {
+      "figure": "04-remote-latency",
+      "method": "ee-raster-sequential",
+      "query": "remote5",
+      "metric": "median_ms",
+      "value": 4.914399003610015,
+      "n": 3
+    },
+    {
+      "figure": "04-remote-latency",
+      "method": "ee-raster-sequential",
+      "query": "remote6",
+      "metric": "median_ms",
+      "value": 5.200095001782756,
+      "n": 3
+    },
+    {
+      "figure": "04-remote-latency",
+      "method": "native-layout",
+      "query": "remote0",
+      "metric": "median_ms",
+      "value": 3.401488997042179,
+      "n": 3
+    },
+    {
+      "figure": "04-remote-latency",
+      "method": "native-layout",
+      "query": "remote1",
+      "metric": "median_ms",
+      "value": 0.9989539976231754,
+      "n": 3
+    },
+    {
+      "figure": "04-remote-latency",
+      "method": "native-layout",
+      "query": "remote2",
+      "metric": "median_ms",
+      "value": 0.8666389985592104,
+      "n": 3
+    },
+    {
+      "figure": "04-remote-latency",
+      "method": "native-layout",
+      "query": "remote3",
+      "metric": "median_ms",
+      "value": 2.9635509999934584,
+      "n": 3
+    },
+    {
+      "figure": "04-remote-latency",
+      "method": "native-layout",
+      "query": "remote4",
+      "metric": "median_ms",
+      "value": 3.67728499986697,
+      "n": 3
+    },
+    {
+      "figure": "04-remote-latency",
+      "method": "native-layout",
+      "query": "remote5",
+      "metric": "median_ms",
+      "value": 2.5817999994615093,
+      "n": 3
+    },
+    {
+      "figure": "04-remote-latency",
+      "method": "native-layout",
+      "query": "remote6",
+      "metric": "median_ms",
+      "value": 2.418338001007214,
+      "n": 3
+    },
+    {
+      "figure": "05-remote-traffic",
+      "method": "ee-feature-sequential",
+      "metric": "body_bytes",
+      "value": 23668,
+      "head_requests": 14,
+      "get_requests": 8,
+      "median_process_peak_rss_bytes": 275296256,
+      "n": 3
+    },
+    {
+      "figure": "05-remote-traffic",
+      "method": "ee-raster-sequential",
+      "metric": "body_bytes",
+      "value": 432212,
+      "head_requests": 14,
+      "get_requests": 30,
+      "median_process_peak_rss_bytes": 200454144,
+      "n": 3
+    },
+    {
+      "figure": "05-remote-traffic",
+      "method": "native-layout",
+      "metric": "body_bytes",
+      "value": 77806,
+      "head_requests": 14,
+      "get_requests": 12,
+      "median_process_peak_rss_bytes": 235057152,
+      "n": 3
+    },
+    {
+      "figure": "06-cpp-control",
+      "family": "dates",
+      "method": "upstream \u00b7 feature",
+      "metric": "median_ms",
+      "value": 31.069024,
+      "min_ms": 28.932061,
+      "max_ms": 32.609792,
+      "n": 6
+    },
+    {
+      "figure": "06-cpp-control",
+      "family": "dates",
+      "method": "upstream \u00b7 raster",
+      "metric": "median_ms",
+      "value": 32.890688999999995,
+      "min_ms": 30.350541,
+      "max_ms": 36.019492,
+      "n": 6
+    },
+    {
+      "figure": "06-cpp-control",
+      "family": "dates",
+      "method": "bridge \u00b7 feature",
+      "metric": "median_ms",
+      "value": 36.872544500000004,
+      "min_ms": 34.797812,
+      "max_ms": 38.46196,
+      "n": 6
+    },
+    {
+      "figure": "06-cpp-control",
+      "family": "dates",
+      "method": "bridge \u00b7 raster",
+      "metric": "median_ms",
+      "value": 78.0155005,
+      "min_ms": 75.137611,
+      "max_ms": 102.060745,
+      "n": 6
+    },
+    {
+      "figure": "06-cpp-control",
+      "family": "files",
+      "method": "upstream \u00b7 feature",
+      "metric": "median_ms",
+      "value": 14.266583,
+      "min_ms": 13.717327,
+      "max_ms": 14.528348,
+      "n": 6
+    },
+    {
+      "figure": "06-cpp-control",
+      "family": "files",
+      "method": "upstream \u00b7 raster",
+      "metric": "median_ms",
+      "value": 15.206963,
+      "min_ms": 14.403904,
+      "max_ms": 16.036353,
+      "n": 6
+    },
+    {
+      "figure": "06-cpp-control",
+      "family": "files",
+      "method": "bridge \u00b7 feature",
+      "metric": "median_ms",
+      "value": 17.355852499999997,
+      "min_ms": 16.24864,
+      "max_ms": 19.389134,
+      "n": 6
+    },
+    {
+      "figure": "06-cpp-control",
+      "family": "files",
+      "method": "bridge \u00b7 raster",
+      "metric": "median_ms",
+      "value": 35.693006,
+      "min_ms": 34.41007,
+      "max_ms": 42.041579,
+      "n": 6
+    },
+    {
+      "figure": "07-calibration",
+      "fixture": "all_masked",
+      "metric": "bridge_upstream_agreement",
+      "value": 1,
+      "upstream_within_native_tolerance": 1,
+      "strategies": 2
+    },
+    {
+      "figure": "07-calibration",
+      "fixture": "binary_fraction",
+      "metric": "bridge_upstream_agreement",
+      "value": 1,
+      "upstream_within_native_tolerance": 1,
+      "strategies": 2
+    },
+    {
+      "figure": "07-calibration",
+      "fixture": "cancellation",
+      "metric": "bridge_upstream_agreement",
+      "value": 1,
+      "upstream_within_native_tolerance": 0,
+      "strategies": 2
+    },
+    {
+      "figure": "07-calibration",
+      "fixture": "decimal_fraction",
+      "metric": "bridge_upstream_agreement",
+      "value": 1,
+      "upstream_within_native_tolerance": 0,
+      "strategies": 2
+    },
+    {
+      "figure": "07-calibration",
+      "fixture": "different_masks",
+      "metric": "bridge_upstream_agreement",
+      "value": 1,
+      "upstream_within_native_tolerance": 1,
+      "strategies": 2
+    },
+    {
+      "figure": "07-calibration",
+      "fixture": "empty",
+      "metric": "bridge_upstream_agreement",
+      "value": 1,
+      "upstream_within_native_tolerance": 1,
+      "strategies": 2
+    },
+    {
+      "figure": "07-calibration",
+      "fixture": "hole",
+      "metric": "bridge_upstream_agreement",
+      "value": 1,
+      "upstream_within_native_tolerance": 1,
+      "strategies": 2
+    },
+    {
+      "figure": "07-calibration",
+      "fixture": "multipart",
+      "metric": "bridge_upstream_agreement",
+      "value": 1,
+      "upstream_within_native_tolerance": 1,
+      "strategies": 2
+    },
+    {
+      "figure": "07-calibration",
+      "fixture": "non_power_two_mask",
+      "metric": "bridge_upstream_agreement",
+      "value": 1,
+      "upstream_within_native_tolerance": 1,
+      "strategies": 2
+    },
+    {
+      "figure": "07-calibration",
+      "fixture": "partial",
+      "metric": "bridge_upstream_agreement",
+      "value": 1,
+      "upstream_within_native_tolerance": 1,
+      "strategies": 2
+    },
+    {
+      "figure": "07-calibration",
+      "fixture": "positive_sliver",
+      "metric": "bridge_upstream_agreement",
+      "value": 1,
+      "upstream_within_native_tolerance": 0,
+      "strategies": 2
+    },
+    {
+      "figure": "07-calibration",
+      "fixture": "scale_offset",
+      "metric": "bridge_upstream_agreement",
+      "value": 1,
+      "upstream_within_native_tolerance": 1,
+      "strategies": 2
+    },
+    {
+      "figure": "07-calibration",
+      "fixture": "translated_affine",
+      "metric": "bridge_upstream_agreement",
+      "value": 1,
+      "upstream_within_native_tolerance": 1,
+      "strategies": 2
+    },
+    {
+      "figure": "summary",
+      "family": "dates",
+      "zones": 64,
+      "method": "upstream-raster-sequential:numeric",
+      "metric": "median_ms",
+      "value": 190.92823599930853,
+      "min_ms": 190.92823599930853,
+      "max_ms": 190.92823599930853,
+      "n": 1
+    },
+    {
+      "figure": "summary",
+      "family": "dates",
+      "zones": 64,
+      "method": "native-layout:full",
+      "metric": "median_ms",
+      "value": 202.35376399796223,
+      "min_ms": 202.35376399796223,
+      "max_ms": 202.35376399796223,
+      "n": 1
+    },
+    {
+      "figure": "summary",
+      "family": "dates",
+      "zones": 64,
+      "method": "ee-raster-sequential:full",
+      "metric": "median_ms",
+      "value": 265.364253995358,
+      "min_ms": 265.364253995358,
+      "max_ms": 265.364253995358,
+      "n": 1
+    },
+    {
+      "figure": "summary",
+      "family": "files",
+      "zones": 64,
+      "method": "upstream-raster-sequential:numeric",
+      "metric": "median_ms",
+      "value": 111.5862790029496,
+      "min_ms": 111.5862790029496,
+      "max_ms": 111.5862790029496,
+      "n": 1
+    },
+    {
+      "figure": "summary",
+      "family": "files",
+      "zones": 64,
+      "method": "ee-raster-sequential:full",
+      "metric": "median_ms",
+      "value": 169.98571300064214,
+      "min_ms": 169.98571300064214,
+      "max_ms": 169.98571300064214,
+      "n": 1
+    },
+    {
+      "figure": "summary",
+      "family": "files",
+      "zones": 64,
+      "method": "native-layout:full",
+      "metric": "median_ms",
+      "value": 193.4269260018482,
+      "min_ms": 193.4269260018482,
+      "max_ms": 193.4269260018482,
+      "n": 1
+    }
+  ],
+  "lifecycle_rows": [
+    {
+      "family": "dates",
+      "zones": 8,
+      "method": "auto-both",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 34.224691997224,
+      "close_ms": 0.20557200332405046,
+      "lifecycle_ms": 101.92855000059353,
+      "process_wall_ms": 192.33561800501775,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 224309248,
+      "first_call_ms": 33.631698999670334,
+      "retained_call_ms": 33.6150919974898,
+      "sink_ms": 0.9353720015496947,
+      "natural_best_strategy": "upstream-feature-sequential",
+      "natural_best_over_method_lifecycle": 0.8582860739238012
+    },
+    {
+      "family": "dates",
+      "zones": 8,
+      "method": "auto-ee",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 31.877636996796355,
+      "close_ms": 0.10755200491985306,
+      "lifecycle_ms": 210.70075599709526,
+      "process_wall_ms": 295.7685240035062,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 262713344,
+      "first_call_ms": 107.28563999873586,
+      "retained_call_ms": 70.47551400319207,
+      "sink_ms": 0.7347930004470982,
+      "natural_best_strategy": "upstream-feature-sequential",
+      "natural_best_over_method_lifecycle": 0.41520427673245436
+    },
+    {
+      "family": "dates",
+      "zones": 8,
+      "method": "ee-feature-sequential",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 35.26549899834208,
+      "close_ms": 0.13520799984689802,
+      "lifecycle_ms": 69.57052000507247,
+      "process_wall_ms": 163.94888299691956,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 193073152,
+      "first_call_ms": 18.169792005210184,
+      "retained_call_ms": 16.47534600488143,
+      "sink_ms": 0.7221749983727932,
+      "natural_best_strategy": "upstream-feature-sequential",
+      "natural_best_over_method_lifecycle": 1.2574845637832912
+    },
+    {
+      "family": "dates",
+      "zones": 8,
+      "method": "ee-raster-sequential",
+      "output_mode": "full",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 31.746793996717315,
+      "close_ms": 0.11822299711639062,
+      "lifecycle_ms": 207.981400002609,
+      "process_wall_ms": 293.3456290047616,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 198225920,
+      "first_call_ms": 106.1577889995533,
+      "retained_call_ms": 72.07755999843357,
+      "sink_ms": 0.7082920055836439,
+      "natural_best_strategy": "upstream-feature-sequential",
+      "natural_best_over_method_lifecycle": 0.4206330710325916
+    },
+    {
+      "family": "dates",
+      "zones": 8,
+      "method": "ee-raster-sequential",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 32.06001799844671,
+      "close_ms": 0.18329600425204262,
+      "lifecycle_ms": 213.79630100273062,
+      "process_wall_ms": 304.0166639984818,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 284078080,
+      "first_call_ms": 112.63799799780827,
+      "retained_call_ms": 69.86378999863518,
+      "sink_ms": 0.7409160025417805,
+      "natural_best_strategy": "upstream-feature-sequential",
+      "natural_best_over_method_lifecycle": 0.4091925566085352
+    },
+    {
+      "family": "dates",
+      "zones": 8,
+      "method": "native-fixed",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 34.69398400193313,
+      "close_ms": 0.1428179966751486,
+      "lifecycle_ms": 84.15445499849739,
+      "process_wall_ms": 166.2841590004973,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 193073152,
+      "first_call_ms": 24.757341998338234,
+      "retained_call_ms": 24.57190000131959,
+      "sink_ms": 0.8845789925544523,
+      "natural_best_strategy": "upstream-feature-sequential",
+      "natural_best_over_method_lifecycle": 1.0395629679060645
+    },
+    {
+      "family": "dates",
+      "zones": 8,
+      "method": "native-layout",
+      "output_mode": "full",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 32.10211500118021,
+      "close_ms": 0.09096999565372244,
+      "lifecycle_ms": 84.12735300225904,
+      "process_wall_ms": 168.2268880031188,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 196784128,
+      "first_call_ms": 26.35358300176449,
+      "retained_call_ms": 25.791822001338005,
+      "sink_ms": 0.7974420004757121,
+      "natural_best_strategy": "upstream-feature-sequential",
+      "natural_best_over_method_lifecycle": 1.0398978676817052
+    },
+    {
+      "family": "dates",
+      "zones": 8,
+      "method": "native-layout",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 35.811645997455344,
+      "close_ms": 0.09283699910156429,
+      "lifecycle_ms": 85.06750800006557,
+      "process_wall_ms": 169.14031100168359,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 284602368,
+      "first_call_ms": 24.496113997884095,
+      "retained_call_ms": 25.714117000461556,
+      "sink_ms": 0.8380799990845844,
+      "natural_best_strategy": "upstream-feature-sequential",
+      "natural_best_over_method_lifecycle": 1.0284050521462067
+    },
+    {
+      "family": "dates",
+      "zones": 8,
+      "method": "upstream-feature-sequential",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 17.026346999045927,
+      "close_ms": 0.8110839989967644,
+      "lifecycle_ms": 87.48385500075528,
+      "process_wall_ms": 262.85146699956385,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 193073152,
+      "first_call_ms": 49.33360499853734,
+      "retained_call_ms": 20.307390004745685,
+      "sink_ms": 0.7156860083341599,
+      "natural_best_strategy": "upstream-feature-sequential",
+      "natural_best_over_method_lifecycle": 1.0
+    },
+    {
+      "family": "dates",
+      "zones": 8,
+      "method": "upstream-raster-sequential",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 14.452709998295177,
+      "close_ms": 1.7574119992787018,
+      "lifecycle_ms": 135.7291750027798,
+      "process_wall_ms": 325.0841870030854,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 196521984,
+      "first_call_ms": 94.31059799680952,
+      "retained_call_ms": 25.304776994744316,
+      "sink_ms": 0.7871720008552074,
+      "natural_best_strategy": "upstream-feature-sequential",
+      "natural_best_over_method_lifecycle": 0.6445471653309877
+    },
+    {
+      "family": "dates",
+      "zones": 64,
+      "method": "auto-both",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 32.47736200137297,
+      "close_ms": 0.1767370049492456,
+      "lifecycle_ms": 279.2800500028534,
+      "process_wall_ms": 413.42967100354144,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 253145088,
+      "first_call_ms": 120.96146899421001,
+      "retained_call_ms": 125.62180500390241,
+      "sink_ms": 6.463930003519636,
+      "natural_best_strategy": "upstream-raster-sequential",
+      "natural_best_over_method_lifecycle": 0.683644377739684
+    },
+    {
+      "family": "dates",
+      "zones": 64,
+      "method": "auto-ee",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 34.27290800027549,
+      "close_ms": 0.15511300443904474,
+      "lifecycle_ms": 262.42945000558393,
+      "process_wall_ms": 397.94006000010995,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 193073152,
+      "first_call_ms": 129.227125995385,
+      "retained_call_ms": 101.99101400212385,
+      "sink_ms": 5.854282004293054,
+      "natural_best_strategy": "upstream-raster-sequential",
+      "natural_best_over_method_lifecycle": 0.7275411962919787
+    },
+    {
+      "family": "dates",
+      "zones": 64,
+      "method": "ee-feature-sequential",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 32.41772199544357,
+      "close_ms": 0.20387299446156248,
+      "lifecycle_ms": 220.83919499709737,
+      "process_wall_ms": 352.70854699774645,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 289189888,
+      "first_call_ms": 94.07166700111702,
+      "retained_call_ms": 94.05755499756197,
+      "sink_ms": 6.136803000117652,
+      "natural_best_strategy": "upstream-raster-sequential",
+      "natural_best_over_method_lifecycle": 0.8645577430302533
+    },
+    {
+      "family": "dates",
+      "zones": 64,
+      "method": "ee-raster-sequential",
+      "output_mode": "full",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 32.73064899985911,
+      "close_ms": 0.1958619977813214,
+      "lifecycle_ms": 265.364253995358,
+      "process_wall_ms": 399.054576002527,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 249212928,
+      "first_call_ms": 117.0888799970271,
+      "retained_call_ms": 111.91362400131766,
+      "sink_ms": 5.743592002545483,
+      "natural_best_strategy": "upstream-raster-sequential",
+      "natural_best_over_method_lifecycle": 0.7194949324359581
+    },
+    {
+      "family": "dates",
+      "zones": 64,
+      "method": "ee-raster-sequential",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 33.19693099911092,
+      "close_ms": 0.2199360023951158,
+      "lifecycle_ms": 245.89612399722682,
+      "process_wall_ms": 377.8306409949437,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 259174400,
+      "first_call_ms": 108.19176900258753,
+      "retained_call_ms": 105.69082700385479,
+      "sink_ms": 6.32871800189605,
+      "natural_best_strategy": "upstream-raster-sequential",
+      "natural_best_over_method_lifecycle": 0.7764589083212299
+    },
+    {
+      "family": "dates",
+      "zones": 64,
+      "method": "isolated-feature-sequential",
+      "output_mode": "five-field canonical",
+      "rounds": 3,
+      "numerically_valid": false,
+      "setup_ms": 148.26066800014814,
+      "close_ms": 7.401135997497477,
+      "lifecycle_ms": 262.8623679993325,
+      "process_wall_ms": 373.93944100040244,
+      "startup_ms": 133.16125499841291,
+      "peak_process_rss_bytes": 193073152,
+      "first_call_ms": 73.55615299456986,
+      "retained_call_ms": 33.079986002121586,
+      "sink_ms": 5.932680993282702,
+      "natural_best_strategy": null,
+      "natural_best_over_method_lifecycle": null
+    },
+    {
+      "family": "dates",
+      "zones": 64,
+      "method": "isolated-raster-sequential",
+      "output_mode": "five-field canonical",
+      "rounds": 3,
+      "numerically_valid": false,
+      "setup_ms": 154.6377949998714,
+      "close_ms": 7.3770839953795075,
+      "lifecycle_ms": 252.38029400497908,
+      "process_wall_ms": 361.2630990028265,
+      "startup_ms": 138.28562500566477,
+      "peak_process_rss_bytes": 193073152,
+      "first_call_ms": 65.92472200281918,
+      "retained_call_ms": 26.901983997959178,
+      "sink_ms": 6.1063399916747585,
+      "natural_best_strategy": null,
+      "natural_best_over_method_lifecycle": null
+    },
+    {
+      "family": "dates",
+      "zones": 64,
+      "method": "native-fixed",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 35.65732499555452,
+      "close_ms": 0.22011700639268383,
+      "lifecycle_ms": 205.56174599914812,
+      "process_wall_ms": 344.97296399786137,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 193073152,
+      "first_call_ms": 86.40813199599506,
+      "retained_call_ms": 81.95919200079516,
+      "sink_ms": 6.456557995988987,
+      "natural_best_strategy": "upstream-raster-sequential",
+      "natural_best_over_method_lifecycle": 0.928812095223689
+    },
+    {
+      "family": "dates",
+      "zones": 64,
+      "method": "native-layout",
+      "output_mode": "full",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 34.75934600282926,
+      "close_ms": 0.19394999981159344,
+      "lifecycle_ms": 202.35376399796223,
+      "process_wall_ms": 338.8825329966494,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 237678592,
+      "first_call_ms": 82.18972000031499,
+      "retained_call_ms": 85.08563099894673,
+      "sink_ms": 6.69267700141063,
+      "natural_best_strategy": "upstream-raster-sequential",
+      "natural_best_over_method_lifecycle": 0.9435368644846717
+    },
+    {
+      "family": "dates",
+      "zones": 64,
+      "method": "native-layout",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 31.84174100169912,
+      "close_ms": 0.1589479943504557,
+      "lifecycle_ms": 176.8776640019496,
+      "process_wall_ms": 314.42922999849543,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 221818880,
+      "first_call_ms": 72.59120500384597,
+      "retained_call_ms": 72.84859699575463,
+      "sink_ms": 7.017568001174368,
+      "natural_best_strategy": "upstream-raster-sequential",
+      "natural_best_over_method_lifecycle": 1.0794366664476305
+    },
+    {
+      "family": "dates",
+      "zones": 64,
+      "method": "upstream-feature-sequential",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 14.751018999959342,
+      "close_ms": 0.4074669996043667,
+      "lifecycle_ms": 326.2457599994377,
+      "process_wall_ms": 545.6391549960244,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 216313856,
+      "first_call_ms": 166.45462199812755,
+      "retained_call_ms": 143.67371799744433,
+      "sink_ms": 5.506495996087324,
+      "natural_best_strategy": "upstream-raster-sequential",
+      "natural_best_over_method_lifecycle": 0.5852282524672124
+    },
+    {
+      "family": "dates",
+      "zones": 64,
+      "method": "upstream-raster-sequential",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 17.69207199686207,
+      "close_ms": 0.713708002876956,
+      "lifecycle_ms": 190.92823599930853,
+      "process_wall_ms": 428.42351599392714,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 231649280,
+      "first_call_ms": 124.90200599859236,
+      "retained_call_ms": 54.45333799434593,
+      "sink_ms": 5.893590998311993,
+      "natural_best_strategy": "upstream-raster-sequential",
+      "natural_best_over_method_lifecycle": 1.0
+    },
+    {
+      "family": "files",
+      "zones": 8,
+      "method": "auto-both",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 37.254177004797384,
+      "close_ms": 0.12377299572108313,
+      "lifecycle_ms": 114.77791899960721,
+      "process_wall_ms": 195.82242800242966,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 202682368,
+      "first_call_ms": 38.5526829995797,
+      "retained_call_ms": 39.17577199899824,
+      "sink_ms": 0.34075100120389834,
+      "natural_best_strategy": "upstream-feature-sequential",
+      "natural_best_over_method_lifecycle": 0.44152639677779654
+    },
+    {
+      "family": "files",
+      "zones": 8,
+      "method": "auto-ee",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 36.79453500080854,
+      "close_ms": 0.18191900016972795,
+      "lifecycle_ms": 133.97605899808696,
+      "process_wall_ms": 225.43071700056316,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 235057152,
+      "first_call_ms": 51.662229001522064,
+      "retained_call_ms": 41.20562300522579,
+      "sink_ms": 0.3754150020540692,
+      "natural_best_strategy": "upstream-feature-sequential",
+      "natural_best_over_method_lifecycle": 0.37825773787146544
+    },
+    {
+      "family": "files",
+      "zones": 8,
+      "method": "ee-feature-sequential",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 36.511940001219045,
+      "close_ms": 0.11148300109198317,
+      "lifecycle_ms": 84.65321700350614,
+      "process_wall_ms": 167.82719899492804,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 209235968,
+      "first_call_ms": 25.5472419958096,
+      "retained_call_ms": 22.377353001502343,
+      "sink_ms": 0.3536540025379509,
+      "natural_best_strategy": "upstream-feature-sequential",
+      "natural_best_over_method_lifecycle": 0.5986480230686498
+    },
+    {
+      "family": "files",
+      "zones": 8,
+      "method": "ee-raster-sequential",
+      "output_mode": "full",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 38.69526000198675,
+      "close_ms": 0.2633010008139536,
+      "lifecycle_ms": 133.60562600428239,
+      "process_wall_ms": 217.90878100000555,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 224571392,
+      "first_call_ms": 52.53467800503131,
+      "retained_call_ms": 42.076621000887826,
+      "sink_ms": 0.33590700331842527,
+      "natural_best_strategy": "upstream-feature-sequential",
+      "natural_best_over_method_lifecycle": 0.3793064897126864
+    },
+    {
+      "family": "files",
+      "zones": 8,
+      "method": "ee-raster-sequential",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 38.25157599931117,
+      "close_ms": 0.1443210057914257,
+      "lifecycle_ms": 137.64755400188733,
+      "process_wall_ms": 218.2559900029446,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 193073152,
+      "first_call_ms": 51.98752100113779,
+      "retained_call_ms": 44.34490000130609,
+      "sink_ms": 0.33675300801405683,
+      "natural_best_strategy": "upstream-feature-sequential",
+      "natural_best_over_method_lifecycle": 0.36816840933370676
+    },
+    {
+      "family": "files",
+      "zones": 8,
+      "method": "native-fixed",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 34.74237699992955,
+      "close_ms": 0.21021599968662485,
+      "lifecycle_ms": 71.97077599994373,
+      "process_wall_ms": 154.70271300000604,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 206352384,
+      "first_call_ms": 18.52369099651696,
+      "retained_call_ms": 18.63815400429303,
+      "sink_ms": 0.40567699761595577,
+      "natural_best_strategy": "upstream-feature-sequential",
+      "natural_best_over_method_lifecycle": 0.7041397053380387
+    },
+    {
+      "family": "files",
+      "zones": 8,
+      "method": "native-layout",
+      "output_mode": "full",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 36.21773299528286,
+      "close_ms": 0.20769999537151307,
+      "lifecycle_ms": 85.25997899414506,
+      "process_wall_ms": 165.14853599801427,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 230731776,
+      "first_call_ms": 24.55843899952015,
+      "retained_call_ms": 23.990707006305456,
+      "sink_ms": 0.4049499984830618,
+      "natural_best_strategy": "upstream-feature-sequential",
+      "natural_best_over_method_lifecycle": 0.594387678761104
+    },
+    {
+      "family": "files",
+      "zones": 8,
+      "method": "native-layout",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 36.61931299575372,
+      "close_ms": 0.13085999671602622,
+      "lifecycle_ms": 81.96241599944187,
+      "process_wall_ms": 162.90731100161793,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 285257728,
+      "first_call_ms": 23.264317998837214,
+      "retained_call_ms": 22.407274998840876,
+      "sink_ms": 0.4149290034547448,
+      "natural_best_strategy": "upstream-feature-sequential",
+      "natural_best_over_method_lifecycle": 0.6183014542408737
+    },
+    {
+      "family": "files",
+      "zones": 8,
+      "method": "upstream-feature-sequential",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 17.380166005750652,
+      "close_ms": 0.44660200364887714,
+      "lifecycle_ms": 50.67748100555036,
+      "process_wall_ms": 216.78414699999848,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 285519872,
+      "first_call_ms": 24.106339005811606,
+      "retained_call_ms": 8.923197994590737,
+      "sink_ms": 0.3388390032341704,
+      "natural_best_strategy": "upstream-feature-sequential",
+      "natural_best_over_method_lifecycle": 1.0
+    },
+    {
+      "family": "files",
+      "zones": 8,
+      "method": "upstream-raster-sequential",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 17.257473002246115,
+      "close_ms": 0.3055869965464808,
+      "lifecycle_ms": 79.08724599838024,
+      "process_wall_ms": 243.9395350011182,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 200585216,
+      "first_call_ms": 47.81102699780604,
+      "retained_call_ms": 12.447729997802526,
+      "sink_ms": 0.39163700421340764,
+      "natural_best_strategy": "upstream-feature-sequential",
+      "natural_best_over_method_lifecycle": 0.6407794375162371
+    },
+    {
+      "family": "files",
+      "zones": 64,
+      "method": "auto-both",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 39.03263100073673,
+      "close_ms": 0.27374500496080145,
+      "lifecycle_ms": 137.02453099540435,
+      "process_wall_ms": 252.67235100182006,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 213168128,
+      "first_call_ms": 55.77527899731649,
+      "retained_call_ms": 41.83717100386275,
+      "sink_ms": 2.8303299986873753,
+      "natural_best_strategy": "upstream-raster-sequential",
+      "natural_best_over_method_lifecycle": 0.8143525702466522
+    },
+    {
+      "family": "files",
+      "zones": 64,
+      "method": "auto-ee",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 37.42082200187724,
+      "close_ms": 0.18436499522067606,
+      "lifecycle_ms": 161.4174220012501,
+      "process_wall_ms": 263.01900800172007,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 193073152,
+      "first_call_ms": 67.00031200307421,
+      "retained_call_ms": 56.70911200286355,
+      "sink_ms": 2.459672003169544,
+      "natural_best_strategy": "upstream-raster-sequential",
+      "natural_best_over_method_lifecycle": 0.6912901818125023
+    },
+    {
+      "family": "files",
+      "zones": 64,
+      "method": "ee-feature-sequential",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 36.09422100271331,
+      "close_ms": 0.15374099893961102,
+      "lifecycle_ms": 359.17239800619427,
+      "process_wall_ms": 460.42832099919906,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 202682368,
+      "first_call_ms": 162.83454600488767,
+      "retained_call_ms": 161.30411499761976,
+      "sink_ms": 2.3801619972800836,
+      "natural_best_strategy": "upstream-raster-sequential",
+      "natural_best_over_method_lifecycle": 0.3106760976689116
+    },
+    {
+      "family": "files",
+      "zones": 64,
+      "method": "ee-raster-sequential",
+      "output_mode": "full",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 36.24229299748549,
+      "close_ms": 0.17607100016903132,
+      "lifecycle_ms": 169.98571300064214,
+      "process_wall_ms": 269.2067010066239,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 193073152,
+      "first_call_ms": 74.66058799764141,
+      "retained_call_ms": 61.7821960040601,
+      "sink_ms": 2.6100999966729432,
+      "natural_best_strategy": "upstream-raster-sequential",
+      "natural_best_over_method_lifecycle": 0.6564450448993209
+    },
+    {
+      "family": "files",
+      "zones": 64,
+      "method": "ee-raster-sequential",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 37.0411879994208,
+      "close_ms": 0.1419569962308742,
+      "lifecycle_ms": 163.95223599829478,
+      "process_wall_ms": 264.62172099854797,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 199143424,
+      "first_call_ms": 65.24648499907926,
+      "retained_call_ms": 61.411354996380396,
+      "sink_ms": 2.506163000361994,
+      "natural_best_strategy": "upstream-raster-sequential",
+      "natural_best_over_method_lifecycle": 0.6806023615567535
+    },
+    {
+      "family": "files",
+      "zones": 64,
+      "method": "isolated-feature-sequential",
+      "output_mode": "five-field canonical",
+      "rounds": 3,
+      "numerically_valid": false,
+      "setup_ms": 167.47851300169714,
+      "close_ms": 7.440248002239969,
+      "lifecycle_ms": 275.1902380041429,
+      "process_wall_ms": 356.3034200051334,
+      "startup_ms": 146.69456500269007,
+      "peak_process_rss_bytes": 214085632,
+      "first_call_ms": 70.52460799604887,
+      "retained_call_ms": 25.76235699962126,
+      "sink_ms": 2.578835999884177,
+      "natural_best_strategy": null,
+      "natural_best_over_method_lifecycle": null
+    },
+    {
+      "family": "files",
+      "zones": 64,
+      "method": "isolated-raster-sequential",
+      "output_mode": "five-field canonical",
+      "rounds": 3,
+      "numerically_valid": false,
+      "setup_ms": 165.6574209991959,
+      "close_ms": 7.361757998296525,
+      "lifecycle_ms": 259.4452449993696,
+      "process_wall_ms": 339.73033399524866,
+      "startup_ms": 140.21637700352585,
+      "peak_process_rss_bytes": 204124160,
+      "first_call_ms": 64.81743000040296,
+      "retained_call_ms": 19.299669002066366,
+      "sink_ms": 2.7105000044684857,
+      "natural_best_strategy": null,
+      "natural_best_over_method_lifecycle": null
+    },
+    {
+      "family": "files",
+      "zones": 64,
+      "method": "native-fixed",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 35.17063700564904,
+      "close_ms": 0.2253439961350523,
+      "lifecycle_ms": 206.56458799930988,
+      "process_wall_ms": 310.6337120043463,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 193073152,
+      "first_call_ms": 85.84778200020082,
+      "retained_call_ms": 84.42996700614458,
+      "sink_ms": 2.744313998846337,
+      "natural_best_strategy": "upstream-raster-sequential",
+      "natural_best_over_method_lifecycle": 0.5402004287555929
+    },
+    {
+      "family": "files",
+      "zones": 64,
+      "method": "native-layout",
+      "output_mode": "full",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 39.66919900267385,
+      "close_ms": 0.16037500608945265,
+      "lifecycle_ms": 193.4269260018482,
+      "process_wall_ms": 301.94992699398426,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 252489728,
+      "first_call_ms": 79.19613899866818,
+      "retained_call_ms": 69.70340900443261,
+      "sink_ms": 2.5743110018083826,
+      "natural_best_strategy": "upstream-raster-sequential",
+      "natural_best_over_method_lifecycle": 0.576891135631672
+    },
+    {
+      "family": "files",
+      "zones": 64,
+      "method": "native-layout",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 35.863844997948036,
+      "close_ms": 0.1369380042888224,
+      "lifecycle_ms": 175.11639399890555,
+      "process_wall_ms": 274.83796999877086,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 193073152,
+      "first_call_ms": 72.22301400179276,
+      "retained_call_ms": 66.80197000241606,
+      "sink_ms": 2.5698179961182177,
+      "natural_best_strategy": "upstream-raster-sequential",
+      "natural_best_over_method_lifecycle": 0.637212064814714
+    },
+    {
+      "family": "files",
+      "zones": 64,
+      "method": "upstream-feature-sequential",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 21.001085005991627,
+      "close_ms": 0.8065740039455704,
+      "lifecycle_ms": 188.41461000556592,
+      "process_wall_ms": 379.22214799618814,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 207400960,
+      "first_call_ms": 95.82420700462535,
+      "retained_call_ms": 65.93113899725722,
+      "sink_ms": 2.616662997752428,
+      "natural_best_strategy": "upstream-raster-sequential",
+      "natural_best_over_method_lifecycle": 0.5922379320778428
+    },
+    {
+      "family": "files",
+      "zones": 64,
+      "method": "upstream-raster-sequential",
+      "output_mode": "numeric",
+      "rounds": 3,
+      "numerically_valid": true,
+      "setup_ms": 16.659094995702617,
+      "close_ms": 0.8090010014711879,
+      "lifecycle_ms": 111.5862790029496,
+      "process_wall_ms": 298.72388299554586,
+      "startup_ms": null,
+      "peak_process_rss_bytes": 255897600,
+      "first_call_ms": 64.48653200641274,
+      "retained_call_ms": 28.065920996596105,
+      "sink_ms": 2.4440269990009256,
+      "natural_best_strategy": "upstream-raster-sequential",
+      "natural_best_over_method_lifecycle": 1.0
+    }
+  ],
+  "failures": [
+    {
+      "task": "t142",
+      "reason": "matching-upstream mismatch or missing control"
+    },
+    {
+      "task": "t143",
+      "reason": "matching-upstream mismatch or missing control"
+    },
+    {
+      "task": "t071",
+      "reason": "matching-upstream mismatch or missing control"
+    },
+    {
+      "task": "t021",
+      "reason": "matching-upstream mismatch or missing control"
+    },
+    {
+      "task": "t020",
+      "reason": "matching-upstream mismatch or missing control"
+    },
+    {
+      "task": "t120",
+      "reason": "matching-upstream mismatch or missing control"
+    },
+    {
+      "task": "t121",
+      "reason": "matching-upstream mismatch or missing control"
+    },
+    {
+      "task": "t043",
+      "reason": "matching-upstream mismatch or missing control"
+    },
+    {
+      "task": "t042",
+      "reason": "matching-upstream mismatch or missing control"
+    },
+    {
+      "task": "t092",
+      "reason": "matching-upstream mismatch or missing control"
+    },
+    {
+      "task": "t070",
+      "reason": "matching-upstream mismatch or missing control"
+    },
+    {
+      "task": "t093",
+      "reason": "matching-upstream mismatch or missing control"
+    }
+  ],
+  "history": [
+    {
+      "path": "data/history-01.json.gz",
+      "input_sha256": "060efb2f488949d4a01df4e34d9457dd340fb4f88d5e5ace5fe593d30e788139",
+      "passed": false,
+      "kind": "programme",
+      "tasks": 40,
+      "failures": [
+        {
+          "task": "t008",
+          "reason": "execution/shape failure",
+          "details": [
+            {
+              "type": "EngineError",
+              "error": "numeric output requires exactly sum/support/mean/min/max/count without weighted or extended reducers"
+            }
+          ]
+        },
+        {
+          "task": "t009",
+          "reason": "execution/shape failure",
+          "details": [
+            {
+              "type": "EngineError",
+              "error": "numeric output requires exactly sum/support/mean/min/max/count without weighted or extended reducers"
+            }
+          ]
+        },
+        {
+          "task": "t013",
+          "reason": "execution/shape failure",
+          "details": [
+            {
+              "type": "EngineError",
+              "error": "numeric output requires exactly sum/support/mean/min/max/count without weighted or extended reducers"
+            }
+          ]
+        },
+        {
+          "task": "t005",
+          "reason": "execution/shape failure",
+          "details": [
+            {
+              "type": "EngineError",
+              "error": "numeric output requires exactly sum/support/mean/min/max/count without weighted or extended reducers"
+            }
+          ]
+        },
+        {
+          "task": "t001",
+          "reason": "execution/shape failure",
+          "details": [
+            {
+              "type": "EngineError",
+              "error": "numeric output requires exactly sum/support/mean/min/max/count without weighted or extended reducers"
+            }
+          ]
+        },
+        {
+          "task": "t000",
+          "reason": "execution/shape failure",
+          "details": [
+            {
+              "type": "EngineError",
+              "error": "numeric output requires exactly sum/support/mean/min/max/count without weighted or extended reducers"
+            }
+          ]
+        },
+        {
+          "task": "t018",
+          "reason": "matching single-feature upstream mismatch"
+        },
+        {
+          "task": "t036",
+          "reason": "matching single-feature upstream mismatch"
+        },
+        {
+          "task": "t030",
+          "reason": "matching single-feature upstream mismatch"
+        },
+        {
+          "task": "t024",
+          "reason": "matching single-feature upstream mismatch"
+        },
+        {
+          "task": "t020",
+          "reason": "matching single-feature upstream mismatch"
+        }
+      ],
+      "numeric_leaf_digest": [
+        "a654c169062ff1576344d966f5e35f4e3cb936bc1af61a2ec9ea45459273f01c",
+        30805
+      ]
+    },
+    {
+      "path": "data/history-02.json.gz",
+      "input_sha256": "b6b3d259bbc2818c8beb74cef4809d4ff9345b2b394c9757f14dade73dc20913",
+      "passed": false,
+      "kind": "C++ control",
+      "tasks": 8,
+      "failures": [
+        {
+          "family": "dates",
+          "strategy": 0,
+          "round": 0,
+          "mode": "upstream",
+          "error": "C++ control failed with exit 1"
+        },
+        {
+          "family": "dates",
+          "strategy": 1,
+          "round": 0,
+          "mode": "upstream",
+          "error": "C++ control failed with exit 1"
+        },
+        {
+          "family": "files",
+          "strategy": 0,
+          "round": 0,
+          "mode": "upstream",
+          "error": "C++ control failed with exit 1"
+        },
+        {
+          "family": "files",
+          "strategy": 1,
+          "round": 0,
+          "mode": "upstream",
+          "error": "C++ control failed with exit 1"
+        }
+      ],
+      "numeric_leaf_digest": [
+        "dd2cd4f4f8b69af3f260f63804404c654b5a1297c70a2399828d3634ec5a00f6",
+        5223
+      ]
+    }
+  ],
+  "inputs": {
+    "programme_sha256": "3880cb08fba4dcf4d26a46fa5452ff44c50314bf533a8ffa728345523c5949c5",
+    "calibration_sha256": "a97762d533279dbcd6acc47a13fc7e73e25fc7e9794e49ced708b7c74951967c",
+    "cpp_control_sha256": "de1abc2cca88fd74a080d21041bdd7b44572877ff333674a666a2cba8316d28e",
+    "failure_cost_sha256": "b179d8192644c4a6a22f1da15df8db135654fa9a4c968ac5c7ed632daf82f435",
+    "renderer_sha256": "e500b7978113d4a77ace67d94687fc0d248fc8cded9eb3e6776b6dd185dc5cad"
+  },
+  "numeric_leaf_digest_before_after": [
+    "50839733ec19a8463a30e40eefd1acace2a5b1f22fe2402db890e1562e84240f",
+    2261627
+  ],
+  "redacted_string_occurrences": 4,
+  "render_versions": {
+    "matplotlib": "3.11.1"
+  },
+  "visual_qa": "pending actual rendered inspection",
+  "limitations": [
+    "One physical host, uncontrolled OS cache; no cloud or application comparison.",
+    "Natural exactextract uses its separately built Python wheel and source adapter. Same-build C++ diagnostic is a separate lane.",
+    "Direct native strict checks and matching-upstream checks are separate; empirical agreement does not enable strict routing.",
+    "Old isolated control has a separate1GiB worker and16MiB GDAL cache; costs and guarantees differ from embedded execution.",
+    "Worker process wall includes interpreter/import and harness costs; lifecycle/call timers are nested, not additive."
+  ]
+}

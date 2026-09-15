@@ -1,0 +1,158 @@
+{
+  "schema": 1,
+  "product": "Skarve",
+  "release": "0.1.1-alpha.0",
+  "preserved_milestone": "0.1.0-beta.2",
+  "ordinary_source_owned": {
+    "policy": "native_grid_planar_fractional",
+    "operations": [
+      "infuse",
+      "inspect",
+      "carve",
+      "ward_optional_summary",
+      "compile_optional_skv",
+      "verify_skv_complete",
+      "cleave",
+      "close"
+    ],
+    "geometry": [
+      "Polygon",
+      "MultiPolygon",
+      "holes",
+      "disjoint_components"
+    ],
+    "grid": "matching explicit CRS; north-up affine; no implicit reprojection or resampling",
+    "qualified_source_cases": [
+      "local original GeoTIFF",
+      "local/HTTP COG with bounded ranges and stable validators"
+    ],
+    "reader_abstraction": "Source format is separate from mathematical execution; not all GDAL drivers are qualified.",
+    "direct_without_preparation": true,
+    "original_boundary_values_with_summary_index": true,
+    "full_source_conversion_required": false,
+    "native_shared_scan_batch": true,
+    "lazy_slice_sources": true,
+    "native_workers_per_job": 1,
+    "unsupported": [
+      "implicit CRS repair",
+      "rotated grids",
+      "antimeridian crossings",
+      "polar geometry",
+      "complex file bands",
+      "64-bit integer file bands"
+    ],
+    "compatibility_aliases": [
+      "open_source/openSource",
+      "measure",
+      "prepare",
+      "batch_pages/batchPages"
+    ]
+  },
+  "experimental_skv_v0": {
+    "status": "working unstable experiment; artifact qualification belongs to the exact package receipt",
+    "compilation_sources": "Supported TIFF/COG exposing the lossless typed reader contract",
+    "serving": ["local", "bounded conditional HTTP ranges"],
+    "ordinary_infuse_carve_cleave": true,
+    "original_source_required_for_serving": false,
+    "sidecars_required_for_serving": false,
+    "summary_acceleration_optional": true,
+    "eligible_exactextract_raw_path": true,
+    "lossless_types": ["Byte", "Int8", "UInt16", "Int16", "UInt32", "Int32", "Float32", "Float64"],
+    "raw_floating_bits_and_original_mask_bytes": true,
+    "arbitrary_original_tiff_tags_reconstructed": false,
+    "chunk_edges": [64, 128, 256],
+    "maximum_stored_bands": 64,
+    "maximum_selected_bands_per_raw_window": 20,
+    "maximum_typed_leaf_chunks": 48000,
+    "maximum_object_bytes": 8589934592,
+    "codecs": ["none", "deflate"],
+    "predictors": ["none", "byte_delta_v1"],
+    "predictor_default": "none",
+    "updates": "Explicit immutable full rebuild; no overwrite or in-place mutation",
+    "specification": "skv-format-v0.md",
+    "installed_workflows": "skv.md"
+  },
+  "supplied_selection": {
+    "interfaces": [
+      "Python NumPy",
+      "Node typed arrays",
+      "versioned C ABI"
+    ],
+    "default_policy": "strict_selected_v1",
+    "explicit_ordered_policy": "hm_demographics_ordered_v1",
+    "source_reader_owned_by_engine": false,
+    "polygon_coverage_computed": false,
+    "persistent_source_identity_established": false,
+    "typed_values": [
+      "float32",
+      "float64"
+    ],
+    "maximum_logical_bands": 64,
+    "maximum_windows": 4096,
+    "maximum_selected_band_contributions": 268435456,
+    "maximum_binding_call_bytes_including_controls": 134217728,
+    "maximum_binding_process_snapshot_bytes": 536870912
+  },
+  "separate_expert_policy": {
+    "name": "hm_straight_lonlat_spherical_v1",
+    "ordinary_planar_alias": false,
+    "scope": "Single supported normalized longitude/latitude population band, finite nonnegative values and the named straight-boundary spherical model. Consult its explicit contract before use."
+  },
+  "application_responsibilities": [
+    "dataset/year and requested meaning",
+    "authorization and URL boundary",
+    "overview/selection policy when supplied",
+    "domain aggregation and display rounding",
+    "deployment concurrency and process limits"
+  ],
+  "automatic_application_demographics_replacement": false,
+  "optional_exactextract_backend": {
+    "build_feature": "exactextract",
+    "upstream": "ISciences/exactextract",
+    "upstream_version": "0.3.0",
+    "numerical_policy": "exactextract_fractional_v030",
+    "source_interpretation": "skarve_normalized_f64_v1",
+    "additional_explicit_policy": {
+      "numerical_policy": "exactextract_rasterio_v030",
+      "source_interpretation": "rasterio_unscaled_raw_v030",
+      "coverage_grid_interpretation": "rasterio_bounds_resolution_v030",
+      "scalar_types": ["Float32", "Float64"],
+      "identity_scale_offset_required": true,
+      "uniform_exposed_nodata_required": true,
+      "mask_flags": [1, 8],
+      "independent_or_alpha_masks": "rejected_before_pixel_reads",
+      "unmasked_infinity": "complete_result_rejected",
+      "native_defaults_changed": false,
+      "source_grid_or_sample_bytes_changed": false
+    },
+    "ordinary_source_query_interface": true,
+    "mandatory_python_runtime": false,
+    "default_backend": false,
+    "statistics": [
+      "sum",
+      "support",
+      "mean",
+      "min",
+      "max"
+    ],
+    "integer_count": false,
+    "grid": "exactly equal native grids and CRS for all sources in one call",
+    "maximum_zones": 512,
+    "maximum_slices": 32,
+    "maximum_logical_bands": 64,
+    "batch_output": "bounded complete-job typed staging before paged presentation",
+    "resume_checkpoints": false,
+    "derived_expressions": false,
+    "native_prepared_indexes": false,
+    "execution_envelope": "embedded_cooperative",
+    "hard_process_memory_limit": false,
+    "hard_cancellation": false,
+    "serialized_across_sessions": true,
+    "auto_default": "native_only",
+    "auto_when_only_exactextract_policy_accepted": "eligible installed exactextract",
+    "cross_policy_bitwise_equivalence": false
+  },
+  "initial_binary_target": "Ubuntu 24.04 Linux x86-64 with external GDAL 3.8.4; Python 3.12 and Node 20",
+  "other_platform_certification": false,
+  "source_build_does_not_imply_binary_qualification": true
+}

@@ -1,0 +1,7 @@
+# Optional benchmark dependencies. The upstream Python wheel is an independent
+# comparison; Skarve's optional native backend does not require this wheel.
+numpy==2.5.3
+rasterio==1.5.1
+shapely==2.1.2
+exactextract==0.3.0
+matplotlib>=3.8,<4

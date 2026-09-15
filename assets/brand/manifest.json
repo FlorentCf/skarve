@@ -1,0 +1,33 @@
+{
+  "origin": "Owner supplied original SVG assets; bytes preserved.",
+  "assets": [
+    {
+      "file": "SKARVE logo icon monochrome black.svg",
+      "sha256": "f5c80b4770d42e86874cd4b8c3d7d75cc0935d29da0266a745e5526f5cbc0572",
+      "bytes": 66606,
+      "viewBox": "249 125 760 960",
+      "active_or_external_refs": []
+    },
+    {
+      "file": "SKARVE logo icon monochrome white.svg",
+      "sha256": "082219ae4e840186b261f7be31faab3977138071f2bcd0b9da441f3ad2be3b32",
+      "bytes": 66575,
+      "viewBox": "273 168 713 887",
+      "active_or_external_refs": []
+    },
+    {
+      "file": "SKARVE logo icon.svg",
+      "sha256": "5a07534b645d2277d4b6dc817660c4f7617913463f77f95a3b48eb246ee5abef",
+      "bytes": 8517,
+      "viewBox": "272 121 874 1111",
+      "active_or_external_refs": []
+    },
+    {
+      "file": "SKARVE primary logo.svg",
+      "sha256": "0a2405ccced5396af7f65f2dc508ef057cfc0ab1f28d0e744a82668aba22714c",
+      "bytes": 9755,
+      "viewBox": "115 340 1227 403",
+      "active_or_external_refs": []
+    }
+  ]
+}

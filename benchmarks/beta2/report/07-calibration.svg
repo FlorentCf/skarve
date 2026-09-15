@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="709.943125pt" height="522.366973pt" viewBox="0 0 709.943125 522.366973" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-09-13T01:26:40.191885</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.1, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 522.366973 
+L 709.943125 522.366973 
+L 709.943125 0 
+L 0 0 
+z
+" style="fill: #f7f9fa"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 138.903125 413.371406 
+L 702.743125 413.371406 
+L 702.743125 91.92 
+L 138.903125 91.92 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g clip-path="url(#pb375254678)">
+    <image xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAw8AAAG/CAYAAAAeieuKAAAJQUlEQVR4nO3ZsQ2DUBAFQWz9sghp1j0QEjtxO0h2Cd4ACSRm4gsuXb3H6/P+TgAAAH88/x0AAACIBwAAILM8AAAAiXgAAAAS8QAAACTiAQAASMQDAACQiAcAACARDwAAQCIeAACARDwAAACJeAAAABLxAAAAJOIBAABIxAMAAJCIBwAAIBEPAABAIh4AAIBEPAAAAIl4AAAAEvEAAAAk4gEAAEjEAwAAkIgHAAAgEQ8AAEAiHgAAgEQ8AAAAiXgAAAAS8QAAACTiAQAASMQDAACQiAcAACARDwAAQCIeAACARDwAAACJeAAAABLxAAAAJOIBAABIxAMAAJCIBwAAIBEPAABAIh4AAIBEPAAAAIl4AAAAEvEAAAAk4gEAAEjEAwAAkIgHAAAgEQ8AAEAiHgAAgEQ8AAAAiXgAAAAS8QAAACTiAQAASMQDAACQiAcAACARDwAAQCIeAACARDwAAACJeAAAABLxAAAAJOIBAABIxAMAAJCIBwAAIBEPAABAIh4AAIBEPAAAAIl4AAAAktHOALiTZd/OfgGAC7I8AAAAiXgAAAAS8QAAACTiAQAASMQDAACQiAcAACARDwAAQCIeAACARDwAAACJeAAAABLxAAAAJOIBAABIxAMAAJCIBwAAIBEPAABAIh4AAIBEPAAAAIl4AAAAEvEAAAAk4gEAAEjEAwAAkIgHAAAgEQ8AAEAiHgAAgEQ8AAAAiXgAAAAS8QAAACTiAQAASMQDAACQiAcAACARDwAAQCIeAACARDwAAADJaGcA3Mk65rNfAOCCLA8AAEAiHgAAgEQ8AAAAiXgAAAAS8QAAACTiAQAASMQDAACQiAcAACARDwAAQCIeAACARDwAAADiAQAAOI7lAQAASMQDAACQiAcAACARDwAAQCIeAACARDwAAACJeAAAABLxAAAAJOIBAABIxAMAAJCIBwAAIBEPAABAIh4AAIBEPAAAAIl4AAAAEvEAAAAk4gEAAEjEAwAAkIgHAAAgEQ8AAEAiHgAAgEQ8AAAAiXgAAAAS8QAAACTiAQAASMQDAACQiAcAACARDwAAQCIeAACARDwAAACJeAAAABLxAAAAJOIBAABIxAMAAJCIBwAAIBEPAABAIh4AAIBEPAAAAIl4AAAAEvEAAAAk4gEAAEjEAwAAkIgHAAAgEQ8AAEAiHgAAgEQ8AAAAiXgAAAAS8QAAACTiAQAASMQDAACQiAcAACARDwAAQCIeAACARDwAAACJeAAAABLxAAAAJOIBAABIxAMAAJCIBwAAIBEPAABAIh4AAIBEPAAAAIl4AAAAEvEAAAAk4gEAAEjEAwAAkIgHAAAgEQ8AAEAiHgAAgEQ8AAAAiXgAAAAS8QAAACTiAQAASMQDAACQiAcAACARDwAAQCIeAACARDwAAACJeAAAABLxAAAAJOIBAABIxAMAAJCIBwAAIBEPAABAIh4AAIBEPAAAAIl4AAAAEvEAAAAk4gEAAEjEAwAAkIgHAAAgEQ8AAEAiHgAAgEQ8AAAAiXgAAAAS8QAAACTiAQAASMQDAACQiAcAACARDwAAQCIeAACARDwAAACJeAAAABLxAAAAJOIBAABIxAMAAJCIBwAAIBEPAABAIh4AAIBEPAAAAIl4AAAAEvEAAAAk4gEAAEjEAwAAkIgHAAAgEQ8AAEAiHgAAgEQ8AAAAiXgAAAAS8QAAACTiAQAASMQDAACQiAcAACARDwAAQCIeAACARDwAAACJeAAAABLxAAAAJOIBAABIxAMAAJCIBwAAIBEPAABAIh4AAIBEPAAAAIl4AAAAxAMAAHAcywMAAJCIBwAAIBEPAABAIh4AAIBEPAAAAIl4AAAAEvEAAAAk4gEAAEjEAwAAkIgHAAAgEQ8AAEAiHgAAgEQ8AAAAiXgAAAAS8QAAACTiAQAASMQDAACQiAcAACARDwAAQCIeAACARDwAAACJeAAAABLxAAAAJOIBAABIxAMAAJCIBwAAIBEPAABAIh4AAIBEPAAAAIl4AAAAEvEAAAAk4gEAAEjEAwAAkIgHAAAgEQ8AAEAiHgAAgEQ8AAAAiXgAAAAS8QAAACTiAQAASMQDAACQiAcAACARDwAAQCIeAACARDwAAACJeAAAABLxAAAAJOIBAABIxAMAAJCIBwAAIBEPAABAIh4AAIBEPAAAAIl4AAAAEvEAAAAk4gEAAEjEAwAAkIx2BsCdLPt29gsAXJDlAQAASMQDAACQiAcAACARDwAAQCIeAACARDwAAACJeAAAABLxAAAAJOIBAABIxAMAAJCIBwAAIBEPAABAIh4AAIBEPAAAAIl4AAAAEvEAAAAk4gEAAEjEAwAAkIgHAAAgEQ8AAEAiHgAAgEQ8AAAAiXgAAAAS8QAAACTiAQAASMQDAACQiAcAACARDwAAQCIeAACARDwAAACJeAAAABLxAAAAJOIBAABIxAMAAJCIBwAAIBEPAABAIh4AAIBEPAAAAIl4AAAAEvEAAAAk4gEAAEjEAwAAkIgHAAAgEQ8AAEAiHgAAgEQ8AAAAiXgAAAAS8QAAACTiAQAASMQDAACQiAcAACARDwAAQCIeAACARDwAAACJeAAAABLxAAAAiAcAAOA4lgcAACARDwAAQCIeAACARDwAAACJeAAAABLxAAAAJOIBAABIxAMAAJCIBwAAIBEPAABAIh4AAIBktDMA7mQd89kvAHBBlgcAACARDwAAQCIeAACARDwAAACJeAAAABLxAAAAJOIBAABIxAMAAJCIBwAAIBEPAABAIh4AAIBEPAAAAIl4AAAAEvEAAAAk4gEAAEjEAwAAkIgHAAAgEQ8AAEAiHgAAgEQ8AAAAiXgAAAAS8QAAACTiAQAASMQDAACQiAcAACARDwAAQCIeAACARDwAAACJeAAAABLxAAAAJOIBAABIxAMAAJCIBwAAIBEPAABAIh4AAIBEPAAAAIl4AAAAEvEAAAAk4gEAAEjEAwAAkIgHAAAgEQ8AAEAiHgAAgEQ8AAAAiXgAAAAS8QAAACTiAQAASMQDAACQiAcAACARDwAAQCIeAACARDwAAACJeAAAABLxAAAAJOIBAABIxAMAAJCIBwAAIBEPAABAIh4AAIBEPAAAAIl4AAAAEvEAAAAk4gEAAEjEAwAAkIgHAAAgEQ8AAEAiHgAAgEQ8AAAAU/EDWb0Mz33KDIIAAAAASUVORK5CYII=" id="imagefe4879ad52" transform="scale(1 -1) translate(0 -321.84)" x="138.96" y="-91.806973" width="563.76" height="321.84"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1"/>
+     <g id="text_1">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif" transform="translate(207.1975 431.97082)">Bridge = matching upstream</text>
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif" transform="translate(241.689688 443.973555)">Both strategies</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2"/>
+     <g id="text_2">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif" transform="translate(478.279219 431.97082)">Upstream within native tolerance</text>
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif" transform="translate(488.732344 443.973555)">All five fields, both strategies</text>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_3"/>
+     <g id="text_3">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: end" x="128.903125" y="108.082734" transform="rotate(-0 128.903125 108.082734)">all masked</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_4"/>
+     <g id="text_4">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: end" x="128.903125" y="132.809766" transform="rotate(-0 128.903125 132.809766)">binary fraction</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_5"/>
+     <g id="text_5">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: end" x="128.903125" y="157.536797" transform="rotate(-0 128.903125 157.536797)">signed-sum cancellation</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_6"/>
+     <g id="text_6">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: end" x="128.903125" y="182.263828" transform="rotate(-0 128.903125 182.263828)">decimal fraction</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_7"/>
+     <g id="text_7">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: end" x="128.903125" y="206.990859" transform="rotate(-0 128.903125 206.990859)">different masks</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_8"/>
+     <g id="text_8">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: end" x="128.903125" y="231.7175" transform="rotate(-0 128.903125 231.7175)">empty</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_9"/>
+     <g id="text_9">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: end" x="128.903125" y="256.444922" transform="rotate(-0 128.903125 256.444922)">hole</text>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_10"/>
+     <g id="text_10">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: end" x="128.903125" y="281.171953" transform="rotate(-0 128.903125 281.171953)">multipart</text>
+     </g>
+    </g>
+    <g id="ytick_9">
+     <g id="line2d_11"/>
+     <g id="text_11">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: end" x="128.903125" y="305.898984" transform="rotate(-0 128.903125 305.898984)">non power two mask</text>
+     </g>
+    </g>
+    <g id="ytick_10">
+     <g id="line2d_12"/>
+     <g id="text_12">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: end" x="128.903125" y="330.626016" transform="rotate(-0 128.903125 330.626016)">partial</text>
+     </g>
+    </g>
+    <g id="ytick_11">
+     <g id="line2d_13"/>
+     <g id="text_13">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: end" x="128.903125" y="355.353047" transform="rotate(-0 128.903125 355.353047)">positive sliver</text>
+     </g>
+    </g>
+    <g id="ytick_12">
+     <g id="line2d_14"/>
+     <g id="text_14">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: end" x="128.903125" y="380.080078" transform="rotate(-0 128.903125 380.080078)">scale offset</text>
+     </g>
+    </g>
+    <g id="ytick_13">
+     <g id="line2d_15"/>
+     <g id="text_15">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: end" x="128.903125" y="404.807109" transform="rotate(-0 128.903125 404.807109)">translated affine</text>
+     </g>
+    </g>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="279.863125" y="106.881172" transform="rotate(-0 279.863125 106.881172)">Agreement</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="561.783125" y="106.881172" transform="rotate(-0 561.783125 106.881172)">Agreement</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="279.863125" y="131.608203" transform="rotate(-0 279.863125 131.608203)">Agreement</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="561.783125" y="131.608203" transform="rotate(-0 561.783125 131.608203)">Agreement</text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="279.863125" y="156.335234" transform="rotate(-0 279.863125 156.335234)">Agreement</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="561.783125" y="156.335625" transform="rotate(-0 561.783125 156.335625)">Policy difference</text>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="279.863125" y="181.062266" transform="rotate(-0 279.863125 181.062266)">Agreement</text>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="561.783125" y="181.062656" transform="rotate(-0 561.783125 181.062656)">Policy difference</text>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="279.863125" y="205.789297" transform="rotate(-0 279.863125 205.789297)">Agreement</text>
+   </g>
+   <g id="text_25">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="561.783125" y="205.789297" transform="rotate(-0 561.783125 205.789297)">Agreement</text>
+   </g>
+   <g id="text_26">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="279.863125" y="230.516328" transform="rotate(-0 279.863125 230.516328)">Agreement</text>
+   </g>
+   <g id="text_27">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="561.783125" y="230.516328" transform="rotate(-0 561.783125 230.516328)">Agreement</text>
+   </g>
+   <g id="text_28">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="279.863125" y="255.243359" transform="rotate(-0 279.863125 255.243359)">Agreement</text>
+   </g>
+   <g id="text_29">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="561.783125" y="255.243359" transform="rotate(-0 561.783125 255.243359)">Agreement</text>
+   </g>
+   <g id="text_30">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="279.863125" y="279.970391" transform="rotate(-0 279.863125 279.970391)">Agreement</text>
+   </g>
+   <g id="text_31">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="561.783125" y="279.970391" transform="rotate(-0 561.783125 279.970391)">Agreement</text>
+   </g>
+   <g id="text_32">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="279.863125" y="304.697422" transform="rotate(-0 279.863125 304.697422)">Agreement</text>
+   </g>
+   <g id="text_33">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="561.783125" y="304.697422" transform="rotate(-0 561.783125 304.697422)">Agreement</text>
+   </g>
+   <g id="text_34">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="279.863125" y="329.424453" transform="rotate(-0 279.863125 329.424453)">Agreement</text>
+   </g>
+   <g id="text_35">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="561.783125" y="329.424453" transform="rotate(-0 561.783125 329.424453)">Agreement</text>
+   </g>
+   <g id="text_36">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="279.863125" y="354.151484" transform="rotate(-0 279.863125 354.151484)">Agreement</text>
+   </g>
+   <g id="text_37">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="561.783125" y="354.151875" transform="rotate(-0 561.783125 354.151875)">Policy difference</text>
+   </g>
+   <g id="text_38">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="279.863125" y="378.878516" transform="rotate(-0 279.863125 378.878516)">Agreement</text>
+   </g>
+   <g id="text_39">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="561.783125" y="378.878516" transform="rotate(-0 561.783125 378.878516)">Agreement</text>
+   </g>
+   <g id="text_40">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="279.863125" y="403.605547" transform="rotate(-0 279.863125 403.605547)">Agreement</text>
+   </g>
+   <g id="text_41">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: middle; fill: #24394a" x="561.783125" y="403.605547" transform="rotate(-0 561.783125 403.605547)">Agreement</text>
+   </g>
+  </g>
+  <g id="text_42">
+   <text style="font-weight: 700; font-size: 21px; font-family: 'DejaVu Sans', Arial, sans-serif; text-anchor: start; fill: #24394a" x="36.743125" y="23.156719" transform="rotate(-0 36.743125 23.156719)">Calculation policy is an explicit choice</text>
+  </g>
+  <g id="text_43">
+   <text style="font-size: 8.5px; font-family: 'DejaVu Sans', Arial, sans-serif; fill: #405564" transform="translate(18.743125 491.869502)">13 fixture classes / 26 strategy rows · five fields · exact Fraction and pinned upstream controls.</text>
+   <text style="font-size: 8.5px; font-family: 'DejaVu Sans', Arial, sans-serif; fill: #405564" transform="translate(18.743125 502.071826)">Empirical tolerance agreement is not universal equivalence. Native strict and upstream fractional policies remain</text>
+   <text style="font-size: 8.5px; font-family: 'DejaVu Sans', Arial, sans-serif; fill: #405564" transform="translate(18.743125 512.27415)">distinct.</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pb375254678">
+   <rect x="138.903125" y="91.92" width="563.84" height="321.451406"/>
+  </clipPath>
+ </defs>
+</svg>

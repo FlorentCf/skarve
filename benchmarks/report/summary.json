@@ -1,0 +1,5975 @@
+{
+  "schema": 1,
+  "native_library_sha256": "17e3546f7c526d5687b99641ce3f3adaa6d8d85cd7e4786fc84b2e0d2bf78c93",
+  "seed": 193542725648087,
+  "native_gate_pass": true,
+  "records": 864,
+  "native_checks": 168456,
+  "native_failed_scalar_records": 0,
+  "external_failed_scalar_records": 11786,
+  "failed_or_incompatible_records": [
+    {
+      "record": 1,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 1197,
+      "max_absolute_error": {
+        "sum": 7.077261216181796e-06,
+        "support": 2.241355559817748e-06,
+        "mean": 1.0877955869403877e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 6,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 610,
+      "max_absolute_error": {
+        "sum": 5.730284101446159e-06,
+        "support": 2.2379813344741706e-06,
+        "mean": 9.45277278674439e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 9,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 610,
+      "max_absolute_error": {
+        "sum": 5.730284101446159e-06,
+        "support": 2.2379813344741706e-06,
+        "mean": 9.45277278674439e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 11,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 1197,
+      "max_absolute_error": {
+        "sum": 7.077261216181796e-06,
+        "support": 2.241355559817748e-06,
+        "mean": 1.0877955869403877e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 15,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 610,
+      "max_absolute_error": {
+        "sum": 5.730284101446159e-06,
+        "support": 2.2379813344741706e-06,
+        "mean": 9.45277278674439e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 16,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 610,
+      "max_absolute_error": {
+        "sum": 5.730284101446159e-06,
+        "support": 2.2379813344741706e-06,
+        "mean": 9.45277278674439e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 18,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 1197,
+      "max_absolute_error": {
+        "sum": 7.077261216181796e-06,
+        "support": 2.241355559817748e-06,
+        "mean": 1.0877955869403877e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 19,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 1197,
+      "max_absolute_error": {
+        "sum": 7.077261216181796e-06,
+        "support": 2.241355559817748e-06,
+        "mean": 1.0877955869403877e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 25,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 1197,
+      "max_absolute_error": {
+        "sum": 7.077261216181796e-06,
+        "support": 2.241355559817748e-06,
+        "mean": 1.0877955869403877e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 27,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 610,
+      "max_absolute_error": {
+        "sum": 5.730284101446159e-06,
+        "support": 2.2379813344741706e-06,
+        "mean": 9.45277278674439e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 33,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 610,
+      "max_absolute_error": {
+        "sum": 5.730284101446159e-06,
+        "support": 2.2379813344741706e-06,
+        "mean": 9.45277278674439e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 34,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 1197,
+      "max_absolute_error": {
+        "sum": 7.077261216181796e-06,
+        "support": 2.241355559817748e-06,
+        "mean": 1.0877955869403877e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 336,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 9.451338112143048e-08,
+        "support": 3.173897811237225e-09,
+        "mean": 6.524678308750254e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 337,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.3353744538212595e-07,
+        "support": 5.440209127627327e-08,
+        "mean": 5.298240068896121e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 338,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.6335762015605724e-08,
+        "support": 7.750167796416463e-08,
+        "mean": 8.45894709833317e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 339,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.7399592756059974e-08,
+        "support": 1.0753320012213408e-08,
+        "mean": 3.6350300547383085e-10,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 340,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.4281759774803504e-08,
+        "support": 5.640360534187039e-08,
+        "mean": 1.4175178586484094e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 341,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.1104278264137974e-07,
+        "support": 1.5160260602442577e-08,
+        "mean": 1.6066402430681137e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 342,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.6939159230844325e-07,
+        "support": 2.1988472820311245e-08,
+        "mean": 3.987881136424676e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 343,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.0019719215724763e-08,
+        "support": 8.061764056321863e-08,
+        "mean": 2.0687348722958632e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 344,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.1467832311827806e-07,
+        "support": 5.69207614375955e-09,
+        "mean": 3.59169316510588e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 345,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.747016990018892e-07,
+        "support": 1.0693434226993759e-07,
+        "mean": 1.8055811068506955e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 346,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.910002774887289e-07,
+        "support": 1.14773094139764e-07,
+        "mean": 1.0736122657561964e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 347,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.791332806533319e-07,
+        "support": 4.017663712829744e-08,
+        "mean": 3.097877510072067e-10,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 348,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 1.687915418546737e-09,
+        "support": 1.643148306307296e-08,
+        "mean": 2.0419785307090876e-10,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 349,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.4123414970867998e-07,
+        "support": 4.827891864067624e-08,
+        "mean": 6.886136549866251e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 350,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 5.430691629726425e-07,
+        "support": 3.004004156537121e-09,
+        "mean": 2.5783205792606623e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 351,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 8.032080529574159e-07,
+        "support": 1.0424706431422237e-07,
+        "mean": 1.5089535843060276e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 352,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 9.658506172627312e-08,
+        "support": 1.2237075530663333e-07,
+        "mean": 2.7218274079032767e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 353,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.427213618399037e-07,
+        "support": 4.5858075559124245e-08,
+        "mean": 2.1133037542142574e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 354,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.1428413415615069e-07,
+        "support": 2.645735275308425e-08,
+        "mean": 1.028265073088619e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 355,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 4.69966252580889e-07,
+        "support": 1.5174752121538404e-07,
+        "mean": 2.8147921327104086e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 356,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.664877252200881e-07,
+        "support": 5.0571241416719204e-08,
+        "mean": 2.701633616819521e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 357,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.2548305505788448e-08,
+        "support": 1.5045320544970764e-10,
+        "mean": 2.737842397237955e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 358,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 8.045831343395093e-07,
+        "support": 1.0129440397577127e-07,
+        "mean": 1.9032289966247617e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 359,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.6678149172832946e-07,
+        "support": 3.9695101428094404e-08,
+        "mean": 6.492552273584806e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 360,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.813317874801214e-07,
+        "support": 7.339897400981954e-08,
+        "mean": 5.625447663248906e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 361,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.46938273665387e-07,
+        "support": 1.164536840292385e-07,
+        "mean": 1.9911970072783447e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 362,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.144771826806391e-08,
+        "support": 3.633701517458121e-08,
+        "mean": 1.6962607318760092e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 363,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.769811799334775e-07,
+        "support": 2.707299939785912e-09,
+        "mean": 8.507450122152704e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 364,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.095159115673596e-07,
+        "support": 5.0953257613173264e-08,
+        "mean": 1.8132961798755787e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 365,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.7840939392499422e-07,
+        "support": 2.9011188118488462e-08,
+        "mean": 5.049294315995212e-10,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 366,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.6006706238822517e-07,
+        "support": 1.0006968764741941e-07,
+        "mean": 5.6410485171909386e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 367,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 2.5884175869350656e-07,
+        "support": 1.1015885093001998e-08,
+        "mean": 7.896236775550847e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 368,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.1132377908396052e-08,
+        "support": 8.49099213162674e-09,
+        "mean": 1.381023140289983e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 369,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 4.97834292900734e-07,
+        "support": 1.1919357234546624e-07,
+        "mean": 2.730558890107204e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 370,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 7.95068189063386e-09,
+        "support": 3.175323382009765e-08,
+        "mean": 1.859508325097181e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 371,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 7.226987293051934e-07,
+        "support": 1.3210165050736578e-07,
+        "mean": 1.2896753887048362e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 372,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 6.867203197202798e-07,
+        "support": 7.239954413762462e-08,
+        "mean": 1.531737225946017e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 373,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 7.418454721630496e-07,
+        "support": 1.921857242237479e-07,
+        "mean": 1.3388405051273367e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 374,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.3186005354270947e-07,
+        "support": 4.1465831657205854e-08,
+        "mean": 3.258609471146201e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 375,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 8.456302680315275e-07,
+        "support": 8.596096279234189e-09,
+        "mean": 2.9935801837410736e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 376,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 9.09336137056016e-07,
+        "support": 1.3127019471426138e-07,
+        "mean": 9.614100626720301e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 377,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.568466541674752e-07,
+        "support": 7.358315468053434e-08,
+        "mean": 1.719921005616243e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 378,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 9.91015696172326e-08,
+        "support": 5.493426868952156e-08,
+        "mean": 3.4641565171966704e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 379,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.7354264514324313e-07,
+        "support": 4.139349130127812e-08,
+        "mean": 5.808204583956922e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 380,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.9123271499665861e-07,
+        "support": 3.457658692695986e-08,
+        "mean": 1.3847643032249835e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 381,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.6866118441049025e-08,
+        "support": 2.0698644132011168e-08,
+        "mean": 4.861890445795325e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 382,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 4.377827167445503e-08,
+        "support": 4.5787378333272954e-09,
+        "mean": 5.427010840719504e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 383,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.9315561533849177e-08,
+        "support": 1.7258345863524482e-08,
+        "mean": 3.6719320029021674e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 384,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 7.555690331173537e-07,
+        "support": 1.3397998088748864e-07,
+        "mean": 1.848979680474372e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 385,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 8.018648145480256e-08,
+        "support": 6.161010901450936e-08,
+        "mean": 1.159453288934742e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 386,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 8.949035823491158e-08,
+        "support": 1.4551974514276367e-08,
+        "mean": 2.381418973129712e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 387,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 2.6534934249866637e-09,
+        "support": 1.6328411400756693e-09,
+        "mean": 1.884337930135871e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 388,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 7.778618993370401e-08,
+        "support": 3.440274021215828e-08,
+        "mean": 3.2507623259903085e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 389,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.1081639428311973e-07,
+        "support": 1.1902484331471896e-08,
+        "mean": 1.7608812186153955e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 390,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.276397154332699e-06,
+        "support": 4.3224606827152456e-07,
+        "mean": 2.7493685106350085e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 391,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.9830883957183687e-07,
+        "support": 8.808655138636823e-09,
+        "mean": 1.3098201634420548e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 392,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 9.12594775304143e-08,
+        "support": 6.105240757392494e-08,
+        "mean": 2.903174804724795e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 394,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 4.3050845022207795e-07,
+        "support": 1.2400676752122308e-07,
+        "mean": 1.315668995971464e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 395,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 7.776692712013755e-08,
+        "support": 2.635822404783994e-08,
+        "mean": 5.568792538213074e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 396,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.2256920811637428e-07,
+        "support": 5.771294553369444e-09,
+        "mean": 1.2101674329301204e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 397,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.1630481522881837e-07,
+        "support": 2.8445994004755448e-08,
+        "mean": 7.691261139086691e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 398,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.174932293679376e-07,
+        "support": 4.2490622575996895e-08,
+        "mean": 1.1298473268084308e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 399,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.0621711794556177e-06,
+        "support": 6.97235691404785e-09,
+        "mean": 2.089727524356988e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 400,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.373303686908912e-08,
+        "support": 4.048379054211182e-08,
+        "mean": 6.896153870172839e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 401,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.6308987582647205e-07,
+        "support": 3.118716662697807e-08,
+        "mean": 1.9291257036258003e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 402,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.2536295557197263e-08,
+        "support": 6.235640004348397e-09,
+        "mean": 1.975500207862524e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 403,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.0527907123858427e-07,
+        "support": 1.7410694663766435e-08,
+        "mean": 3.630697720247156e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 404,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 3.2164288654712436e-07,
+        "support": 3.2822526918607764e-09,
+        "mean": 7.977488003518829e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 405,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 4.177505310565266e-07,
+        "support": 1.1610020322905257e-07,
+        "mean": 1.187770670707522e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 406,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.2407613720076824e-07,
+        "support": 2.7237373689814603e-08,
+        "mean": 7.414641478575845e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 407,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.2497672347299158e-07,
+        "support": 9.116305843548389e-08,
+        "mean": 8.352206481987423e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 408,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 6.383542228149963e-08,
+        "support": 2.8765972714950294e-08,
+        "mean": 1.1699161639455724e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 409,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.1617213147019356e-07,
+        "support": 3.426309191922883e-08,
+        "mean": 1.7782082473161154e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 410,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.9180975030508307e-07,
+        "support": 8.618967228812835e-08,
+        "mean": 6.763797966158336e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 411,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.0823918250579823e-07,
+        "support": 6.295135257516904e-08,
+        "mean": 5.152253956808295e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 412,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 6.268955416999233e-07,
+        "support": 1.3795504116842494e-07,
+        "mean": 7.97798760387991e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 413,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 4.6034330125621636e-08,
+        "support": 9.435507664079523e-08,
+        "mean": 1.3204369153640982e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 414,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.549566673337722e-07,
+        "support": 6.704481680941399e-08,
+        "mean": 1.648620351346608e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 415,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.089577660375653e-08,
+        "support": 9.120719290933721e-09,
+        "mean": 1.190134657491626e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 416,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.6252698148709896e-07,
+        "support": 3.062711684265196e-08,
+        "mean": 6.171641864227695e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 417,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.805877699074699e-07,
+        "support": 8.701580966885558e-08,
+        "mean": 1.2271024196763847e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 418,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.877209226426203e-07,
+        "support": 1.597100691697051e-07,
+        "mean": 1.9273304729949814e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 419,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.1370779873232095e-06,
+        "support": 2.5802581049561013e-07,
+        "mean": 1.6360883314803232e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 420,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.1344195861038315e-07,
+        "support": 7.887386033189614e-08,
+        "mean": 4.278655207912152e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 421,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.1131525035068535e-07,
+        "support": 1.8393312206654855e-08,
+        "mean": 1.3965415490702071e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 422,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 6.265585987819122e-07,
+        "support": 9.242057430469686e-08,
+        "mean": 6.845873778971168e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 423,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 7.240898014515551e-08,
+        "support": 7.928247924837706e-08,
+        "mean": 6.244060379856364e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 424,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 7.329107631903753e-07,
+        "support": 2.8835044219022166e-07,
+        "mean": 1.6956263060308174e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 425,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 1.7067841806550632e-08,
+        "support": 3.103832568740472e-08,
+        "mean": 5.679965525695607e-10,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 426,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.7678662800335587e-07,
+        "support": 3.1620021712086555e-08,
+        "mean": 2.4968015210902195e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 427,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.280590448184739e-07,
+        "support": 5.580252881998149e-08,
+        "mean": 9.83325065817553e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 428,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 6.872475921682053e-08,
+        "support": 3.9682747754454795e-08,
+        "mean": 2.5447143947587847e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 429,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.932230185910157e-07,
+        "support": 1.8797042500295902e-07,
+        "mean": 2.1176278508505675e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 430,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 7.377907440542231e-08,
+        "support": 8.799684536597852e-09,
+        "mean": 8.257287631430188e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 431,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 4.3087442591627223e-07,
+        "support": 4.3854282427702174e-08,
+        "mean": 2.1220854407033585e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 432,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.066970554575164e-06,
+        "support": 4.442233603185741e-08,
+        "mean": 4.867846303824308e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 433,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 6.931409473054373e-07,
+        "support": 1.1570330826771169e-07,
+        "mean": 6.504420557718049e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 434,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 9.222623305049638e-07,
+        "support": 1.5224338056896158e-07,
+        "mean": 2.5042705686928457e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 435,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 5.226480581654869e-08,
+        "support": 6.516714101678645e-08,
+        "mean": 1.443877817308703e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 436,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 7.671195021430322e-07,
+        "support": 8.802320650147522e-08,
+        "mean": 2.580780034122654e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 437,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.5827060551032446e-07,
+        "support": 8.016524688514437e-08,
+        "mean": 4.920456375678839e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 438,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 4.3299838381472e-08,
+        "support": 6.45904263407715e-08,
+        "mean": 7.460208895082587e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 439,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 9.774993259270559e-08,
+        "support": 1.470777277745583e-08,
+        "mean": 6.990735101908285e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 440,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 5.419491628799733e-07,
+        "support": 3.884597532533007e-09,
+        "mean": 2.5430364147815965e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 441,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.2949307404142019e-08,
+        "support": 2.776602836540576e-08,
+        "mean": 8.858332201100438e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 442,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 1.8244121235966304e-07,
+        "support": 1.0344969325615239e-09,
+        "mean": 8.4402698163899e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 443,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.98840760137864e-07,
+        "support": 5.0523428996029907e-08,
+        "mean": 2.169760371373286e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 444,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 4.16970443950504e-07,
+        "support": 3.9496413251072227e-08,
+        "mean": 1.880513611496326e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 445,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.800280303778436e-07,
+        "support": 9.557583524610891e-08,
+        "mean": 1.4492445132852083e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 446,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 6.573089783579178e-08,
+        "support": 3.4278500038453785e-09,
+        "mean": 9.076042001288087e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 447,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 4.59054902535172e-07,
+        "support": 6.780017614005374e-08,
+        "mean": 5.873257435951018e-11,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 448,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 5.1832948599894735e-08,
+        "support": 1.5830323718546424e-08,
+        "mean": 4.66639438201355e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 449,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.174701390662449e-08,
+        "support": 8.708716059402377e-08,
+        "mean": 4.095902894629688e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 450,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.3571714802272936e-07,
+        "support": 2.0505787290403532e-08,
+        "mean": 1.3125639353184226e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 451,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 7.816611358180126e-08,
+        "support": 5.225165189415293e-09,
+        "mean": 8.21392820427036e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 453,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 5.400742963956873e-07,
+        "support": 1.3556910261058874e-07,
+        "mean": 6.089448501001016e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 454,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 9.377310306035724e-08,
+        "support": 1.6011794201631346e-07,
+        "mean": 1.834235696662745e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 455,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.5960172234107404e-07,
+        "support": 5.7088745730737855e-08,
+        "mean": 3.1187147531142045e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 456,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.743926159036846e-07,
+        "support": 2.2429339163743123e-08,
+        "mean": 2.4961943623225125e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 457,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.81015210493274e-07,
+        "support": 6.914406469604728e-08,
+        "mean": 9.683131574345083e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 458,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 7.428244259699568e-07,
+        "support": 6.249523920587308e-08,
+        "mean": 1.222895562591475e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 459,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 5.856508238366587e-07,
+        "support": 2.1808006067658425e-07,
+        "mean": 7.060639184430784e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 460,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.5080151527513408e-07,
+        "support": 7.638676891019713e-08,
+        "mean": 1.420316264599819e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 461,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 5.68087777708115e-07,
+        "support": 1.0660616567292891e-07,
+        "mean": 1.3871540360810286e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 462,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.249945509902318e-07,
+        "support": 8.255302930137987e-08,
+        "mean": 7.702093407502275e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 463,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.884832461802489e-07,
+        "support": 2.975920665448939e-08,
+        "mean": 1.1924004672536626e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 464,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.5918168855554313e-07,
+        "support": 8.277332241846125e-08,
+        "mean": 2.0562972213866715e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 465,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.4314028362605313e-07,
+        "support": 3.6190365371169264e-08,
+        "mean": 1.4216856136783917e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 466,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 4.679668919038704e-07,
+        "support": 1.5492783944637267e-07,
+        "mean": 1.1169398739241387e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 467,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 6.740514635339423e-08,
+        "support": 2.9527133627027524e-08,
+        "mean": 2.3813439220532473e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 468,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 9.105070830628392e-08,
+        "support": 2.2215260742086684e-08,
+        "mean": 8.569892351317776e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 469,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.700215955859676e-08,
+        "support": 2.9293095948901282e-08,
+        "mean": 1.1300619995324723e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 470,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.2415726430580207e-07,
+        "support": 4.396923358740423e-08,
+        "mean": 8.903728837550418e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 471,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.7003888075350915e-07,
+        "support": 4.646861473389663e-08,
+        "mean": 1.290443307766509e-10,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 472,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.842908983780035e-07,
+        "support": 1.0570016639732671e-08,
+        "mean": 1.3365542450571866e-07,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 473,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 8.954530983373843e-08,
+        "support": 6.741313995917153e-08,
+        "mean": 3.213477572927559e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 474,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.8215874142413213e-07,
+        "support": 2.7571648297808338e-08,
+        "mean": 3.2746614309075994e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 475,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 9.993228466953497e-08,
+        "support": 2.911159535656793e-09,
+        "mean": 9.621036978213482e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 476,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 7.769416532354967e-08,
+        "support": 1.1180820269629521e-07,
+        "mean": 5.624214871602362e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 477,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.2894533202588718e-07,
+        "support": 1.4241976842299664e-07,
+        "mean": 3.588308539193008e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 478,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.0522088267350682e-07,
+        "support": 1.6967449667504297e-08,
+        "mean": 1.0343901735154759e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 479,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 6.399557079816987e-07,
+        "support": 1.207023867522139e-07,
+        "mean": 1.4585610053075015e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 480,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 8.77989805303514e-08,
+        "support": 9.091609465272654e-09,
+        "mean": 1.2871249843726673e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 481,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.5290990518224135e-07,
+        "support": 1.0023938301628732e-07,
+        "mean": 4.4653409858597115e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 482,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 5.586018545500337e-07,
+        "support": 9.91339632605559e-08,
+        "mean": 1.595358156691873e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 483,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.2106220381724597e-07,
+        "support": 4.452598378890116e-08,
+        "mean": 1.1846535752368936e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 484,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.895259285651264e-07,
+        "support": 4.086608029751915e-08,
+        "mean": 2.502059892606212e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 485,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 5.187634499748128e-07,
+        "support": 1.3904477924597813e-07,
+        "mean": 8.867672152135242e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 486,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 9.591862237812165e-07,
+        "support": 2.980236502025946e-09,
+        "mean": 1.8587584360574283e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 487,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.529355344587202e-07,
+        "support": 5.1207471152281414e-08,
+        "mean": 2.9088834452295487e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 488,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 4.816925525119586e-09,
+        "support": 2.461574588608073e-08,
+        "mean": 6.343175096290565e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 489,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 9.215333296452854e-08,
+        "support": 1.5891145954682884e-08,
+        "mean": 5.507918565683667e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 490,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.2755303657741024e-07,
+        "support": 3.932816738938527e-08,
+        "mean": 1.2809846516859125e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 491,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.982853146704656e-07,
+        "support": 1.293084750386697e-07,
+        "mean": 2.768636431227378e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 492,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 5.153702442584063e-08,
+        "support": 1.7432209231671436e-08,
+        "mean": 5.921180434853568e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 493,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.4623952182546418e-07,
+        "support": 7.404474544614459e-08,
+        "mean": 1.2333728482971651e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 494,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.1327186300036374e-07,
+        "support": 2.6614383585865653e-08,
+        "mean": 1.7335695545739327e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 495,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.4512696700517154e-08,
+        "support": 1.5581850831836164e-07,
+        "mean": 7.128549639467963e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 496,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.0367316072290578e-07,
+        "support": 3.7138150332793884e-08,
+        "mean": 7.4026953456041156e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 497,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.1111493165572028e-06,
+        "support": 1.7691639797590142e-07,
+        "mean": 2.324463288516654e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 498,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 4.1633995853662675e-07,
+        "support": 6.77784974811857e-08,
+        "mean": 4.5078365887296634e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 499,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.3003502097319597e-07,
+        "support": 1.3164861978331999e-08,
+        "mean": 1.2968749496522491e-07,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 500,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.5890005634087174e-08,
+        "support": 4.233398076536332e-08,
+        "mean": 8.929840200622152e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 501,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 5.103869682443474e-07,
+        "support": 6.519874062860254e-08,
+        "mean": 1.5424670429808884e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 502,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.772440493321483e-08,
+        "support": 8.286097497034461e-08,
+        "mean": 3.3800253707028105e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 503,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.544580635088778e-08,
+        "support": 5.43738787328607e-08,
+        "mean": 6.113328510082283e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 504,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 4.1336093659083417e-07,
+        "support": 5.851065765227759e-08,
+        "mean": 1.292942819475229e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 505,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 6.237633058958636e-07,
+        "support": 1.3048264158044276e-07,
+        "mean": 2.2869348192955385e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 506,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 7.558412562502781e-08,
+        "support": 1.8092130682489937e-08,
+        "mean": 2.989343883541551e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 507,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.744499229516805e-07,
+        "support": 1.1634251961822883e-07,
+        "mean": 4.347683546512826e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 508,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.482046923546477e-07,
+        "support": 1.8859245898283916e-07,
+        "mean": 1.3608090210226464e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 509,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.1792825083698517e-07,
+        "support": 2.3522606085180087e-08,
+        "mean": 1.3383572028402568e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 510,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.1603969767293165e-06,
+        "support": 2.1025878282898702e-07,
+        "mean": 4.069089443170526e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 511,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.8588795270300125e-08,
+        "support": 5.3221509865863936e-08,
+        "mean": 9.662662225906615e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 512,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 6.057563339822991e-08,
+        "support": 1.52297374711452e-09,
+        "mean": 4.90272183961693e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 513,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.5458559704816253e-08,
+        "support": 2.154907274842799e-08,
+        "mean": 5.691443316635514e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 514,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 7.558305696875323e-07,
+        "support": 4.384425267289771e-09,
+        "mean": 1.484032963183779e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 515,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 4.3339513755569214e-08,
+        "support": 8.955031560731186e-08,
+        "mean": 3.7170863609325977e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 516,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.388248348556999e-07,
+        "support": 5.52978036694185e-08,
+        "mean": 3.7509647388134226e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 517,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.3849620706405403e-07,
+        "support": 4.6098284300910564e-08,
+        "mean": 1.3282633659628118e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 518,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 9.15049909622212e-07,
+        "support": 1.4609972609491706e-07,
+        "mean": 1.9552355734475668e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 519,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.537106998408035e-07,
+        "support": 2.4148175015170636e-08,
+        "mean": 1.2076419197981636e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 520,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.4203970266635224e-07,
+        "support": 2.4164549472516228e-08,
+        "mean": 6.913491557014595e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 521,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 5.7857455715293327e-08,
+        "support": 3.935735026772136e-08,
+        "mean": 1.1598510152310837e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 522,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.235152886636115e-07,
+        "support": 1.1685976630815276e-09,
+        "mean": 2.6726895807627216e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 523,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 9.021284164134613e-08,
+        "support": 1.1150283807381811e-08,
+        "mean": 8.393617356716732e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 524,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 6.015276881043974e-07,
+        "support": 1.8294981884992012e-07,
+        "mean": 7.354313602547791e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 525,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.0546140103429025e-06,
+        "support": 1.8176495331090337e-07,
+        "mean": 2.2957700185344265e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 526,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.9273372348370685e-07,
+        "support": 1.1165245439315186e-07,
+        "mean": 1.273693772674278e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 527,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 5.334092207931462e-07,
+        "support": 2.7940217250943533e-08,
+        "mean": 1.240847380401533e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 528,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.668812075195092e-07,
+        "support": 2.8748019076374476e-08,
+        "mean": 1.6269465774598757e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 529,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.2199876070772007e-07,
+        "support": 1.787294685584584e-07,
+        "mean": 5.473656639054525e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 530,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 7.474963581444172e-07,
+        "support": 1.9168934528579484e-07,
+        "mean": 1.8603455664845114e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 531,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.0482205204407364e-07,
+        "support": 6.277486264139043e-08,
+        "mean": 6.502144600517568e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 532,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.446357794700816e-07,
+        "support": 1.3233620421715386e-07,
+        "mean": 1.1539877275978938e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 533,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 9.392284479048385e-07,
+        "support": 1.0188859533855066e-07,
+        "mean": 4.489204619151366e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 534,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 4.0063778783405724e-07,
+        "support": 9.389470001508471e-08,
+        "mean": 1.2378156721837286e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 535,
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.5687717908340346e-07,
+        "support": 5.1195296890682584e-09,
+        "mean": 2.5634699696297503e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 536,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 9.451338112143048e-08,
+        "support": 3.173897811237225e-09,
+        "mean": 6.524678308750254e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 537,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.3353744538212595e-07,
+        "support": 5.440209127627327e-08,
+        "mean": 5.298240068896121e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 538,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.6335762015605724e-08,
+        "support": 7.750167796416463e-08,
+        "mean": 8.45894709833317e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 539,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.7399592756059974e-08,
+        "support": 1.0753320012213408e-08,
+        "mean": 3.6350300547383085e-10,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 540,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.4281759774803504e-08,
+        "support": 5.640360534187039e-08,
+        "mean": 1.4175178586484094e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 541,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.1104278264137974e-07,
+        "support": 1.5160260602442577e-08,
+        "mean": 1.6066402430681137e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 542,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.6939159230844325e-07,
+        "support": 2.1988472820311245e-08,
+        "mean": 3.987881136424676e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 543,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.0019719215724763e-08,
+        "support": 8.061764056321863e-08,
+        "mean": 2.0687348722958632e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 544,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.1467832311827806e-07,
+        "support": 5.69207614375955e-09,
+        "mean": 3.59169316510588e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 545,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.747016990018892e-07,
+        "support": 1.0693434226993759e-07,
+        "mean": 1.8055811068506955e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 546,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.910002774887289e-07,
+        "support": 1.14773094139764e-07,
+        "mean": 1.0736122657561964e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 547,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.791332806533319e-07,
+        "support": 4.017663712829744e-08,
+        "mean": 3.097877510072067e-10,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 548,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 1.687915418546737e-09,
+        "support": 1.643148306307296e-08,
+        "mean": 2.0419785307090876e-10,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 549,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.4123414970867998e-07,
+        "support": 4.827891864067624e-08,
+        "mean": 6.886136549866251e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 550,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 5.430691629726425e-07,
+        "support": 3.004004156537121e-09,
+        "mean": 2.5783205792606623e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 551,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 8.032080529574159e-07,
+        "support": 1.0424706431422237e-07,
+        "mean": 1.5089535843060276e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 552,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 9.658506172627312e-08,
+        "support": 1.2237075530663333e-07,
+        "mean": 2.7218274079032767e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 553,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.427213618399037e-07,
+        "support": 4.5858075559124245e-08,
+        "mean": 2.1133037542142574e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 554,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.1428413415615069e-07,
+        "support": 2.645735275308425e-08,
+        "mean": 1.028265073088619e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 555,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 4.69966252580889e-07,
+        "support": 1.5174752121538404e-07,
+        "mean": 2.8147921327104086e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 556,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.664877252200881e-07,
+        "support": 5.0571241416719204e-08,
+        "mean": 2.701633616819521e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 557,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.2548305505788448e-08,
+        "support": 1.5045320544970764e-10,
+        "mean": 2.737842397237955e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 558,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 8.045831343395093e-07,
+        "support": 1.0129440397577127e-07,
+        "mean": 1.9032289966247617e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 559,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.6678149172832946e-07,
+        "support": 3.9695101428094404e-08,
+        "mean": 6.492552273584806e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 560,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.813317874801214e-07,
+        "support": 7.339897400981954e-08,
+        "mean": 5.625447663248906e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 561,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.46938273665387e-07,
+        "support": 1.164536840292385e-07,
+        "mean": 1.9911970072783447e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 562,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.144771826806391e-08,
+        "support": 3.633701517458121e-08,
+        "mean": 1.6962607318760092e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 563,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.769811799334775e-07,
+        "support": 2.707299939785912e-09,
+        "mean": 8.507450122152704e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 564,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.095159115673596e-07,
+        "support": 5.0953257613173264e-08,
+        "mean": 1.8132961798755787e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 565,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.7840939392499422e-07,
+        "support": 2.9011188118488462e-08,
+        "mean": 5.049294315995212e-10,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 566,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.6006706238822517e-07,
+        "support": 1.0006968764741941e-07,
+        "mean": 5.6410485171909386e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 567,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 2.5884175869350656e-07,
+        "support": 1.1015885093001998e-08,
+        "mean": 7.896236775550847e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 568,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.1132377908396052e-08,
+        "support": 8.49099213162674e-09,
+        "mean": 1.381023140289983e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 569,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 4.97834292900734e-07,
+        "support": 1.1919357234546624e-07,
+        "mean": 2.730558890107204e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 570,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 7.95068189063386e-09,
+        "support": 3.175323382009765e-08,
+        "mean": 1.859508325097181e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 571,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 7.226987293051934e-07,
+        "support": 1.3210165050736578e-07,
+        "mean": 1.2896753887048362e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 572,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 6.867203197202798e-07,
+        "support": 7.239954413762462e-08,
+        "mean": 1.531737225946017e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 573,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 7.418454721630496e-07,
+        "support": 1.921857242237479e-07,
+        "mean": 1.3388405051273367e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 574,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.3186005354270947e-07,
+        "support": 4.1465831657205854e-08,
+        "mean": 3.258609471146201e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 575,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 8.456302680315275e-07,
+        "support": 8.596096279234189e-09,
+        "mean": 2.9935801837410736e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 576,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 9.09336137056016e-07,
+        "support": 1.3127019471426138e-07,
+        "mean": 9.614100626720301e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 577,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.568466541674752e-07,
+        "support": 7.358315468053434e-08,
+        "mean": 1.719921005616243e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 578,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 9.91015696172326e-08,
+        "support": 5.493426868952156e-08,
+        "mean": 3.4641565171966704e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 579,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.7354264514324313e-07,
+        "support": 4.139349130127812e-08,
+        "mean": 5.808204583956922e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 580,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.9123271499665861e-07,
+        "support": 3.457658692695986e-08,
+        "mean": 1.3847643032249835e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 581,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.6866118441049025e-08,
+        "support": 2.0698644132011168e-08,
+        "mean": 4.861890445795325e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 582,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 4.377827167445503e-08,
+        "support": 4.5787378333272954e-09,
+        "mean": 5.427010840719504e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 583,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.9315561533849177e-08,
+        "support": 1.7258345863524482e-08,
+        "mean": 3.6719320029021674e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 584,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 7.555690331173537e-07,
+        "support": 1.3397998088748864e-07,
+        "mean": 1.848979680474372e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 585,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 8.018648145480256e-08,
+        "support": 6.161010901450936e-08,
+        "mean": 1.159453288934742e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 586,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 8.949035823491158e-08,
+        "support": 1.4551974514276367e-08,
+        "mean": 2.381418973129712e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 587,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 2.6534934249866637e-09,
+        "support": 1.6328411400756693e-09,
+        "mean": 1.884337930135871e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 588,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 7.778618993370401e-08,
+        "support": 3.440274021215828e-08,
+        "mean": 3.2507623259903085e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 589,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.1081639428311973e-07,
+        "support": 1.1902484331471896e-08,
+        "mean": 1.7608812186153955e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 590,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.276397154332699e-06,
+        "support": 4.3224606827152456e-07,
+        "mean": 2.7493685106350085e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 591,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.9830883957183687e-07,
+        "support": 8.808655138636823e-09,
+        "mean": 1.3098201634420548e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 592,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 9.12594775304143e-08,
+        "support": 6.105240757392494e-08,
+        "mean": 2.903174804724795e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 594,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 4.3050845022207795e-07,
+        "support": 1.2400676752122308e-07,
+        "mean": 1.315668995971464e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 595,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 7.776692712013755e-08,
+        "support": 2.635822404783994e-08,
+        "mean": 5.568792538213074e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 596,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.2256920811637428e-07,
+        "support": 5.771294553369444e-09,
+        "mean": 1.2101674329301204e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 597,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.1630481522881837e-07,
+        "support": 2.8445994004755448e-08,
+        "mean": 7.691261139086691e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 598,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.174932293679376e-07,
+        "support": 4.2490622575996895e-08,
+        "mean": 1.1298473268084308e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 599,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.0621711794556177e-06,
+        "support": 6.97235691404785e-09,
+        "mean": 2.089727524356988e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 600,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.373303686908912e-08,
+        "support": 4.048379054211182e-08,
+        "mean": 6.896153870172839e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 601,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.6308987582647205e-07,
+        "support": 3.118716662697807e-08,
+        "mean": 1.9291257036258003e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 602,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.2536295557197263e-08,
+        "support": 6.235640004348397e-09,
+        "mean": 1.975500207862524e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 603,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.0527907123858427e-07,
+        "support": 1.7410694663766435e-08,
+        "mean": 3.630697720247156e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 604,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 3.2164288654712436e-07,
+        "support": 3.2822526918607764e-09,
+        "mean": 7.977488003518829e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 605,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 4.177505310565266e-07,
+        "support": 1.1610020322905257e-07,
+        "mean": 1.187770670707522e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 606,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.2407613720076824e-07,
+        "support": 2.7237373689814603e-08,
+        "mean": 7.414641478575845e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 607,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.2497672347299158e-07,
+        "support": 9.116305843548389e-08,
+        "mean": 8.352206481987423e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 608,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 6.383542228149963e-08,
+        "support": 2.8765972714950294e-08,
+        "mean": 1.1699161639455724e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 609,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.1617213147019356e-07,
+        "support": 3.426309191922883e-08,
+        "mean": 1.7782082473161154e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 610,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.9180975030508307e-07,
+        "support": 8.618967228812835e-08,
+        "mean": 6.763797966158336e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 611,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.0823918250579823e-07,
+        "support": 6.295135257516904e-08,
+        "mean": 5.152253956808295e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 612,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 6.268955416999233e-07,
+        "support": 1.3795504116842494e-07,
+        "mean": 7.97798760387991e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 613,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 4.6034330125621636e-08,
+        "support": 9.435507664079523e-08,
+        "mean": 1.3204369153640982e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 614,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.549566673337722e-07,
+        "support": 6.704481680941399e-08,
+        "mean": 1.648620351346608e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 615,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.089577660375653e-08,
+        "support": 9.120719290933721e-09,
+        "mean": 1.190134657491626e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 616,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.6252698148709896e-07,
+        "support": 3.062711684265196e-08,
+        "mean": 6.171641864227695e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 617,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.805877699074699e-07,
+        "support": 8.701580966885558e-08,
+        "mean": 1.2271024196763847e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 618,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.877209226426203e-07,
+        "support": 1.597100691697051e-07,
+        "mean": 1.9273304729949814e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 619,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.1370779873232095e-06,
+        "support": 2.5802581049561013e-07,
+        "mean": 1.6360883314803232e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 620,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.1344195861038315e-07,
+        "support": 7.887386033189614e-08,
+        "mean": 4.278655207912152e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 621,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.1131525035068535e-07,
+        "support": 1.8393312206654855e-08,
+        "mean": 1.3965415490702071e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 622,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 6.265585987819122e-07,
+        "support": 9.242057430469686e-08,
+        "mean": 6.845873778971168e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 623,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 7.240898014515551e-08,
+        "support": 7.928247924837706e-08,
+        "mean": 6.244060379856364e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 624,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 7.329107631903753e-07,
+        "support": 2.8835044219022166e-07,
+        "mean": 1.6956263060308174e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 625,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 1.7067841806550632e-08,
+        "support": 3.103832568740472e-08,
+        "mean": 5.679965525695607e-10,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 626,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.7678662800335587e-07,
+        "support": 3.1620021712086555e-08,
+        "mean": 2.4968015210902195e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 627,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.280590448184739e-07,
+        "support": 5.580252881998149e-08,
+        "mean": 9.83325065817553e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 628,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 6.872475921682053e-08,
+        "support": 3.9682747754454795e-08,
+        "mean": 2.5447143947587847e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 629,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.932230185910157e-07,
+        "support": 1.8797042500295902e-07,
+        "mean": 2.1176278508505675e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 630,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 7.377907440542231e-08,
+        "support": 8.799684536597852e-09,
+        "mean": 8.257287631430188e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 631,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 4.3087442591627223e-07,
+        "support": 4.3854282427702174e-08,
+        "mean": 2.1220854407033585e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 632,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.066970554575164e-06,
+        "support": 4.442233603185741e-08,
+        "mean": 4.867846303824308e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 633,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 6.931409473054373e-07,
+        "support": 1.1570330826771169e-07,
+        "mean": 6.504420557718049e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 634,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 9.222623305049638e-07,
+        "support": 1.5224338056896158e-07,
+        "mean": 2.5042705686928457e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 635,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 5.226480581654869e-08,
+        "support": 6.516714101678645e-08,
+        "mean": 1.443877817308703e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 636,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 7.671195021430322e-07,
+        "support": 8.802320650147522e-08,
+        "mean": 2.580780034122654e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 637,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.5827060551032446e-07,
+        "support": 8.016524688514437e-08,
+        "mean": 4.920456375678839e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 638,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 4.3299838381472e-08,
+        "support": 6.45904263407715e-08,
+        "mean": 7.460208895082587e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 639,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 9.774993259270559e-08,
+        "support": 1.470777277745583e-08,
+        "mean": 6.990735101908285e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 640,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 5.419491628799733e-07,
+        "support": 3.884597532533007e-09,
+        "mean": 2.5430364147815965e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 641,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.2949307404142019e-08,
+        "support": 2.776602836540576e-08,
+        "mean": 8.858332201100438e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 642,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 1.8244121235966304e-07,
+        "support": 1.0344969325615239e-09,
+        "mean": 8.4402698163899e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 643,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.98840760137864e-07,
+        "support": 5.0523428996029907e-08,
+        "mean": 2.169760371373286e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 644,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 4.16970443950504e-07,
+        "support": 3.9496413251072227e-08,
+        "mean": 1.880513611496326e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 645,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.800280303778436e-07,
+        "support": 9.557583524610891e-08,
+        "mean": 1.4492445132852083e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 646,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 6.573089783579178e-08,
+        "support": 3.4278500038453785e-09,
+        "mean": 9.076042001288087e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 647,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 4.59054902535172e-07,
+        "support": 6.780017614005374e-08,
+        "mean": 5.873257435951018e-11,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 648,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 5.1832948599894735e-08,
+        "support": 1.5830323718546424e-08,
+        "mean": 4.66639438201355e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 649,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.174701390662449e-08,
+        "support": 8.708716059402377e-08,
+        "mean": 4.095902894629688e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 650,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.3571714802272936e-07,
+        "support": 2.0505787290403532e-08,
+        "mean": 1.3125639353184226e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 651,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 7.816611358180126e-08,
+        "support": 5.225165189415293e-09,
+        "mean": 8.21392820427036e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 653,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 5.400742963956873e-07,
+        "support": 1.3556910261058874e-07,
+        "mean": 6.089448501001016e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 654,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 9.377310306035724e-08,
+        "support": 1.6011794201631346e-07,
+        "mean": 1.834235696662745e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 655,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.5960172234107404e-07,
+        "support": 5.7088745730737855e-08,
+        "mean": 3.1187147531142045e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 656,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.743926159036846e-07,
+        "support": 2.2429339163743123e-08,
+        "mean": 2.4961943623225125e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 657,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.81015210493274e-07,
+        "support": 6.914406469604728e-08,
+        "mean": 9.683131574345083e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 658,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 7.428244259699568e-07,
+        "support": 6.249523920587308e-08,
+        "mean": 1.222895562591475e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 659,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 5.856508238366587e-07,
+        "support": 2.1808006067658425e-07,
+        "mean": 7.060639184430784e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 660,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.5080151527513408e-07,
+        "support": 7.638676891019713e-08,
+        "mean": 1.420316264599819e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 661,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 5.68087777708115e-07,
+        "support": 1.0660616567292891e-07,
+        "mean": 1.3871540360810286e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 662,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.249945509902318e-07,
+        "support": 8.255302930137987e-08,
+        "mean": 7.702093407502275e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 663,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.884832461802489e-07,
+        "support": 2.975920665448939e-08,
+        "mean": 1.1924004672536626e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 664,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.5918168855554313e-07,
+        "support": 8.277332241846125e-08,
+        "mean": 2.0562972213866715e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 665,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.4314028362605313e-07,
+        "support": 3.6190365371169264e-08,
+        "mean": 1.4216856136783917e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 666,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 4.679668919038704e-07,
+        "support": 1.5492783944637267e-07,
+        "mean": 1.1169398739241387e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 667,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 6.740514635339423e-08,
+        "support": 2.9527133627027524e-08,
+        "mean": 2.3813439220532473e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 668,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 9.105070830628392e-08,
+        "support": 2.2215260742086684e-08,
+        "mean": 8.569892351317776e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 669,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.700215955859676e-08,
+        "support": 2.9293095948901282e-08,
+        "mean": 1.1300619995324723e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 670,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.2415726430580207e-07,
+        "support": 4.396923358740423e-08,
+        "mean": 8.903728837550418e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 671,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.7003888075350915e-07,
+        "support": 4.646861473389663e-08,
+        "mean": 1.290443307766509e-10,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 672,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.842908983780035e-07,
+        "support": 1.0570016639732671e-08,
+        "mean": 1.3365542450571866e-07,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 673,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 8.954530983373843e-08,
+        "support": 6.741313995917153e-08,
+        "mean": 3.213477572927559e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 674,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.8215874142413213e-07,
+        "support": 2.7571648297808338e-08,
+        "mean": 3.2746614309075994e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 675,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 9.993228466953497e-08,
+        "support": 2.911159535656793e-09,
+        "mean": 9.621036978213482e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 676,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 7.769416532354967e-08,
+        "support": 1.1180820269629521e-07,
+        "mean": 5.624214871602362e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 677,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.2894533202588718e-07,
+        "support": 1.4241976842299664e-07,
+        "mean": 3.588308539193008e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 678,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.0522088267350682e-07,
+        "support": 1.6967449667504297e-08,
+        "mean": 1.0343901735154759e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 679,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 6.399557079816987e-07,
+        "support": 1.207023867522139e-07,
+        "mean": 1.4585610053075015e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 680,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 8.77989805303514e-08,
+        "support": 9.091609465272654e-09,
+        "mean": 1.2871249843726673e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 681,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.5290990518224135e-07,
+        "support": 1.0023938301628732e-07,
+        "mean": 4.4653409858597115e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 682,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 5.586018545500337e-07,
+        "support": 9.91339632605559e-08,
+        "mean": 1.595358156691873e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 683,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.2106220381724597e-07,
+        "support": 4.452598378890116e-08,
+        "mean": 1.1846535752368936e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 684,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.895259285651264e-07,
+        "support": 4.086608029751915e-08,
+        "mean": 2.502059892606212e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 685,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 5.187634499748128e-07,
+        "support": 1.3904477924597813e-07,
+        "mean": 8.867672152135242e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 686,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 9.591862237812165e-07,
+        "support": 2.980236502025946e-09,
+        "mean": 1.8587584360574283e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 687,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.529355344587202e-07,
+        "support": 5.1207471152281414e-08,
+        "mean": 2.9088834452295487e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 688,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 4.816925525119586e-09,
+        "support": 2.461574588608073e-08,
+        "mean": 6.343175096290565e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 689,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 9.215333296452854e-08,
+        "support": 1.5891145954682884e-08,
+        "mean": 5.507918565683667e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 690,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.2755303657741024e-07,
+        "support": 3.932816738938527e-08,
+        "mean": 1.2809846516859125e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 691,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.982853146704656e-07,
+        "support": 1.293084750386697e-07,
+        "mean": 2.768636431227378e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 692,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 5.153702442584063e-08,
+        "support": 1.7432209231671436e-08,
+        "mean": 5.921180434853568e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 693,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.4623952182546418e-07,
+        "support": 7.404474544614459e-08,
+        "mean": 1.2333728482971651e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 694,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.1327186300036374e-07,
+        "support": 2.6614383585865653e-08,
+        "mean": 1.7335695545739327e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 695,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.4512696700517154e-08,
+        "support": 1.5581850831836164e-07,
+        "mean": 7.128549639467963e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 696,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.0367316072290578e-07,
+        "support": 3.7138150332793884e-08,
+        "mean": 7.4026953456041156e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 697,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.1111493165572028e-06,
+        "support": 1.7691639797590142e-07,
+        "mean": 2.324463288516654e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 698,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 4.1633995853662675e-07,
+        "support": 6.77784974811857e-08,
+        "mean": 4.5078365887296634e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 699,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.3003502097319597e-07,
+        "support": 1.3164861978331999e-08,
+        "mean": 1.2968749496522491e-07,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 700,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.5890005634087174e-08,
+        "support": 4.233398076536332e-08,
+        "mean": 8.929840200622152e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 701,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 5.103869682443474e-07,
+        "support": 6.519874062860254e-08,
+        "mean": 1.5424670429808884e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 702,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.772440493321483e-08,
+        "support": 8.286097497034461e-08,
+        "mean": 3.3800253707028105e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 703,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.544580635088778e-08,
+        "support": 5.43738787328607e-08,
+        "mean": 6.113328510082283e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 704,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 4.1336093659083417e-07,
+        "support": 5.851065765227759e-08,
+        "mean": 1.292942819475229e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 705,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 6.237633058958636e-07,
+        "support": 1.3048264158044276e-07,
+        "mean": 2.2869348192955385e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 706,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 7.558412562502781e-08,
+        "support": 1.8092130682489937e-08,
+        "mean": 2.989343883541551e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 707,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.744499229516805e-07,
+        "support": 1.1634251961822883e-07,
+        "mean": 4.347683546512826e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 708,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.482046923546477e-07,
+        "support": 1.8859245898283916e-07,
+        "mean": 1.3608090210226464e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 709,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.1792825083698517e-07,
+        "support": 2.3522606085180087e-08,
+        "mean": 1.3383572028402568e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 710,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.1603969767293165e-06,
+        "support": 2.1025878282898702e-07,
+        "mean": 4.069089443170526e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 711,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.8588795270300125e-08,
+        "support": 5.3221509865863936e-08,
+        "mean": 9.662662225906615e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 712,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 1,
+      "max_absolute_error": {
+        "sum": 6.057563339822991e-08,
+        "support": 1.52297374711452e-09,
+        "mean": 4.90272183961693e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 713,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.5458559704816253e-08,
+        "support": 2.154907274842799e-08,
+        "mean": 5.691443316635514e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 714,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 7.558305696875323e-07,
+        "support": 4.384425267289771e-09,
+        "mean": 1.484032963183779e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 715,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 4.3339513755569214e-08,
+        "support": 8.955031560731186e-08,
+        "mean": 3.7170863609325977e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 716,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.388248348556999e-07,
+        "support": 5.52978036694185e-08,
+        "mean": 3.7509647388134226e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 717,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.3849620706405403e-07,
+        "support": 4.6098284300910564e-08,
+        "mean": 1.3282633659628118e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 718,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 9.15049909622212e-07,
+        "support": 1.4609972609491706e-07,
+        "mean": 1.9552355734475668e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 719,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.537106998408035e-07,
+        "support": 2.4148175015170636e-08,
+        "mean": 1.2076419197981636e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 720,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.4203970266635224e-07,
+        "support": 2.4164549472516228e-08,
+        "mean": 6.913491557014595e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 721,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 5.7857455715293327e-08,
+        "support": 3.935735026772136e-08,
+        "mean": 1.1598510152310837e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 722,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.235152886636115e-07,
+        "support": 1.1685976630815276e-09,
+        "mean": 2.6726895807627216e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 723,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 9.021284164134613e-08,
+        "support": 1.1150283807381811e-08,
+        "mean": 8.393617356716732e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 724,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 6.015276881043974e-07,
+        "support": 1.8294981884992012e-07,
+        "mean": 7.354313602547791e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 725,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 1.0546140103429025e-06,
+        "support": 1.8176495331090337e-07,
+        "mean": 2.2957700185344265e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 726,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 2.9273372348370685e-07,
+        "support": 1.1165245439315186e-07,
+        "mean": 1.273693772674278e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 727,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 5.334092207931462e-07,
+        "support": 2.7940217250943533e-08,
+        "mean": 1.240847380401533e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 728,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 1.668812075195092e-07,
+        "support": 2.8748019076374476e-08,
+        "mean": 1.6269465774598757e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 729,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.2199876070772007e-07,
+        "support": 1.787294685584584e-07,
+        "mean": 5.473656639054525e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 730,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 7.474963581444172e-07,
+        "support": 1.9168934528579484e-07,
+        "mean": 1.8603455664845114e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 731,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 3.0482205204407364e-07,
+        "support": 6.277486264139043e-08,
+        "mean": 6.502144600517568e-09,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 732,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 3.446357794700816e-07,
+        "support": 1.3233620421715386e-07,
+        "mean": 1.1539877275978938e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 733,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 9.392284479048385e-07,
+        "support": 1.0188859533855066e-07,
+        "mean": 4.489204619151366e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 734,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 3,
+      "max_absolute_error": {
+        "sum": 4.0063778783405724e-07,
+        "support": 9.389470001508471e-08,
+        "mean": 1.2378156721837286e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "record": 735,
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "count": 2,
+      "max_absolute_error": {
+        "sum": 2.5687717908340346e-07,
+        "support": 5.1195296890682584e-09,
+        "mean": 2.5634699696297503e-08,
+        "min": 0.0,
+        "max": 0.0
+      }
+    }
+  ],
+  "runtime_errors": [],
+  "chart_rows": [
+    {
+      "figure": "batch",
+      "family": "dates",
+      "system": "skarve",
+      "method": "source_layout-numeric",
+      "n": 3,
+      "median_ms": 82.34272499976214,
+      "min_ms": 81.0500139996293,
+      "max_ms": 84.71831000133534
+    },
+    {
+      "figure": "batch",
+      "family": "dates",
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "n": 3,
+      "median_ms": 83.11209499879624,
+      "min_ms": 61.654262997763,
+      "max_ms": 107.34894800043548
+    },
+    {
+      "figure": "batch",
+      "family": "dates",
+      "system": "skarve",
+      "method": "fixed-numeric",
+      "n": 3,
+      "median_ms": 93.13126899724011,
+      "min_ms": 92.9108210002596,
+      "max_ms": 96.24327399797039
+    },
+    {
+      "figure": "batch",
+      "family": "dates",
+      "system": "skarve",
+      "method": "source_layout-full",
+      "n": 3,
+      "median_ms": 95.92159000021638,
+      "min_ms": 91.85640000214335,
+      "max_ms": 97.61157799948705
+    },
+    {
+      "figure": "batch",
+      "family": "dates",
+      "system": "skarve",
+      "method": "fixed-full",
+      "n": 3,
+      "median_ms": 104.56097799760755,
+      "min_ms": 102.67817600106355,
+      "max_ms": 105.30054500122787
+    },
+    {
+      "figure": "batch",
+      "family": "dates",
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "n": 3,
+      "median_ms": 149.43659900018247,
+      "min_ms": 147.3102089985332,
+      "max_ms": 153.8229069992667
+    },
+    {
+      "figure": "batch",
+      "family": "files",
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "n": 3,
+      "median_ms": 39.7324839977955,
+      "min_ms": 37.87527399981627,
+      "max_ms": 48.12611299712444
+    },
+    {
+      "figure": "batch",
+      "family": "files",
+      "system": "skarve",
+      "method": "fixed-numeric",
+      "n": 3,
+      "median_ms": 69.64783200237434,
+      "min_ms": 66.53768199976184,
+      "max_ms": 70.25509999948554
+    },
+    {
+      "figure": "batch",
+      "family": "files",
+      "system": "skarve",
+      "method": "fixed-full",
+      "n": 3,
+      "median_ms": 73.23848499800079,
+      "min_ms": 72.0196530019166,
+      "max_ms": 75.55994100039243
+    },
+    {
+      "figure": "batch",
+      "family": "files",
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "n": 3,
+      "median_ms": 75.81365299847675,
+      "min_ms": 73.86148300065543,
+      "max_ms": 84.0712999997777
+    },
+    {
+      "figure": "batch",
+      "family": "files",
+      "system": "skarve",
+      "method": "source_layout-full",
+      "n": 3,
+      "median_ms": 78.29309000226203,
+      "min_ms": 76.23742100258823,
+      "max_ms": 79.24512299723574
+    },
+    {
+      "figure": "batch",
+      "family": "files",
+      "system": "skarve",
+      "method": "source_layout-numeric",
+      "n": 3,
+      "median_ms": 81.70211499964353,
+      "min_ms": 73.17621699985466,
+      "max_ms": 105.58763500011992
+    },
+    {
+      "figure": "single",
+      "pattern": "hot",
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "n": 100,
+      "metric": "median",
+      "ms": 0.3195034987584222
+    },
+    {
+      "figure": "single",
+      "pattern": "hot",
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "n": 100,
+      "metric": "median",
+      "ms": 0.7297815009223996
+    },
+    {
+      "figure": "single",
+      "pattern": "hot",
+      "system": "skarve",
+      "method": "decoded-warm",
+      "n": 100,
+      "metric": "median",
+      "ms": 0.0973940004769247
+    },
+    {
+      "figure": "single",
+      "pattern": "hot",
+      "system": "skarve",
+      "method": "default",
+      "n": 100,
+      "metric": "median",
+      "ms": 1.5681345012126258
+    },
+    {
+      "figure": "single",
+      "pattern": "scatter",
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "n": 100,
+      "metric": "median",
+      "ms": 0.30496399995172396
+    },
+    {
+      "figure": "single",
+      "pattern": "scatter",
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "n": 100,
+      "metric": "median",
+      "ms": 0.7551769995188806
+    },
+    {
+      "figure": "single",
+      "pattern": "scatter",
+      "system": "skarve",
+      "method": "cache-overflow",
+      "n": 100,
+      "metric": "median",
+      "ms": 1.5461674993275665
+    },
+    {
+      "figure": "single",
+      "pattern": "hot",
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "n": 100,
+      "metric": "p95",
+      "ms": 0.396334650577046
+    },
+    {
+      "figure": "single",
+      "pattern": "hot",
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "n": 100,
+      "metric": "p95",
+      "ms": 1.1732380005923913
+    },
+    {
+      "figure": "single",
+      "pattern": "hot",
+      "system": "skarve",
+      "method": "decoded-warm",
+      "n": 100,
+      "metric": "p95",
+      "ms": 0.15486799948121188
+    },
+    {
+      "figure": "single",
+      "pattern": "hot",
+      "system": "skarve",
+      "method": "default",
+      "n": 100,
+      "metric": "p95",
+      "ms": 1.7700881508062594
+    },
+    {
+      "figure": "single",
+      "pattern": "scatter",
+      "system": "exactextract",
+      "method": "feature-sequential",
+      "n": 100,
+      "metric": "p95",
+      "ms": 0.4084684491317603
+    },
+    {
+      "figure": "single",
+      "pattern": "scatter",
+      "system": "exactextract",
+      "method": "raster-sequential",
+      "n": 100,
+      "metric": "p95",
+      "ms": 1.2442814520909449
+    },
+    {
+      "figure": "single",
+      "pattern": "scatter",
+      "system": "skarve",
+      "method": "cache-overflow",
+      "n": 100,
+      "metric": "p95",
+      "ms": 1.730392150057014
+    },
+    {
+      "figure": "preparation",
+      "method": "direct-source",
+      "queries": 64,
+      "query_ms": 122.85275200702017,
+      "build_registration_ms": 0,
+      "source_registration_ms": 0.9711649981909432,
+      "total_ms": 123.82391700521111
+    },
+    {
+      "figure": "preparation",
+      "method": "original-summary-index",
+      "queries": 64,
+      "query_ms": 67.56264298746828,
+      "build_registration_ms": 16.48795599976438,
+      "source_registration_ms": 0.9711649981909432,
+      "total_ms": 85.0217639854236
+    },
+    {
+      "figure": "bulk",
+      "case": "Float32Array-36x1000-hm_demographics_ordered_v1",
+      "system": "native",
+      "median_ms": 1.0004479999999774,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float32Array-36x1000-strict_selected_v1",
+      "system": "native",
+      "median_ms": 1.4519400000000076,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float32Array-36x120000-hm_demographics_ordered_v1",
+      "system": "native",
+      "median_ms": 65.8227280000001,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float32Array-36x120000-strict_selected_v1",
+      "system": "native",
+      "median_ms": 69.17122599999993,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float32Array-40x1000-hm_demographics_ordered_v1",
+      "system": "native",
+      "median_ms": 0.8206190000000788,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float32Array-40x1000-strict_selected_v1",
+      "system": "native",
+      "median_ms": 0.9198209999999563,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float32Array-40x120000-hm_demographics_ordered_v1",
+      "system": "native",
+      "median_ms": 73.24026599999979,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float32Array-40x120000-strict_selected_v1",
+      "system": "native",
+      "median_ms": 78.11795800000073,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float64Array-36x1000-hm_demographics_ordered_v1",
+      "system": "native",
+      "median_ms": 0.7494139999998879,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float64Array-36x1000-strict_selected_v1",
+      "system": "native",
+      "median_ms": 0.9150280000003477,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float64Array-36x120000-hm_demographics_ordered_v1",
+      "system": "native",
+      "median_ms": 96.31047699999999,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float64Array-36x120000-strict_selected_v1",
+      "system": "native",
+      "median_ms": 99.26998900000035,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float64Array-40x1000-hm_demographics_ordered_v1",
+      "system": "native",
+      "median_ms": 0.9035659999990457,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float64Array-40x1000-strict_selected_v1",
+      "system": "native",
+      "median_ms": 0.8295210000014777,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float64Array-40x120000-hm_demographics_ordered_v1",
+      "system": "native",
+      "median_ms": 107.72237800000039,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float64Array-40x120000-strict_selected_v1",
+      "system": "native",
+      "median_ms": 110.49051699999836,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float32Array-36x1000-hm_demographics_ordered_v1",
+      "system": "javascript",
+      "median_ms": 0.6728560000000243,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float32Array-36x1000-strict_selected_v1",
+      "system": "javascript",
+      "median_ms": 0.7919490000000025,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float32Array-36x120000-hm_demographics_ordered_v1",
+      "system": "javascript",
+      "median_ms": 72.23941599999989,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float32Array-36x120000-strict_selected_v1",
+      "system": "javascript",
+      "median_ms": 96.25554599999998,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float32Array-40x1000-hm_demographics_ordered_v1",
+      "system": "javascript",
+      "median_ms": 0.8672900000001391,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float32Array-40x1000-strict_selected_v1",
+      "system": "javascript",
+      "median_ms": 0.6983170000003156,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float32Array-40x120000-hm_demographics_ordered_v1",
+      "system": "javascript",
+      "median_ms": 80.89479000000028,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float32Array-40x120000-strict_selected_v1",
+      "system": "javascript",
+      "median_ms": 107.1029410000001,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float64Array-36x1000-hm_demographics_ordered_v1",
+      "system": "javascript",
+      "median_ms": 0.5394870000000083,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float64Array-36x1000-strict_selected_v1",
+      "system": "javascript",
+      "median_ms": 1.3169840000000477,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float64Array-36x120000-hm_demographics_ordered_v1",
+      "system": "javascript",
+      "median_ms": 76.27612500000032,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float64Array-36x120000-strict_selected_v1",
+      "system": "javascript",
+      "median_ms": 96.34934700000031,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float64Array-40x1000-hm_demographics_ordered_v1",
+      "system": "javascript",
+      "median_ms": 0.959896000000299,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float64Array-40x1000-strict_selected_v1",
+      "system": "javascript",
+      "median_ms": 0.9173879999998462,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float64Array-40x120000-hm_demographics_ordered_v1",
+      "system": "javascript",
+      "median_ms": 83.35685800000101,
+      "n": 5
+    },
+    {
+      "figure": "bulk",
+      "case": "Float64Array-40x120000-strict_selected_v1",
+      "system": "javascript",
+      "median_ms": 107.95483299999978,
+      "n": 5
+    }
+  ],
+  "source_bytes": 2253352,
+  "fixture_build_ms": 368.8566050004738,
+  "optional_preparation": {
+    "source_registration_ms": 0.9711649981909432,
+    "build_ms": 16.2613809989125,
+    "index_bytes": 71656,
+    "normalized_values_bytes": 0,
+    "index_registration_ms": 0.22657500085188076
+  },
+  "max_process_rss_bytes": 236998656,
+  "matplotlib_version": "3.11.2",
+  "compatibility": [
+    {
+      "system": "skarve",
+      "field": "sum",
+      "max_absolute_error": 1.3642420526593924e-11,
+      "strict_failures": 0
+    },
+    {
+      "system": "skarve",
+      "field": "support",
+      "max_absolute_error": 5.002220859751105e-12,
+      "strict_failures": 0
+    },
+    {
+      "system": "skarve",
+      "field": "mean",
+      "max_absolute_error": 1.2807532812075806e-12,
+      "strict_failures": 0
+    },
+    {
+      "system": "skarve",
+      "field": "min",
+      "max_absolute_error": 0.0,
+      "strict_failures": 0
+    },
+    {
+      "system": "skarve",
+      "field": "max",
+      "max_absolute_error": 0.0,
+      "strict_failures": 0
+    },
+    {
+      "system": "exactextract",
+      "field": "sum",
+      "max_absolute_error": 7.077261216181796e-06,
+      "strict_failures": 5360
+    },
+    {
+      "system": "exactextract",
+      "field": "support",
+      "max_absolute_error": 2.241355559817748e-06,
+      "strict_failures": 6190
+    },
+    {
+      "system": "exactextract",
+      "field": "mean",
+      "max_absolute_error": 1.3365542450571866e-07,
+      "strict_failures": 236
+    },
+    {
+      "system": "exactextract",
+      "field": "min",
+      "max_absolute_error": 0.0,
+      "strict_failures": 0
+    },
+    {
+      "system": "exactextract",
+      "field": "max",
+      "max_absolute_error": 0.0,
+      "strict_failures": 0
+    }
+  ],
+  "cache": [
+    {
+      "method": "default",
+      "queries": 100,
+      "cache_budget_bytes": 0,
+      "source_registration_ms": 1.064846001099795,
+      "warmup_ms": 0,
+      "raster_io_calls": 200,
+      "decoded_value_bytes": 52428800,
+      "cache_hits": 0,
+      "cache_misses": 100,
+      "cache_evictions": 0,
+      "peak_cache_resident_bytes": 0
+    },
+    {
+      "method": "decoded-warm",
+      "queries": 100,
+      "cache_budget_bytes": 1048576,
+      "source_registration_ms": 0.9099349990719929,
+      "warmup_ms": 1.5213280021271203,
+      "raster_io_calls": 0,
+      "decoded_value_bytes": 0,
+      "cache_hits": 100,
+      "cache_misses": 0,
+      "cache_evictions": 0,
+      "peak_cache_resident_bytes": 590518
+    },
+    {
+      "method": "cache-overflow",
+      "queries": 100,
+      "cache_budget_bytes": 1048576,
+      "source_registration_ms": 1.3630169996758923,
+      "warmup_ms": 0,
+      "raster_io_calls": 200,
+      "decoded_value_bytes": 52428800,
+      "cache_hits": 0,
+      "cache_misses": 100,
+      "cache_evictions": 99,
+      "peak_cache_resident_bytes": 590518
+    }
+  ],
+  "versions": {
+    "skarve-engine": "0.1.0b1",
+    "numpy": "2.5.3",
+    "rasterio": "1.5.1",
+    "shapely": "2.1.2",
+    "exactextract": "0.3.0",
+    "python": "3.12.3",
+    "native_gdal": "3.8.4",
+    "rasterio_gdal": "3.12.4",
+    "geos": "3.13.1"
+  },
+  "host": {
+    "system": "Linux",
+    "release": "6.6.87.2-microsoft-standard-WSL2",
+    "machine": "x86_64",
+    "cpu_model": "AMD Ryzen 7 8745HS w/ Radeon 780M Graphics",
+    "logical_cpus": 12
+  },
+  "external_checks": 71120,
+  "oracle_ms": 4104.038395002135,
+  "samples": {
+    "batch_zones": 64,
+    "date_slices": 24,
+    "distinct_files": 6,
+    "bands_per_distinct_file": 2,
+    "single_queries_per_pattern": 100,
+    "rounds": 3
+  },
+  "bulk": {
+    "seed": 2179017736,
+    "node": "v20.20.2",
+    "library_sha256": "17e3546f7c526d5687b99641ce3f3adaa6d8d85cd7e4786fc84b2e0d2bf78c93",
+    "module_sha256": "d8fb050b698f480287cebce6e676ccbb37d3a059dbea47ed95a0486623f319dd",
+    "harness_sha256": "5b6520163155755ba1f2c0bda3734a3178c1514afed24f1efb6deffa68d93c2f",
+    "pass": true,
+    "correctness_fields": 33440,
+    "max_rss_bytes": 365953024,
+    "limits": {
+      "logical_bands": 40,
+      "windows": 2,
+      "maximum_cells_per_window": 120000,
+      "native_owned_bytes_cap": 536870912,
+      "process_rss_observed_not_virtual_address_capped": true
+    },
+    "errors": []
+  },
+  "findings": [
+    "dates: the lowest observed native median was 82.343 ms (source_layout-numeric); the strongest observed exactextract median was 83.112 ms (raster-sequential), a native/reference ratio of 0.991. Strategies are chosen per family after measurement, and all alternatives remain plotted. Three rounds do not establish a reliable winner where spread overlaps.",
+    "files: the lowest observed native median was 69.648 ms (fixed-numeric); the strongest observed exactextract median was 39.732 ms (raster-sequential), a native/reference ratio of 1.753. Strategies are chosen per family after measurement, and all alternatives remain plotted. Three rounds do not establish a reliable winner where spread overlaps.",
+    "Single default: 1.568 ms median versus the fastest reference median 0.320 ms on the same hot geometry sequence, native/reference ratio 4.91. Setup and warmup are listed separately; these are retained-source calls on local files.",
+    "Single decoded-warm: 0.097 ms median versus the fastest reference median 0.320 ms on the same hot geometry sequence, native/reference ratio 0.30. Setup and warmup are listed separately; these are retained-source calls on local files.",
+    "Single cache-overflow: 1.546 ms median versus the fastest reference median 0.305 ms on the same scatter geometry sequence, native/reference ratio 5.07. Setup and warmup are listed separately; these are retained-source calls on local files.",
+    "Typed buffers: native medians were lower in 8/16 shapes; native/JavaScript median ratios span 0.69\u20131.83. Large float64 ordered calls and several small calls lose; the public buffer interface is not a universal speedup. Native results and all exclusion counters match the independent control exactly. RSS is observed for Node, not constrained with a virtual-address limit."
+  ]
+}

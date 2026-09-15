@@ -1,0 +1,446 @@
+{
+  "schema": 1,
+  "passed": true,
+  "artifact_manifest_sha256": "b5fd6252ddf1ced2962af760f814aeef9f3fd1f82d30ddbd3112be9bc7648c27",
+  "artifact_source_commit": "131508f4b4a441c5247742c196cf9060b6ea5e81",
+  "library_sha256": "4c20fbc0e5486c0f4d3a0a457664211074ff4c65c21fb412fa268943e7a57818",
+  "scope": "Fresh installed Python and Node on the same host; controlled loopback source I/O. Not a namespace sandbox or independent hardware run.",
+  "limitations": [
+    "Three observations per backend/runtime, no p95 or general latency claim.",
+    "Cancellation waits for a real source read deliberately held for at least 25 ms after initiation.",
+    "No CPU-only cancellation latency, hard kill or hard RSS guarantee is measured."
+  ],
+  "repeats": 3,
+  "script_sha256": {
+    "failure_cancellation.py": "b3ffc07a8906f177ca19a9f9b7ec2c5b324412c47a3e02b84d3d4aacfc1d9ea1",
+    "failure_cancellation.mjs": "ec5674cf95edeed20ec1072cfaedfb7e984b56d18af227f835b6186bc9b54f0a",
+    "generate_fixtures.py": "4463c8b55eea6e15a081eec72ced07c5342260a9642fe51ddefcc8ebd74cc4f0"
+  },
+  "steps": [
+    {
+      "name": "venv",
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "wheel",
+      "exit_code": 0,
+      "stdout_sha256": "ddf6bab299d7cdf1fde10faeb50d9a2ba5128c7777b4cf2aca82945512dad749",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "fixture-dependencies",
+      "exit_code": 0,
+      "stdout_sha256": "6ba0044eac23571ccf297efdf05fdf748772f21ce1535656be0a4ca43c9afd54",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "npm",
+      "exit_code": 0,
+      "stdout_sha256": "da13ab9d025b19c91553bc7d4c450975d3e4e36dd7c5fef6f223f8008ba39547",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "generate",
+      "exit_code": 0,
+      "stdout_sha256": "35c54ddea8ac73625eb01bc8ca3c7bf2a3d6bd1565c2daa83ce781cb689bfb8c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "python-probe",
+      "exit_code": 0,
+      "stdout_sha256": "dc49fafd48b9a4e76ff362d17709e937dec8d0998a1da2b24e00f96bcf9e1d22",
+      "stderr_sha256": "d83feeb8fd787ee39d753bcd4637cd8c8ec14b44f2421ad4d43ec5058b5dbd56"
+    },
+    {
+      "name": "node-probe",
+      "exit_code": 0,
+      "stdout_sha256": "7757d37fd8384927c5e0211915fcb368191f155275ea43cafb3d4c79c943181b",
+      "stderr_sha256": "d83feeb8fd787ee39d753bcd4637cd8c8ec14b44f2421ad4d43ec5058b5dbd56"
+    }
+  ],
+  "rows": [
+    {
+      "runtime": "python",
+      "backend": "native",
+      "repeat": 0,
+      "rejection_ms": 0.111085,
+      "rejection_error": "selected backend conflicts with the accepted numerical policy",
+      "rejection_source_gets": 0,
+      "initiate_cancel_ms": 0.009698,
+      "cancel_to_drain_ms": 28.236856,
+      "release_to_drain_ms": 2.286496,
+      "query_total_until_drain_ms": 32.559006,
+      "controlled_hold_after_cancel_ms": 25.95036,
+      "active_read_observed": true,
+      "still_active_before_release": true,
+      "cancel_outcome": "CancelledError",
+      "same_source_reuse_ms": 0.113743,
+      "same_source_reuse_error": "remote source transport failed: cancelled",
+      "session_reuse_with_new_source_ms": 17.48259,
+      "session_reuse_answer_correct": true
+    },
+    {
+      "runtime": "python",
+      "backend": "native",
+      "repeat": 1,
+      "rejection_ms": 0.059732,
+      "rejection_error": "selected backend conflicts with the accepted numerical policy",
+      "rejection_source_gets": 0,
+      "initiate_cancel_ms": 0.006324,
+      "cancel_to_drain_ms": 27.57394,
+      "release_to_drain_ms": 1.773186,
+      "query_total_until_drain_ms": 30.118348,
+      "controlled_hold_after_cancel_ms": 25.800754,
+      "active_read_observed": true,
+      "still_active_before_release": true,
+      "cancel_outcome": "CancelledError",
+      "same_source_reuse_ms": 0.137531,
+      "same_source_reuse_error": "remote source transport failed: cancelled",
+      "session_reuse_with_new_source_ms": 19.612228,
+      "session_reuse_answer_correct": true
+    },
+    {
+      "runtime": "python",
+      "backend": "native",
+      "repeat": 2,
+      "rejection_ms": 0.087911,
+      "rejection_error": "selected backend conflicts with the accepted numerical policy",
+      "rejection_source_gets": 0,
+      "initiate_cancel_ms": 0.004628,
+      "cancel_to_drain_ms": 27.924001,
+      "release_to_drain_ms": 2.208301,
+      "query_total_until_drain_ms": 32.552626,
+      "controlled_hold_after_cancel_ms": 25.7157,
+      "active_read_observed": true,
+      "still_active_before_release": true,
+      "cancel_outcome": "CancelledError",
+      "same_source_reuse_ms": 0.1359,
+      "same_source_reuse_error": "remote source transport failed: cancelled",
+      "session_reuse_with_new_source_ms": 19.748617,
+      "session_reuse_answer_correct": true
+    },
+    {
+      "runtime": "python",
+      "backend": "exactextract",
+      "repeat": 0,
+      "rejection_ms": 0.123969,
+      "rejection_error": "selected backend conflicts with the accepted numerical policy",
+      "rejection_source_gets": 0,
+      "initiate_cancel_ms": 0.003468,
+      "cancel_to_drain_ms": 27.323486,
+      "release_to_drain_ms": 1.754074,
+      "query_total_until_drain_ms": 29.758355,
+      "controlled_hold_after_cancel_ms": 25.569412,
+      "active_read_observed": true,
+      "still_active_before_release": true,
+      "cancel_outcome": "CancelledError",
+      "same_source_reuse_ms": 0.076093,
+      "same_source_reuse_error": "remote source transport failed: cancelled",
+      "session_reuse_with_new_source_ms": 24.324673,
+      "session_reuse_answer_correct": true
+    },
+    {
+      "runtime": "python",
+      "backend": "exactextract",
+      "repeat": 1,
+      "rejection_ms": 0.060938,
+      "rejection_error": "selected backend conflicts with the accepted numerical policy",
+      "rejection_source_gets": 0,
+      "initiate_cancel_ms": 0.005617,
+      "cancel_to_drain_ms": 28.106626,
+      "release_to_drain_ms": 2.374589,
+      "query_total_until_drain_ms": 30.711064,
+      "controlled_hold_after_cancel_ms": 25.732037,
+      "active_read_observed": true,
+      "still_active_before_release": true,
+      "cancel_outcome": "CancelledError",
+      "same_source_reuse_ms": 0.103103,
+      "same_source_reuse_error": "remote source transport failed: cancelled",
+      "session_reuse_with_new_source_ms": 23.09287,
+      "session_reuse_answer_correct": true
+    },
+    {
+      "runtime": "python",
+      "backend": "exactextract",
+      "repeat": 2,
+      "rejection_ms": 0.063143,
+      "rejection_error": "selected backend conflicts with the accepted numerical policy",
+      "rejection_source_gets": 0,
+      "initiate_cancel_ms": 0.003714,
+      "cancel_to_drain_ms": 27.276447,
+      "release_to_drain_ms": 1.63849,
+      "query_total_until_drain_ms": 31.756404,
+      "controlled_hold_after_cancel_ms": 25.637957,
+      "active_read_observed": true,
+      "still_active_before_release": true,
+      "cancel_outcome": "CancelledError",
+      "same_source_reuse_ms": 0.075801,
+      "same_source_reuse_error": "remote source transport failed: cancelled",
+      "session_reuse_with_new_source_ms": 23.110103,
+      "session_reuse_answer_correct": true
+    },
+    {
+      "runtime": "node",
+      "backend": "native",
+      "repeat": 0,
+      "rejection_ms": 0.5242240000000038,
+      "rejection_error": "selected backend conflicts with the accepted numerical policy",
+      "rejection_source_gets": 0,
+      "initiate_cancel_ms": 0.36142700000000616,
+      "cancel_to_drain_ms": 27.08487500000001,
+      "release_to_drain_ms": 1.9694530000000015,
+      "query_total_until_drain_ms": 32.02313000000001,
+      "controlled_hold_after_cancel_ms": 25.11542200000001,
+      "active_read_observed": true,
+      "still_active_before_release": true,
+      "cancel_outcome": "ABORTED",
+      "same_source_reuse_ms": 0.19267899999999827,
+      "same_source_reuse_error": "remote source transport failed: cancelled",
+      "session_reuse_with_new_source_ms": 25.677246999999994,
+      "session_reuse_answer_correct": true
+    },
+    {
+      "runtime": "node",
+      "backend": "native",
+      "repeat": 1,
+      "rejection_ms": 0.27317899999999895,
+      "rejection_error": "selected backend conflicts with the accepted numerical policy",
+      "rejection_source_gets": 0,
+      "initiate_cancel_ms": 0.07541299999999751,
+      "cancel_to_drain_ms": 28.711151,
+      "release_to_drain_ms": 2.928654000000023,
+      "query_total_until_drain_ms": 33.168334000000016,
+      "controlled_hold_after_cancel_ms": 25.782496999999978,
+      "active_read_observed": true,
+      "still_active_before_release": true,
+      "cancel_outcome": "ABORTED",
+      "same_source_reuse_ms": 0.16434399999999982,
+      "same_source_reuse_error": "remote source transport failed: cancelled",
+      "session_reuse_with_new_source_ms": 18.30701099999999,
+      "session_reuse_answer_correct": true
+    },
+    {
+      "runtime": "node",
+      "backend": "native",
+      "repeat": 2,
+      "rejection_ms": 0.42632299999999645,
+      "rejection_error": "selected backend conflicts with the accepted numerical policy",
+      "rejection_source_gets": 0,
+      "initiate_cancel_ms": 0.06873400000000629,
+      "cancel_to_drain_ms": 26.468571000000026,
+      "release_to_drain_ms": 1.819724000000008,
+      "query_total_until_drain_ms": 29.882157000000035,
+      "controlled_hold_after_cancel_ms": 24.648847000000018,
+      "active_read_observed": true,
+      "still_active_before_release": true,
+      "cancel_outcome": "ABORTED",
+      "same_source_reuse_ms": 0.15869600000002038,
+      "same_source_reuse_error": "remote source transport failed: cancelled",
+      "session_reuse_with_new_source_ms": 18.979589000000033,
+      "session_reuse_answer_correct": true
+    },
+    {
+      "runtime": "node",
+      "backend": "exactextract",
+      "repeat": 0,
+      "rejection_ms": 0.3721089999999663,
+      "rejection_error": "selected backend conflicts with the accepted numerical policy",
+      "rejection_source_gets": 0,
+      "initiate_cancel_ms": 0.05950200000000905,
+      "cancel_to_drain_ms": 26.471497,
+      "release_to_drain_ms": 1.7729249999999865,
+      "query_total_until_drain_ms": 29.35602399999999,
+      "controlled_hold_after_cancel_ms": 24.698572000000013,
+      "active_read_observed": true,
+      "still_active_before_release": true,
+      "cancel_outcome": "ABORTED",
+      "same_source_reuse_ms": 0.15063700000001745,
+      "same_source_reuse_error": "remote source transport failed: cancelled",
+      "session_reuse_with_new_source_ms": 24.553467000000012,
+      "session_reuse_answer_correct": true
+    },
+    {
+      "runtime": "node",
+      "backend": "exactextract",
+      "repeat": 1,
+      "rejection_ms": 0.17362399999996114,
+      "rejection_error": "selected backend conflicts with the accepted numerical policy",
+      "rejection_source_gets": 0,
+      "initiate_cancel_ms": 0.08132499999999254,
+      "cancel_to_drain_ms": 28.369542999999965,
+      "release_to_drain_ms": 2.6854299999999967,
+      "query_total_until_drain_ms": 31.72575599999999,
+      "controlled_hold_after_cancel_ms": 25.684112999999968,
+      "active_read_observed": true,
+      "still_active_before_release": true,
+      "cancel_outcome": "ABORTED",
+      "same_source_reuse_ms": 0.27291399999995747,
+      "same_source_reuse_error": "remote source transport failed: cancelled",
+      "session_reuse_with_new_source_ms": 23.260244,
+      "session_reuse_answer_correct": true
+    },
+    {
+      "runtime": "node",
+      "backend": "exactextract",
+      "repeat": 2,
+      "rejection_ms": 0.24170500000002448,
+      "rejection_error": "selected backend conflicts with the accepted numerical policy",
+      "rejection_source_gets": 0,
+      "initiate_cancel_ms": 0.06326699999999619,
+      "cancel_to_drain_ms": 27.514849999999967,
+      "release_to_drain_ms": 1.821002999999962,
+      "query_total_until_drain_ms": 30.174840999999958,
+      "controlled_hold_after_cancel_ms": 25.693847000000005,
+      "active_read_observed": true,
+      "still_active_before_release": true,
+      "cancel_outcome": "ABORTED",
+      "same_source_reuse_ms": 0.28338600000000724,
+      "same_source_reuse_error": "remote source transport failed: cancelled",
+      "session_reuse_with_new_source_ms": 22.39041800000001,
+      "session_reuse_answer_correct": true
+    }
+  ],
+  "source_sha256": "11ac7a1a9b5b4612057ae3cf4367c63cc454c772cebc27213271adaa9b000c41",
+  "server_events": [
+    {
+      "event": "read_entered",
+      "monotonic_ns": 60192467836029,
+      "start": 0,
+      "end": 640
+    },
+    {
+      "event": "read_released",
+      "monotonic_ns": 60192495472274,
+      "explicit_release": true
+    },
+    {
+      "event": "read_entered",
+      "monotonic_ns": 60192532612552,
+      "start": 0,
+      "end": 640
+    },
+    {
+      "event": "read_released",
+      "monotonic_ns": 60192559850194,
+      "explicit_release": true
+    },
+    {
+      "event": "read_entered",
+      "monotonic_ns": 60192601265855,
+      "start": 0,
+      "end": 640
+    },
+    {
+      "event": "read_released",
+      "monotonic_ns": 60192630018721,
+      "explicit_release": true
+    },
+    {
+      "event": "read_entered",
+      "monotonic_ns": 60192668757058,
+      "start": 0,
+      "end": 640
+    },
+    {
+      "event": "read_released",
+      "monotonic_ns": 60192695605723,
+      "explicit_release": true
+    },
+    {
+      "event": "read_entered",
+      "monotonic_ns": 60192738591049,
+      "start": 0,
+      "end": 640
+    },
+    {
+      "event": "read_released",
+      "monotonic_ns": 60192766059619,
+      "explicit_release": true
+    },
+    {
+      "event": "read_entered",
+      "monotonic_ns": 60192808566467,
+      "start": 0,
+      "end": 640
+    },
+    {
+      "event": "read_released",
+      "monotonic_ns": 60192836526661,
+      "explicit_release": true
+    },
+    {
+      "event": "read_entered",
+      "monotonic_ns": 60192986100057,
+      "start": 0,
+      "end": 640
+    },
+    {
+      "event": "read_released",
+      "monotonic_ns": 60193015341698,
+      "explicit_release": true
+    },
+    {
+      "event": "read_entered",
+      "monotonic_ns": 60193061735525,
+      "start": 0,
+      "end": 640
+    },
+    {
+      "event": "read_released",
+      "monotonic_ns": 60193092327663,
+      "explicit_release": true
+    },
+    {
+      "event": "read_entered",
+      "monotonic_ns": 60193130682166,
+      "start": 0,
+      "end": 640
+    },
+    {
+      "event": "read_released",
+      "monotonic_ns": 60193158304977,
+      "explicit_release": true
+    },
+    {
+      "event": "read_entered",
+      "monotonic_ns": 60193197645634,
+      "start": 0,
+      "end": 640
+    },
+    {
+      "event": "read_released",
+      "monotonic_ns": 60193224400403,
+      "explicit_release": true
+    },
+    {
+      "event": "read_entered",
+      "monotonic_ns": 60193267421811,
+      "start": 0,
+      "end": 640
+    },
+    {
+      "event": "read_released",
+      "monotonic_ns": 60193296601515,
+      "explicit_release": true
+    },
+    {
+      "event": "read_entered",
+      "monotonic_ns": 60193339301774,
+      "start": 0,
+      "end": 640
+    },
+    {
+      "event": "read_released",
+      "monotonic_ns": 60193367223362,
+      "explicit_release": true
+    }
+  ],
+  "original_receipt_sha256": "672c080459eaf283aa02f782d1329145a2ff0a86c5609c5a2de04ce93085c47f",
+  "installed_library_verification": {
+    "python": "4c20fbc0e5486c0f4d3a0a457664211074ff4c65c21fb412fa268943e7a57818",
+    "node": "4c20fbc0e5486c0f4d3a0a457664211074ff4c65c21fb412fa268943e7a57818"
+  },
+  "measurement_status": "All 12 planned observations completed; interrupted source-reader reuse fails and explicit same-session close/reopen recovery succeeds."
+}

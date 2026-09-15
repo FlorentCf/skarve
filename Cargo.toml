@@ -1,0 +1,61 @@
+[package]
+name = "skarve"
+version = "0.1.1-alpha.1"
+edition = "2024"
+publish = false
+description = "An embeddable raster query engine with explicit numerical semantics and bounded execution"
+license = "Apache-2.0"
+repository = "https://github.com/FlorentCf/skarve"
+rust-version = "1.98"
+readme = "README.md"
+authors = ["Florent Chif"]
+keywords = ["raster", "geospatial", "statistics", "geotiff", "skv"]
+categories = ["science::geo", "command-line-utilities"]
+# Publication remains disabled until source-license and distribution approval.
+# Explicit membership prevents private benchmark archives entering a .crate.
+include = [
+    "/Cargo.toml", "/Cargo.lock", "/build.rs", "/rust-toolchain.toml",
+    "/src/**", "/native/exactextract/**", "/tests/*.rs", "/tests/support/**",
+    "/fixtures/analytical.json", "/fixtures/spherical_analytical.json",
+    "/examples/*.rs", "/examples/*.py", "/examples/*.mjs", "/docs/*.md",
+    "/scripts/build.py", "/scripts/test-rust-package.py",
+    "/third_party/**", "/assets/brand/**", "/release/DISTRIBUTION.md",
+    "/benchmarks/native-skv/**",
+    "/README.md", "/LICENSE", "/NOTICE", "/THIRD_PARTY.md",
+    "/CONTRIBUTING.md", "/SECURITY.md", "/CITATION.cff",
+]
+
+[lib]
+name = "raster_engine"
+crate-type = ["rlib", "cdylib"]
+
+[features]
+default = []
+exactextract = []
+
+[[bin]]
+name = "raster-engine"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1.0", features = ["float_roundtrip"] }
+num-rational = "=0.4.2"
+num-traits = "=0.2.19"
+num-bigint = "=0.4.8"
+geo = { version = "=0.33.1", default-features = false }
+blake3 = "1.8"
+gdal = "=0.19.0"
+gdal-sys = "=0.12.0"
+libc = "=0.2.189"
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "rustls-tls"] }
+sha2 = "0.10"
+flate2 = { version = "=1.1.10", default-features = false, features = ["miniz_oxide"] }
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
