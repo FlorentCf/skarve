@@ -25,7 +25,10 @@ def test_local_inventory_records_actual_versions_and_notices(tmp_path, monkeypat
     def current_version(command, **kwargs):
         if command[:3] == ['dpkg-query', '-W', '-f=${Version}']:
             return 'test-local-version'
-        return real_run(command, **kwargs)
+        result = real_run(command, **kwargs)
+        if command[:2] == ['dpkg-query', '-S']:
+            result = 'diversion by example from: /lib/example.so\n' + result
+        return result
     monkeypatch.setattr(package, 'run', current_version)
     inventory = package.local_system_runtime_inventory(binary, {'native_external_libraries': [
         {'soname': 'libc.so.6', 'system_path': str(binary), 'sha256': package.sha(binary), 'bundled': False}

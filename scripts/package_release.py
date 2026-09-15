@@ -160,7 +160,10 @@ def local_system_runtime_inventory(binary, inventory, destination):
                 pass
         if not owners:
             raise RuntimeError('Cannot identify installed system library package: ' + library['soname'])
-        names = sorted({line.rsplit(': ', 1)[0] for line in owners})
+        names = sorted({line.rsplit(': ', 1)[0] for line in owners
+                        if ': ' in line and not line.startswith('diversion ')})
+        if not names:
+            raise RuntimeError('Cannot identify installed system library package: ' + library['soname'])
         libraries.append(dict(library, packages=names))
         for name in names:
             if name in packages:
