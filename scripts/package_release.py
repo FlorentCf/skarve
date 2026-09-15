@@ -154,8 +154,10 @@ def local_system_runtime_inventory(binary, inventory, destination):
         owners = None
         for candidate in dict.fromkeys((str(path), str(path.resolve()), str(path).replace('/lib/', '/usr/lib/', 1))):
             try:
-                owners = run(['dpkg-query', '-S', candidate]).strip().splitlines()
-                break
+                owners = [line for line in run(['dpkg-query', '-S', candidate]).strip().splitlines()
+                          if ': ' in line and not line.startswith('diversion ')]
+                if owners:
+                    break
             except RuntimeError:
                 pass
         if not owners:
