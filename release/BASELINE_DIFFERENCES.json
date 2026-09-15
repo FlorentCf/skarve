@@ -1,0 +1,97 @@
+{
+  "baseline_commit": "d15b0bccdf87654e6e6bd221ce114fb4f129e42d",
+  "initial_export_commit": "f1fc603adcb44c0d93b358a5eb60513400eefe70",
+  "modified_imported_files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "baseline_sha256": "f29f1a5681e2e636e2344d6c15cab2134623bfb3705e60e79be5554f95263e21",
+      "current_sha256": "06e5225ed0bf1afb8d16562188a990c7850837d8f3139a72e876fd608bd4a8fe"
+    },
+    {
+      "path": ".github/workflows/release.yml",
+      "baseline_sha256": "fdd37e668f4f7c621d45dcc5bcaf1a7876929b3b222455a2da38dc39aaa89e0f",
+      "current_sha256": "755dc799d44217c3bd9e14e175ddf164c40b28778c0feed006b96bb63f63a5ba"
+    },
+    {
+      "path": ".gitignore",
+      "baseline_sha256": "ab248b87ec0c4410b863c50a040217d940a7f8d33fe4d7dc3314ebfa73fad9d5",
+      "current_sha256": "0591da2855451662700872dfde37a8f67808ec31d149bb70d5ceb015c45b011a"
+    },
+    {
+      "path": "Cargo.lock",
+      "baseline_sha256": "9dbb3d287566f6c0f23828e1c41dd347baa967be0f3dde39915bd50316cd856f",
+      "current_sha256": "8f9569194eac8f19df50b0a6f91c7252064d896d49984c0cbbcf0ecbf630b19c"
+    },
+    {
+      "path": "Cargo.toml",
+      "baseline_sha256": "f3bcc6f54a3b2f573ca3988bc571a92ed980675da096bba405045cd483a37e76",
+      "current_sha256": "e3b7ddb8c012e3a11e51d036ecb805cb88a5a258ec1fe6dbec2b6ac2a417095d"
+    },
+    {
+      "path": "README.md",
+      "baseline_sha256": "55350cf8e21f19339b1d5029cdf0e8df4a9e99239ae140d36c5b978f184a563d",
+      "current_sha256": "4d29f21d187f6cabcc43b9be90a84a935965578412f29d37ca733456c48af306"
+    },
+    {
+      "path": "THIRD_PARTY.md",
+      "baseline_sha256": "42bb4f24e6b9d4097adf2466fb4f339c0e78079c0df5e97514ec6747646238d7",
+      "current_sha256": "b2ada9866856fe3be1c56ad27c99ad34653cb53a0b810a99bfb9a9d4aa9e9b35"
+    },
+    {
+      "path": "benchmarks/README.md",
+      "baseline_sha256": "42876d28b70a988ebad2815c9ff5758165616389372192d1d749f4ea56e91d9e",
+      "current_sha256": "4eb5e6aa2b7d0742459c3a8d93b3e929fba23fbc5a6a1dffb827235451ff090d"
+    },
+    {
+      "path": "bindings/node/package-lock.json",
+      "baseline_sha256": "e0381278a68d0be6bbd94d9bff4296f60747c573bd8a9537ceffba2171e12605",
+      "current_sha256": "4be20fa63655632d5facadd2c211492f43d7c2e53f7ede77e55a80df119d4d69"
+    },
+    {
+      "path": "bindings/node/package.json",
+      "baseline_sha256": "0bfe310c86d77585fa62a50115a6c9b863017d58a7c3d92bb0c5f88df0bd19f7",
+      "current_sha256": "489fc00ead46f93526b30615d02541a9f45156359845addbb15c32bc745551d0"
+    },
+    {
+      "path": "bindings/python/pyproject.toml",
+      "baseline_sha256": "a3e88e1c578406ad53a673d2350acb00d9e11a34674a9883ca9cd0700419b9f8",
+      "current_sha256": "1709da230b256377c1707906b3dd4c8c7a52108d3f41084fd9e64434aaa8a91b"
+    },
+    {
+      "path": "bindings/python/skarve/__init__.py",
+      "baseline_sha256": "cb53609a4ddc7cc25a99dbd4cd519f5879238657bba026487a7b90e2a513fb76",
+      "current_sha256": "c6f52fc053e61b41c5306a725ca2dd3714018267264140d203b306286206894e"
+    },
+    {
+      "path": "docs/COMPATIBILITY.md",
+      "baseline_sha256": "8d26dc6c6c7d3488d82747d71cd550c43044a9b49809a3f5ac1719bc5de9ac1d",
+      "current_sha256": "d8a765f05f144de05fe1825fe9572d80d2f83913fce944a1055a1d775a9da6b2"
+    },
+    {
+      "path": "docs/INSTALL.md",
+      "baseline_sha256": "eab6c6fe80f948d59bff31e86118693b35a945cc07821f42a93d7cbfd9d08378",
+      "current_sha256": "25f79c0414181178d0ab420e9ee8b50f3ac031d366a831d098007c5b7c0c66fb"
+    },
+    {
+      "path": "docs/performance.md",
+      "baseline_sha256": "a476d0c42a220d5949587637e09a6c7bb9cbb74b2cf126e69ce332f5a9d82a2d",
+      "current_sha256": "1b5131b4ca7920015428fcb64ddde7ac63cef51ef466d506528d43d20c4fea02"
+    },
+    {
+      "path": "docs/skv.md",
+      "baseline_sha256": "e46a0d82de3cec09995245ed27d35b4d40c58b6859370658c841e8f015cc3c72",
+      "current_sha256": "ff347a0b53e81f8540f137c94b7f6259782751e0c45600993c6ae03e801ed4b1"
+    },
+    {
+      "path": "src/lib.rs",
+      "baseline_sha256": "648df3c8765f1f8d6f8f9867b267d47a15654e702c2df5d4db3508f2df49d2dc",
+      "current_sha256": "7a59153e3108418665d4eec1b764da65faed00701304249b6b2476998c774690"
+    },
+    {
+      "path": "tests/test_skv_benchmark_server.py",
+      "baseline_sha256": "b4deecad20d4d268bbca2030ac4cfe31c267be6481975755cf17180f2b2edd95",
+      "current_sha256": "0b815442a30f6009c54ad2a86d1a9b007d939326372f8cab70495c6d202fbfa9"
+    }
+  ],
+  "scope": "Snapshot of changed imported files before final acceptance records. New files are identified by the subsequent clean Git diff."
+}

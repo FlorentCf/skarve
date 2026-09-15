@@ -1,8 +1,13 @@
 """Focused checks on the real byte/latency accounting used in cold evidence."""
 from pathlib import Path
-import sys,tempfile,time,unittest,urllib.request,urllib.error
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'benchmarks/skv-v0'))
-from range_server import served
+import sys,tempfile,time,unittest,urllib.request,urllib.error,importlib.util
+# The product test suite also imports scripts/range_server.py. Keep this distinct
+# benchmark transport module isolated when pytest collects both in one process.
+_spec=importlib.util.spec_from_file_location("skarve_skv_benchmark_range_server",Path(__file__).resolve().parents[1]/"benchmarks/skv-v0/range_server.py")
+_transport=importlib.util.module_from_spec(_spec)
+sys.modules[_spec.name]=_transport
+_spec.loader.exec_module(_transport)
+served=_transport.served
 
 class ControlledTransport(unittest.TestCase):
     def test_ranges_conditions_denial_and_actual_delay(self):

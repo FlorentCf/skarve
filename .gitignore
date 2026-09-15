@@ -15,3 +15,6 @@ __pycache__/
 /scratch/
 /.env
 /.env.*
+
+# Unsynced development dependencies may be directories or symlinks.
+bindings/node/node_modules
