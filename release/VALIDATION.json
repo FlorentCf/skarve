@@ -1,0 +1,95 @@
+{
+  "schema": "skarve_launch_validation_v1",
+  "version": "0.1.1-alpha.1",
+  "status": "Private source-release candidate; no publication",
+  "native_control_commit": "d15b0bccdf87654e6e6bd221ce114fb4f129e42d",
+  "historical_evaluation_commit": "741e52805fea96ea781a23e345e072a7539b86a4",
+  "runtime_build_commit": "f1fc603adcb44c0d93b358a5eb60513400eefe70",
+  "private_package_source_commit": "ee3fa5fc273cb78ef24316e3cbee6938753fe6f1",
+  "rust_package_source_commit": "ca8ab2ff20da6e2c1a8267835851bc9a36d72163",
+  "runtime": {
+    "library_sha256": "f057c40dd34003589b7fff65e351ac6fe35f98c35aa2db2d73c2bc3399490a5c",
+    "cli_sha256": "5d0ae638ba801712edbc0af2819d063faf6d9a9589b224b485e151317e85dc8d",
+    "build_source_commit": "f1fc603adcb44c0d93b358a5eb60513400eefe70",
+    "version": "0.1.1-alpha.1",
+    "features": [
+      "exactextract"
+    ]
+  },
+  "private_artifacts": [
+    {
+      "name": "skarve-0.1.1-alpha.1-linux-x86_64.tar.gz",
+      "bytes": 7339546,
+      "sha256": "7037ab14788d6e54c1ff4915f4ebcf84cdc74514af9a60ab81ba6b61b502e3e4"
+    },
+    {
+      "name": "skarve-0.1.1-alpha.1-source.tar.gz",
+      "bytes": 20499283,
+      "sha256": "fd8405745b47f6c5c2f259f035f48ce926a20a1f1714e8c9df665512f08db64b"
+    },
+    {
+      "name": "skarve-engine-0.1.1-alpha.1.tgz",
+      "bytes": 4771411,
+      "sha256": "610abecd506af998e35f0f15985e262be4062bab11f5387ed7e904c9b2e84101"
+    },
+    {
+      "name": "skarve_engine-0.1.1a1-py3-none-linux_x86_64.whl",
+      "bytes": 7664511,
+      "sha256": "a1ef8ee56dfdb5cc79838e538a4df166a0d403528ffd77268d6447d944ce57e3"
+    }
+  ],
+  "crate": {
+    "sha256": "43365e2762b5697e1af26ec0b407a939d39836824f02e720cd9fdcfef7750a06",
+    "bytes": 3704108,
+    "members": 591,
+    "publication_attempted": false,
+    "external_consumer": {
+      "batch_rows": 2,
+      "original_removed_before_skv_serving": true,
+      "sums": [
+        36.0,
+        72.0
+      ]
+    }
+  },
+  "checks": {
+    "rust_tests_with_doctests": 307,
+    "python_initial_complete_suite": 187,
+    "additional_reproduction_helpers": 6,
+    "node_tests": 17,
+    "installed_cli_python_node_checks": 62,
+    "optional_exactextract_compatibility_checks": 60,
+    "optional_exactextract_cases_by_strategy": 26,
+    "workflow_yaml_parse": true,
+    "github_actions_executed": false,
+    "public_synthetic36_generation_preparation_and_two_query_smoke": true,
+    "existing_prepared_two_query_smoke": true,
+    "saved_benchmark_recalculation_operations": 588,
+    "benchmark_rerun": false,
+    "literal_readme_python_and_node_sum": 8.5,
+    "python_final_complete_suite": 193
+  },
+  "scope": [
+    "Same Ubuntu24.04 WSL2 x86-64 host; not independent hardware or Nix/Replit qualification.",
+    "New source/CLI/Rust wrapper version has its own hashes; historical d15 timings are never attributed to it.",
+    "Full source publication snapshot may contain later documentation/audit records; mathematical source is unchanged from the tested runtime plus the Rust facade.",
+    "Only new generated data used for ordinary installed qualification; no private HM code or credentials needed.",
+    "The compatibility runner initially lacked the optional upstream Python test package; installing the declared benchmark dependencies resolved that prerequisite."
+  ],
+  "audit": {
+    "targeted_source_scan": true,
+    "all_publishable_history_and_refs": true,
+    "nested_archives": true,
+    "vendor_path_findings": "Two unchanged Koffi3.2.1 binaries contain upstream compiler paths. Their bytes match the locked npm SHA512 archive. Original audit flags retained; no blanket suppression.",
+    "public_binary_distribution": "Not approved; separate dependency-license determination remains open."
+  },
+  "receipt_sha256": {
+    "development-qualification.json": "1adb35b8815ddba56b949c1203e765799ae8db1cd5e5adbba955496239c2a1a1",
+    "installed-alpha1.json": "0c17552cbf1d197d2213ff4005c5937817a4659b60dbdb9f036a2d9ee9ede9fb",
+    "literal-readme.json": "c01b949ca8ff1ba9542321e6a341126cb03736faadce350c18825075e288ff53",
+    "ee-compatibility-02.json": "e8bfe2e90122b2821473db96300bc0f91ec9fa1b6dff697f58accf3f1272bab2",
+    "vendor-build-path-review.json": "794c845c5e607b6544943e3aa0345035ee7f73bd2970219df585882b27d041dd",
+    "publication-audit-01.json": "76207c459bbe5b2d2a69831a6a623ce53264c154c955e5d23cf547a62edea196",
+    "combined-python-final.log": "b462ee72270eae7ab64b56556fb48ab501d89520b2f5b01791f717e63d2c68ff"
+  }
+}

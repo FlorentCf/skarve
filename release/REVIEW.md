@@ -1,0 +1,13 @@
+# Source-first launch recommendation
+
+Prepare the independent Skarve source release for owner review. Rust, Python, Node.js/TypeScript and CLI are usable; the numerical engine, source readers, SKV format/writer and optional exactextract implementation preserve the qualified control. No new optimization or benchmark campaign was performed.
+
+The safe Rust facade owns session/source/batch lifetimes and uses the existing admitted session path. The extracted 3.70 MB crate builds as a separate consumer, creates a TIFF, compiles SKV, removes its original file, and returns expected sums 36/72 and two batch rows. Installed CLI/Python/Node qualification passes 62 checks without development-library overrides. Literal README snippets return 8.5 in Python and Node. The complete Rust suite passes 307 tests including doctests; Node passes 17 tests; optional exactextract compatibility passes 60 checks. See VALIDATION.json for immutable artifact identities and scoped qualification records.
+
+The source-owned workflow is independent of HM. The synthetic36 public preparation commands reproduce the required logical source/layout and pass the two-operation COG/SKV smoke. The four-family saved report remains 588 historical operations; this launch work neither reruns that comparison nor claims new performance. All losses, preparation/storage costs and numerical differences remain in the benchmark pack.
+
+Publication boundary: this clean Git history and a source-only archive under the proposed Apache-2.0 license, subject to owner confirmation. Do not publish the private Linux wheel, Node archive, CLI archive or any registry package until their separate gates close. Locked third-party inventory validation passed (162 component entries and 107 dynamic-library records). The artifact scanner retained two vendor compiler-path findings, then verified those exact bytes against the locked upstream npm archive. The source release does not bundle those binaries. See DISTRIBUTION.md and CURATION.md.
+
+HM integration and the /skarve page are separate private review branches. Local actual-consumer replay preserves the full response contract and exercises shadow, cancellation, source failure and rollback. This is not authorized R2/staging-host qualification or production adoption. Those gates stay open; no production setting, repository visibility or public deployment changed.
+
+Recommendation: approve the audited source-first release scope when satisfied with authorship, Apache-2.0 and branding. Hold public binaries and HM activation. This pass has no remaining speculative optimization or architecture work.
