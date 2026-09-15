@@ -6,7 +6,7 @@ Skarve owns source opening, decoding, caching, geometry and aggregation. Use a s
 
 **Rust · Python · Node.js/TypeScript · CLI**. Launch candidate **0.1.1-alpha.1**; SKV v0 is experimental. The qualified native target is **Ubuntu 24.04, Linux x86-64, GDAL 3.8.4 and libdeflate 1.19**. Windows/macOS, arbitrary grids and global HM deployment are not claimed. Polygons must already use the source CRS; supported grids are north-up and axis-aligned. [Supported contracts](docs/limitations.md).
 
-This is a privately prepared source-release candidate. Registry packages and public release downloads are not yet available. [Build/install from source](docs/INSTALL.md); [source and binary distribution gates](release/DISTRIBUTION.md).
+This is the public **source-only alpha release**. Build from source using the instructions below. Registry packages and prebuilt binary downloads are not yet available. [Build/install from source](docs/INSTALL.md); [source and binary distribution gates](release/DISTRIBUTION.md).
 
 ## Try it with generated data
 
@@ -76,4 +76,4 @@ Source generations, checksums, conditional HTTP ranges, cancellation and resourc
 
 Created by **Florent Chif**, from the raster-analysis needs behind Horizon Mapper. Integration into HM is being tested; this project does not claim production adoption. Skarve combines independently authored systems engineering with attributed upstream libraries and established techniques. It makes no claim to have invented zonal statistics, scanlines or aggregate hierarchies.
 
-[Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Citation](CITATION.cff) · [Apache-2.0 proposal](LICENSE) · [Third-party notices](THIRD_PARTY.md). Apache-2.0 remains subject to owner confirmation for public release; binary distribution has a separate gate. Branding rights are separate.
+[Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Citation](CITATION.cff) · [Apache-2.0 license](LICENSE) · [Third-party notices](THIRD_PARTY.md). The engine is released under Apache-2.0; binary distribution has a separate gate. Branding rights are separate.

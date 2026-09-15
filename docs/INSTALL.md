@@ -1,6 +1,6 @@
 # Install Skarve
 
-This private launch candidate is **v0.1.1-alpha.1**, with experimental SKV v0 support. Public source and binary distribution require separate owner approvals; see [the distribution decision](../release/DISTRIBUTION.md). The frozen v0.1.0-beta.2 release remains separate. Binary qualification targets Ubuntu 24.04 Linux x86-64, Python 3.12 and Node 20. The native runtime requires system GDAL 3.8.4 (`libgdal34t64` and `gdal-data`, Ubuntu package version `3.8.4+dfsg-3ubuntu3`). Skarve's core is bundled in the wheel, npm archive and CLI archive. The npm archive also includes its Koffi dependency. These binaries make no manylinux, Windows or macOS compatibility claim. Review [external runtime licenses](RUNTIME_LICENSES.md) before redistributing a binary combination.
+This public source-only alpha is **v0.1.1-alpha.1**, with experimental SKV v0 support. Prebuilt binaries and registry packages are not published; see [the distribution decision](../release/DISTRIBUTION.md). The frozen v0.1.0-beta.2 release remains separate. Binary qualification targets Ubuntu 24.04 Linux x86-64, Python 3.12 and Node 20. The native runtime requires system GDAL 3.8.4 (`libgdal34t64` and `gdal-data`, Ubuntu package version `3.8.4+dfsg-3ubuntu3`). Skarve's core is bundled in the wheel, npm archive and CLI archive. The npm archive also includes its Koffi dependency. These binaries make no manylinux, Windows or macOS compatibility claim. Review [external runtime licenses](RUNTIME_LICENSES.md) before redistributing a binary combination.
 
 Linux SKV decoding additionally requires `libdeflate.so.0` with
 `libdeflate_alloc_decompressor_ex`, `libdeflate_zlib_decompress_ex` and
@@ -64,6 +64,8 @@ Install Skarve into that environment first. Run Node examples from a source/cons
 Install the Rust toolchain declared in `rust-toolchain.toml`, a C linker, `pkg-config`, GDAL development headers and libdeflate headers (`libgdal-dev libdeflate-dev` on Ubuntu 24.04). Then:
 
 ```sh
+git clone --branch v0.1.1-alpha.1 https://github.com/FlorentCf/skarve.git
+cd skarve
 python3 scripts/build.py --test
 python3 -m venv .venv
 .venv/bin/python -m pip install -r scripts/packaging-requirements.txt
