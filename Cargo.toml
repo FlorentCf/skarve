@@ -21,6 +21,10 @@ include = [
     "/scripts/build.py", "/scripts/test-rust-package.py",
     "/third_party/**", "/assets/brand/**", "/release/DISTRIBUTION.md",
     "/benchmarks/native-skv/**",
+    "/benchmarks/skv-v0/fixtures.py", "/benchmarks/skv-v0/modern_cog.py",
+    "/benchmarks/skv-v0/prepare.py", "/benchmarks/requirements.txt",
+    "/tests/test_native_replication.py",
+    "!**/__pycache__/**", "!**/*.pyc",
     "/README.md", "/LICENSE", "/NOTICE", "/THIRD_PARTY.md",
     "/CONTRIBUTING.md", "/SECURITY.md", "/CITATION.cff",
 ]
