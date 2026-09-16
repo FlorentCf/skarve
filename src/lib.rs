@@ -39,6 +39,7 @@ pub mod session;
 pub mod shared_rows;
 pub mod skv;
 pub mod source;
+pub mod source_buffer;
 pub mod stored_summary;
 pub mod streaming;
 pub mod tile_cache;

@@ -20,10 +20,122 @@ struct SourceAdapter {
     verified_bytes: u64,
     verification_ms: f64,
     format_probe_bytes: u64,
+    metadata_prefix_seed_bytes: u64,
+    extra_encoded_cache_bytes: usize,
     decode_band_factor: usize,
     mask_blocks: Vec<(usize, usize)>,
+    pixel_admission: Option<PixelAdmission>,
     decoder_cache_flushes: std::cell::Cell<u64>,
     decoder_cache_reused_chunks: std::cell::Cell<u64>,
+}
+// Narrow qualification for the audited native GTiff Deflate path. Unknown
+// layouts retain the existing conservative admission; no caller can assert this.
+#[derive(Clone, Debug)]
+struct PixelAdmission {
+    width: usize,
+    height: usize,
+    bands: usize,
+    encoded: usize,
+}
+const PIXEL_CODEC_RESERVE: usize = 2 * 1024 * 1024;
+fn qualify_pixel(
+    dataset: &Dataset,
+    spec: &SourceSpec,
+    cancel: &AtomicBool,
+) -> Result<Option<PixelAdmission>> {
+    if !matches!(
+        gdal::version::version_info("VERSION_NUM").as_str(),
+        "3080400" | "3080500"
+    ) || spec.format != SourceFormat::Geotiff
+        || spec.overview.is_some()
+        || dataset.driver().short_name() != "GTiff"
+        || dataset
+            .metadata_item("INTERLEAVE", "IMAGE_STRUCTURE")
+            .as_deref()
+            != Some("PIXEL")
+        || dataset
+            .metadata_item("COMPRESSION", "IMAGE_STRUCTURE")
+            .as_deref()
+            != Some("DEFLATE")
+        || dataset
+            .metadata_item("PREDICTOR", "IMAGE_STRUCTURE")
+            .is_some()
+        || dataset.raster_count() > 64
+    {
+        return Ok(None);
+    }
+    let first = dataset.rasterband(1)?;
+    let (width, height) = first.block_size();
+    let (rw, rh) = dataset.raster_size();
+    // Strips span the raster width; only unambiguous, bounded tiles qualify.
+    if width == 0 || height == 0 || width >= rw || width > 512 || height > 512 {
+        return Ok(None);
+    }
+    let nx = rw.div_ceil(width);
+    let ny = rh.div_ceil(height);
+    if nx.checked_mul(ny).is_none_or(|n| n > 4096) {
+        return Ok(None);
+    }
+    for i in 1..=dataset.raster_count() {
+        check_cancel(cancel)?;
+        let band = dataset.rasterband(i)?;
+        if !matches!(
+            band.band_type().name().as_str(),
+            "UInt32" | "Int32" | "Float32"
+        ) || band.block_size() != (width, height)
+        {
+            return Ok(None);
+        }
+        let flags = band.mask_flags()?;
+        if !(flags.is_all_valid()
+            || (flags.is_nodata() && !flags.is_per_dataset() && !flags.is_alpha()))
+            || band.open_mask_band()?.block_size() != (width, height)
+        {
+            return Ok(None);
+        }
+    }
+    let mut encoded = 0usize;
+    for y in 0..ny {
+        for x in 0..nx {
+            check_cancel(cancel)?;
+            let Some(size) = first
+                .metadata_item(&format!("BLOCK_SIZE_{x}_{y}"), "TIFF")
+                .and_then(|v| v.parse::<usize>().ok())
+            else {
+                return Ok(None);
+            };
+            // Bound retained codec input and its realloc transient, independent of
+            // HTTP fragment size. Sparse/missing descriptors stay conservative.
+            if size == 0 || size > 32 * 1024 * 1024 {
+                return Ok(None);
+            }
+            encoded =
+                encoded.max(size.checked_add(1023).context("encoded overflow")? / 1024 * 1024);
+        }
+    }
+    Ok(Some(PixelAdmission {
+        width,
+        height,
+        bands: dataset.raster_count(),
+        encoded,
+    }))
+}
+
+struct QualifiedMaskGuard<'a>(&'a SourceAdapter);
+impl Drop for QualifiedMaskGuard<'_> {
+    fn drop(&mut self) {
+        if self.0.pixel_admission.is_some() {
+            for i in 1..=self.0.dataset.raster_count() {
+                if let Ok(b) = self.0.dataset.rasterband(i) {
+                    if let Ok(m) = b.open_mask_band() {
+                        unsafe {
+                            gdal_sys::GDALFlushRasterCache(m.c_rasterband());
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 fn digest(bytes: &[u8]) -> String {
     format!("{:x}", Sha256::digest(bytes))
@@ -117,10 +229,15 @@ fn open_source_with_band_limit(
         });
     // A suffix is only a routing hint; the SKV reader validates magic/version.
     if spec.format == SourceFormat::Skv || (spec.format == SourceFormat::Geotiff && skv_suffix) {
+        ensure!(
+            spec.http.metadata_prefetch_bytes == 0 && spec.http.small_read_page_bytes == 0,
+            "metadata prefetch is only supported for original TIFF sources"
+        );
         return Ok(Box::new(crate::skv::SkvSource::open(spec, cancel)?));
     }
     let mut verified_bytes = 0;
     let mut format_probe_bytes = 0;
+    let mut metadata_prefix_seed_bytes = 0;
     let verification_started = std::time::Instant::now();
     let (remote, local, source_path, base_id) = if is_remote {
         ensure!(
@@ -150,6 +267,10 @@ fn open_source_with_band_limit(
         }
         format_probe_bytes = probe_length;
         if prefix.as_slice() == crate::skv::MAGIC {
+            ensure!(
+                spec.http.metadata_prefetch_bytes == 0 && spec.http.small_read_page_bytes == 0,
+                "metadata prefetch is only supported for original TIFF sources"
+            );
             return Ok(Box::new(crate::skv::SkvSource::open_registered(
                 spec, cancel, source,
             )?));
@@ -190,8 +311,22 @@ fn open_source_with_band_limit(
                 verified_bytes = source.length;
             }
         }
+        if spec.http.metadata_prefetch_bytes > 0 {
+            let length = source.length.min(spec.http.metadata_prefetch_bytes as u64);
+            ensure!(
+                length > 0
+                    && length <= spec.http.max_range_bytes
+                    && (length as usize + 128) <= spec.http.cache_bytes,
+                "metadata prefetch requires capacity in the existing range/cache budgets"
+            );
+            // read_range preserves If-Match, byte/request caps, cancellation and
+            // invalidation. Its cache owns the seed; this <=512KiB temporary is
+            // dropped before GDAL opens, within the existing opening reserve.
+            drop(source.read_range_cancellable(0, length, cancel)?);
+            metadata_prefix_seed_bytes = length;
+        }
         let id = source.source_id.clone();
-        let registration = source_vsi::Registration::new(source)?;
+        let registration = source_vsi::Registration::new(source, spec.http.small_read_page_bytes)?;
         let path = registration.path.clone();
         (Some(registration), None, path, id)
     } else {
@@ -522,6 +657,15 @@ fn open_source_with_band_limit(
             ]))?)
         )
     };
+    let pixel_admission = qualify_pixel(&dataset, spec, cancel)?;
+    let extra_encoded_cache_bytes = if remote.is_some() {
+        spec.http.cache_bytes.saturating_sub(8 * 1024 * 1024)
+    } else {
+        0
+    };
+    if let Some(r) = &remote {
+        r.check_error()?;
+    }
     drop(_operation);
     let result = SourceAdapter {
         dataset,
@@ -535,8 +679,11 @@ fn open_source_with_band_limit(
         verified_bytes,
         verification_ms,
         format_probe_bytes,
+        metadata_prefix_seed_bytes,
+        extra_encoded_cache_bytes,
         decode_band_factor,
         mask_blocks,
+        pixel_admission,
         decoder_cache_flushes: std::cell::Cell::new(0),
         decoder_cache_reused_chunks: std::cell::Cell::new(0),
     };
@@ -696,136 +843,133 @@ fn verify_netcdf_coordinates(
         json!({"coordinate_sha256":format!("{:x}",hash.finalize()),"coordinate_bytes_read":coordinate_bytes,"longitude_shift":longitude_shift,"policy":"cell_centres_match_native_affine_within32_epsilon_scaled_v1"}),
     )
 }
-impl WindowSource for SourceAdapter {
-    fn metadata(&self) -> &RasterMetadata {
-        &self.metadata
-    }
-    fn raw_metadata(&self) -> Option<&RawRasterMetadata> {
-        self.raw_metadata.as_ref()
-    }
-    fn raw_read_buffer_bound(&self, w: usize, h: usize, indices: &[usize]) -> Result<usize> {
-        ensure!(self.raw_metadata.is_some(), "source lacks typed raw access");
-        ensure!(
-            !indices.is_empty()
-                && indices.len() <= 20
-                && indices
-                    .iter()
-                    .enumerate()
-                    .all(|(i, b)| !indices[..i].contains(b)),
-            "raw reads require 1..20 distinct bands per bounded group"
-        );
-        let base = self.read_buffer_bound(w, h, indices)?;
-        // Existing normalized output (nine bytes/sample) bounds typed output
-        // plus its independent byte mask. An additional aligned typed buffer
-        // preserves scalar bits without writing through an unaligned u8 pointer.
-        let rows = (65536 / w).max(1).min(h);
-        base.checked_add(
-            w.checked_mul(rows)
-                .and_then(|n| n.checked_mul(8))
-                .context("typed raw scratch overflow")?,
-        )
-        .context("typed raw buffer bound overflow")
-    }
-    fn read_raw_selected_window_cancellable(
+impl SourceAdapter {
+    fn prepare_remote_blocks(
         &self,
         x: usize,
         y: usize,
+        width: usize,
+        height: usize,
+        indices: &[usize],
+        cancel: &AtomicBool,
+    ) -> Result<()> {
+        if !super::concurrent_transport_enabled() || self.dataset.driver().short_name() != "GTiff" {
+            return Ok(());
+        }
+        // GDAL3.8.x CacheMultiRange uses bare strile offset/size for
+        // planar-separate multi-band TIFF, including COG. Pixel-interleaved
+        // COG uses extra framing and remains planned by its actual VSI calls.
+        // Upstream: v3.8.4/frmts/gtiff/gtiffrasterband_read.cpp CacheMultiRange.
+        if self
+            .dataset
+            .metadata_item("LAYOUT", "IMAGE_STRUCTURE")
+            .as_deref()
+            == Some("COG")
+            && !(matches!(
+                gdal::version::version_info("VERSION_NUM").as_str(),
+                "3080400" | "3080500"
+            ) && self.dataset.raster_count() > 1
+                && self
+                    .dataset
+                    .metadata_item("INTERLEAVE", "IMAGE_STRUCTURE")
+                    .as_deref()
+                    == Some("BAND"))
+        {
+            return Ok(());
+        }
+        let Some(remote) = &self.remote else {
+            return Ok(());
+        };
+        if remote
+            .state
+            .source
+            .lock()
+            .map_err(|_| anyhow!("source lock poisoned"))?
+            .cache_byte_capacity()
+            == 0
+        {
+            return Ok(());
+        }
+        // Validate before querying driver metadata; subsequent read retains its
+        // complete checks. Mask blocks stay on the existing checked path.
+        ensure!(
+            width > 0
+                && height > 0
+                && x.checked_add(width)
+                    .is_some_and(|n| n <= self.metadata.grid.width)
+                && y.checked_add(height)
+                    .is_some_and(|n| n <= self.metadata.grid.height),
+            "window lies outside raster"
+        );
+        let mut demands = Vec::with_capacity(128);
+        'bands: for &index in indices {
+            let mapping = *self
+                .mapping
+                .get(index)
+                .context("source band out of bounds")?;
+            let band = self.dataset.rasterband(mapping + 1)?;
+            let (bw, bh) = band.block_size();
+            ensure!(bw > 0 && bh > 0, "invalid TIFF block dimensions");
+            for by in y / bh..=(y + height - 1) / bh {
+                for bx in x / bw..=(x + width - 1) / bw {
+                    check_cancel(cancel)?;
+                    let Some(offset) = band
+                        .metadata_item(&format!("BLOCK_OFFSET_{bx}_{by}"), "TIFF")
+                        .and_then(|n| n.parse::<u64>().ok())
+                    else {
+                        return Ok(());
+                    };
+                    let Some(length) = band
+                        .metadata_item(&format!("BLOCK_SIZE_{bx}_{by}"), "TIFF")
+                        .and_then(|n| n.parse::<u64>().ok())
+                    else {
+                        return Ok(());
+                    };
+                    // Sparse TIFF zero blocks have no physical payload.
+                    if offset == 0 || length == 0 {
+                        continue;
+                    }
+                    if length > remote.range_bound() as u64 {
+                        return Ok(());
+                    }
+                    if !demands.contains(&(offset, length)) {
+                        demands.push((offset, length));
+                    }
+                    if demands.len() == 128 {
+                        break 'bands;
+                    }
+                }
+            }
+        }
+        demands.sort_unstable();
+        if demands
+            .windows(2)
+            .any(|w| w[0].0.checked_add(w[0].1).is_none_or(|end| end > w[1].0))
+        {
+            return Ok(());
+        }
+        remote.check_error()?;
+        let mut source = remote
+            .state
+            .source
+            .lock()
+            .map_err(|_| anyhow!("source lock poisoned"))?;
+        let scratch = (source.limits.max_range_bytes as usize + HTTP_SCRATCH_BYTES)
+            .saturating_sub(128 * 16 + 4096);
+        source.prefetch_exact_ranges(&demands, scratch, cancel)?;
+        Ok(())
+    }
+
+    fn bounded_read_buffer(
+        &self,
         w: usize,
         h: usize,
         indices: &[usize],
-        max_bytes: usize,
-        cancel: &AtomicBool,
-    ) -> Result<(RawWindow, ReadMetrics)> {
-        check_cancel(cancel)?;
+        max_bands: usize,
+    ) -> Result<usize> {
         ensure!(
-            self.raw_read_buffer_bound(w, h, indices)? <= max_bytes,
-            "raw source window exceeds combined decoder/transport memory budget"
-        );
-        if let Some((path, sig)) = &self.local {
-            ensure!(
-                fingerprint(path)? == *sig,
-                "source changed since registration"
-            );
-        }
-        let _operation = self
-            .remote
-            .as_ref()
-            .map(|r| r.operation(cancel))
-            .transpose()?;
-        let _options = if self.remote.is_some() {
-            Some(GdalOptions::remote()?)
-        } else {
-            None
-        };
-        let result = read_raw_window_mapped(
-            &self.dataset,
-            &self.metadata,
-            self.raw_metadata
-                .as_ref()
-                .context("source lacks typed raw access")?,
-            &self.mapping,
-            x,
-            y,
-            w,
-            h,
-            indices,
-            cancel,
-        );
-        if let Some(remote) = &self.remote {
-            remote.check_error()?;
-        }
-        if let Some((path, sig)) = &self.local {
-            ensure!(fingerprint(path)? == *sig, "source changed during raw read");
-        }
-        check_cancel(cancel)?;
-        if let Ok((_, metrics)) = &result {
-            self.decoder_cache_flushes.set(
-                self.decoder_cache_flushes
-                    .get()
-                    .saturating_add(metrics.decoder_cache_flushes as u64),
-            );
-            self.decoder_cache_reused_chunks.set(
-                self.decoder_cache_reused_chunks
-                    .get()
-                    .saturating_add(metrics.decoder_cache_reused_chunks as u64),
-            );
-        }
-        result
-    }
-    fn verify_immutable(&self) -> Result<()> {
-        if let Some((path, sig)) = &self.local {
-            ensure!(
-                fingerprint(path)? == *sig,
-                "source changed since registration"
-            );
-        }
-        if let Some(remote) = &self.remote {
-            remote.verify()?;
-        }
-        Ok(())
-    }
-    fn identity_descriptor(&self) -> Option<Value> {
-        self.descriptor.clone()
-    }
-    fn diagnostics(&self) -> Value {
-        json!({"kind":if self.remote.is_some(){"http_original"}else{"local_original"},"content_verification_bytes":self.verified_bytes,"content_verification_ms":self.verification_ms,"format_probe_bytes":self.format_probe_bytes,"identity_policy":if self.descriptor.is_some(){if self.verified_bytes>0{"verified_registration"}else{"trusted_manifest"}}else{"session_stat_or_object_validator"},"remote":self.remote.as_ref().map(|r|r.metrics()),"adapter_retained_capacity_bytes":self.retained_memory_bound(),"physical_bytes_known":self.remote.is_some(),"gdal_block_cache":"shared_only_for_identical_data_and_mask_block_footprints_then_flushed_on_transition_or_window_exit","decode_band_factor":self.decode_band_factor,"decoder_cache_flushes":self.decoder_cache_flushes.get(),"decoder_cache_reused_chunks":self.decoder_cache_reused_chunks.get()})
-    }
-    fn retained_memory_bound(&self) -> usize {
-        crate::source::NATIVE_SOURCE_RETAINED_BYTES
-    }
-    fn access_layout(&self) -> Value {
-        let mut layout = self.interpretation.clone();
-        // Physical capacity identity belongs to execution planning, never the
-        // portable mathematical/source interpretation digest.
-        layout["physical_access"] = json!({"mask_block_sizes":self.mask_blocks,
-            "decode_band_factor":self.decode_band_factor,
-            "transport_scratch_bound_bytes":self.remote.as_ref().map_or(0,|r|r.range_bound()+65536)});
-        layout
-    }
-    fn read_buffer_bound(&self, w: usize, h: usize, indices: &[usize]) -> Result<usize> {
-        ensure!(
-            !indices.is_empty() && indices.len() <= 20,
-            "source reads require 1..20 bands per bounded group"
+            !indices.is_empty() && indices.len() <= max_bands,
+            "source reads exceed admitted band group"
         );
         let base = selected_window_buffer_bound(&self.metadata, w, h, indices)?;
         let rows = (65536 / w).max(1).min(h);
@@ -886,6 +1030,251 @@ impl WindowSource for SourceAdapter {
             })
             .context("source adapter buffer overflow")
     }
+}
+impl WindowSource for SourceAdapter {
+    fn metadata(&self) -> &RasterMetadata {
+        &self.metadata
+    }
+    fn raw_metadata(&self) -> Option<&RawRasterMetadata> {
+        self.raw_metadata.as_ref()
+    }
+    fn max_raw_read_bands(&self) -> usize {
+        // The qualified PIXEL footprint already charges all physical bands.
+        // One admitted raw call avoids re-decoding that footprint at an
+        // artificial20-band boundary, without retaining decoded blocks longer.
+        // Normalized reads and unknown source layouts keep their existing cap.
+        if self.pixel_admission.is_some() {
+            64
+        } else {
+            20
+        }
+    }
+    fn raw_read_buffer_bound_at(
+        &self,
+        x: usize,
+        y: usize,
+        w: usize,
+        h: usize,
+        indices: &[usize],
+    ) -> Result<usize> {
+        let old = self.raw_read_buffer_bound(w, h, indices)?;
+        let Some(p) = &self.pixel_admission else {
+            return Ok(old);
+        };
+        ensure!(
+            w > 0
+                && h > 0
+                && x.checked_add(w)
+                    .is_some_and(|v| v <= self.metadata.grid.width)
+                && y.checked_add(h)
+                    .is_some_and(|v| v <= self.metadata.grid.height),
+            "raw window lies outside raster"
+        );
+        // One exact physical footprint, including the generated NoData mask.
+        if x / p.width != (x + w - 1) / p.width
+            || y / p.height != (y + h - 1) / p.height
+            || w.checked_mul(h).is_none_or(|v| v > 65536)
+        {
+            return Ok(old);
+        }
+        let tile = p.width * p.height;
+        // Full interleaved decode + all-band GDAL caches (8 bytes/sample),
+        // all generated mask caches (1), one mask source temporary (4/tile).
+        let decoder = tile * (9 * p.bands + 4);
+        let output = w * h * indices.len() * 5;
+        let aligned = w * h * 4;
+        let transport = self.remote.as_ref().map_or(0, |r| r.range_bound() + 65536);
+        // Two encoded capacities cover realloc before the old allocation dies.
+        let bound = output
+            .checked_add(aligned)
+            .and_then(|n| n.checked_add(decoder))
+            .and_then(|n| n.checked_add(2 * p.encoded + PIXEL_CODEC_RESERVE))
+            .and_then(|n| n.checked_add(transport))
+            .context("pixel raw bound overflow")?;
+        Ok(bound)
+    }
+    fn raw_read_buffer_bound(&self, w: usize, h: usize, indices: &[usize]) -> Result<usize> {
+        ensure!(self.raw_metadata.is_some(), "source lacks typed raw access");
+        ensure!(
+            !indices.is_empty()
+                && indices.len() <= self.max_raw_read_bands()
+                && indices
+                    .iter()
+                    .enumerate()
+                    .all(|(i, b)| !indices[..i].contains(b)),
+            "raw reads exceed the admitted distinct band group"
+        );
+        let base = self.bounded_read_buffer(w, h, indices, self.max_raw_read_bands())?;
+        // Existing normalized output (nine bytes/sample) bounds typed output
+        // plus its independent byte mask. An additional aligned typed buffer
+        // preserves scalar bits without writing through an unaligned u8 pointer.
+        let rows = (65536 / w).max(1).min(h);
+        base.checked_add(
+            w.checked_mul(rows)
+                .and_then(|n| n.checked_mul(8))
+                .context("typed raw scratch overflow")?,
+        )
+        .context("typed raw buffer bound overflow")
+    }
+    fn read_raw_selected_window_cancellable(
+        &self,
+        x: usize,
+        y: usize,
+        w: usize,
+        h: usize,
+        indices: &[usize],
+        max_bytes: usize,
+        cancel: &AtomicBool,
+    ) -> Result<(RawWindow, ReadMetrics)> {
+        check_cancel(cancel)?;
+        ensure!(
+            self.raw_read_buffer_bound_at(x, y, w, h, indices)? <= max_bytes,
+            "raw source window exceeds combined decoder/transport memory budget"
+        );
+        if let Some((path, sig)) = &self.local {
+            ensure!(
+                fingerprint(path)? == *sig,
+                "source changed since registration"
+            );
+        }
+        let _operation = self
+            .remote
+            .as_ref()
+            .map(|r| r.operation(cancel))
+            .transpose()?;
+        let _options = if self.remote.is_some() {
+            Some(GdalOptions::remote()?)
+        } else {
+            None
+        };
+        let _mask_guard = QualifiedMaskGuard(self);
+        let prepare = |selected: usize, row: usize, rows: usize| {
+            if selected % 2 == 0 {
+                self.prepare_remote_blocks(
+                    x,
+                    y + row,
+                    w,
+                    rows,
+                    &indices[selected..(selected + 2).min(indices.len())],
+                    cancel,
+                )
+            } else {
+                Ok(())
+            }
+        };
+        let result = read_raw_window_mapped(
+            &self.dataset,
+            &self.metadata,
+            self.raw_metadata
+                .as_ref()
+                .context("source lacks typed raw access")?,
+            &self.mapping,
+            x,
+            y,
+            w,
+            h,
+            indices,
+            cancel,
+            Some(&prepare),
+        );
+        if let Some(remote) = &self.remote {
+            remote.check_error()?;
+        }
+        if let Some((path, sig)) = &self.local {
+            ensure!(fingerprint(path)? == *sig, "source changed during raw read");
+        }
+        check_cancel(cancel)?;
+        if let Ok((_, metrics)) = &result {
+            self.decoder_cache_flushes.set(
+                self.decoder_cache_flushes
+                    .get()
+                    .saturating_add(metrics.decoder_cache_flushes as u64),
+            );
+            self.decoder_cache_reused_chunks.set(
+                self.decoder_cache_reused_chunks
+                    .get()
+                    .saturating_add(metrics.decoder_cache_reused_chunks as u64),
+            );
+        }
+        result
+    }
+    fn verify_immutable(&self) -> Result<()> {
+        if let Some((path, sig)) = &self.local {
+            ensure!(
+                fingerprint(path)? == *sig,
+                "source changed since registration"
+            );
+        }
+        if let Some(remote) = &self.remote {
+            remote.verify()?;
+        }
+        Ok(())
+    }
+    fn identity_descriptor(&self) -> Option<Value> {
+        self.descriptor.clone()
+    }
+    fn begin_query_budget(&self) -> Result<()> {
+        if let Some(remote) = &self.remote {
+            remote.begin_query_budget()
+        } else {
+            self.verify_immutable()
+        }
+    }
+    fn begin_verified_query(&self, renew: bool) -> Result<()> {
+        if let Some(remote) = &self.remote {
+            remote.begin_verified_query(renew)
+        } else {
+            self.verify_immutable()
+        }
+    }
+    fn end_verified_query(&self) -> Result<()> {
+        if let Some(remote) = &self.remote {
+            remote.end_verified_query()
+        } else {
+            self.verify_immutable()
+        }
+    }
+    fn diagnostics(&self) -> Value {
+        json!({"kind":if self.remote.is_some(){"http_original"}else{"local_original"},"content_verification_bytes":self.verified_bytes,"content_verification_ms":self.verification_ms,"format_probe_bytes":self.format_probe_bytes,"metadata_prefix_seed_bytes":self.metadata_prefix_seed_bytes,"identity_policy":if self.descriptor.is_some(){if self.verified_bytes>0{"verified_registration"}else{"trusted_manifest"}}else{"session_stat_or_object_validator"},"remote":self.remote.as_ref().map(|r|r.metrics()),"adapter_retained_capacity_bytes":self.retained_memory_bound(),"physical_bytes_known":self.remote.is_some(),"gdal_block_cache":"shared_only_for_identical_data_and_mask_block_footprints_then_flushed_on_transition_or_window_exit","decode_band_factor":self.decode_band_factor,"decoder_cache_flushes":self.decoder_cache_flushes.get(),"decoder_cache_reused_chunks":self.decoder_cache_reused_chunks.get()})
+    }
+    fn registered_http_identity(&self) -> Option<crate::io::RemoteIdentity> {
+        self.remote
+            .as_ref()
+            .and_then(|source| source.registered_identity())
+    }
+    fn retained_memory_bound(&self) -> usize {
+        crate::source::NATIVE_SOURCE_RETAINED_BYTES
+            + self.extra_encoded_cache_bytes
+            + self
+                .pixel_admission
+                .as_ref()
+                .map_or(0, |p| p.encoded + PIXEL_CODEC_RESERVE)
+    }
+    fn access_layout(&self) -> Value {
+        let mut layout = self.interpretation.clone();
+        if let Some(p) = &self.pixel_admission {
+            // Caller output + raw output + aligned scratch =34bytes/cell for
+            // three32-bit bands. Keep64KiB alignment/descriptor headroom.
+            let transport = self.remote.as_ref().map_or(0, |r| r.range_bound() + 65536);
+            let fixed = p.width * p.height * (9 * p.bands + 4)
+                + 2 * p.encoded
+                + PIXEL_CODEC_RESERVE
+                + transport
+                + 16 * 1024 * 1024
+                + 65536;
+            let safe_cells = (128usize * 1024 * 1024).saturating_sub(fixed) / 34;
+            layout["raw_window_admission"] = json!({"policy":"gtiff_pixel32_deflate1_single_tile_v1", "block_width":p.width,"block_height":p.height,"max_cells":65536,"safe_cells_three_bands_128m":safe_cells.min(65536),"encoded_high_water_bytes":p.encoded,"codec_reserve_bytes":PIXEL_CODEC_RESERVE,"retained_source_bytes":self.retained_memory_bound(),"working_api_cap_bytes":128*1024*1024,"scope":"base_view_all_valid_or_generated_nodata_masks"});
+        }
+        // Physical capacity identity belongs to execution planning, never the
+        // portable mathematical/source interpretation digest.
+        layout["physical_access"] = json!({"mask_block_sizes":self.mask_blocks,
+            "decode_band_factor":self.decode_band_factor,
+            "transport_scratch_bound_bytes":self.remote.as_ref().map_or(0,|r|r.range_bound()+65536)});
+        layout
+    }
+    fn read_buffer_bound(&self, w: usize, h: usize, indices: &[usize]) -> Result<usize> {
+        self.bounded_read_buffer(w, h, indices, self.max_read_bands())
+    }
     fn read_selected_window_cancellable(
         &self,
         x: usize,
@@ -919,6 +1308,21 @@ impl WindowSource for SourceAdapter {
         } else {
             None
         };
+        let _mask_guard = QualifiedMaskGuard(self);
+        let prepare = |selected: usize, row: usize, rows: usize| {
+            if selected % 2 == 0 {
+                self.prepare_remote_blocks(
+                    x,
+                    y + row,
+                    w,
+                    rows,
+                    &indices[selected..(selected + 2).min(indices.len())],
+                    cancel,
+                )
+            } else {
+                Ok(())
+            }
+        };
         let result = read_selected_window_mapped(
             &self.dataset,
             &self.metadata,
@@ -930,6 +1334,7 @@ impl WindowSource for SourceAdapter {
             max_bytes,
             cancel,
             Some(&self.mapping),
+            Some(&prepare),
         );
         if let Some(remote) = &self.remote {
             remote.check_error()?;
@@ -968,6 +1373,7 @@ fn read_raw_window_mapped(
     height: usize,
     indices: &[usize],
     cancel: &AtomicBool,
+    prepare: Option<&dyn Fn(usize, usize, usize) -> Result<()>>,
 ) -> Result<(RawWindow, ReadMetrics)> {
     check_cancel(cancel)?;
     ensure!(
@@ -1051,6 +1457,9 @@ fn read_raw_window_mapped(
         }
         for (selected, &index) in indices.iter().enumerate() {
             check_cancel(cancel)?;
+            if let Some(prepare) = prepare {
+                prepare(selected, row, rows)?;
+            }
             let kind = raw_metadata.bands[index].scalar_type;
             let begin = row * width;
             let output = &mut bands[selected];

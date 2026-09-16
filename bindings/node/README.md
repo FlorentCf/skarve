@@ -1,8 +1,11 @@
 # Skarve for Node.js
 
-Linux x86-64 experimental build `0.1.1-alpha.0`. Install the matching private `.tgz`
-with `npm install ./skarve-engine-0.1.1-alpha.0.tgz`. The native core and Koffi
-are included; Ubuntu 24.04 with GDAL 3.8.4 is the qualified runtime.
+Source-only experimental candidate `0.1.1-alpha.2`; no registry package or public
+prebuilt binary is provided. Build and package locally using the installation
+guide below. When a matching local archive has been prepared, install it with
+`npm install ./skarve-engine-0.1.1-alpha.2.tgz`. Local Node archives include the
+native core and Koffi; the qualified runtime is Ubuntu 24.04 Linux x86-64 with
+GDAL 3.8.4 and libdeflate 1.19.
 
 See the repository [installation guide](https://github.com/FlorentCf/skarve/blob/main/docs/INSTALL.md)
 and [source-owned workflows](https://github.com/FlorentCf/skarve/blob/main/docs/WORKFLOWS.md).
@@ -17,3 +20,6 @@ Experimental SKV v0 conversion is available with `await source.compile('data.skv
 the completed file can serve through `infuse`, `carve` and `cleave` without the original.
 The format is experimental and carries no permanent compatibility promise.
 Apache-2.0 applies to Skarve; bundled dependencies retain their own licenses and notices.
+
+For original scalar arrays and independent mask bytes, use `source.readWindow`.
+See [source-window ownership, verified queries and resource limits](https://github.com/FlorentCf/skarve/blob/main/docs/source-windows.md) before consuming raw results.

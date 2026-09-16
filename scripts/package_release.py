@@ -261,6 +261,7 @@ def main():
             destination.mkdir(parents=True);shutil.copy2(library,destination/'libraster_engine.so')
             if sha(destination/'libraster_engine.so')!=library_sha:raise SystemExit('Native library changed while copying.')
             copy_verified('include/skarve_bulk.h',destination/'skarve_bulk.h',source_hashes)
+            copy_verified('include/skarve_source_buffer.h',destination/'skarve_source_buffer.h',source_hashes)
             if include_cli:
                 shutil.copy2(binary,destination/'skarve')
                 if sha(destination/'skarve')!=binary_sha:raise SystemExit('Native CLI changed while copying.')

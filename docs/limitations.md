@@ -9,7 +9,7 @@
   See the precise [capability manifest](capability-manifest.json).
 - Experimental SKV v0 adds a self-contained optional snapshot for the declared
   typed TIFF/COG contract. It preserves raw sample/mask bits and exposed metadata,
-  with64 stored bands,48,000 typed leaf chunks and8GiB per object. It does not
+  with 64 stored bands, 131,072 typed leaf chunks and 8 GiB per object. It does not
   reconstruct arbitrary TIFF tags. See [SKV](skv.md) for limits and versioning.
 - Invalid geometry is rejected, not repaired. Difficult positive thin native
   intersections retain strict safeguards; optional exactextract has its own
@@ -19,8 +19,10 @@
 - Optional backend operation/source/index combinations are finite. Unsupported
   statistics, policies or execution envelopes fail; integer counts and spherical
   semantics cannot be inferred from fractional support.
-- One native worker executes an ordinary job. A separate application scheduler
-  must bound process/session concurrency and account for its own memory.
+- Ordinary native jobs run serially per session. Required-range HTTP preparation
+  can opt into two bounded transport workers with `SKARVE_HTTP_CONCURRENCY=2`.
+  A separate application scheduler must bound process/session concurrency and
+  account for its own memory. See [source-window limits](source-windows.md).
 
 The native direct path stays available without preparation or exactextract.
 [SUPPORT.md](SUPPORT.md) describes deployment and identity boundaries;

@@ -1,6 +1,6 @@
 [package]
 name = "skarve"
-version = "0.1.1-alpha.1"
+version = "0.1.1-alpha.2"
 edition = "2024"
 publish = false
 description = "An embeddable raster query engine with explicit numerical semantics and bounded execution"
@@ -11,11 +11,11 @@ readme = "README.md"
 authors = ["Florent Chif"]
 keywords = ["raster", "geospatial", "statistics", "geotiff", "skv"]
 categories = ["science::geo", "command-line-utilities"]
-# Publication remains disabled until source-license and distribution approval.
+# Registry publication remains disabled pending explicit owner approval.
 # Explicit membership prevents private benchmark archives entering a .crate.
 include = [
     "/Cargo.toml", "/Cargo.lock", "/build.rs", "/rust-toolchain.toml",
-    "/src/**", "/native/exactextract/**", "/tests/*.rs", "/tests/support/**",
+    "/src/**", "/include/*.h", "/native/exactextract/**", "/tests/*.rs", "/tests/support/**",
     "/fixtures/analytical.json", "/fixtures/spherical_analytical.json",
     "/examples/*.rs", "/examples/*.py", "/examples/*.mjs", "/docs/*.md",
     "/scripts/build.py", "/scripts/test-rust-package.py",

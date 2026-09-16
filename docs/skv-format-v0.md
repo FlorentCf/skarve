@@ -19,7 +19,7 @@ interpretation; valid nonfinite results reject or are excluded under that same
 contract, never silently repaired.
 
 All dimensions/counts/offsets use checked arithmetic. Grid limits remain the
-engine's limits; a v0 object is at most 8 GiB and 48,000 typed leaf chunks
+engine's limits; a v0 object is at most 8 GiB and 131,072 typed leaf chunks
 (spatial chunks multiplied by stored bands). The latter bounds visited-range
 bookkeeping and explicit verification work; it is an experimental implementation
 limit. Chunk edges are 64, 128 or 256 pixels;
@@ -313,11 +313,21 @@ ordinary `WindowSource` interface; raw reads remain valid without summaries.
 Remote reads use the existing bounded conditional range transport and never read
 the original provenance location. Whole-job failure publishes no successful
 partial answer. Cancellation remains cooperative with declared transport limits.
-The reader retains at most64 directory pages and48,000 visited payload intervals,
-and records at most4,096 typed trace events. There is no decoded payload cache in
+The reader retains at most 64 directory pages and reserves visited payload
+intervals from the validated physical payload count (at most 131,072), rather
+than a fixed global maximum. It records at most 4,096 typed trace events. There is no decoded payload cache in
 this first version. The configured transport cache remains bounded separately;
 the reader's aggregate retained bound includes both. A source handle admits at
-most65,536 logical reads and the existing configured HTTP request/byte limits.
+most 65,536 lifetime logical reads and the existing configured HTTP request/byte
+limits. Explicit query renewal resets transport allowances, not this separate
+SKV lifetime limit. Full local verification uses a finite record/page-derived
+allowance and restores the serving limit afterward, including on failure.
+Remote verification retains ordinary limits.
+
+The capacity increase changes no v0 bytes or interpretation: smaller existing
+objects remain readable. Older readers can reject objects above their 48,000
+typed-leaf implementation limit. An unchanged format version does not imply
+that every older runtime admits the larger capacity.
 
 The reader sorts at most 64 selected records within each requested spatial tile
 and keeps a bounded queue of at most 256 records across adjacent tiles. It can

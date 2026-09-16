@@ -3,6 +3,89 @@
 use super::*;
 
 impl SkvSource {
+    // Build only the ordinary reader's exact physical demand ranges. This
+    // bounded prepass never materializes windows or decodes payloads. Large
+    // windows stay on the existing path rather than growing a global plan.
+    pub(super) fn prepare_native_window(
+        &self,
+        window: [usize; 4],
+        bands: &[usize],
+        cancel: &AtomicBool,
+    ) -> Result<()> {
+        if !crate::io::concurrent_transport_enabled()
+            || !matches!(&self.state.borrow().store, Store::Remote(s) if s.cache_byte_capacity() > 0)
+        {
+            return Ok(());
+        }
+        let [x, y, w, h] = window;
+        let edge = self.header.chunk_edge;
+        let nx = self.metadata.grid.width.div_ceil(edge);
+        let tiles = ((x + w - 1) / edge - x / edge + 1)
+            .checked_mul((y + h - 1) / edge - y / edge + 1)
+            .context("SKV plan overflow")?;
+        if tiles > 128 || (tiles == 1 && bands.len() == 1) {
+            return Ok(());
+        }
+        let mut limit = self.state.borrow().store.raw_range_limit();
+        if self.header.grouped() {
+            limit = limit.min(group::MAX_BYTES);
+        }
+        let mut demands = Vec::with_capacity(128);
+        let (mut offset, mut length, mut count) = (0, 0usize, 0usize);
+        for ty in y / edge..=(y + h - 1) / edge {
+            for tx in x / edge..=(x + w - 1) / edge {
+                let mut selected = self
+                    .selected_leaf_records(ty * nx + tx, bands, cancel)?
+                    .into_iter();
+                while let Some(entry) = selected.next() {
+                    let members =
+                        selected_group_members(self.header.grouped(), &entry, selected.as_slice());
+                    let size = u32_at(&entry.record, 8) as usize;
+                    ensure!(
+                        size <= limit,
+                        "SKV payload exceeds per-request byte budget (configured range limit)"
+                    );
+                    if count > 0
+                        && !pending_range_fits(offset, length, count, &entry, members, limit)
+                    {
+                        if demands.len() == 128 {
+                            return Ok(());
+                        }
+                        demands.push((offset, length as u64));
+                        count = 0;
+                    }
+                    if count == 0 {
+                        offset = u64_at(&entry.record, 0);
+                        length = 0;
+                    }
+                    length += size;
+                    count += members;
+                    for _ in 1..members {
+                        selected.next().expect("counted group member");
+                    }
+                }
+            }
+        }
+        if count > 0 {
+            if demands.len() == 128 {
+                return Ok(());
+            }
+            demands.push((offset, length as u64));
+        }
+        demands.sort_unstable();
+        demands.dedup();
+        if demands.windows(2).any(|w| w[0].0 + w[0].1 > w[1].0) {
+            return Ok(());
+        }
+        let mut state = self.state.borrow_mut();
+        if let Store::Remote(source) = &mut state.store {
+            // No decoder/output coexist here. Existing8MiB per-read scratch,
+            // minus descriptors/directory/planner overhead; cache is unchanged.
+            source.prefetch_exact_ranges(&demands, (8 << 20) - (256 << 10), cancel)?;
+        }
+        Ok(())
+    }
+
     pub(super) fn selected_leaf_records(
         &self,
         tile: usize,

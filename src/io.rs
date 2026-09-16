@@ -11,7 +11,7 @@ use std::{
     net::{TcpListener, TcpStream},
     path::{Path, PathBuf},
     sync::{
-        Arc, Mutex,
+        Arc, Mutex, OnceLock,
         atomic::{AtomicBool, AtomicU64, Ordering},
     },
     thread::{self, JoinHandle},
@@ -43,15 +43,35 @@ impl Default for RemoteLimits {
         }
     }
 }
+/// Registration identity, not by itself evidence of a new physical check.
+/// No locator or credentials are exposed. Session finalization binds this
+/// record to the source handle after successful conditional verification.
+#[derive(Clone, Debug, Serialize)]
+pub struct RemoteIdentity {
+    pub source_id: String,
+    pub etag: String,
+    pub byte_length: u64,
+}
 #[derive(Clone, Debug, Default, Serialize)]
 pub struct RemoteMetrics {
+    /// Explicit query budgets retain cumulative traffic counters. Only the range
+    /// detail vector and logical-read allowance restart at this boundary.
+    pub budget_epoch: u64,
+    pub budget_requests_base: u64,
+    pub budget_received_bytes_base: u64,
     pub requests: u64,
+    pub parallel_batches: u64,
+    pub parallel_requests: u64,
+    pub parallel_scratch_bound_peak_bytes: usize,
     pub head_requests: u64,
     pub get_requests: u64,
     /// HTTP body bytes consumed; network stack header/read-ahead overhead is separate.
     pub received_bytes: u64,
     pub accepted_bytes: u64,
     pub failed_requests: u64,
+    pub request_ms: f64,
+    /// Bounded details for the current explicit query budget; counters above
+    /// remain cumulative across retained-source query boundaries.
     pub ranges: Vec<RemoteRange>,
     pub cache_hits: u64,
     /// Hits served from a previously fetched superset, without extra I/O.
@@ -62,6 +82,9 @@ pub struct RemoteMetrics {
     pub cache_resident_bytes: usize,
     pub cache_peak_bytes: usize,
     pub cache_capacity_bytes: usize,
+    pub small_read_page_fetches: u64,
+    /// Extra bytes beyond the triggering small request, not zero-overread.
+    pub small_read_page_overread_bytes: u64,
 }
 #[derive(Clone, Debug, Serialize)]
 pub struct RemoteRange {
@@ -73,6 +96,7 @@ pub struct RemoteRange {
 /// The caller allowlists the URL; never use an untrusted demo request URL here.
 pub struct RangeSource {
     client: Client,
+    headers: header::HeaderMap,
     url: reqwest::Url,
     pub length: u64,
     pub etag: String,
@@ -83,6 +107,7 @@ pub struct RangeSource {
     cache: std::collections::VecDeque<((u64, u64), Vec<u8>)>,
     logical_reads: u64,
     invalidated: bool,
+    verified_query: bool,
 }
 /// A validated registration range, consumed once by the format reader. It is
 /// separate from the optional response cache and already charged to transport.
@@ -134,7 +159,112 @@ fn strong_etag(headers: &header::HeaderMap) -> Result<String> {
     );
     Ok(value.to_owned())
 }
+// Credentials are request-local. Pool keys contain only scheme/host/port, never
+// URL paths, signed queries, headers or source-generation identities. Eviction
+// drops only the registry reference; active readers keep their own Client clone.
+fn transport_client(url: &reqwest::Url) -> Result<Client> {
+    fn build() -> Result<Client> {
+        Ok(Client::builder()
+            .no_proxy()
+            .redirect(reqwest::redirect::Policy::none())
+            .pool_max_idle_per_host(2)
+            .pool_idle_timeout(Duration::from_secs(30))
+            .build()?)
+    }
+    if std::env::var("SKARVE_HTTP_SHARED_POOL").as_deref() == Ok("0") {
+        return build();
+    }
+    static POOLS: OnceLock<Mutex<std::collections::VecDeque<(String, Client)>>> = OnceLock::new();
+    let key = url.origin().ascii_serialization();
+    let mut pools = POOLS
+        .get_or_init(Default::default)
+        .lock()
+        .map_err(|_| anyhow!("HTTP pool registry poisoned"))?;
+    if let Some(i) = pools.iter().position(|(origin, _)| *origin == key) {
+        let entry = pools.remove(i).expect("pool position");
+        let client = entry.1.clone();
+        pools.push_back(entry);
+        return Ok(client);
+    }
+    let client = build()?;
+    if pools.len() == 8 {
+        pools.pop_front();
+    }
+    pools.push_back((key, client.clone()));
+    Ok(client)
+}
+
+pub(crate) fn concurrent_transport_enabled() -> bool {
+    std::env::var("SKARVE_HTTP_CONCURRENCY").as_deref() == Ok("2")
+}
+const TRANSPORT_WORKER_STACK: usize = 256 << 10;
+const CONCURRENT_CONTROL_BYTES: usize =
+    2 * TRANSPORT_WORKER_STACK + 2 * HTTP_SCRATCH_BYTES + 16_384;
+
 impl RangeSource {
+    pub(crate) fn registered_identity(&self) -> RemoteIdentity {
+        RemoteIdentity {
+            source_id: self.source_id.clone(),
+            etag: self.etag.clone(),
+            byte_length: self.length,
+        }
+    }
+    pub(crate) fn begin_verified_query(&mut self, renew: bool) -> Result<()> {
+        ensure!(!self.verified_query, "source already has a verified query");
+        ensure!(
+            !self.invalidated,
+            "remote source handle invalidated by an earlier failure"
+        );
+        check_cancel(&self.cancel)?;
+        if renew {
+            self.begin_query_budget()?;
+        }
+        // Registration already bound the cached bytes to this strong ETag.
+        // Uncached reads remain conditional. A changed source therefore either
+        // rejects a payload read or the mandatory final physical check; no
+        // provisional result becomes useful before that check succeeds.
+        self.verified_query = true;
+        Ok(())
+    }
+    pub(crate) fn end_verified_query(&mut self) -> Result<()> {
+        ensure!(self.verified_query, "source has no verified query");
+        self.verified_query = false;
+        self.verify_remote()
+    }
+    /// Start another explicitly bounded useful query on the same immutable
+    /// source. This does not repair failed handles, replace identity, erase
+    /// cumulative traffic, or suppress the readers' ordinary revalidation.
+    pub(crate) fn begin_query_budget(&mut self) -> Result<()> {
+        ensure!(
+            !self.verified_query,
+            "cannot renew a budget inside a verified query"
+        );
+        ensure!(
+            !self.invalidated,
+            "remote source handle invalidated by an earlier failure"
+        );
+        check_cancel(&self.cancel)?;
+        self.metrics.budget_epoch = self
+            .metrics
+            .budget_epoch
+            .checked_add(1)
+            .context("source query budget counter overflow")?;
+        self.metrics.budget_requests_base = self.metrics.requests;
+        self.metrics.budget_received_bytes_base = self.metrics.received_bytes;
+        self.metrics.ranges.clear();
+        self.logical_reads = 0;
+        Ok(())
+    }
+    fn query_requests(&self) -> u64 {
+        self.metrics
+            .requests
+            .saturating_sub(self.metrics.budget_requests_base)
+    }
+    fn query_received_bytes(&self) -> u64 {
+        self.metrics
+            .received_bytes
+            .saturating_sub(self.metrics.budget_received_bytes_base)
+    }
     pub fn register(url: &str, limits: RemoteLimits) -> Result<Self> {
         Self::register_cancellable(url, limits, Arc::new(AtomicBool::new(false)))
     }
@@ -265,12 +395,7 @@ impl RangeSource {
                 insert(name, &value)?;
             }
         }
-        let client = Client::builder()
-            .no_proxy()
-            .redirect(reqwest::redirect::Policy::none())
-            .timeout(Duration::from_secs(limits.timeout_seconds))
-            .default_headers(headers)
-            .build()?;
+        let client = transport_client(&url)?;
         check_cancel(&cancel)?;
         check_cancel(operation_cancel)?;
         // A presigned S3 GET URL is method-bound and cannot generally serve HEAD.
@@ -292,7 +417,11 @@ impl RangeSource {
             request = request.header(header::IF_MATCH, etag);
         }
         let request_started = Instant::now();
-        let response = request.header(header::ACCEPT_ENCODING, "identity").send();
+        let response = request
+            .headers(headers.clone())
+            .timeout(Duration::from_secs(limits.timeout_seconds))
+            .header(header::ACCEPT_ENCODING, "identity")
+            .send();
         check_cancel(&cancel)?;
         check_cancel(operation_cancel)?;
         let response = response.map_err(|_| anyhow!("remote metadata request failed"))?;
@@ -398,6 +527,7 @@ impl RangeSource {
         Ok((
             Self {
                 client,
+                headers,
                 url,
                 length,
                 etag,
@@ -425,6 +555,7 @@ impl RangeSource {
                 cache: std::collections::VecDeque::new(),
                 logical_reads: 0,
                 invalidated: false,
+                verified_query: false,
             },
             registered_prefix,
         ))
@@ -522,7 +653,7 @@ impl RangeSource {
                 planned.push((offset, length));
             }
         }
-        if planned.len() >= missing {
+        if planned.len() >= missing && !(concurrent_transport_enabled() && planned.len() >= 2) {
             return no_op(&self.cancel);
         }
         let planned_bytes = planned.iter().try_fold(0u64, |sum, (_, length)| {
@@ -542,13 +673,11 @@ impl RangeSource {
             .is_none_or(|n| n > self.cache_byte_capacity())
             || protected.len() + planned.len() > 2048
             || self
-                .metrics
-                .requests
+                .query_requests()
                 .checked_add(planned.len() as u64)
                 .is_none_or(|n| n > self.limits.max_requests)
             || self
-                .metrics
-                .received_bytes
+                .query_received_bytes()
                 .checked_add(planned_bytes)
                 .is_none_or(|n| n > self.limits.max_download_bytes)
             || self
@@ -581,25 +710,195 @@ impl RangeSource {
         };
         result.planning_ms = started.elapsed().as_secs_f64() * 1000.0;
         let fetch_started = Instant::now();
-        for (offset, length) in planned {
-            let event_started = Instant::now();
-            // At most one returned response is live here. Its cloned cache
-            // entry is charged above; HTTP_SCRATCH_BYTES and this response are
-            // charged to scratch_limit, separately from retained cache bytes.
-            drop(self.read_range_cancellable(offset, length, cancel)?);
-            result.events.push((
-                offset,
-                length,
-                event_started.duration_since(started).as_secs_f64() * 1000.0,
-                event_started.elapsed().as_secs_f64() * 1000.0,
-            ));
+        let worker_identity_bytes = self
+            .headers
+            .iter()
+            .map(|(name, value)| name.as_str().len() + value.len() + 128)
+            .sum::<usize>()
+            .saturating_add(self.url.as_str().len())
+            .saturating_add(self.etag.len())
+            .saturating_add(self.source_id.len());
+        let worker_overhead =
+            CONCURRENT_CONTROL_BYTES.saturating_add(worker_identity_bytes.saturating_mul(4));
+        let mut next = 0;
+        while next < planned.len() {
+            let pair = planned.get(next..next + 2);
+            if concurrent_transport_enabled()
+                && pair.is_some_and(|ranges| {
+                    ranges
+                        .iter()
+                        .map(|r| r.1 as usize)
+                        .sum::<usize>()
+                        .checked_add(worker_overhead + PREFETCH_CONTROL_BYTES)
+                        .is_some_and(|n| n <= scratch_limit)
+                })
+            {
+                let event_started = Instant::now();
+                let charge = pair
+                    .expect("checked pair")
+                    .iter()
+                    .map(|r| r.1 as usize)
+                    .sum::<usize>()
+                    + worker_overhead
+                    + PREFETCH_CONTROL_BYTES;
+                self.metrics.parallel_scratch_bound_peak_bytes =
+                    self.metrics.parallel_scratch_bound_peak_bytes.max(charge);
+                self.prefetch_parallel_pair(pair.expect("checked pair"), cancel)?;
+                for &(offset, length) in pair.expect("checked pair") {
+                    result.events.push((
+                        offset,
+                        length,
+                        event_started.duration_since(started).as_secs_f64() * 1000.,
+                        event_started.elapsed().as_secs_f64() * 1000.,
+                    ));
+                }
+                next += 2;
+            } else {
+                let (offset, length) = planned[next];
+                let event_started = Instant::now();
+                drop(self.read_range_cancellable(offset, length, cancel)?);
+                result.events.push((
+                    offset,
+                    length,
+                    event_started.duration_since(started).as_secs_f64() * 1000.,
+                    event_started.elapsed().as_secs_f64() * 1000.,
+                ));
+                next += 1;
+            }
         }
         result.fetch_ms = fetch_started.elapsed().as_secs_f64() * 1000.0;
         Ok(result)
     }
+    // Called only after the entire plan's request/download/cache reservation.
+    // Each worker owns response bytes and metrics; no source/cache/native handle
+    // is shared mutably. Both workers join before any cache result is published.
+    fn prefetch_parallel_pair(&mut self, ranges: &[(u64, u64)], cancel: &AtomicBool) -> Result<()> {
+        let (outcomes, mut failed) = thread::scope(|scope| {
+            let mut failure = None;
+            let mut handles = Vec::with_capacity(2);
+            for &(offset, length) in ranges {
+                let mut worker = Self {
+                    client: self.client.clone(),
+                    headers: self.headers.clone(),
+                    url: self.url.clone(),
+                    length: self.length,
+                    etag: self.etag.clone(),
+                    source_id: self.source_id.clone(),
+                    metrics: RemoteMetrics::default(),
+                    limits: self.limits.clone(),
+                    cancel: self.cancel.clone(),
+                    cache: Default::default(),
+                    logical_reads: 0,
+                    invalidated: false,
+                    verified_query: false,
+                };
+                let spawned = thread::Builder::new()
+                    .name("skarve-range".into())
+                    .stack_size(TRANSPORT_WORKER_STACK)
+                    .spawn_scoped(scope, move || {
+                        let result = worker.read_uncached_range(offset, length, cancel);
+                        (offset, length, result, worker.metrics)
+                    });
+                match spawned {
+                    Ok(handle) => handles.push(handle),
+                    Err(e) => {
+                        failure = Some(anyhow!("HTTP worker creation failed: {e}"));
+                        break;
+                    }
+                }
+            }
+            let mut outcomes = Vec::with_capacity(handles.len());
+            for handle in handles {
+                match handle.join() {
+                    Ok(outcome) => outcomes.push(outcome),
+                    Err(_) => {
+                        failure = Some(anyhow!("HTTP worker panicked"));
+                    }
+                }
+            }
+            (outcomes, failure)
+        });
+        for (_, _, result, metrics) in &outcomes {
+            self.metrics.requests += metrics.requests;
+            self.metrics.get_requests += metrics.get_requests;
+            self.metrics.received_bytes += metrics.received_bytes;
+            self.metrics.accepted_bytes += metrics.accepted_bytes;
+            self.metrics.failed_requests += metrics.failed_requests;
+            self.metrics.request_ms += metrics.request_ms;
+            self.metrics.ranges.extend(metrics.ranges.iter().cloned());
+            self.metrics.cache_misses += 1;
+            self.logical_reads += 1;
+            if let Err(error) = result {
+                failed = Some(anyhow!("{error:#}"));
+            }
+        }
+        if let Some(error) = failed
+            .or_else(|| check_cancel(cancel).err())
+            .or_else(|| check_cancel(&self.cancel).err())
+        {
+            self.invalidated = true;
+            self.cache.clear();
+            self.metrics.cache_resident_bytes = 0;
+            return Err(error);
+        }
+        self.metrics.parallel_batches += 1;
+        self.metrics.parallel_requests += ranges.len() as u64;
+        for (offset, length, result, _) in outcomes {
+            let bytes = result.expect("all responses checked");
+            let charge = bytes.len() + 128;
+            while self.metrics.cache_resident_bytes + charge > self.cache_byte_capacity()
+                || self.cache.len() >= 2048
+            {
+                let (_, old) = self.cache.pop_front().expect("admitted cache capacity");
+                self.metrics.cache_resident_bytes -= old.len() + 128;
+                self.metrics.cache_evictions += 1;
+            }
+            self.metrics.cache_resident_bytes += charge;
+            self.metrics.cache_peak_bytes = self
+                .metrics
+                .cache_peak_bytes
+                .max(self.metrics.cache_resident_bytes);
+            self.cache.push_back(((offset, length), bytes));
+        }
+        Ok(())
+    }
     pub fn read_range(&mut self, offset: u64, length: u64) -> Result<Vec<u8>> {
         let cancel = self.cancel.clone();
         self.read_range_cancellable(offset, length, &cancel)
+    }
+    /// TIFF VSI only. One charged cache page replaces tiny remote misses; large
+    /// payload reads and independent identity verification retain exact ranges.
+    pub(super) fn read_small_page_range(
+        &mut self,
+        offset: u64,
+        length: u64,
+        page_bytes: usize,
+    ) -> Result<Vec<u8>> {
+        let end = offset.checked_add(length).context("HTTP range overflow")?;
+        let cached = self
+            .cache
+            .iter()
+            .any(|((begin, size), _)| offset >= *begin && end <= begin.saturating_add(*size));
+        if page_bytes == 0 || length == 0 || length > 4096 || end > self.length || cached {
+            return self.read_range(offset, length);
+        }
+        let page = page_bytes as u64;
+        let begin = offset / page * page;
+        let bytes = page.min(self.length - begin);
+        // Never enlarge any source budget or retry a failed paged request.
+        // A straddling request or insufficient remaining byte budget stays exact.
+        if end > begin + bytes
+            || bytes > self.limits.max_range_bytes
+            || bytes as usize + 128 > self.metrics.cache_capacity_bytes
+            || self.query_received_bytes().saturating_add(bytes) > self.limits.max_download_bytes
+        {
+            return self.read_range(offset, length);
+        }
+        let data = self.read_range(begin, bytes)?;
+        self.metrics.small_read_page_fetches += 1;
+        self.metrics.small_read_page_overread_bytes += bytes.saturating_sub(length);
+        let start = (offset - begin) as usize;
+        Ok(data[start..start + length as usize].to_vec())
     }
     /// Borrowed per-operation cancellation supplements the lifetime flag. The
     /// borrow cannot outlive this synchronous read; body reads check both flags.
@@ -683,19 +982,20 @@ impl RangeSource {
         let end = offset.checked_add(length).context("HTTP range overflow")?;
         ensure!(end <= self.length, "HTTP range lies outside source");
         ensure!(
-            self.metrics.requests < self.limits.max_requests,
+            self.query_requests() < self.limits.max_requests,
             "HTTP request budget exhausted"
         );
         ensure!(
-            self.metrics
-                .received_bytes
+            self.query_received_bytes()
                 .checked_add(length)
                 .is_some_and(|n| n <= self.limits.max_download_bytes),
             "HTTP download budget exhausted"
         );
         self.metrics.requests += 1;
         self.metrics.get_requests += 1;
+        let started = Instant::now();
         let result = self.read_range_inner(offset, length, cancel);
+        self.metrics.request_ms += started.elapsed().as_secs_f64() * 1000.0;
         self.metrics.ranges.push(RemoteRange {
             offset,
             length,
@@ -714,6 +1014,12 @@ impl RangeSource {
             !self.invalidated,
             "remote source handle invalidated by an earlier failure"
         );
+        check_cancel(&self.cancel)?;
+        // Explicit transaction mode only: intermediate values remain provisional
+        // until end_verified_query physically validates the entire operation.
+        if self.verified_query {
+            return Ok(());
+        }
         // Revalidation must contact the provider even when the byte is cached.
         if self.url.query().is_some() {
             let cancel = self.cancel.clone();
@@ -722,15 +1028,18 @@ impl RangeSource {
         }
         check_cancel(&self.cancel)?;
         ensure!(
-            self.metrics.requests < self.limits.max_requests,
+            self.query_requests() < self.limits.max_requests,
             "HTTP request budget exhausted"
         );
         self.metrics.requests += 1;
         self.metrics.head_requests += 1;
+        let started = Instant::now();
         let result = (|| {
             let response = self
                 .client
                 .head(self.url.clone())
+                .headers(self.headers.clone())
+                .timeout(Duration::from_secs(self.limits.timeout_seconds))
                 .header(header::IF_MATCH, &self.etag)
                 .header(header::ACCEPT_ENCODING, "identity")
                 .send()
@@ -748,6 +1057,7 @@ impl RangeSource {
             );
             check_cancel(&self.cancel)
         })();
+        self.metrics.request_ms += started.elapsed().as_secs_f64() * 1000.0;
         if result.is_err() {
             self.metrics.failed_requests += 1;
             self.invalidated = true;
@@ -768,6 +1078,8 @@ impl RangeSource {
         let response = self
             .client
             .get(self.url.clone())
+            .headers(self.headers.clone())
+            .timeout(Duration::from_secs(self.limits.timeout_seconds))
             .header(header::RANGE, format!("bytes={offset}-{end}"))
             .header(header::IF_MATCH, &self.etag)
             .header(header::ACCEPT_ENCODING, "identity")
@@ -1457,7 +1769,7 @@ fn read_selected_window(
     cancel: &AtomicBool,
 ) -> Result<(Raster, ReadMetrics)> {
     read_selected_window_mapped(
-        dataset, meta, x, y, width, height, indices, max_bytes, cancel, None,
+        dataset, meta, x, y, width, height, indices, max_bytes, cancel, None, None,
     )
 }
 #[allow(clippy::too_many_arguments)]
@@ -1472,6 +1784,7 @@ fn read_selected_window_mapped(
     max_bytes: usize,
     cancel: &AtomicBool,
     mapping: Option<&[usize]>,
+    prepare: Option<&dyn Fn(usize, usize, usize) -> Result<()>>,
 ) -> Result<(Raster, ReadMetrics)> {
     check_cancel(cancel)?;
     ensure!(
@@ -1613,6 +1926,9 @@ fn read_selected_window_mapped(
                 reused_chunks += 1;
             }
             for selected in 0..indices.len() {
+                if let Some(prepare) = prepare {
+                    prepare(selected, row, rows)?;
+                }
                 read_chunk(selected, row)?;
             }
             prior = footprint;
@@ -1732,6 +2048,65 @@ mod range_operation_tests {
 mod range_prefetch_tests {
     use super::*;
 
+    #[test]
+    fn verified_queries_bracket_cached_windows_without_renewing_limits() {
+        let server = Server::new(None);
+        let mut reader = source(&format!("{}?signed=1", server.url), 4096);
+        reader.begin_verified_query(false).unwrap();
+        for _ in 0..4 {
+            reader.verify_remote().unwrap();
+            assert_eq!(reader.read_range(128, 32).unwrap(), bytes(128, 32));
+            reader.verify_remote().unwrap();
+        }
+        assert!(reader.begin_verified_query(true).is_err());
+        assert!(reader.begin_query_budget().is_err());
+        assert_eq!(reader.metrics.budget_epoch, 0);
+        assert_eq!(reader.metrics.requests, 1);
+        reader.end_verified_query().unwrap();
+        assert_eq!(reader.metrics.requests, 2);
+        assert_eq!(*server.ranges.lock().unwrap(), vec![(128, 32), (0, 1)]);
+        assert!(reader.end_verified_query().is_err());
+        reader.verify_remote().unwrap(); // Ordinary checks resume immediately.
+        assert_eq!(reader.metrics.requests, 3);
+        reader.begin_verified_query(true).unwrap();
+        reader.cancel.store(true, Ordering::Relaxed);
+        assert!(reader.verify_remote().is_err());
+        assert!(reader.end_verified_query().is_err());
+    }
+
+    #[test]
+    fn explicit_query_budgets_keep_cache_counters_limits_and_failure_state() {
+        let server = Server::new(None);
+        let mut reader = source(&format!("{}?signed=1", server.url), 4096);
+        reader.limits.max_requests = 2;
+        reader.limits.max_download_bytes = 64;
+        assert_eq!(reader.read_range(128, 32).unwrap(), bytes(128, 32));
+        assert_eq!(reader.read_range(160, 32).unwrap(), bytes(160, 32));
+        assert!(reader.read_range(192, 32).is_err());
+        let cached = reader.metrics.cache_resident_bytes;
+        reader.begin_query_budget().unwrap();
+        assert_eq!(reader.metrics.requests, 2);
+        assert_eq!(reader.metrics.received_bytes, 64);
+        assert_eq!(reader.metrics.budget_epoch, 1);
+        assert_eq!(reader.metrics.cache_resident_bytes, cached);
+        assert!(reader.metrics.ranges.is_empty());
+        reader.verify_remote().unwrap(); // Must still make a conditional request.
+        assert_eq!(reader.read_range(128, 32).unwrap(), bytes(128, 32));
+        assert_eq!(reader.metrics.cache_hits, 1);
+        reader.read_range(192, 32).unwrap();
+        assert!(reader.read_range(224, 1).is_err());
+        assert_eq!(reader.metrics.requests, 4);
+        assert_eq!(reader.metrics.received_bytes, 97);
+        assert_eq!(reader.metrics.ranges.len(), 2);
+        assert_eq!(server.ranges.lock().unwrap().len(), 4);
+        reader.cancel.store(true, Ordering::Relaxed);
+        assert!(reader.begin_query_budget().is_err());
+        reader.cancel.store(false, Ordering::Relaxed);
+        reader.invalidated = true;
+        assert!(reader.begin_query_budget().is_err());
+        assert_eq!(reader.metrics.budget_epoch, 1);
+    }
+
     fn bytes(offset: u64, length: u64) -> Vec<u8> {
         (offset..offset + length).map(|n| (n % 251) as u8).collect()
     }
@@ -1745,6 +2120,7 @@ mod range_prefetch_tests {
             url: reqwest::Url::parse(url).unwrap(),
             length: 4096,
             etag: "\"fixed\"".into(),
+            headers: header::HeaderMap::new(),
             source_id: "prefetch-test".into(),
             metrics: RemoteMetrics {
                 cache_capacity_bytes: capacity,
@@ -1758,6 +2134,7 @@ mod range_prefetch_tests {
             cache: Default::default(),
             logical_reads: 0,
             invalidated: false,
+            verified_query: false,
         }
     }
 
@@ -1844,6 +2221,256 @@ mod range_prefetch_tests {
     }
 
     #[test]
+    fn shared_pool_respects_configuration_without_sharing_credentials_or_cache() {
+        let listener = TcpListener::bind("127.0.0.1:0").unwrap();
+        let url = format!("http://{}/source", listener.local_addr().unwrap());
+        let pooled = std::env::var("SKARVE_HTTP_SHARED_POOL").as_deref() != Ok("0");
+        listener.set_nonblocking(true).unwrap();
+        let server = thread::spawn(move || {
+            let accept = || {
+                let deadline = Instant::now() + Duration::from_secs(3);
+                loop {
+                    match listener.accept() {
+                        Ok((stream, _)) => {
+                            stream
+                                .set_read_timeout(Some(Duration::from_secs(3)))
+                                .unwrap();
+                            break stream;
+                        }
+                        Err(e) if e.kind() == std::io::ErrorKind::WouldBlock => {
+                            assert!(Instant::now() < deadline, "expected a fresh connection");
+                            thread::sleep(Duration::from_millis(1));
+                        }
+                        Err(e) => panic!("{e}"),
+                    }
+                }
+            };
+            let mut stream = accept();
+            for credential in ["first", "second"] {
+                if credential == "second" && !pooled {
+                    stream = accept();
+                }
+                let mut request = Vec::new();
+                while !request.ends_with(b"\r\n\r\n") {
+                    let mut byte = [0];
+                    stream.read_exact(&mut byte).unwrap();
+                    request.push(byte[0]);
+                }
+                let request = String::from_utf8(request).unwrap().to_ascii_lowercase();
+                assert!(request.contains(&format!("authorization: {credential}\r\n")));
+                stream.write_all(b"HTTP/1.1 206 Partial Content\r\nContent-Length:1\r\nContent-Range:bytes 0-0/4096\r\nETag:\"fixed\"\r\nConnection:keep-alive\r\n\r\n\x00").unwrap();
+            }
+        });
+        let mut first = source(&url, 4096);
+        let mut second = source(&url, 4096);
+        first.client = transport_client(&first.url).unwrap();
+        second.client = transport_client(&second.url).unwrap();
+        first.headers.insert(
+            header::AUTHORIZATION,
+            header::HeaderValue::from_static("first"),
+        );
+        second.headers.insert(
+            header::AUTHORIZATION,
+            header::HeaderValue::from_static("second"),
+        );
+        assert_eq!(first.read_range(0, 1).unwrap(), vec![0]);
+        assert_eq!(second.read_range(0, 1).unwrap(), vec![0]);
+        assert_eq!(first.metrics.get_requests, 1);
+        assert_eq!(second.metrics.get_requests, 1);
+        assert_eq!(second.metrics.cache_hits, 0);
+        server.join().unwrap();
+    }
+
+    #[test]
+    fn parallel_pair_has_two_requests_in_flight_before_either_body_returns() {
+        let listener = TcpListener::bind("127.0.0.1:0").unwrap();
+        listener.set_nonblocking(true).unwrap();
+        let url = format!("http://{}/source", listener.local_addr().unwrap());
+        let server = thread::spawn(move || {
+            let deadline = Instant::now() + Duration::from_secs(3);
+            let mut requests = Vec::new();
+            while requests.len() < 2 {
+                assert!(
+                    Instant::now() < deadline,
+                    "second request did not arrive while first response was held"
+                );
+                let mut stream = match listener.accept() {
+                    Ok((s, _)) => s,
+                    Err(e) if e.kind() == std::io::ErrorKind::WouldBlock => {
+                        thread::sleep(Duration::from_millis(1));
+                        continue;
+                    }
+                    Err(e) => panic!("{e}"),
+                };
+                stream
+                    .set_read_timeout(Some(Duration::from_secs(3)))
+                    .unwrap();
+                let mut request = Vec::new();
+                while !request.ends_with(b"\r\n\r\n") {
+                    let mut byte = [0];
+                    stream.read_exact(&mut byte).unwrap();
+                    request.push(byte[0]);
+                }
+                let request = String::from_utf8(request).unwrap();
+                let offset = if request.contains("bytes=0-63") {
+                    0
+                } else {
+                    128
+                };
+                requests.push((stream, offset));
+            }
+            for (mut stream, offset) in requests {
+                write!(stream, "HTTP/1.1 206 Partial Content\r\nContent-Length:64\r\nContent-Range:bytes {}-{}/4096\r\nETag:\"fixed\"\r\nConnection:close\r\n\r\n", offset, offset + 63).unwrap();
+                stream.write_all(&bytes(offset, 64)).unwrap();
+            }
+        });
+        let mut reader = source(&url, 4096);
+        reader
+            .prefetch_parallel_pair(&[(0, 64), (128, 64)], &AtomicBool::new(false))
+            .unwrap();
+        assert_eq!(reader.metrics.parallel_requests, 2);
+        server.join().unwrap();
+    }
+
+    #[test]
+    fn parallel_pair_cancellation_after_dispatch_quarantines_cache() {
+        let listener = TcpListener::bind("127.0.0.1:0").unwrap();
+        listener.set_nonblocking(true).unwrap();
+        let url = format!("http://{}/source", listener.local_addr().unwrap());
+        let cancel = Arc::new(AtomicBool::new(false));
+        let server_cancel = cancel.clone();
+        let server = thread::spawn(move || {
+            let deadline = Instant::now() + Duration::from_secs(3);
+            let mut requests = Vec::new();
+            while requests.len() < 2 {
+                assert!(
+                    Instant::now() < deadline,
+                    "second request did not arrive while first response was held"
+                );
+                let mut stream = match listener.accept() {
+                    Ok((s, _)) => s,
+                    Err(e) if e.kind() == std::io::ErrorKind::WouldBlock => {
+                        thread::sleep(Duration::from_millis(1));
+                        continue;
+                    }
+                    Err(e) => panic!("{e}"),
+                };
+                stream
+                    .set_read_timeout(Some(Duration::from_secs(3)))
+                    .unwrap();
+                let mut request = Vec::new();
+                while !request.ends_with(b"\r\n\r\n") {
+                    let mut byte = [0];
+                    stream.read_exact(&mut byte).unwrap();
+                    request.push(byte[0]);
+                }
+                let request = String::from_utf8(request).unwrap();
+                let offset = if request.contains("bytes=0-63") {
+                    0
+                } else {
+                    128
+                };
+                requests.push((stream, offset));
+            }
+            server_cancel.store(true, Ordering::Release);
+            for (mut stream, offset) in requests {
+                write!(stream, "HTTP/1.1 206 Partial Content\r\nContent-Length:64\r\nContent-Range:bytes {}-{}/4096\r\nETag:\"fixed\"\r\nConnection:close\r\n\r\n", offset, offset + 63).ok();
+                let _ = stream.write_all(&bytes(offset, 64));
+            }
+        });
+        let mut reader = source(&url, 4096);
+        cache(&mut reader, 512, 32);
+        assert!(
+            reader
+                .prefetch_parallel_pair(&[(0, 64), (128, 64)], &cancel)
+                .is_err()
+        );
+        assert!(reader.invalidated);
+        assert!(reader.cache.is_empty());
+        assert_eq!(reader.metrics.cache_resident_bytes, 0);
+        assert_eq!(reader.metrics.get_requests, 2);
+        assert_eq!(reader.metrics.parallel_batches, 0);
+        assert!(reader.read_range(512, 32).is_err());
+        server.join().unwrap();
+    }
+
+    #[test]
+    fn parallel_prefetch_preserves_bytes_counts_and_quarantines_partial_failure() {
+        let cancel = AtomicBool::new(false);
+        let server = Server::new(None);
+        let mut reader = source(&server.url, 4096);
+        reader
+            .prefetch_parallel_pair(&[(0, 64), (128, 64)], &cancel)
+            .unwrap();
+        assert_eq!(reader.metrics.parallel_batches, 1);
+        assert_eq!(reader.metrics.get_requests, 2);
+        assert_eq!(reader.metrics.received_bytes, 128);
+        assert_eq!(reader.read_range(0, 64).unwrap(), bytes(0, 64));
+        assert_eq!(reader.read_range(128, 64).unwrap(), bytes(128, 64));
+        assert_eq!(reader.metrics.get_requests, 2);
+        assert_eq!(reader.metrics.cache_resident_bytes, 128 + 2 * 128);
+        let server = Server::new(Some(128));
+        let mut reader = source(&server.url, 4096);
+        cache(&mut reader, 512, 32);
+        assert!(
+            reader
+                .prefetch_parallel_pair(&[(0, 64), (128, 64)], &cancel)
+                .is_err()
+        );
+        assert!(reader.invalidated);
+        assert!(reader.cache.is_empty());
+        assert_eq!(reader.metrics.cache_resident_bytes, 0);
+        assert_eq!(reader.metrics.get_requests, 2);
+        assert!(reader.read_range(0, 64).is_err());
+    }
+
+    #[test]
+    fn small_tiff_pages_preserve_bytes_cache_budget_and_identity_checks() {
+        let server = Server::new(None);
+        let mut source = source(&server.url, 8192);
+        source.url.set_query(Some("signed-test=1"));
+        source.limits.max_range_bytes = 4096;
+        assert_eq!(
+            source.read_small_page_range(3000, 8, 4096).unwrap(),
+            bytes(3000, 8)
+        );
+        assert_eq!(
+            source.read_small_page_range(3100, 24, 4096).unwrap(),
+            bytes(3100, 24)
+        );
+        assert_eq!(source.metrics.small_read_page_fetches, 1);
+        assert_eq!(source.metrics.small_read_page_overread_bytes, 4088);
+        assert_eq!(*server.ranges.lock().unwrap(), vec![(0, 4096)]);
+        assert!(source.metrics.cache_peak_bytes <= 8192);
+        source.verify_remote().unwrap();
+        assert_eq!(*server.ranges.lock().unwrap(), vec![(0, 4096), (0, 1)]);
+        source.cancel.store(true, Ordering::Relaxed);
+        assert!(source.read_small_page_range(3100, 24, 4096).is_err());
+        assert_eq!(server.ranges.lock().unwrap().len(), 2);
+    }
+
+    #[test]
+    fn small_tiff_pages_do_not_expand_limits_or_recover_after_failed_reads() {
+        let server = Server::new(None);
+        let mut limited = source(&server.url, 8192);
+        limited.limits.max_range_bytes = 4096;
+        limited.limits.max_download_bytes = 32;
+        assert_eq!(
+            limited.read_small_page_range(3000, 8, 4096).unwrap(),
+            bytes(3000, 8)
+        );
+        assert_eq!(*server.ranges.lock().unwrap(), vec![(3000, 8)]);
+        assert_eq!(limited.metrics.small_read_page_fetches, 0);
+        let server = Server::new(Some(0));
+        let mut failed = source(&server.url, 8192);
+        failed.limits.max_range_bytes = 4096;
+        assert!(failed.read_small_page_range(3000, 8, 4096).is_err());
+        assert!(failed.read_small_page_range(3000, 8, 4096).is_err());
+        assert!(failed.invalidated);
+        assert_eq!(*server.ranges.lock().unwrap(), vec![(0, 4096)]);
+    }
+
+    #[test]
     fn guarded_noops_do_not_mutate_cache_or_consume_budgets() {
         let cancel = AtomicBool::new(false);
         let mut source = source("http://127.0.0.1:9/raw", 512);
@@ -1859,8 +2486,12 @@ mod range_prefetch_tests {
                     .admitted
             );
         }
-        // Two isolated demands cannot save a request, nor can all-cache hits.
+        // Isolated demands are beneficial only in concurrent mode. All-cache
+        // hits remain no-ops in both modes.
         for demands in [&[(0, 32), (128, 32)][..], &[(512, 16), (528, 16)][..]] {
+            if concurrent_transport_enabled() && demands[0].0 == 0 {
+                continue;
+            }
             assert!(
                 !source
                     .prefetch_exact_ranges(demands, 1 << 20, &cancel)
@@ -2004,7 +2635,12 @@ mod range_prefetch_tests {
                 bytes(offset, length)
             );
         }
-        assert_eq!(*server.ranges.lock().unwrap(), [(128, 128), (384, 32)]);
+        let mut observed = server.ranges.lock().unwrap().clone();
+        if !concurrent_transport_enabled() {
+            assert_eq!(observed, [(128, 128), (384, 32)]);
+        }
+        observed.sort_unstable();
+        assert_eq!(observed, [(128, 128), (384, 32)]);
         assert_eq!(source.metrics.received_bytes, 160);
         assert_eq!(source.metrics.get_requests, 2);
         assert_eq!(source.metrics.cache_hits, 7);
@@ -2075,7 +2711,13 @@ mod range_prefetch_tests {
                 .prefetch_exact_ranges(&[(0, 32), (32, 32), (128, 32), (160, 32)], 1 << 20, &cancel)
                 .is_err()
         );
-        assert_eq!(*server.ranges.lock().unwrap(), [(0, 64), (128, 64)]);
+        let mut observed = server.ranges.lock().unwrap().clone();
+        if !concurrent_transport_enabled() {
+            assert_eq!(observed, [(0, 64), (128, 64)]);
+        }
+        // Concurrent arrival order is arbitrary; preserve exact multiplicity.
+        observed.sort_unstable();
+        assert_eq!(observed, [(0, 64), (128, 64)]);
         assert_eq!(source.metrics.requests, 2);
         assert_eq!(source.metrics.received_bytes, 64);
         assert_eq!(source.metrics.failed_requests, 1);

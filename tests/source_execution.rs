@@ -508,7 +508,7 @@ fn ordinary_remote_vsi_selected_bands_conditional_ranges_and_faults() {
     for mode in ["ok", "weak", "changed", "ignored", "truncated"] {
         let server = Server::start(bytes.clone(), mode);
         let config = spec(
-            json!({"location":server.url,"bands":[2,1],"http":{"allow_http":true,"headers":{"Authorization":"Bearer header-secret"},"max_requests":512}}),
+            json!({"location":server.url,"bands":[2,1],"http":{"allow_http":true,"headers":{"Authorization":"Bearer header-secret"},"max_requests":512,"cache_bytes":16777216}}),
         );
         let source = open_source(&config, &cancel);
         if mode != "ok" {
@@ -525,6 +525,8 @@ fn ordinary_remote_vsi_selected_bands_conditional_ranges_and_faults() {
         assert_eq!(window.bands[0].values, vec![-827., -829.]);
         assert_eq!(window.bands[1].values, vec![416., 417.]);
         let diag = source.diagnostics();
+        assert!(source.retained_memory_bound() >= 24 * 1024 * 1024);
+        assert_eq!(diag["remote"]["cache_capacity_bytes"], 16 * 1024 * 1024);
         let text = diag.to_string();
         assert!(
             !text.contains("secret") && !text.contains("signature") && !text.contains("127.0.0.1")
@@ -616,4 +618,133 @@ fn physical_chunk_cache_retains_one_footprint_and_releases_at_window_boundary() 
         .unwrap();
     assert_eq!(again.decoder_cache_flushes, 1);
     assert_eq!(source.diagnostics()["decoder_cache_flushes"], 2);
+}
+
+#[test]
+fn concurrent_transport_actual_tiff_window() {
+    if std::env::var("SKARVE_HTTP_CONCURRENCY").as_deref() != Ok("2") {
+        return;
+    }
+    let dir = tempfile::tempdir().unwrap();
+    let path = dir.path().join("parallel.tif");
+    let driver = DriverManager::get_driver_by_name("GTiff").unwrap();
+    let opts = RasterCreationOptions::from_iter([
+        "TILED=YES",
+        "BLOCKXSIZE=64",
+        "BLOCKYSIZE=64",
+        "COMPRESS=DEFLATE",
+        "INTERLEAVE=BAND",
+    ]);
+    let mut ds = driver
+        .create_with_band_type_with_options::<f64, _>(&path, 512, 512, 36, &opts)
+        .unwrap();
+    ds.set_geo_transform(&[0., 1., 0., 512., 0., -1.]).unwrap();
+    ds.set_spatial_ref(&SpatialRef::from_epsg(3857).unwrap())
+        .unwrap();
+    for band in 1..=36 {
+        let values = (0..512 * 512)
+            .map(|i| ((i * 7919 + band * 13) % 104729) as f64)
+            .collect();
+        ds.rasterband(band)
+            .unwrap()
+            .write((0, 0), (512, 512), &mut Buffer::new((512, 512), values))
+            .unwrap();
+    }
+    ds.flush_cache().unwrap();
+    drop(ds);
+    let server = Server::start(fs::read(&path).unwrap(), "ok");
+    let cancel = AtomicBool::new(false);
+    let local = open_source(&spec(json!({"location":path})), &cancel).unwrap();
+    let remote = open_source(&spec(json!({"location":server.url,"http":{"allow_http":true,"headers":{"Authorization":"Bearer header-secret"},"max_requests":2048,"cache_bytes":65536,"max_download_bytes":67108864}})), &cancel).unwrap();
+    for bands in (0..36).collect::<Vec<_>>().chunks(20) {
+        let bounds = remote.read_buffer_bound(32, 32, bands).unwrap();
+        let expected = local
+            .read_selected_window_cancellable(0, 0, 32, 32, bands, bounds, &cancel)
+            .unwrap()
+            .0;
+        let actual = remote
+            .read_selected_window_cancellable(0, 0, 32, 32, bands, bounds, &cancel)
+            .unwrap()
+            .0;
+        for (a, b) in actual.bands.iter().zip(&expected.bands) {
+            assert_eq!(a.values, b.values);
+            assert_eq!(a.valid, b.valid);
+        }
+    }
+    let diag = remote.diagnostics();
+    eprintln!("parallel TIFF metrics: {}", diag["remote"]);
+    assert!(diag["remote"]["parallel_batches"].as_u64().unwrap() > 0);
+}
+
+#[test]
+fn concurrent_transport_actual_cog_framing() {
+    if std::env::var("SKARVE_HTTP_CONCURRENCY").as_deref() != Ok("2") {
+        return;
+    }
+    let dir = tempfile::tempdir().unwrap();
+    let input = dir.path().join("input.tif");
+    let path = dir.path().join("serving.tif");
+    let driver = DriverManager::get_driver_by_name("GTiff").unwrap();
+    let mut ds = driver
+        .create_with_band_type::<f32, _>(&input, 512, 512, 4)
+        .unwrap();
+    ds.set_geo_transform(&[0., 1., 0., 512., 0., -1.]).unwrap();
+    ds.set_spatial_ref(&SpatialRef::from_epsg(3857).unwrap())
+        .unwrap();
+    for b in 1..=4 {
+        let values = (0..512 * 512)
+            .map(|i| ((i * 7919 + b * 13) % 104729) as f32)
+            .collect();
+        ds.rasterband(b)
+            .unwrap()
+            .write((0, 0), (512, 512), &mut Buffer::new((512, 512), values))
+            .unwrap();
+    }
+    ds.flush_cache().unwrap();
+    let cog = ds
+        .create_copy(
+            &DriverManager::get_driver_by_name("COG").unwrap(),
+            &path,
+            &RasterCreationOptions::from_iter([
+                "BLOCKSIZE=128",
+                "COMPRESS=DEFLATE",
+                "OVERVIEWS=NONE",
+            ]),
+        )
+        .unwrap();
+    drop(cog);
+    drop(ds);
+    let server = Server::start(fs::read(&path).unwrap(), "ok");
+    let cancel = AtomicBool::new(false);
+    let local = open_source(&spec(json!({"location":path})), &cancel).unwrap();
+    let remote=open_source(&spec(json!({"location":server.url,"http":{"allow_http":true,"headers":{"Authorization":"Bearer header-secret"},"max_requests":2048,"cache_bytes":8388608}})),&cancel).unwrap();
+    let bound = remote.read_buffer_bound(32, 512, &[0, 1, 2, 3]).unwrap();
+    let expected = local
+        .read_selected_window_cancellable(0, 0, 32, 512, &[0, 1, 2, 3], bound, &cancel)
+        .unwrap()
+        .0;
+    let before = remote.diagnostics()["remote"].clone();
+    let actual = remote
+        .read_selected_window_cancellable(0, 0, 32, 512, &[0, 1, 2, 3], bound, &cancel)
+        .unwrap()
+        .0;
+    for (a, b) in actual.bands.iter().zip(&expected.bands) {
+        assert_eq!(a.values, b.values);
+        assert_eq!(a.valid, b.valid);
+    }
+    let after = remote.diagnostics()["remote"].clone();
+    eprintln!("COG before {before} after {after}");
+    assert!(after["parallel_batches"].as_u64().unwrap() > 0);
+    let ranges = after["ranges"].as_array().unwrap();
+    let start = before["ranges"].as_array().unwrap().len();
+    for (i, a) in ranges[start..].iter().enumerate() {
+        for b in &ranges[start + i + 1..] {
+            let (x, n) = (a["offset"].as_u64().unwrap(), a["length"].as_u64().unwrap());
+            let (y, m) = (b["offset"].as_u64().unwrap(), b["length"].as_u64().unwrap());
+            assert!(
+                x + n <= y || y + m <= x,
+                "prefetched payload fetched again: {a} {b}"
+            );
+        }
+    }
 }

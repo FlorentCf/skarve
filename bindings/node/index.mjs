@@ -50,6 +50,7 @@ function resolveLibrary(explicit) {
 export class RasterEngine {
   #api; #handle; #pending = null; #closed = false; #closing = null; #cancelRequest = null;
   #sourceSequence = 0;
+  #readerMetadata = new Map();
   lastTiming = null;
   constructor({ library } = {}) {
     if (liveSessions >= MAX_SESSIONS) throw new RasterEngineError(`At most ${MAX_SESSIONS} Node sessions may be live`, 'SESSION_LIMIT');
@@ -110,7 +111,8 @@ export class RasterEngine {
       this.#pending = null; this.#cancelRequest = null;
     }
   }
-  async request(request, { signal } = {}) {
+  request(request, options) { return this.#execute(request, options); }
+  async #execute(request, { signal } = {}, binary = null) {
     if (this.#closed) throw new RasterEngineError('Session is closed', 'CLOSED');
     if (this.busy) throw new RasterEngineError('Session is busy; await its current request', 'BUSY');
     if (signal?.aborted) throw aborted();
@@ -129,7 +131,9 @@ export class RasterEngine {
     signal?.addEventListener('abort', cancel, { once: true });
     this.#cancelRequest = cancel;
     this.#pending = new Promise((resolve, reject) => {
-      this.#api.call.async(this.#handle, json, (ffiError, pointer) => {
+      const operation = binary ? this.#api.readWindow : this.#api.call;
+      const args = binary ? [this.#handle, json, binary, binary.length] : [this.#handle, json];
+      operation.async(...args, (ffiError, pointer) => {
         const returned = performance.now();
         let transferred = returned, parsed = returned, nativeTiming = null, responseBytes = 0;
         try {
@@ -141,6 +145,14 @@ export class RasterEngine {
           parsed = performance.now(); nativeTiming = envelope.native_timing ?? null;
           if (signal?.aborted || cancelRequested) throw aborted();
           if (!envelope.ok) throw new RasterEngineError(envelope.error || 'Native request failed');
+          if (binary) {
+            const types = { byte: Uint8Array, int8: Int8Array, uint16: Uint16Array, int16: Int16Array, uint32: Uint32Array, int32: Int32Array, float32: Float32Array, float64: Float64Array };
+            for (const band of envelope.result.bands) {
+              const Type = types[band.scalarType];
+              band.values = new Type(binary.buffer, binary.byteOffset + band.byteOffset, band.byteLength / Type.BYTES_PER_ELEMENT);
+              band.mask = new Uint8Array(binary.buffer, binary.byteOffset + band.maskOffset, band.maskLength);
+            }
+          }
           resolve(envelope.result);
         } catch (error) { reject(error); }
         finally {
@@ -182,7 +194,7 @@ export class RasterEngine {
     return this.request({ ...nativeOptions, op: 'measure_file', geometry }, { signal });
   }
   registerFile(id, path, options) { return this.request({ op: 'register_file', id, path }, options); }
-  registerSource(id, spec, options) { return this.request({ op: 'register_source', id, spec }, options); }
+  async registerSource(id, spec, options) { const result = await this.request({ op: 'register_source', id, spec }, options); this.#readerMetadata.set(id, structuredClone(result.rawMetadata)); return result; }
   async openSource(spec, { id = 'source', signal } = {}) {
     const metadata = await this.registerSource(id, typeof spec === 'string' ? { location: spec } : spec, { signal });
     return new Source(this, id, metadata);
@@ -191,7 +203,30 @@ export class RasterEngine {
     id ??= `__skarve_source_${++this.#sourceSequence}`;
     return this.openSource(source, { id, signal });
   }
-  closeReader(source, options) { return this.request({ op: 'close_source', source }, options); }
+  async closeReader(source, options) { const result = await this.request({ op: 'close_source', source }, options); this.#readerMetadata.delete(source); return result; }
+  readWindowSource(source, request, options = {}) {
+    if (this.#closed) throw new RasterEngineError('Session is closed', 'CLOSED');
+    if (this.busy) throw new RasterEngineError('Session is busy', 'BUSY');
+    if (options.signal?.aborted) throw aborted();
+    if (new Uint8Array(new Uint16Array([1]).buffer)[0] !== 1) throw new Error('Typed window binding requires a little-endian host');
+    if (!request || Object.keys(request).some(k => !['window', 'bands', 'maxBytes', 'workingBytes'].includes(k))) throw new TypeError('Unknown readWindow request field');
+    const { window, bands, maxBytes = 64 << 20, workingBytes = 128 << 20 } = request;
+    const raw = this.#readerMetadata.get(source);
+    if (!raw) throw new Error('Source has no typed metadata; reopen with a compatible runtime');
+    if (!Array.isArray(window) || window.length !== 4 || !window.every(n => Number.isSafeInteger(n) && n >= 0) || window[2] === 0 || window[3] === 0) throw new RangeError('Invalid window');
+    // New native artifacts can partition a complete output window internally.
+    // Older artifacts retain their declared per-read width.
+    const maxWindowBands = raw.maxWindowBands ?? raw.maxReadBands;
+    if (!Array.isArray(bands) || bands.length === 0 || bands.length > maxWindowBands || bands.length > 64 || new Set(bands).size !== bands.length || !bands.every(i => Number.isSafeInteger(i) && i >= 0 && i < raw.bands.length)) throw new RangeError('Invalid bands');
+    if (!Number.isSafeInteger(maxBytes) || maxBytes < 1 || maxBytes > (64 << 20) || !Number.isSafeInteger(workingBytes) || workingBytes < 1 || workingBytes > (128 << 20)) throw new RangeError('Window budget exceeds cap');
+    const widths = { byte: 1, int8: 1, uint16: 2, int16: 2, uint32: 4, int32: 4, float32: 4, float64: 8 };
+    const cells = window[2] * window[3]; let bytes = 0;
+    for (const band of bands) { bytes = Math.ceil(bytes / 8) * 8 + cells * (widths[raw.bands[band].scalarType] + 1); }
+    if (!Number.isSafeInteger(bytes) || bytes > maxBytes) throw new RangeError('Window output budget exceeded');
+    this.#api.readWindow ??= this.#api.lib.func('void *re_read_window(void *session, const char *control, void *output, uint64_t capacity)');
+    const output = Buffer.alloc(bytes);
+    return this.#execute({ source, window, bands, working_bytes: workingBytes }, options, output);
+  }
   sourceInfo(source, options) { return this.request({ op: 'source_info', source }, options); }
   compileSource(source, output, options = {}) {
     const { signal, ...nativeOptions } = options;
@@ -286,6 +321,21 @@ export class Source {
   constructor(engine, id, metadata) { this.engine = engine; this.id = id; this.metadata = metadata; this.closed = false; }
   assertOpen() { if (this.closed) throw new RasterEngineError("This handle is closed; open a new handle before use.", "CLOSED_HANDLE"); }
   inspect(options) { this.assertOpen(); return this.engine.sourceInfo(this.id, options); }
+  metrics(options) { this.assertOpen(); return this.engine.request({ op: 'source_metrics', source: this.id }, options); }
+  beginQuery(options) { this.assertOpen(); return this.engine.request({ op: 'begin_source_query', source: this.id }, options); }
+  _beginVerifiedQuery({ renewBudget = true, ...options } = {}) { this.assertOpen(); return this.engine.request({ op: 'begin_verified_source_query', source: this.id, renew_budget: renewBudget }, options); }
+  _endVerifiedQuery(options) { this.assertOpen(); return this.engine.request({ op: 'end_verified_source_query', source: this.id }, options); }
+  /** Callback values are provisional. Failure closes this source; only a
+   * successful final generation check releases the callback's complete result. */
+  async withVerifiedQuery(action, options = {}) {
+    try {
+      await this._beginVerifiedQuery(options);
+      const result = await action(this);
+      await this._endVerifiedQuery(options);
+      return result;
+    } catch (error) { await this.close(); throw error; }
+  }
+  readWindow(request, options) { this.assertOpen(); return this.engine.readWindowSource(this.id, request, options); }
   measure(geometry, options) { this.assertOpen(); return this.engine.measureSource(this.id, geometry, options); }
   sumSelected(request, options) { this.assertOpen(); return this.engine.sumSelectedSource(this.id, request, options); }
   carve({ zone, metrics, ...options }) {

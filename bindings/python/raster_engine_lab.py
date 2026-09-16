@@ -64,6 +64,37 @@ class Source:
         self._ensure_open()
         return self.engine.measure_source(geometry, crs, source=self.id, **options)
 
+    def _window_request(self, window, bands, max_bytes, working_bytes):
+        import sys
+        self._ensure_open()
+        if sys.byteorder != "little":
+            raise EngineError("Typed window binding requires a little-endian host")
+        raw = self.metadata.get("rawMetadata")
+        if not raw:
+            raise EngineError("Source has no typed metadata; reopen with a compatible runtime")
+        if len(window) != 4 or any(type(n) is not int or n < 0 for n in window) or not window[2] or not window[3]:
+            raise ValueError("Invalid window")
+        if not bands or len(bands) > raw.get("maxWindowBands", raw["maxReadBands"]) or any(type(n) is not int or n < 0 or n >= len(raw["bands"]) for n in bands):
+            raise ValueError("Invalid bands")
+        if type(max_bytes) is not int or not 0 < max_bytes <= 64 << 20 or type(working_bytes) is not int or not 0 < working_bytes <= 128 << 20:
+            raise ValueError("Window budget exceeds cap")
+        widths = dict(byte=1, int8=1, uint16=2, int16=2, uint32=4, int32=4, float32=4, float64=8)
+        cells, size = window[2] * window[3], 0
+        for i in bands:
+            size = (size + 7) // 8 * 8 + cells * (widths[raw["bands"][i]["scalarType"]] + 1)
+        if size > max_bytes:
+            raise ValueError("Window output budget exceeded")
+        return dict(source=self.id, window=list(window), bands=list(bands), working_bytes=working_bytes), size
+
+    def read_window(self, window, bands, *, max_bytes=64 << 20, working_bytes=128 << 20):
+        """Original scalar memoryviews and independent mask bytes; no normalization."""
+        request, size = self._window_request(window, bands, max_bytes, working_bytes)
+        return self.engine.call(request, _binary=size)
+
+    async def read_window_async(self, window, bands, *, max_bytes=64 << 20, working_bytes=128 << 20):
+        request, size = self._window_request(window, bands, max_bytes, working_bytes)
+        return await self.engine.call_async(request, _binary=size)
+
     def sum_selected(self, request, *, numerical_policy):
         """Sum explicit ordered source selections under the declared policy.
 
@@ -188,7 +219,7 @@ class Engine:
         if not self._handle:
             raise EngineError("native allocation failed")
 
-    def call(self, request, *, _abort=None, _native_started=None):
+    def call(self, request, *, _abort=None, _native_started=None, _binary=None):
         if not self._guard.acquire(blocking=False):
             raise EngineError("session busy; use separate bounded sessions")
         try:
@@ -209,7 +240,18 @@ class Engine:
                 with self._state:
                     self._active_async_request = _native_started
                     _native_started.set()
-            pointer = self._lib.re_call(handle, encoded)
+            binary = None
+            if _binary is not None:
+                if type(_binary) is not int or not 0 < _binary <= 64 << 20:
+                    raise EngineError("Window output capacity exceeds cap")
+                binary = bytearray(_binary)
+                function = self._lib.re_read_window
+                function.argtypes = [ctypes.c_void_p, ctypes.c_char_p, ctypes.c_void_p, ctypes.c_uint64]
+                function.restype = ctypes.c_void_p
+                storage = (ctypes.c_ubyte * len(binary)).from_buffer(binary)
+                pointer = function(handle, encoded, storage, len(binary))
+            else:
+                pointer = self._lib.re_call(handle, encoded)
             native_end = time.perf_counter()
             if not pointer:
                 raise EngineError("native returned null")
@@ -226,18 +268,25 @@ class Engine:
                 response_bytes=len(raw), native=response.get("native_timing"), native_request_ms=response.get("request_ms"))
             if not response["ok"]:
                 raise EngineError(response["error"])
+            if binary is not None:
+                formats = dict(byte="B", int8="b", uint16="H", int16="h", uint32="I", int32="i", float32="f", float64="d")
+                for band in response["result"]["bands"]:
+                    offset, size = band["byteOffset"], band["byteLength"]
+                    band["values"] = memoryview(binary)[offset:offset+size].cast(formats[band["scalarType"]])
+                    offset, size = band["maskOffset"], band["maskLength"]
+                    band["mask"] = memoryview(binary)[offset:offset+size]
             return response["result"]
         finally:
             with self._state:
                 self._active_async_request = None
             self._guard.release()
 
-    async def call_async(self, request):
+    async def call_async(self, request, *, _binary=None):
         # Shield preserves the worker task so native work finishes before callers
         # can safely destroy its handle after a cancellation.
         abort, native_started = threading.Event(), threading.Event()
         pending = asyncio.create_task(asyncio.to_thread(
-            self.call, request, _abort=abort, _native_started=native_started))
+            self.call, request, _abort=abort, _native_started=native_started, _binary=_binary))
         try:
             return await asyncio.shield(pending)
         except asyncio.CancelledError:
