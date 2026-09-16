@@ -422,7 +422,8 @@ impl Session {
                 let spec: crate::source::SourceSpec = serde_json::from_value(v["spec"].clone())?;
                 ensure!(
                     self.available()
-                        >= 32 * 1024 * 1024 + spec.http.cache_bytes.saturating_sub(8 * 1024 * 1024),
+                        >= (32usize * 1024 * 1024)
+                            .saturating_add(spec.http.cache_bytes.saturating_sub(8 * 1024 * 1024)),
                     "insufficient session reader memory"
                 );
                 let source = crate::io::open_source(&spec, cancel)?;
@@ -1531,6 +1532,24 @@ pub fn request(session: &mut Session, input: &str, cancel: &AtomicBool) -> Strin
 #[cfg(test)]
 mod resource_tests {
     use super::*;
+
+    #[test]
+    fn oversized_cache_request_rejects_without_admission_overflow() {
+        let mut session = Session::default();
+        let error = session
+            .call(
+                json!({"op":"register_source","id":"oversized","spec":{
+                "location":"not-opened.tif","http":{"cache_bytes":usize::MAX}}}),
+                &AtomicBool::new(false),
+            )
+            .unwrap_err();
+        assert!(
+            error
+                .to_string()
+                .contains("insufficient session reader memory")
+        );
+        assert!(session.readers.is_empty());
+    }
 
     #[test]
     fn actual_reader_capacity_is_charged_before_admitting_another_reader() {
