@@ -28,7 +28,7 @@ export interface BackendProvenance {selected_backend:'native'|'exactextract';req
 export interface MeasureOptions extends CallOptions, Omit<BackendSelection,'backend'> { crs?: string; bands?: number[]; strategy?: 'direct'|'scanline'; backend?:Backend; statistics?: Statistic[]; histogram_edges?: number[]; weight_band?: number; category_values?:number[]; quantiles?:number[]; quantile_max_samples?:number }
 /** Zone coordinates must already use the source CRS; omitted crs asserts that CRS. */
 export interface CarveOptions extends Omit<MeasureOptions,'backend'> { zone:Geometry; metrics?:Statistic[];backend?:ExecutionBackend }
-export interface SourceSpec { location:string; format?:'geotiff'|'netcdf'|'skv'; variable?:string; overview?:number; bands?:number[]; use_summaries?:boolean; crs?:string; longitude_shift?:-360|0|360; identity?:{sha256:string;byte_length:number;policy:'verify'|'trusted_manifest';etag?:string}; http?:{headers?:Record<string,string>;header_env?:Record<string,string>;max_requests?:number;max_download_bytes?:number;max_range_bytes?:number;timeout_seconds?:number;allow_http?:boolean;cache_bytes?:number} }
+export interface SourceSpec { location:string; format?:'geotiff'|'netcdf'|'skv'; variable?:string; overview?:number; bands?:number[]; use_summaries?:boolean; crs?:string; longitude_shift?:-360|0|360; identity?:{sha256:string;byte_length:number;policy:'verify'|'trusted_manifest';etag?:string}; http?:{headers?:Record<string,string>;header_env?:Record<string,string>;max_requests?:number;max_download_bytes?:number;max_range_bytes?:number;timeout_seconds?:number;allow_http?:boolean;cache_bytes?:number;metadata_prefetch_bytes?:number;small_read_page_bytes?:number} }
 /** Experimental SKV v0 compilation. Bounds are validated by the native engine. */
 export interface CompileOptions extends CallOptions { chunk_edge?:64|128|256;band_group?:number;codec?:'deflate'|'none';predictor?:'none'|'byte_delta_v1';payload_layout?:'band'|'row_group_v1';compression_level?:number;summaries?:boolean;working_bytes?:number;max_output_bytes?:number }
 /** Exactly ordered center-mask selections; run ends are exclusive. No geometry or overview inference. */
@@ -96,6 +96,7 @@ export class RasterEngine {
   verifySkv(source:SourceSpec|string,options?:CallOptions):Promise<Record<string,unknown>>;
   closeReader(source:string,options?:CallOptions):Promise<any>;
   measureSource(source:string,geometry:Geometry,options:MeasureOptions & {crs:string;index?:string;index_handle?:string;expected_build_id?:string;read_memory_bytes?:number;forbidden_raw_tiles?:number[];joint_planner?:JointPlannerOptions}):Promise<MeasureResult>;
+  readWindowSource(source:string,request:ReadWindowRequest,options?:{signal?:AbortSignal}):Promise<RawWindowResult>;
   sumSelectedSource(source:string,request:OrderedSourceRequest,options:OrderedSourceOptions):Promise<OrderedSourceResult>;
   sumSelected(profile:ServingProfile,request:OrderedSourceRequest,options:OrderedProfileOptions):Promise<OrderedProfileResult>;
   registerIndex(source:string,id:string,index:string,options?:CallOptions & {expected_build_id?:string;read_memory_bytes?:number}):Promise<any>;
@@ -120,7 +121,13 @@ export class RasterEngine {
 export class Source {
   readonly id:string; readonly metadata:any; readonly closed:boolean;
   inspect(options?:CallOptions):Promise<any>;
+  /** Observational counters only; no source-identity claim or network I/O. */
+  metrics(options?:CallOptions):Promise<any>;
+  /** Renew original per-query traffic limits; cumulative counters and failure invalidation remain. */
+  beginQuery(options?:CallOptions):Promise<any>;
+  withVerifiedQuery<T>(action:(source:Source)=>Promise<T>, options?:CallOptions & {renewBudget?:boolean}):Promise<T>;
   measure(geometry:Geometry,options:MeasureOptions & {crs:string;index?:string;expected_build_id?:string;read_memory_bytes?:number}):Promise<MeasureResult>;
+  readWindow(request:ReadWindowRequest,options?:{signal?:AbortSignal}):Promise<RawWindowResult>;
   sumSelected(request:OrderedSourceRequest,options:OrderedSourceOptions):Promise<OrderedSourceResult>;
   carve(options:CarveOptions & {index?:string;index_handle?:string;expected_build_id?:string;read_memory_bytes?:number}):Promise<MeasureResult>;
   openIndex(index:string,options?:CallOptions & {id?:string;expected_build_id?:string;read_memory_bytes?:number}):Promise<Index>;
@@ -137,4 +144,28 @@ export class Index {
   inspect(options?:CallOptions):Promise<any>;
   measure(geometry:Geometry,options:MeasureOptions & {crs:string}):Promise<MeasureResult>;
   close():Promise<void>;
+}
+
+/** Original samples; independent mask bytes; no normalization or resampling. */
+export type RawScalarValues = Uint8Array | Int8Array | Uint16Array | Int16Array | Uint32Array | Int32Array | Float32Array | Float64Array;
+export interface ReadWindowRequest {
+  window: [number,number,number,number];
+  /** Distinct bands in output order. Up to rawMetadata.maxWindowBands when
+   * advertised (64); older runtimes are limited to maxReadBands. Native groups
+   * share one verification boundary and the existing output/working caps. */
+  bands: number[];
+  maxBytes?: number;
+  workingBytes?: number;
+}
+export interface RawWindowResult {
+  abiVersion: 1;
+  width: number; height: number; byteLength: number;
+  bands: Array<{ sourceBand:number; scalarType:string; values:RawScalarValues; mask:Uint8Array;
+    byteOffset:number; byteLength:number; maskOffset:number; maskLength:number;
+    metadata:{ nodataBits:string|null; scaleBits:string; offsetBits:string; maskFlags:number; originalBandIndex:number; description:string; unit:string|null } }>;
+  grid: Record<string,unknown>;
+  /** Native raw groups executed sequentially; present on grouped-window runtimes. */
+  rawReadGroups?: number;
+  identity: unknown; diagnostics: unknown; readMetrics: unknown;
+  reservedBytes: { output:number; reader:number; control:number; working:number; retainedSource:number };
 }

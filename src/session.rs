@@ -68,6 +68,12 @@ fn options(v: &Value) -> Result<Options> {
     })
 }
 impl Session {
+    pub(crate) fn reader(&self, id: &str) -> Result<&dyn crate::source::WindowSource> {
+        self.readers
+            .get(id)
+            .map(|s| s.as_ref())
+            .ok_or_else(|| anyhow::anyhow!("unknown reader source"))
+    }
     pub fn bytes(&self) -> usize {
         self.sources.values().map(Raster::bytes).sum::<usize>()
             + self.indexes.values().map(|p| p.bytes).sum::<usize>()
@@ -80,7 +86,11 @@ impl Session {
                 .values()
                 .map(crate::batch::Job::reservation)
                 .sum::<usize>()
-            + self.readers.len() * (16 * 1024 * 1024)
+            + self
+                .readers
+                .values()
+                .map(|source| source.retained_memory_bound().max(16 * 1024 * 1024))
+                .sum::<usize>()
             + self
                 .exactextract_jobs
                 .values()
@@ -97,7 +107,7 @@ impl Session {
                 + self.cumulative.len())
                 * 65_536
     }
-    fn available(&self) -> usize {
+    pub(crate) fn available(&self) -> usize {
         MAX_BYTES
             .saturating_sub(self.bytes())
             .saturating_sub(self.transient_reserve)
@@ -113,7 +123,11 @@ impl Session {
         }
         let allowed: &[&str] = match op {
             "register_source" => &["op", "id", "spec"],
-            "source_info" | "close_source" => &["op", "source"],
+            "source_info" | "source_metrics" | "begin_source_query" | "close_source" => {
+                &["op", "source"]
+            }
+            "begin_verified_source_query" => &["op", "source", "renew_budget"],
+            "end_verified_source_query" => &["op", "source"],
             "compile_source" => &["op", "source", "output", "options"],
             "measure_ordered_source" => &["op", "source", "request", "numerical_policy"],
             "measure_ordered_profile" => &[
@@ -405,13 +419,19 @@ impl Session {
                         && self.readers.len() < 32,
                     "source ID already exists or reader count budget exceeded"
                 );
+                let spec: crate::source::SourceSpec = serde_json::from_value(v["spec"].clone())?;
                 ensure!(
-                    self.available() >= 32 * 1024 * 1024,
+                    self.available()
+                        >= (32usize * 1024 * 1024)
+                            .saturating_add(spec.http.cache_bytes.saturating_sub(8 * 1024 * 1024)),
                     "insufficient session reader memory"
                 );
-                let spec: crate::source::SourceSpec = serde_json::from_value(v["spec"].clone())?;
                 let source = crate::io::open_source(&spec, cancel)?;
-                let result = json!({"source":id,"metadata":source.metadata(),"identity":source.identity_descriptor(),"access_layout":source.access_layout(),"diagnostics":source.diagnostics()});
+                ensure!(
+                    source.retained_memory_bound().max(16 * 1024 * 1024) <= self.available(),
+                    "source retained capacity exceeds remaining session budget"
+                );
+                let result = json!({"source":id,"metadata":source.metadata(),"rawMetadata":crate::source_buffer::metadata(source.as_ref()),"identity":source.identity_descriptor(),"registered_http_identity":source.registered_http_identity(),"access_layout":source.access_layout(),"diagnostics":source.diagnostics()});
                 self.readers.insert(id, source);
                 Ok(result)
             }
@@ -422,9 +442,53 @@ impl Session {
                     .ok_or_else(|| anyhow::anyhow!("unknown reader source"))?;
                 source.verify_immutable()?;
                 Ok(
-                    json!({"metadata":source.metadata(),"identity":source.identity_descriptor(),"access_layout":source.access_layout(),"diagnostics":source.diagnostics(),
+                    json!({"metadata":source.metadata(),"rawMetadata":crate::source_buffer::metadata(source.as_ref()),"identity":source.identity_descriptor(),"access_layout":source.access_layout(),"diagnostics":source.diagnostics(),
                         "serving_profile_view":source.raw_metadata().map(|raw|crate::serving_profile::expected_view(&source.metadata().grid,raw))}),
                 )
+            }
+            "source_metrics" | "begin_source_query" => {
+                let source = self
+                    .readers
+                    .get(text(&v, "source")?)
+                    .ok_or_else(|| anyhow::anyhow!("unknown reader source"))?;
+                if op == "begin_source_query" {
+                    source.begin_query_budget()?;
+                }
+                // Metrics are observational, not proof of current identity.
+                // Ordinary value operations retain pre/post verification.
+                Ok(json!({"diagnostics": source.diagnostics()}))
+            }
+            "begin_verified_source_query" | "end_verified_source_query" => {
+                let source = self
+                    .readers
+                    .get(text(&v, "source")?)
+                    .ok_or_else(|| anyhow::anyhow!("unknown reader source"))?;
+                if op == "begin_verified_source_query" {
+                    let renew: bool = v
+                        .get("renew_budget")
+                        .map(|v| serde_json::from_value(v.clone()))
+                        .transpose()?
+                        .unwrap_or(true);
+                    source.begin_verified_query(renew)?;
+                } else {
+                    source.end_verified_query()?;
+                }
+                // This proof is emitted only by this successful finalization,
+                // never by metrics/registration. The exact handle prevents an
+                // application's distinct object dependencies sharing it merely
+                // because two objects happen to have equal ETags and lengths.
+                let verification = if op == "end_verified_source_query" {
+                    source.registered_http_identity().map(|identity| {
+                        json!({"schema":"skarve_http_query_verification_v1",
+                            "source":text(&v,"source").expect("validated source"),
+                            "identity":identity})
+                    })
+                } else {
+                    None
+                };
+                Ok(json!({"diagnostics": source.diagnostics(),
+                    "verified_query_complete": op == "end_verified_source_query",
+                    "verification": verification}))
             }
             "compile_source" => {
                 let options: crate::skv::CompileOptions = v
@@ -1468,6 +1532,74 @@ pub fn request(session: &mut Session, input: &str, cancel: &AtomicBool) -> Strin
 #[cfg(test)]
 mod resource_tests {
     use super::*;
+
+    #[test]
+    fn oversized_cache_request_rejects_without_admission_overflow() {
+        let mut session = Session::default();
+        let error = session
+            .call(
+                json!({"op":"register_source","id":"oversized","spec":{
+                "location":"not-opened.tif","http":{"cache_bytes":usize::MAX}}}),
+                &AtomicBool::new(false),
+            )
+            .unwrap_err();
+        assert!(
+            error
+                .to_string()
+                .contains("insufficient session reader memory")
+        );
+        assert!(session.readers.is_empty());
+    }
+
+    #[test]
+    fn actual_reader_capacity_is_charged_before_admitting_another_reader() {
+        struct Reserved(usize);
+        impl crate::source::WindowSource for Reserved {
+            fn metadata(&self) -> &crate::source::RasterMetadata {
+                panic!("metadata not needed for capacity accounting")
+            }
+            fn verify_immutable(&self) -> Result<()> {
+                Ok(())
+            }
+            fn retained_memory_bound(&self) -> usize {
+                self.0
+            }
+            fn read_selected_window_cancellable(
+                &self,
+                _: usize,
+                _: usize,
+                _: usize,
+                _: usize,
+                _: &[usize],
+                _: usize,
+                _: &AtomicBool,
+            ) -> Result<(Raster, crate::source::ReadMetrics)> {
+                bail!("not a readable fixture")
+            }
+        }
+        let mut session = Session::default();
+        let baseline = session.bytes();
+        session
+            .readers
+            .insert("small".into(), Box::new(Reserved(1)));
+        session
+            .readers
+            .insert("large".into(), Box::new(Reserved(40 << 20)));
+        assert_eq!(session.bytes() - baseline, 56 << 20);
+        session.transient_reserve = MAX_BYTES - baseline - (80 << 20);
+        let error = session
+            .call(
+                json!({"op":"register_source","id":"new","spec":{"location":"not-opened.tif"}}),
+                &AtomicBool::new(false),
+            )
+            .unwrap_err();
+        assert!(
+            error
+                .to_string()
+                .contains("insufficient session reader memory")
+        );
+        assert_eq!(session.readers.len(), 2);
+    }
 
     #[test]
     fn future_decoded_cache_growth_is_reserved_before_touching_a_file() {

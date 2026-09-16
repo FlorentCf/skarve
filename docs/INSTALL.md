@@ -1,6 +1,6 @@
 # Install Skarve
 
-This public source-only alpha is **v0.1.1-alpha.1**, with experimental SKV v0 support. Prebuilt binaries and registry packages are not published; see [the distribution decision](../release/DISTRIBUTION.md). The frozen v0.1.0-beta.2 release remains separate. Binary qualification targets Ubuntu 24.04 Linux x86-64, Python 3.12 and Node 20. The native runtime requires system GDAL 3.8.4 (`libgdal34t64` and `gdal-data`, Ubuntu package version `3.8.4+dfsg-3ubuntu3`). Skarve's core is bundled in the wheel, npm archive and CLI archive. The npm archive also includes its Koffi dependency. These binaries make no manylinux, Windows or macOS compatibility claim. Review [external runtime licenses](RUNTIME_LICENSES.md) before redistributing a binary combination.
+This public source-only alpha is **v0.1.1-alpha.2**, with experimental SKV v0 support. Prebuilt binaries and registry packages are not published; see [the distribution decision](../release/DISTRIBUTION.md). The frozen v0.1.0-beta.2 release remains separate. Binary qualification targets Ubuntu 24.04 Linux x86-64, Python 3.12 and Node 20. The native runtime requires system GDAL 3.8.4 (`libgdal34t64` and `gdal-data`, Ubuntu package version `3.8.4+dfsg-3ubuntu3`). Skarve's core is bundled in the wheel, npm archive and CLI archive. The npm archive also includes its Koffi dependency. These binaries make no manylinux, Windows or macOS compatibility claim. Review [external runtime licenses](RUNTIME_LICENSES.md) before redistributing a binary combination.
 
 Linux SKV decoding additionally requires `libdeflate.so.0` with
 `libdeflate_alloc_decompressor_ex`, `libdeflate_zlib_decompress_ex` and
@@ -29,16 +29,16 @@ prebuilt wheel, Node and CLI commands apply only when those assets are included.
 # In the downloaded artifact directory, with the declared system GDAL installed:
 sha256sum -c SHA256SUMS
 python3 -m venv skarve-env
-skarve-env/bin/pip install --no-index --no-deps ./skarve_engine-0.1.1a1-py3-none-linux_x86_64.whl
+skarve-env/bin/pip install --no-index --no-deps ./skarve_engine-0.1.1a2-py3-none-linux_x86_64.whl
 skarve-env/bin/skarve --version
 
-npm install --offline --ignore-scripts --omit=optional --no-audit --no-fund ./skarve-engine-0.1.1-alpha.1.tgz
+npm install --offline --ignore-scripts --omit=optional --no-audit --no-fund ./skarve-engine-0.1.1-alpha.2.tgz
 
-tar -xzf skarve-0.1.1-alpha.1-linux-x86_64.tar.gz
-./skarve-0.1.1-alpha.1-linux-x86_64/bin/skarve --version
+tar -xzf skarve-0.1.1-alpha.2-linux-x86_64.tar.gz
+./skarve-0.1.1-alpha.2-linux-x86_64/bin/skarve --version
 ```
 
-The Python distribution is `skarve-engine`; import `skarve`. The existing `raster_engine_lab` import remains a compatibility alias. The Node package is `@skarve/engine`; its default export and `Skarve`/`RasterEngine` names refer to the same class. Normal source operations need neither NumPy nor rasterio. Python typed-buffer operations additionally need NumPy; fixture generation below uses rasterio and NumPy as test dependencies.
+The Python distribution is `skarve-engine`; import `skarve`. The existing `raster_engine_lab` import remains a compatibility alias. The Node package is `@skarve/engine`; its default export and `Skarve`/`RasterEngine` names refer to the same class. Normal source operations need neither NumPy nor rasterio. Python bulk typed-buffer operations additionally need NumPy; original source-window reads return memoryviews without NumPy. Fixture generation below uses rasterio and NumPy as test dependencies. See [source-window APIs and limits](source-windows.md).
 
 Leave `SKARVE_LIBRARY`, `RASTER_ENGINE_LIB`, `RASTER_ENGINE_LIBRARY`, `PYTHONPATH` and user-specific native-library search overrides unset for ordinary installed use. A missing GDAL runtime produces an explicit loader error. Install the documented system prerequisite rather than redirecting the package to an unidentified library.
 
@@ -64,14 +64,16 @@ Install Skarve into that environment first. Run Node examples from a source/cons
 Install the Rust toolchain declared in `rust-toolchain.toml`, a C linker, `pkg-config`, GDAL development headers and libdeflate headers (`libgdal-dev libdeflate-dev` on Ubuntu 24.04). Then:
 
 ```sh
-git clone --branch v0.1.1-alpha.1 https://github.com/FlorentCf/skarve.git
+git clone --branch main https://github.com/FlorentCf/skarve.git
 cd skarve
 python3 scripts/build.py --test
 python3 -m venv .venv
 .venv/bin/python -m pip install -r scripts/packaging-requirements.txt
 npm ci --ignore-scripts --prefix bindings/node
-.venv/bin/python scripts/package_release.py --output-dir dist/skv-v0/native
+.venv/bin/python scripts/package_release.py --local-use-only --output-dir dist/skv-v0/native
 ```
+
+Source-only release tags remain immutable. Record `git rev-parse HEAD` with your build; current `main` may include changes after a tagged release. `--local-use-only` captures the installed system-library versions and copyright notices for local installation and CI. It does not qualify those binaries for redistribution; omitting it retains the strict reviewed-runtime checks.
 
 Builds use locked Rust dependencies and at most two workers. Packaging accepts a clean Git checkout or the complete source archive with its verified `SOURCE_MANIFEST.json`. Commit changes before packaging a modified checkout. An output directory must be new; existing artifacts are never overwritten under the same identity. A source build on another platform is not evidence that its binaries passed the supported-platform qualification.
 
@@ -86,7 +88,7 @@ these are ordinary `cmake`, `g++` and `libgeos-dev` prerequisites. Then:
 python3 native/exactextract/fetch.py
 python3 scripts/build.py --exactextract --target target/skv-v0 --test
 .venv/bin/python scripts/package_release.py \
-  --binary-dir target/skv-v0/release --output-dir dist/skv-v0/exactextract
+  --local-use-only --binary-dir target/skv-v0/release --output-dir dist/skv-v0/exactextract
 ```
 
 The fetch is explicit and validates a pinned upstream archive and source member

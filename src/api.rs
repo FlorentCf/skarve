@@ -163,6 +163,37 @@ impl Source<'_> {
             .request(json!({"op":"source_info", "source":self.id}))
     }
 
+    /// Read original scalar bytes and independent masks into caller-owned storage.
+    /// Returned descriptors identify little-endian values and masks in `output`.
+    /// Both caller storage and reader scratch count against `working_bytes`.
+    /// No normalization, masking, resampling, or reduction is performed.
+    pub fn read_window(
+        &mut self,
+        window: [usize; 4],
+        bands: Vec<usize>,
+        output: &mut [u8],
+        working_bytes: usize,
+    ) -> Result<Value> {
+        let source = self.engine.session.reader(&self.id)?;
+        ensure!(
+            working_bytes
+                .checked_add(source.retained_memory_bound())
+                .is_some_and(|n| n <= self.engine.session.available()),
+            "insufficient session source window memory"
+        );
+        crate::source_buffer::read(
+            source,
+            &crate::source_buffer::Request {
+                source: self.id.clone(),
+                window,
+                bands,
+                working_bytes,
+            },
+            output,
+            &self.engine.cancellation.0,
+        )
+    }
+
     /// Compute native fractional statistics without preparing or converting data.
     pub fn carve(&mut self, zone: &Value, options: &CarveOptions) -> Result<Value> {
         let mut request = json!({"bands":options.bands});

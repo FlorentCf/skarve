@@ -49,7 +49,7 @@ const MAX_METADATA: usize = 65_536;
 const PAGE_CACHE: usize = 64;
 const DIRECTORY_RANGE_PAGES: usize = 8;
 const MAX_READS: usize = 65_536;
-const MAX_LEAF_RECORDS: usize = 48_000;
+const MAX_LEAF_RECORDS: usize = 131_072;
 pub const VERIFY_WORKING_BYTES: usize = 128 << 20;
 const SCHEMA: &str = "native_grid_planar_compensated_v1";
 const MAX_PREDICTOR_SCRATCH: usize = 256 * 256 * 8;
@@ -312,7 +312,7 @@ impl Header {
             self.leaves()
                 .checked_mul(self.bands())
                 .is_some_and(|n| n <= MAX_LEAF_RECORDS),
-            "SKV v0 exceeds48000 typed leaf chunks; increase chunk edge or reduce explicit band selection"
+            "SKV v0 exceeds131072 typed leaf chunks; choose a supported chunk edge without changing the source grid"
         );
         for value in [&self.build_id, &self.logical_digest, &self.directory_digest] {
             ensure!(
@@ -757,6 +757,7 @@ struct ReaderState {
     /// insertion; the payload layout itself is unchanged.
     intervals: Vec<(u64, u64, usize)>,
     started: Instant,
+    logical_read_limit: usize,
 }
 impl ReaderState {
     fn read(
@@ -767,7 +768,7 @@ impl ReaderState {
         cancel: &AtomicBool,
     ) -> Result<Vec<u8>> {
         ensure!(
-            self.metrics.logical_reads < MAX_READS,
+            self.metrics.logical_reads < self.logical_read_limit,
             "SKV logical read budget exceeded"
         );
         let start = Instant::now();
@@ -911,7 +912,8 @@ impl SkvSource {
                 ..Metrics::default()
             },
             pages: VecDeque::with_capacity(PAGE_CACHE),
-            intervals: Vec::with_capacity(MAX_LEAF_RECORDS),
+            intervals: Vec::new(),
+            logical_read_limit: MAX_READS,
             started: prefix.as_ref().map_or_else(Instant::now, |p| p.started),
         };
         let bytes = if let Some(prefix) = prefix {
@@ -1044,11 +1046,12 @@ impl SkvSource {
         // Finite Rust-owned capacities: transfer payloads are separately charged
         // by RangeSource; header/decoded metadata and client state have a2MiB
         // reserve. Per-read buffers are additional in read_buffer_bound.
+        let interval_capacity = header.leaves() * header.groups_per_tile()?;
         let retained = spec
             .http
             .cache_bytes
             .saturating_add(PAGE_CACHE * (PAGE + std::mem::size_of::<(usize, Vec<u8>)>()))
-            .saturating_add(MAX_LEAF_RECORDS * std::mem::size_of::<(u64, u64, usize)>())
+            .saturating_add(interval_capacity * std::mem::size_of::<(u64, u64, usize)>())
             .saturating_add(4096 * std::mem::size_of::<ReadRecord>())
             .saturating_add(MAX_READS * std::mem::size_of::<crate::io::RemoteRange>())
             .saturating_add(2 << 20);
@@ -1056,6 +1059,7 @@ impl SkvSource {
             retained <= crate::source::NATIVE_SOURCE_RETAINED_BYTES,
             "SKV retained source capacity exceeds admission"
         );
+        state.intervals = Vec::with_capacity(interval_capacity);
         Ok(Self {
             header,
             metadata,
@@ -1186,7 +1190,7 @@ impl SkvSource {
                         "overlapping SKV payload records"
                     );
                     ensure!(
-                        state.intervals.len() < MAX_LEAF_RECORDS,
+                        state.intervals.len() < state.intervals.capacity(),
                         "SKV visited interval budget exceeded"
                     );
                     state.metrics.interval_insert_shift_bytes += ((state.intervals.len()
@@ -1511,6 +1515,7 @@ impl SkvSource {
                 "SKV raw window exceeds memory budget"
             );
             let start = Instant::now();
+            self.prepare_native_window([x, y, w, h], bands, cancel)?;
             let mut output = if native {
                 WindowOutput::Native(native_window::allocate(
                     &self.metadata,
@@ -1823,8 +1828,32 @@ impl WindowSource for SkvSource {
     fn verify_immutable(&self) -> Result<()> {
         self.guarded(|| self.state.borrow_mut().store.verify())
     }
+    fn begin_query_budget(&self) -> Result<()> {
+        self.guarded(|| match &mut self.state.borrow_mut().store {
+            Store::Remote(source) => source.begin_query_budget(),
+            store => store.verify_local(),
+        })
+    }
+    fn begin_verified_query(&self, renew: bool) -> Result<()> {
+        self.guarded(|| match &mut self.state.borrow_mut().store {
+            Store::Remote(source) => source.begin_verified_query(renew),
+            store => store.verify_local(),
+        })
+    }
+    fn end_verified_query(&self) -> Result<()> {
+        self.guarded(|| match &mut self.state.borrow_mut().store {
+            Store::Remote(source) => source.end_verified_query(),
+            store => store.verify_local(),
+        })
+    }
     fn stored_summaries(&self) -> Option<&dyn StoredSummarySource> {
         self.summaries.then_some(self)
+    }
+    fn registered_http_identity(&self) -> Option<crate::io::RemoteIdentity> {
+        match &self.state.borrow().store {
+            Store::Remote(source) => Some(source.registered_identity()),
+            _ => None,
+        }
     }
     fn retained_memory_bound(&self) -> usize {
         self.retained
@@ -2133,6 +2162,37 @@ fn write_record_file(file: &mut File, id: usize, record: &[u8; RECORD]) -> Resul
     Ok(())
 }
 fn verify_complete(source: &SkvSource, check_logical: bool, cancel: &AtomicBool) -> Result<Value> {
+    // A local exhaustive audit is a finite preparation operation, not ordinary
+    // serving. It may visit every descriptor/payload, while retaining the same
+    // bounded trace/page caches. Remote verification keeps all transport limits.
+    let prior_limit = source.state.borrow().logical_read_limit;
+    if matches!(source.state.borrow().store, Store::Local { .. }) {
+        // Each record can read itself, its canonical group leader, and four
+        // children (each possibly resolving a leader). Reserve ten descriptor
+        // calls, each loading at most DIRECTORY_RANGE_PAGES pages, plus payload.
+        let extra = source
+            .header
+            .records()?
+            .checked_mul(10 * DIRECTORY_RANGE_PAGES + 1)
+            .and_then(|n| n.checked_add(source.header.pages().ok()?))
+            .context("SKV verification read budget overflow")?;
+        let mut state = source.state.borrow_mut();
+        state.logical_read_limit = state
+            .metrics
+            .logical_reads
+            .checked_add(extra)
+            .context("SKV verification read budget overflow")?
+            .max(prior_limit);
+    }
+    let result = verify_complete_inner(source, check_logical, cancel);
+    source.state.borrow_mut().logical_read_limit = prior_limit;
+    result
+}
+fn verify_complete_inner(
+    source: &SkvSource,
+    check_logical: bool,
+    cancel: &AtomicBool,
+) -> Result<Value> {
     // Full inspection is explicit. Ordinary serving verifies only visited pages
     // and payloads and does not pretend that a header hash authenticates all data.
     let started = Instant::now();
@@ -2367,9 +2427,6 @@ pub fn compile(
     let cells = edge * edge;
     let mut working = 32usize << 20;
     for band in 0..header.bands() {
-        let width = header.grid.width.min(edge);
-        let height = header.grid.height.min(edge);
-        let input = source.raw_read_buffer_bound(width, height, &[band])?;
         let extra = cells
             .checked_mul(3 * (header.raw_metadata.bands[band].scalar_type.byte_width() + 1) + 9)
             .and_then(|n| n.checked_add(4 << 20))
@@ -2381,12 +2438,22 @@ pub fn compile(
         } else {
             extra
         };
-        working = working.max(
-            input
-                .checked_add(extra)
-                .context("SKV build buffer overflow")?,
-        );
+        // Admission must cover the actual compiler schedule: a source may
+        // prove a smaller footprint for an aligned chunk, or require more for
+        // a later chunk crossing a physical block boundary. Readers without a
+        // position-aware bound retain the conservative default trait contract.
+        for node in 0..header.leaves() {
+            check_cancel(cancel)?;
+            let [x0, y0, x1, y1] = layout.bounds(&header.grid, node)?;
+            let input = source.raw_read_buffer_bound_at(x0, y0, x1 - x0, y1 - y0, &[band])?;
+            working = working.max(
+                input
+                    .checked_add(extra)
+                    .context("SKV build buffer overflow")?,
+            );
+        }
     }
+    check_cancel(cancel)?;
     ensure!(
         working <= options.working_bytes,
         "SKV compilation exceeds working memory budget: requires {working} bytes"
@@ -2828,6 +2895,155 @@ mod tests {
         bytes[..BOOTSTRAP].copy_from_slice(&encoded);
     }
     #[test]
+    fn large_grid_capacity_is_bounded_and_preserves_existing_header_layout() {
+        let dir = tempfile::tempdir().unwrap();
+        let (path, _) = built(dir.path(), false);
+        let old = SkvSource::open(&spec(&path), &AtomicBool::new(false)).unwrap();
+        assert_eq!(old.state.borrow().intervals.capacity(), 9);
+        let mut header = old.header.clone();
+        header.grid.width = 17643;
+        header.grid.height = 11708;
+        header.chunk_edge = 256;
+        header.band_group = 36;
+        header.payload_layout = "row_group_v1".into();
+        let mut band = header.raw_metadata.bands[0].clone();
+        band.scalar_type = crate::source::RawScalarType::Float32;
+        header.raw_metadata.bands = (0..36)
+            .map(|i| {
+                let mut value = band.clone();
+                value.original_band_index = i;
+                value
+            })
+            .collect();
+        header.raw_metadata.source_band_count = 36;
+        header.hierarchy = HierarchyDescription {
+            tile_edge: 256,
+            levels: SummaryLayout::new(&header.grid, 256, true).unwrap().levels,
+        };
+        header.validate().unwrap();
+        assert_eq!(header.leaves() * header.bands(), 114264);
+        assert_eq!(header.groups_per_tile().unwrap(), 4);
+        assert_eq!(header.band_group_bounds(0).unwrap(), (0, 10));
+        let large = dir.path().join("large_grid-header.skv");
+        let length = header.data_offset().unwrap() + 1;
+        let bytes = encode_header(&header, length, &AtomicBool::new(false)).unwrap();
+        fs::write(&large, bytes).unwrap();
+        OpenOptions::new()
+            .write(true)
+            .open(&large)
+            .unwrap()
+            .set_len(length)
+            .unwrap();
+        let opened = SkvSource::open(&spec(&large), &AtomicBool::new(false)).unwrap();
+        assert_eq!(opened.state.borrow().intervals.capacity(), 12696);
+        assert!(opened.retained <= crate::source::NATIVE_SOURCE_RETAINED_BYTES);
+        // Capacity extension changes no header version or byte interpretation.
+        assert_eq!(opened.header.version, 0);
+        header.payload_layout = "band".into();
+        let bytes = encode_header(&header, length, &AtomicBool::new(false)).unwrap();
+        let independent = dir.path().join("large_grid-band-header.skv");
+        fs::write(&independent, bytes).unwrap();
+        OpenOptions::new()
+            .write(true)
+            .open(&independent)
+            .unwrap()
+            .set_len(length)
+            .unwrap();
+        let band_source = SkvSource::open(&spec(&independent), &AtomicBool::new(false)).unwrap();
+        assert_eq!(band_source.state.borrow().intervals.capacity(), 114264);
+        assert!(band_source.retained <= crate::source::NATIVE_SOURCE_RETAINED_BYTES);
+        header.chunk_edge = 128;
+        header.hierarchy = HierarchyDescription {
+            tile_edge: 128,
+            levels: SummaryLayout::new(&header.grid, 128, true).unwrap().levels,
+        };
+        assert!(
+            header
+                .validate()
+                .unwrap_err()
+                .to_string()
+                .contains("131072")
+        );
+    }
+    #[test]
+    fn extended_capacity_compiles_and_round_trips_above_old_record_limit() {
+        let dir = tempfile::tempdir().unwrap();
+        let path = dir.path().join("tall.tif");
+        let height = 65_537 * 64;
+        let mut dataset = DriverManager::get_driver_by_name("GTiff")
+            .unwrap()
+            .create_with_band_type::<u8, _>(&path, 1, height, 1)
+            .unwrap();
+        dataset
+            .set_geo_transform(&[0., 1., 0., height as f64, 0., -1.])
+            .unwrap();
+        dataset
+            .set_spatial_ref(&SpatialRef::from_epsg(3857).unwrap())
+            .unwrap();
+        dataset
+            .rasterband(1)
+            .unwrap()
+            .write(
+                (0, (height - 1) as isize),
+                (1, 1),
+                &mut Buffer::new((1, 1), vec![197u8]),
+            )
+            .unwrap();
+        dataset.flush_cache().unwrap();
+        drop(dataset);
+        let cancel = AtomicBool::new(false);
+        let input: SourceSpec = serde_json::from_value(json!({"location":path})).unwrap();
+        let source = crate::io::open_source_for_compile(&input, &cancel).unwrap();
+        let output = dir.path().join("tall.skv");
+        let receipt = compile(
+            source.as_ref(),
+            output.to_str().unwrap(),
+            &CompileOptions {
+                chunk_edge: 64,
+                summaries: false,
+                codec: "none".into(),
+                ..Default::default()
+            },
+            &cancel,
+        )
+        .unwrap();
+        assert_eq!(receipt["leaf_chunks"], 65_537);
+        let opened = SkvSource::open(&spec(&output), &cancel).unwrap();
+        let (raw, _) = opened
+            .read_raw_selected_window_cancellable(0, height - 1, 1, 1, &[0], 32 << 20, &cancel)
+            .unwrap();
+        assert_eq!(raw.bands[0].samples_le, vec![197u8]);
+        assert_eq!(opened.state.borrow().logical_read_limit, MAX_READS);
+        assert!(receipt["verification"]["verified"].as_bool().unwrap());
+    }
+    #[test]
+    fn exhaustive_local_verification_does_not_relax_serving_read_limit() {
+        let dir = tempfile::tempdir().unwrap();
+        let (path, _) = built(dir.path(), false);
+        let cancel = AtomicBool::new(false);
+        let source = SkvSource::open(&spec(&path), &cancel).unwrap();
+        source.state.borrow_mut().metrics.logical_reads = MAX_READS;
+        assert!(
+            source
+                .state
+                .borrow_mut()
+                .read("raw", 0, 1, &cancel)
+                .is_err()
+        );
+        verify_complete(&source, true, &cancel).unwrap();
+        assert_eq!(source.state.borrow().logical_read_limit, MAX_READS);
+        assert!(
+            source
+                .state
+                .borrow_mut()
+                .read("raw", 0, 1, &cancel)
+                .is_err()
+        );
+        cancel.store(true, Ordering::Relaxed);
+        assert!(verify_complete(&source, true, &cancel).is_err());
+        assert_eq!(source.state.borrow().logical_read_limit, MAX_READS);
+    }
+    #[test]
     fn full_verification_and_parser_reject_coherent_corruption() {
         let dir = tempfile::tempdir().unwrap();
         let (path, _) = built(dir.path(), false);
@@ -2966,6 +3182,129 @@ mod tests {
             .is_err()
         );
         assert!(!target.exists());
+    }
+    struct PositionBoundSource<'a> {
+        source: &'a dyn WindowSource,
+        bounds: RefCell<Vec<(usize, usize, usize, usize)>>,
+        reads: Cell<usize>,
+        late_oversize: bool,
+        cancel: &'a AtomicBool,
+        cancel_at: Option<usize>,
+    }
+    impl WindowSource for PositionBoundSource<'_> {
+        fn metadata(&self) -> &RasterMetadata {
+            self.source.metadata()
+        }
+        fn raw_metadata(&self) -> Option<&RawRasterMetadata> {
+            self.source.raw_metadata()
+        }
+        fn verify_immutable(&self) -> Result<()> {
+            self.source.verify_immutable()
+        }
+        fn raw_read_buffer_bound(&self, _: usize, _: usize, _: &[usize]) -> Result<usize> {
+            Ok(512 << 20)
+        }
+        fn raw_read_buffer_bound_at(
+            &self,
+            x: usize,
+            y: usize,
+            w: usize,
+            h: usize,
+            bands: &[usize],
+        ) -> Result<usize> {
+            assert_eq!(bands, &[0]);
+            let mut bounds = self.bounds.borrow_mut();
+            bounds.push((x, y, w, h));
+            if self.cancel_at == Some(bounds.len()) {
+                self.cancel.store(true, Ordering::Relaxed);
+            }
+            Ok(if self.late_oversize && x == 128 && y == 128 {
+                64 << 20
+            } else {
+                32 << 20
+            })
+        }
+        fn read_raw_selected_window_cancellable(
+            &self,
+            x: usize,
+            y: usize,
+            w: usize,
+            h: usize,
+            bands: &[usize],
+            max_bytes: usize,
+            cancel: &AtomicBool,
+        ) -> Result<(RawWindow, ReadMetrics)> {
+            self.reads.set(self.reads.get() + 1);
+            self.source
+                .read_raw_selected_window_cancellable(x, y, w, h, bands, max_bytes, cancel)
+        }
+        fn read_selected_window_cancellable(
+            &self,
+            _: usize,
+            _: usize,
+            _: usize,
+            _: usize,
+            _: &[usize],
+            _: usize,
+            _: &AtomicBool,
+        ) -> Result<(Raster, ReadMetrics)> {
+            anyhow::bail!("unused normalized read")
+        }
+    }
+    #[test]
+    fn compiler_admits_every_actual_window_before_output_and_preserves_cancellation() {
+        let dir = tempfile::tempdir().unwrap();
+        let (input, original) = built(dir.path(), false);
+        let source_cancel = AtomicBool::new(false);
+        let source = SkvSource::open(&spec(&input), &source_cancel).unwrap();
+        let options = CompileOptions {
+            chunk_edge: 64,
+            ..Default::default()
+        };
+        for (name, late_oversize, cancel_at) in [
+            ("admitted", false, None),
+            ("late-oversize", true, None),
+            ("cancel-before-last", false, Some(8)),
+            ("cancel-at-last", false, Some(9)),
+        ] {
+            let cancel = AtomicBool::new(false);
+            let wrapped = PositionBoundSource {
+                source: &source,
+                bounds: RefCell::new(Vec::new()),
+                reads: Cell::new(0),
+                late_oversize,
+                cancel: &cancel,
+                cancel_at,
+            };
+            let destination = dir.path().join(name);
+            fs::create_dir(&destination).unwrap();
+            let output = destination.join("result.skv");
+            let result = compile(&wrapped, output.to_str().unwrap(), &options, &cancel);
+            if name == "admitted" {
+                let receipt = result.unwrap();
+                assert_eq!(wrapped.reads.get(), 9);
+                assert_eq!(receipt["logical_digest"], original["logical_digest"]);
+                verify(&spec(&output), &AtomicBool::new(false)).unwrap();
+            } else {
+                assert!(result.is_err());
+                assert_eq!(wrapped.reads.get(), 0);
+                assert_eq!(fs::read_dir(&destination).unwrap().count(), 0);
+                if late_oversize {
+                    assert!(
+                        result
+                            .unwrap_err()
+                            .to_string()
+                            .contains("working memory budget")
+                    );
+                }
+            }
+            let bounds = wrapped.bounds.borrow();
+            assert_eq!(bounds[0], (0, 0, 64, 64));
+            assert_eq!(bounds.len(), cancel_at.unwrap_or(9));
+            if bounds.len() == 9 {
+                assert_eq!(bounds[8], (128, 128, 1, 3));
+            }
+        }
     }
     struct CancelAfterRead<'a>(&'a dyn WindowSource);
     impl WindowSource for CancelAfterRead<'_> {

@@ -145,6 +145,48 @@ def notice_inventory(destination,binary,exactextract=False):
             soname,path=match.groups();dependencies.append({'soname':soname,'system_path':path,'sha256':sha(path),'bundled':False})
     return {'dependencies':records,'native_external_libraries':dependencies,'runtime':RUNTIME,'runtime_recipe':RECIPE,'project_license':'Apache-2.0; third-party components retain the license expressions and notices listed here.'}
 
+def local_system_runtime_inventory(binary, inventory, destination):
+    """Capture this host for local tests; never claim distribution qualification."""
+    libraries = []
+    packages = {}
+    for library in inventory['native_external_libraries']:
+        path = Path(library['system_path'])
+        owners = None
+        for candidate in dict.fromkeys((str(path), str(path.resolve()), str(path).replace('/lib/', '/usr/lib/', 1))):
+            try:
+                owners = [line for line in run(['dpkg-query', '-S', candidate]).strip().splitlines()
+                          if ': ' in line and not line.startswith('diversion ')]
+                if owners:
+                    break
+            except RuntimeError:
+                pass
+        if not owners:
+            raise RuntimeError('Cannot identify installed system library package: ' + library['soname'])
+        names = sorted({line.rsplit(': ', 1)[0] for line in owners
+                        if ': ' in line and not line.startswith('diversion ')})
+        if not names:
+            raise RuntimeError('Cannot identify installed system library package: ' + library['soname'])
+        libraries.append(dict(library, packages=names))
+        for name in names:
+            if name in packages:
+                continue
+            version = run(['dpkg-query', '-W', '-f=${Version}', name]).strip()
+            notice = Path('/usr/share/doc') / name.split(':')[0] / 'copyright'
+            if not notice.is_file():
+                raise RuntimeError('Missing installed copyright notice: ' + name)
+            relative = Path('system-local') / name.replace(':', '_') / 'copyright'
+            target = destination / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(notice, target)
+            packages[name] = {'package': name, 'version': version,
+                              'copyright_record': relative.as_posix(),
+                              'copyright_sha256': sha(target), 'bundled': False}
+    return {'schema': 'skarve_local_runtime_inventory_v1',
+            'distribution_qualified': False,
+            'scope': 'Observed installed runtime and retained notices for local build/testing only. No binary distribution clearance or qualified-host equivalence.',
+            'inspected_binary_sha256': sha(binary),
+            'libraries': libraries, 'packages': list(packages.values())}
+
 def system_runtime_inventory(binary,inventory):
     """Bind reviewed system notices to this binary's actual runtime closure."""
     reviewed=json.loads((ROOT/'third_party/SYSTEM_RUNTIME.json').read_text())
@@ -166,7 +208,7 @@ def system_runtime_inventory(binary,inventory):
 
 def main():
     os.environ['PATH']=str(Path.home()/'.cargo/bin')+os.pathsep+os.environ.get('PATH','')
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--binary-dir',type=Path,default=ROOT/'target/release');p.add_argument('--output-dir',type=Path,default=ROOT/'dist'/('v'+VERSION));p.add_argument('--expected-library-sha256');p.add_argument('--expected-cli-sha256');p.add_argument('--label',default='Linux x86-64 beta; publication controlled by repository owner');args=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--binary-dir',type=Path,default=ROOT/'target/release');p.add_argument('--output-dir',type=Path,default=ROOT/'dist'/('v'+VERSION));p.add_argument('--expected-library-sha256');p.add_argument('--expected-cli-sha256');p.add_argument('--label',default='Linux x86-64 beta; publication controlled by repository owner');p.add_argument('--local-use-only', action='store_true', help='Capture this host runtime for local installation/CI, without binary distribution qualification. Strict reviewed-runtime checks remain the default.');args=p.parse_args()
     if platform.system()!='Linux' or platform.machine()!='x86_64':raise SystemExit('Only the tested Linux x86-64 package assembly is supported.')
     try:run([sys.executable,'-m','build','--version'])
     except Exception as error:raise SystemExit('Build tools missing. Create a build venv and install scripts/packaging-requirements.txt. '+str(error))
@@ -193,11 +235,19 @@ def main():
     cache=Path(os.environ.get('SKARVE_BUILD_CACHE',Path.home()/'.cache/skarve-build'));cache.mkdir(parents=True,exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='package-',dir=cache) as temp:
         stage=Path(temp);notice_dir=stage/'notices';inventory=notice_inventory(notice_dir,library,capabilities['exactextract'])
-        system_inventory=system_runtime_inventory(library,inventory)
+        system_inventory=local_system_runtime_inventory(library,inventory,notice_dir) if args.local_use_only else system_runtime_inventory(library,inventory)
+        if args.local_use_only:
+            inventory['runtime']='Observed local runtime; see SYSTEM_RUNTIME.json. Not qualified for binary redistribution.'
+            inventory['runtime_recipe']='Use the installed distribution packages recorded in SYSTEM_RUNTIME.json.'
         inventory_path=out/'DEPENDENCIES.json';inventory_path.write_text(json.dumps(inventory,indent=2)+'\n')
         manifest={'product':'Skarve','publication_control':'Owner approval required before initial distribution','version':VERSION,'source_commit':head,'label':args.label,'library_sha256':library_sha,'cli_sha256':binary_sha,'runtime':RUNTIME,'python_distribution':'skarve-engine','python_import':'skarve','npm_package':'@skarve/engine','distribution':'GitHub Release assets; no npm or PyPI registry publication implied.','project_license':'Apache-2.0','dependency_inventory_sha256':sha(inventory_path),
                   'source_worktree_clean':True,'source_provenance':'clean_git_checkout' if checkout else 'verified_source_distribution',
                   'native_source_sha256':{str(f.relative_to(ROOT)):sha(f) for f in sorted((ROOT/'src').glob('*.rs'))+[ROOT/'Cargo.toml',ROOT/'Cargo.lock']},'source_files_sha256':source_hashes}
+        manifest['local_use_only']=args.local_use_only
+        manifest['distribution_qualified']=False
+        if args.local_use_only:
+            manifest['runtime']='Observed local Linux runtime; see SYSTEM_RUNTIME.json. Not the qualified release-host assertion.'
+            manifest['distribution']='Local installation and testing only; not cleared for binary redistribution.'
         manifest['bulk_abi_version']=1
         manifest['system_runtime_inventory_sha256']=hashlib.sha256((json.dumps(system_inventory,indent=2)+'\n').encode()).hexdigest()
         manifest['policies']=['native_grid_planar_fractional','strict_selected_v1','hm_demographics_ordered_v1','hm_straight_lonlat_spherical_v1']
@@ -211,6 +261,7 @@ def main():
             destination.mkdir(parents=True);shutil.copy2(library,destination/'libraster_engine.so')
             if sha(destination/'libraster_engine.so')!=library_sha:raise SystemExit('Native library changed while copying.')
             copy_verified('include/skarve_bulk.h',destination/'skarve_bulk.h',source_hashes)
+            copy_verified('include/skarve_source_buffer.h',destination/'skarve_source_buffer.h',source_hashes)
             if include_cli:
                 shutil.copy2(binary,destination/'skarve')
                 if sha(destination/'skarve')!=binary_sha:raise SystemExit('Native CLI changed while copying.')

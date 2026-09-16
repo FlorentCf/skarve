@@ -49,6 +49,20 @@ jobs:
           else
             python scripts/build.py --test
           fi
+      - name: HTTP transport configuration matrix
+        env:
+          OPTIONAL_BACKEND: ${{ matrix.backend }}
+        run: |
+          features=()
+          if [ "$OPTIONAL_BACKEND" = exactextract ]; then features=(--features exactextract); fi
+          for pool in 0 1; do
+            for concurrency in 1 2; do
+              SKARVE_HTTP_SHARED_POOL=$pool SKARVE_HTTP_CONCURRENCY=$concurrency cargo test --locked -j 2 "${features[@]}" --lib range_prefetch_tests
+              SKARVE_HTTP_SHARED_POOL=$pool SKARVE_HTTP_CONCURRENCY=$concurrency cargo test --locked -j 2 "${features[@]}" --test source_execution --test skv_coalescing
+            done
+          done
+      - name: Generated source-window and TIFF admission contracts
+        run: python scripts/test-source-windows.py --library target/release/libraster_engine.so --work scratch/source-windows
       - name: Rust external consumer from the packaged crate
         if: matrix.backend == 'native'
         run: |
@@ -57,10 +71,10 @@ jobs:
         run: |
           python -m pytest -q tests
           node --test bindings/node/*.test.mjs bindings/node/test.mjs tests/product_api.test.mjs
-          cc -std=c11 -Wall -Wextra -Werror -I include -c tests/support/bulk_layout.c -o target/bulk-layout.o
+          cc -std=c11 -Wall -Wextra -Werror -I include -include skarve_source_buffer.h -c tests/support/bulk_layout.c -o target/bulk-layout.o
       - name: Build immutable packages and test fresh installed consumers
         run: |
-          python scripts/package_release.py --output-dir dist/ci
+          python scripts/package_release.py --local-use-only --output-dir dist/ci
           python -m pip download --only-binary=:all: numpy==2.5.3 rasterio==1.5.1 blake3==1.0.8 --dest scratch/wheelhouse
           python tests/standalone_suite.py --artifacts dist/ci --wheelhouse scratch/wheelhouse --output scratch/installed.json
       - name: Benchmark smoke

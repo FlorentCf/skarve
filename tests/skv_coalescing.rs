@@ -1111,3 +1111,64 @@ fn prefetched_later_corruption_cancellation_and_changed_generation_fail_closed()
             .is_err()
     );
 }
+
+#[test]
+fn concurrent_transport_actual_skv_native_both_layouts() {
+    if std::env::var("SKARVE_HTTP_CONCURRENCY").as_deref() != Ok("2") {
+        return;
+    }
+    for (layout, band_group) in [("band", 1), ("row_group_v1", 40)] {
+        let fixture =
+            Fixture::with_shape_and_layout("deflate", 40, band_group, EDGE * 3, EDGE, layout);
+        let cap = (0..3)
+            .flat_map(|t| (0..40).map(move |b| (t, b)))
+            .map(|(t, b)| {
+                let (a, z) = fixture.interval(t, b);
+                z - a
+            })
+            .max()
+            .unwrap();
+        let server = Server::new(fixture.bytes.clone());
+        let mut spec = server.spec(cap.max(16384));
+        spec.http.cache_bytes = 4 << 20;
+        let cancel = AtomicBool::new(false);
+        let remote = open_source(&spec, &cancel).unwrap();
+        let local = open_source(
+            &serde_json::from_value(json!({"location":fixture.original})).unwrap(),
+            &cancel,
+        )
+        .unwrap();
+        let bands = (0..40).collect::<Vec<_>>();
+        let bound = remote.read_buffer_bound(EDGE * 3, EDGE, &bands).unwrap();
+        let mut expected_bands = Vec::new();
+        for selected in bands.chunks(20) {
+            let local_bound = local.read_buffer_bound(EDGE * 3, EDGE, selected).unwrap();
+            expected_bands.extend(
+                local
+                    .read_selected_window_cancellable(
+                        0,
+                        0,
+                        EDGE * 3,
+                        EDGE,
+                        selected,
+                        local_bound,
+                        &cancel,
+                    )
+                    .unwrap()
+                    .0
+                    .bands,
+            );
+        }
+        let actual = remote
+            .read_selected_window_cancellable(0, 0, EDGE * 3, EDGE, &bands, bound, &cancel)
+            .unwrap()
+            .0;
+        for (a, b) in actual.bands.iter().zip(&expected_bands) {
+            assert_eq!(a.values, b.values);
+            assert_eq!(a.valid, b.valid);
+        }
+        let diag = remote.diagnostics();
+        eprintln!("parallel SKV {layout}: {}", diag["remote"]);
+        assert!(diag["remote"]["parallel_batches"].as_u64().unwrap() > 0);
+    }
+}

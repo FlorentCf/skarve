@@ -19,6 +19,7 @@ fn sources() -> &'static Mutex<HashMap<String, Arc<State>>> {
 }
 pub(super) struct State {
     pub source: Mutex<RangeSource>,
+    small_read_page_bytes: usize,
     cancel: AtomicUsize,
     error: Mutex<Option<String>>,
 }
@@ -63,12 +64,13 @@ impl Drop for OperationGuard<'_> {
     }
 }
 impl Registration {
-    pub fn new(source: RangeSource) -> Result<Self> {
+    pub fn new(source: RangeSource, small_read_page_bytes: usize) -> Result<Self> {
         install()?;
         static NEXT: AtomicU64 = AtomicU64::new(1);
         let path = format!("{PREFIX}{}.tif", NEXT.fetch_add(1, Ordering::Relaxed));
         let state = Arc::new(State {
             source: Mutex::new(source),
+            small_read_page_bytes,
             cancel: AtomicUsize::new(0),
             error: Mutex::new(None),
         });
@@ -124,6 +126,37 @@ impl Registration {
             .lock()
             .map_err(|_| anyhow!("source lock poisoned"))?
             .verify_remote()
+    }
+    pub fn begin_query_budget(&self) -> Result<()> {
+        self.check_error()?;
+        self.state
+            .source
+            .lock()
+            .map_err(|_| anyhow!("source lock poisoned"))?
+            .begin_query_budget()
+    }
+    pub fn begin_verified_query(&self, renew: bool) -> Result<()> {
+        self.check_error()?;
+        self.state
+            .source
+            .lock()
+            .map_err(|_| anyhow!("source lock poisoned"))?
+            .begin_verified_query(renew)
+    }
+    pub fn end_verified_query(&self) -> Result<()> {
+        self.check_error()?;
+        self.state
+            .source
+            .lock()
+            .map_err(|_| anyhow!("source lock poisoned"))?
+            .end_verified_query()
+    }
+    pub fn registered_identity(&self) -> Option<super::RemoteIdentity> {
+        self.state
+            .source
+            .lock()
+            .ok()
+            .map(|s| s.registered_identity())
     }
     pub fn range_bound(&self) -> usize {
         self.state
@@ -274,7 +307,11 @@ fn read_at(h: &mut Handle, offset: u64, output: &mut [u8]) -> Result<usize> {
     for begin in (0..length).step_by(source.limits.max_range_bytes as usize) {
         h.state.check()?;
         let n = (length - begin).min(source.limits.max_range_bytes as usize);
-        let bytes = source.read_range(offset + begin as u64, n as u64)?;
+        let bytes = source.read_small_page_range(
+            offset + begin as u64,
+            n as u64,
+            h.state.small_read_page_bytes,
+        )?;
         output[begin..begin + n].copy_from_slice(&bytes);
     }
     h.state.check()?;
@@ -332,6 +369,53 @@ unsafe extern "C" fn multi(
         }
         let h = unsafe { &mut *(file as *mut Handle) };
         for i in 0..count as usize {
+            // GDAL supplies already-required ranges. Prepare at most128 in the
+            // existing transport/cache allowance, then copy in GDAL's order.
+            if super::concurrent_transport_enabled() && i % 128 == 0 {
+                let preparation = (|| -> Result<()> {
+                    h.state.check()?;
+                    let mut source = h
+                        .state
+                        .source
+                        .lock()
+                        .map_err(|_| anyhow!("source lock poisoned"))?;
+                    let mut demands = Vec::with_capacity(128);
+                    for j in i..(i + 128).min(count as usize) {
+                        let (offset, size) = unsafe { (*offsets.add(j), *sizes.add(j)) };
+                        if size == 0 || size as u64 > source.limits.max_range_bytes {
+                            return Ok(());
+                        }
+                        demands.push((offset, size as u64));
+                    }
+                    demands.sort_unstable();
+                    demands.dedup();
+                    if demands
+                        .windows(2)
+                        .any(|w| w[0].0.checked_add(w[0].1).is_none_or(|end| end > w[1].0))
+                    {
+                        return Ok(());
+                    }
+                    let scratch = (source.limits.max_range_bytes as usize
+                        + super::HTTP_SCRATCH_BYTES)
+                        .saturating_sub(128 * 16);
+                    let lifetime = source.cancel.clone();
+                    let ptr = h.state.cancel.load(Ordering::Acquire);
+                    // OperationGuard owns this shared flag until synchronous
+                    // GDAL returns. Scoped transport workers join inside this
+                    // callback, before that guard can release the borrow.
+                    let cancel = if ptr == 0 {
+                        &*lifetime
+                    } else {
+                        unsafe { &*(ptr as *const AtomicBool) }
+                    };
+                    source.prefetch_exact_ranges(&demands, scratch, cancel)?;
+                    Ok(())
+                })();
+                if let Err(e) = preparation {
+                    h.state.fail(format!("{e:#}"));
+                    return -1;
+                }
+            }
             let (buffer, offset, size) =
                 unsafe { (*buffers.add(i), *offsets.add(i), *sizes.add(i)) };
             if buffer.is_null() || size > 256 * 1024 * 1024 {

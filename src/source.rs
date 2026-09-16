@@ -254,16 +254,55 @@ pub struct ReadMetrics {
 pub trait WindowSource {
     fn metadata(&self) -> &RasterMetadata;
     fn verify_immutable(&self) -> Result<()>;
+    /// Explicit request boundary for a retained source. Local/default readers
+    /// only verify; HTTP readers renew the original traffic limits while keeping
+    /// cumulative counters and refusing invalidated or cancelled handles.
+    fn begin_query_budget(&self) -> Result<()> {
+        self.verify_immutable()
+    }
+    /// Explicit multi-window transaction. Intermediate buffers must not be
+    /// published until end_verified_query succeeds. Ordinary reads stay strict.
+    fn begin_verified_query(&self, renew: bool) -> Result<()> {
+        if renew {
+            self.begin_query_budget()?;
+        }
+        self.verify_immutable()
+    }
+    fn end_verified_query(&self) -> Result<()> {
+        self.verify_immutable()
+    }
+    /// Optional HTTP registration identity. It never asserts freshness alone.
+    /// Only successful end_verified_query followed by this record can supply
+    /// a final verification receipt for this exact owned source handle.
+    fn registered_http_identity(&self) -> Option<crate::io::RemoteIdentity> {
+        None
+    }
     /// Maximum bands in one transient raw or normalized source read. Ordinary
     /// readers retain20. An implementation may admit up to64 only when its
     /// reported read-buffer bound covers the complete returned window.
     fn max_read_bands(&self) -> usize {
         20
     }
+    /// Raw-only admission may be wider than normalized reads. Its complete
+    /// typed output and decoder footprint must fit the unchanged read budget.
+    fn max_raw_read_bands(&self) -> usize {
+        self.max_read_bands()
+    }
     /// Optional original typed access for lossless derived-format compilation.
     /// Absence is explicit: normalized values cannot reconstruct invalid bits.
     fn raw_metadata(&self) -> Option<&RawRasterMetadata> {
         None
+    }
+    /// Position-aware admission defaults to the conservative shape-only contract.
+    fn raw_read_buffer_bound_at(
+        &self,
+        _x: usize,
+        _y: usize,
+        w: usize,
+        h: usize,
+        bands: &[usize],
+    ) -> Result<usize> {
+        self.raw_read_buffer_bound(w, h, bands)
     }
     fn raw_read_buffer_bound(
         &self,
@@ -580,8 +619,27 @@ pub(crate) fn validate_source_spec(spec: &SourceSpec) -> Result<()> {
             && spec.http.max_range_bytes <= 4 * 1024 * 1024
             && spec.http.timeout_seconds > 0
             && spec.http.timeout_seconds <= 30
-            && spec.http.cache_bytes <= 8 * 1024 * 1024,
+            && (spec.http.cache_bytes <= 8 * 1024 * 1024
+                || (remote
+                    && spec.format == SourceFormat::Geotiff
+                    && spec.http.cache_bytes <= 16 * 1024 * 1024)),
         "source transport limits exceed supported budget"
+    );
+    ensure!(
+        spec.http.metadata_prefetch_bytes <= 512 * 1024
+            && (spec.http.metadata_prefetch_bytes == 0
+                || (remote && spec.format == SourceFormat::Geotiff)),
+        "metadata prefetch requires an HTTP original TIFF source and at most512KiB"
+    );
+    ensure!(
+        spec.http.small_read_page_bytes == 0
+            || (remote
+                && spec.format == SourceFormat::Geotiff
+                && spec.http.small_read_page_bytes.is_power_of_two()
+                && (4096..=65536).contains(&spec.http.small_read_page_bytes)
+                && spec.http.small_read_page_bytes as u64 <= spec.http.max_range_bytes
+                && spec.http.small_read_page_bytes + 128 <= spec.http.cache_bytes),
+        "small-read pages require HTTP TIFF and4-64KiB within existing range/cache budgets"
     );
     if let Some(ids) = &spec.bands {
         ensure!(
@@ -639,6 +697,13 @@ pub struct HttpOptions {
     /// Explicit opt-in for controlled local HTTP fixtures; HTTPS is ordinary.
     pub allow_http: bool,
     pub cache_bytes: usize,
+    /// Opt-in original TIFF metadata prefix seed into the existing HTTP cache.
+    /// Zero preserves exact-demand reads; maximum512KiB, counted as physical I/O.
+    /// This opt-in seed must fit the existing range, download and cache bounds.
+    pub metadata_prefetch_bytes: usize,
+    /// Opt-in pages for TIFF VSI reads<=4KiB, including out-of-line metadata.
+    /// Ordinary overread is bounded and reported; SKV exact reads are unaffected.
+    pub small_read_page_bytes: usize,
     /// Enable eligible SKV summary-HTTP boundary preparation; false is an eager ablation.
     pub boundary_read_ahead: bool,
 }
@@ -653,6 +718,8 @@ impl Default for HttpOptions {
             timeout_seconds: 30,
             allow_http: false,
             cache_bytes: 4 * 1024 * 1024,
+            metadata_prefetch_bytes: 0,
+            small_read_page_bytes: 0,
             boundary_read_ahead: true,
         }
     }

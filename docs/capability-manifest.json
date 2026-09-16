@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "product": "Skarve",
-  "release": "0.1.1-alpha.0",
+  "release": "0.1.1-alpha.2",
   "preserved_milestone": "0.1.0-beta.2",
   "ordinary_source_owned": {
     "policy": "native_grid_planar_fractional",
@@ -46,31 +46,55 @@
       "measure",
       "prepare",
       "batch_pages/batchPages"
-    ]
+    ],
+    "maximum_opt_in_http_workers": 2
   },
   "experimental_skv_v0": {
     "status": "working unstable experiment; artifact qualification belongs to the exact package receipt",
     "compilation_sources": "Supported TIFF/COG exposing the lossless typed reader contract",
-    "serving": ["local", "bounded conditional HTTP ranges"],
+    "serving": [
+      "local",
+      "bounded conditional HTTP ranges"
+    ],
     "ordinary_infuse_carve_cleave": true,
     "original_source_required_for_serving": false,
     "sidecars_required_for_serving": false,
     "summary_acceleration_optional": true,
     "eligible_exactextract_raw_path": true,
-    "lossless_types": ["Byte", "Int8", "UInt16", "Int16", "UInt32", "Int32", "Float32", "Float64"],
+    "lossless_types": [
+      "Byte",
+      "Int8",
+      "UInt16",
+      "Int16",
+      "UInt32",
+      "Int32",
+      "Float32",
+      "Float64"
+    ],
     "raw_floating_bits_and_original_mask_bytes": true,
     "arbitrary_original_tiff_tags_reconstructed": false,
-    "chunk_edges": [64, 128, 256],
+    "chunk_edges": [
+      64,
+      128,
+      256
+    ],
     "maximum_stored_bands": 64,
     "maximum_selected_bands_per_raw_window": 20,
-    "maximum_typed_leaf_chunks": 48000,
+    "maximum_typed_leaf_chunks": 131072,
     "maximum_object_bytes": 8589934592,
-    "codecs": ["none", "deflate"],
-    "predictors": ["none", "byte_delta_v1"],
+    "codecs": [
+      "none",
+      "deflate"
+    ],
+    "predictors": [
+      "none",
+      "byte_delta_v1"
+    ],
     "predictor_default": "none",
     "updates": "Explicit immutable full rebuild; no overwrite or in-place mutation",
     "specification": "skv-format-v0.md",
-    "installed_workflows": "skv.md"
+    "installed_workflows": "skv.md",
+    "maximum_grouped_output_window_bands": 64
   },
   "supplied_selection": {
     "interfaces": [
@@ -116,10 +140,16 @@
       "numerical_policy": "exactextract_rasterio_v030",
       "source_interpretation": "rasterio_unscaled_raw_v030",
       "coverage_grid_interpretation": "rasterio_bounds_resolution_v030",
-      "scalar_types": ["Float32", "Float64"],
+      "scalar_types": [
+        "Float32",
+        "Float64"
+      ],
       "identity_scale_offset_required": true,
       "uniform_exposed_nodata_required": true,
-      "mask_flags": [1, 8],
+      "mask_flags": [
+        1,
+        8
+      ],
       "independent_or_alpha_masks": "rejected_before_pixel_reads",
       "unmasked_infinity": "complete_result_rejected",
       "native_defaults_changed": false,
@@ -154,5 +184,19 @@
   },
   "initial_binary_target": "Ubuntu 24.04 Linux x86-64 with external GDAL 3.8.4; Python 3.12 and Node 20",
   "other_platform_certification": false,
-  "source_build_does_not_imply_binary_qualification": true
+  "source_build_does_not_imply_binary_qualification": true,
+  "original_typed_windows": {
+    "interfaces": [
+      "Rust",
+      "C ABI",
+      "Python",
+      "Node.js/TypeScript"
+    ],
+    "maximum_output_bytes": 67108864,
+    "maximum_working_bytes": 134217728,
+    "maximum_bands": 64,
+    "normalization_applied": false,
+    "generation_verification_required": true,
+    "documentation": "source-windows.md"
+  }
 }

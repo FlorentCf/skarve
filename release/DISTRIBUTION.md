@@ -1,18 +1,17 @@
 # Distribution decision and owner gates
 
-**Prepared release scope: source-first alpha. Binary packages remain private for qualification.** Existing alpha0 packages are immutable. New consumer/docs work uses 0.1.1-alpha.1 and new hashes; the d15 benchmark remains identified as d15, not a timing claim about rebuilt artifacts.
+**Current review scope: source-only 0.1.1-alpha.2.** Apache-2.0 licensing and publication of the separate public source repository were approved for alpha.1. This alpha.2 candidate is being prepared for review; no new publication is authorized by that preparation. Binary packages remain private for qualification. Existing artifacts remain immutable, and a new release receives new hashes. The d15 benchmark remains identified as d15, not a timing claim about rebuilt artifacts.
 
 | Deliverable | Technical disposition | Owner gate |
 |---|---|---|
-| Curated Skarve Rust/CLI/Python/Node source and SKV v0 specification | Independently staged source tree, with notices, provenance, synthetic tests and sanitized benchmark evidence | Confirm Apache-2.0 for owned source and permission to create/publish the separate Skarve repository |
+| Curated Skarve Rust/CLI/Python/Node source and SKV v0 specification | Public Apache-2.0 source baseline; alpha.2 changes staged with notices, provenance and synthetic correctness tests | Review this specific alpha.2 candidate and obtain explicit publication approval |
 | crates.io | Rust external-consumer/package checks; `publish = false` retained | Separate name/ownership and explicit registry publication approval; no upload attempted |
 | npm/PyPI | Installable private artifacts; npm remains private | Separate package publication and binary-distribution approval |
 | Native Linux wheels/tarballs or container | Exact dynamic runtime inventory and notices retained; no container bundled | Unresolved combined-distribution obligations require appropriate review before public redistribution |
-| HM adapter/page | Separate review branches, initial legacy mode | Review/merge and staging/cloud permissions separately; production activation and announcement are separate actions |
 
-## Source license proposal
+## Approved source license
 
-Retain the existing unmodified Apache-2.0 text for Florent Chif's owned code, subject to owner confirmation. It permits commercial reuse and competing implementations. Redistribution requires the applicable license, notices and modification information; it does not guarantee a visible promotional credit. Software licensing does not grant Skarve branding rights. Upstream components retain their own terms. [Apache license](https://www.apache.org/licenses/LICENSE-2.0).
+The public source uses the existing unmodified Apache-2.0 text for Florent Chif's owned code, as approved for alpha.1. It permits commercial reuse and competing implementations. Redistribution requires the applicable license, notices and modification information; it does not guarantee a visible promotional credit. Software licensing does not grant Skarve branding rights. Upstream components retain their own terms. [Apache license](https://www.apache.org/licenses/LICENSE-2.0).
 
 ## Binary dependency checklist
 

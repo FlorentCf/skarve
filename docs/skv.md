@@ -1,7 +1,7 @@
 # Compile and serve an SKV snapshot
 
 SKV v0 is an **unstable, optional serving format** in the isolated
-0.1.1-alpha.1 experiment. The frozen0.1.0-beta.2 product and artifacts remain
+0.1.1-alpha.2 experiment. The frozen0.1.0-beta.2 product and artifacts remain
 separate. An SKV stores typed source samples, original mask bytes, interpretation
 metadata and optional aggregate summaries in one file. Querying it needs neither
 the original TIFF/COG nor a sidecar. The ordinary direct source path remains valid.
