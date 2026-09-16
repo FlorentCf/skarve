@@ -51,6 +51,17 @@ fn main() -> Result<()> {
     std::fs::remove_file(&original)?; // Prove serving does not require the original.
     let single = {
         let mut source = skarve.infuse(prepared.to_str().context("UTF-8 path required")?)?;
+        // Caller-owned original samples and masks use the same retained source.
+        let mut window = [0u8; 5];
+        let descriptor = source.read_window([0, 0, 1, 1], vec![1], &mut window, 64 << 20)?;
+        ensure!(
+            descriptor["bands"][0]["sourceBand"] == 1,
+            "unexpected band mapping"
+        );
+        ensure!(
+            window[..4] == 2.0f32.to_le_bytes() && window[4] == 255,
+            "original scalar or mask changed"
+        );
         source.carve(&zone, &options)?
     };
     ensure!(

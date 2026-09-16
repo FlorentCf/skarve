@@ -109,6 +109,68 @@ def main():
         generated=json.loads(fixture.read_text());receipt['generated_fixture_sha256']=sha(fixture)
         receipt['fixture_dependencies']=generated['dependencies']
         source=scratch/'data'/generated['sources']['original']['file'];polygon=scratch/'data/polygon.json'
+        # Resolve both bindings and their native libraries from fresh installations.
+        # Rasterio supplies an independent raw-sample/mask oracle for a small window.
+        window_python=scratch/'installed_source_window.py'
+        window_python.write_text("""import hashlib, json, pathlib, sys
+import rasterio
+from rasterio.windows import Window
+import skarve
+from skarve import Skarve
+assert pathlib.Path(skarve.__file__).resolve().is_relative_to(pathlib.Path(sys.prefix).resolve())
+def digest(value): return hashlib.sha256(value).hexdigest()
+window=[0,0,8,8]
+bands=[2,0]
+with rasterio.open(sys.argv[1]) as dataset:
+    samples=dataset.read([i+1 for i in bands], window=Window(*window))
+    masks=dataset.read_masks([i+1 for i in bands], window=Window(*window))
+    expected=[dict(sourceBand=band,
+                   samples=digest(samples[i].astype(samples.dtype.newbyteorder('<'),copy=False).tobytes()),
+                   mask=digest(masks[i].tobytes())) for i,band in enumerate(bands)]
+with Skarve() as engine:
+    with engine.infuse(sys.argv[1]) as source:
+        result=source.read_window(window,bands)
+# Keep and inspect views after their source and engine have closed.
+assert result['abiVersion']==1 and result['width']==8 and result['height']==8
+assert len(result['bands'])==len(expected)
+for actual, oracle in zip(result['bands'],expected):
+    assert actual['sourceBand']==oracle['sourceBand']
+    assert digest(actual['values'].tobytes())==oracle['samples']
+    assert digest(actual['mask'].tobytes())==oracle['mask']
+pathlib.Path(sys.argv[2]).write_text(json.dumps(dict(window=window,bands=bands,expected=expected)))
+print(json.dumps(dict(passed=True,bands=len(expected),cells_per_band=64,retained_after_close=True)))
+""")
+        window_oracle=scratch/'source-window-oracle.json'
+        run('python-installed-original-window',[python,window_python,source,window_oracle],parse=True)
+        window_node=scratch/'installed_source_window.mjs'
+        window_node.write_text("""import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {fileURLToPath} from 'node:url';
+import {resolve, sep} from 'node:path';
+import Skarve from '@skarve/engine';
+assert(fileURLToPath(import.meta.resolve('@skarve/engine')).startsWith(resolve('node_modules')+sep));
+const oracle=JSON.parse(readFileSync(process.argv[3],'utf8'));
+const digest=view=>createHash('sha256').update(Buffer.from(view.buffer,view.byteOffset,view.byteLength)).digest('hex');
+const engine=new Skarve();
+let result;
+try {
+  const source=await engine.infuse(process.argv[2]);
+  try {result=await source.readWindow({window:oracle.window,bands:oracle.bands});}
+  finally {await source.close();}
+} finally {await engine.close();}
+assert.equal(result.abiVersion,1);
+assert.equal(result.width,8); assert.equal(result.height,8);
+assert.equal(result.bands.length,oracle.expected.length);
+for (let i=0;i<oracle.expected.length;i++) {
+  const actual=result.bands[i], expected=oracle.expected[i];
+  assert.equal(actual.sourceBand,expected.sourceBand);
+  assert.equal(digest(actual.values),expected.samples);
+  assert.equal(digest(actual.mask),expected.mask);
+}
+console.log(JSON.stringify({passed:true,bands:result.bands.length,cells_per_band:64,retained_after_close:true}));
+""")
+        run('node-installed-original-window',['node','--max-old-space-size=512',window_node,source,window_oracle],parse=True)
         run('cli-inspect',[command,'inspect',source],parse=True)
         run('cli-infuse-alias',[command,'infuse',source],parse=True)
         run('cli-measure',[command,'measure',source,polygon,'--crs','EPSG:3857','--bands','0','--statistics','sum,support,mean,min,max,count'],parse=True)
