@@ -23,4 +23,39 @@ Excluded: application code, deployment settings, credentials, serving manifests,
 
 ## Validation
 
-Current-build commands, results, artifact hashes and limitations will be recorded in the qualification receipt before review is marked complete. No historical pass count is substituted for this candidate's test run.
+[The qualification receipt](ALPHA2_QUALIFICATION.json) records exact tested source revisions, runtime source hashes and artifact identities. Both builds have identical engine source hashes. Later documentation and example-version corrections do not change the engine implementation.
+
+| Check | Native | Optional exactextract |
+|---|---:|---:|
+| Rust tests and doctests | 316 passed | 329 passed |
+| Python public suite | 196 passed | 196 passed |
+| Node public suite | 17 passed | 17 passed |
+| Fresh installed CLI/Python/Node checks | 58 passed | 64 passed |
+| Backend numerical/eligibility contracts | 35 passed | 60 passed |
+| HTTP pool/concurrency configurations | 4 passed | 4 passed |
+| Generated typed-window/metadata/admission suite | passed | passed |
+| Benchmark smoke | passed | passed |
+
+One Cargo HTTP test is intentionally delegated to its controlled Python server harness. External Rust crate extraction/compilation, strict TypeScript consumer checking, and both C headers also passed. The source archive was verified and repackaged without Git; its regenerated source archive was byte-identical. Native and exactextract GitHub CI plus dependency review passed on the recorded revision; the PR checks show the latest documentation revision's recheck.
+
+The audit found and corrected Python's narrower grouped-band admission, overflow for an oversized cache request, a sequential-order assumption in a parallel transport test, missing installed-window checks, and stale example version constraints. The first local optional build correctly rejected missing prerequisites; locally extracted matching GEOS headers and CMake resolved that environment issue without replacing GDAL/GEOS. No numerical safeguard was relaxed.
+
+### Reproduction
+
+Use the exact revision from the receipt with the declared prerequisites. The complete authoritative two-backend sequence is in [CI](../.github/workflows/ci.yml). Its principal commands are:
+
+```sh
+python scripts/build.py --test
+python scripts/test-source-windows.py --library target/release/libraster_engine.so --work scratch/windows
+python scripts/test-rust-package.py --work scratch/rust-package --target-dir target/rust-package
+python -m pytest -q tests
+node --test bindings/node/*.test.mjs bindings/node/test.mjs tests/product_api.test.mjs
+python scripts/package_release.py --local-use-only --output-dir dist/native
+python tests/standalone_suite.py --artifacts dist/native --wheelhouse scratch/wheelhouse --output scratch/installed.json
+```
+
+CI specifies wheelhouse creation, dependency installation, the 2×2 transport matrix, smoke commands and optional-backend repetition with `--exactextract`. Paths used for generated outputs must be new. The receipt's private local binary archives are qualification artifacts; the proposed release remains source-only.
+
+### Recommendation
+
+Review this source-only alpha and its included portability fix together. Keep #1 open until the owner chooses whether to merge it first or let this candidate supersede it. No release tag, registry upload, public binary distribution, main merge or application deployment has been performed. There is no remaining engineering blocker in the tested scope; publication and binary-distribution decisions remain separate owner actions.
