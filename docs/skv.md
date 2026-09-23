@@ -156,7 +156,9 @@ Never accept a partial scientific result after a failed operation.
 Compiler `working_bytes` is16..256MiB (default64MiB, actual minimum bound32MiB).
 Some source layouts require an explicit128MiB allowance. Reader, query, HTTP
 request/byte/cache and batch output limits remain separate and enforced. An SKV
-v0 object is limited to8GiB,64 stored bands and48,000 typed leaf chunks. Metadata
+v0 object is limited to 128 GiB and 64 stored bands. Independent payloads
+allow at most 131,072 typed leaf records; ordered grouped payloads allow at most
+16,777,216. Metadata
 has additional limits. Complex/64-bit integer samples, rotated/reprojected grids
 and arbitrary TIFF tag reconstruction are outside this lossless contract.
 

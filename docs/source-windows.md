@@ -166,10 +166,12 @@ traffic and source layout determine the tradeoff.
 
 ## SKV capacity and correctness checks
 
-SKV v0 admits at most 131,072 typed leaf records without changing its byte
-layout. Physical payload intervals are reserved from the validated layout's
-actual count. Source retained admission remains 16 MiB, directory cache 64
-pages, and object size at most 8 GiB. These are finite capacity limits, not a
+SKV v0 admits 131,072 independent typed leaf records or 16,777,216
+ordered grouped typed leaf records without changing its byte layout. Larger
+grouped objects validate contiguous payload order through neighboring
+descriptors and retain a fixed-capacity overlap guard. Source retained
+admission remains 16 MiB, directory cache 64 pages, and object size at most
+128 GiB. These are finite capacity limits, not a
 promise that every source fits or that conversion improves size or speed.
 Compilation checks actual source-window memory bounds before producing output.
 Full local verification has a finite allowance derived from validated record

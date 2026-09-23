@@ -9,7 +9,9 @@
   See the precise [capability manifest](capability-manifest.json).
 - Experimental SKV v0 adds a self-contained optional snapshot for the declared
   typed TIFF/COG contract. It preserves raw sample/mask bits and exposed metadata,
-  with 64 stored bands, 131,072 typed leaf chunks and 8 GiB per object. It does not
+  with 64 stored bands and 128 GiB per object. The limit is 131,072 typed
+  leaf records for independent payloads, or 16,777,216 for ordered grouped
+  payloads. It does not
   reconstruct arbitrary TIFF tags. See [SKV](skv.md) for limits and versioning.
 - Invalid geometry is rejected, not repaired. Difficult positive thin native
   intersections retain strict safeguards; optional exactextract has its own
