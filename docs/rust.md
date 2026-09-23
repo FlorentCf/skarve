@@ -8,7 +8,7 @@ The new Rust facade does not change SKV v0, its writer or numerical kernels.
 
 Publication is pending owner approval; these are local source dependencies, not
 instructions to download an already published crate. The package version is
-`0.1.1-alpha.2`, and `publish = false` remains in Cargo.toml.
+`0.1.1-alpha.3`, and `publish = false` remains in Cargo.toml.
 
 Install Rust 1.98.1 (the pinned toolchain), a C/C++ linker, pkg-config,
 `libgdal-dev` and `libdeflate-dev`. The advertised native dependency baseline is
@@ -19,7 +19,7 @@ and distribution checklist before redistributing a compiled application.
 ```toml
 # Your application's Cargo.toml; adjust only this reviewed checkout path.
 [dependencies]
-skarve = { path = "../skarve", version = "=0.1.1-alpha.2" }
+skarve = { path = "../skarve", version = "=0.1.1-alpha.3" }
 serde_json = "1.0"
 anyhow = "1.0"
 ```

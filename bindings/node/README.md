@@ -1,9 +1,9 @@
 # Skarve for Node.js
 
-Source-only experimental candidate `0.1.1-alpha.2`; no registry package or public
+Source-only experimental candidate `0.1.1-alpha.3`; no registry package or public
 prebuilt binary is provided. Build and package locally using the installation
 guide below. When a matching local archive has been prepared, install it with
-`npm install ./skarve-engine-0.1.1-alpha.2.tgz`. Local Node archives include the
+`npm install ./skarve-engine-0.1.1-alpha.3.tgz`. Local Node archives include the
 native core and Koffi; the qualified runtime is Ubuntu 24.04 Linux x86-64 with
 GDAL 3.8.4 and libdeflate 1.19.
 

@@ -1,6 +1,6 @@
 # Version and compatibility policy
 
-`0.1.1-alpha.2` is an isolated experimental pre-release; `0.1.0-beta.2` is preserved
+`0.1.1-alpha.3` is an isolated experimental pre-release; `0.1.0-beta.2` is preserved
 separately. Pin the complete version and artifact SHA-256 in
 deployments. Do not combine a binding from one artifact set with a native library
 from another. Each package embeds its source and native identities, policy list

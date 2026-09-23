@@ -1,6 +1,6 @@
 [package]
 name = "skarve"
-version = "0.1.1-alpha.2"
+version = "0.1.1-alpha.3"
 edition = "2024"
 publish = false
 description = "An embeddable raster query engine with explicit numerical semantics and bounded execution"
