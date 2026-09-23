@@ -1,0 +1,75 @@
+name: Publish tested source package to PyPI
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing release tag to publish
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Validate exact tag syntax
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          python3 -c "import os,re; assert re.fullmatch(r'v[0-9]+\.[0-9]+\.[0-9]+(?:-(?:alpha|beta|rc)\.[0-9]+)?',os.environ['RELEASE_TAG'])"
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: refs/tags/${{ inputs.tag }}
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '20'
+      - name: Verify tag, source and package version
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          python3 -c "import os,subprocess,tomllib; v=tomllib.load(open('Cargo.toml','rb'))['package']['version']; t=os.environ['RELEASE_TAG']; assert t=='v'+v; git=lambda ref:subprocess.check_output(['git','rev-parse','--verify',ref],text=True).strip(); assert git('HEAD')==git('refs/tags/'+t+'^{commit}')"
+          python3 -m pip install -r scripts/packaging-requirements.txt
+      - name: Build source-only candidate
+        run: python3 scripts/package_registry_source.py --output-dir dist/registry-source
+      - name: Verify selected PyPI archive
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path('dist/registry-source/manifest.json').read_text())
+          assert data['source_worktree_clean'] and not data['native_binaries_in_archives']
+          assert not data['publication_attempted']
+          files = list(Path('dist/registry-source').glob('skarve_engine-*.tar.gz'))
+          assert len(files) == 1
+          assert any(item['name'] == files[0].name for item in data['artifacts'])
+          PY
+          sha256sum -c dist/registry-source/SHA256SUMS
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pypi-source
+          path: dist/registry-source/skarve_engine-*.tar.gz
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    needs: build
+    runs-on: ubuntu-24.04
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: pypi-source
+          path: dist
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/

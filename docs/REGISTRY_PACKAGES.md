@@ -53,3 +53,14 @@ to two build jobs and surface missing system prerequisites before compiling.
 The package builder records archive hashes and refuses a dirty worktree unless
 `--allow-dirty` is explicitly used for local testing. A dirty candidate must
 not be published.
+
+For PyPI, `.github/workflows/publish-pypi-source.yml` provides a manual,
+tag-verified source release. It rebuilds and validates the source archive in a
+job without registry credentials, then publishes only that Python sdist from a
+separate `pypi` environment using PyPI Trusted Publishing. The PyPI account
+must configure a pending GitHub publisher for project `skarve-engine`, owner
+`FlorentCf`, repository `skarve`, workflow `publish-pypi-source.yml`, and
+environment `pypi`. A pending publisher does not reserve the project name.
+The workflow is inert until the owner configures the matching publisher and
+dispatches it for a release tag; npm and crates.io need their own first-release
+steps.
