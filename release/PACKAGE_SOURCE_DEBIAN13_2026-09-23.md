@@ -52,3 +52,7 @@ Practical findings:
 
 The droplet contained generated synthetic fixtures and disposable build
 products only. Existing alpha.3 release artifacts were not changed.
+
+Cleanup: the Debian 13 pilot droplet was destroyed after verification. Its
+temporary DigitalOcean SSH key was removed from the account, and the matching
+local private key, public key, and known-host files were deleted.
