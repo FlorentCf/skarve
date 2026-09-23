@@ -44,12 +44,15 @@ pub const BOOTSTRAP: usize = 16_384;
 pub const RECORD: usize = 128;
 pub const RECORDS_PER_PAGE: usize = 64;
 pub const PAGE: usize = 16 + RECORD * RECORDS_PER_PAGE + 32;
-pub const MAX_OBJECT: u64 = 8 * 1024 * 1024 * 1024;
+pub const MAX_OBJECT: u64 = 128 * 1024 * 1024 * 1024;
 const MAX_METADATA: usize = 65_536;
 const PAGE_CACHE: usize = 64;
 const DIRECTORY_RANGE_PAGES: usize = 8;
 const MAX_READS: usize = 65_536;
 const MAX_LEAF_RECORDS: usize = 131_072;
+// Previously inadmissible large objects use the existing writer's contiguous
+// group-major payload order, checked from bounded neighbor descriptors.
+const MAX_LARGE_GROUPED_LEAF_RECORDS: usize = 16_777_216;
 pub const VERIFY_WORKING_BYTES: usize = 128 << 20;
 const SCHEMA: &str = "native_grid_planar_compensated_v1";
 const MAX_PREDICTOR_SCRATCH: usize = 256 * 256 * 8;
@@ -240,6 +243,36 @@ impl Header {
     fn leaves(&self) -> usize {
         self.grid.width.div_ceil(self.chunk_edge) * self.grid.height.div_ceil(self.chunk_edge)
     }
+    fn ordered_large_payloads(&self) -> bool {
+        self.leaves().saturating_mul(self.bands()) > MAX_LEAF_RECORDS
+    }
+    /// Canonical physical neighbors in the existing grouped writer schedule.
+    /// No allocation proportional to raster extent or band count is required.
+    fn physical_neighbors(&self, id: usize) -> Result<(Option<usize>, Option<usize>)> {
+        ensure!(self.grouped(), "ordered payload validation requires groups");
+        let node = id / self.bands();
+        let (first, count) = self.band_group_bounds(id % self.bands())?;
+        ensure!(
+            node < self.leaves() && id % self.bands() == first,
+            "ordered payload descriptor is not a canonical leaf"
+        );
+        let previous = if node > 0 {
+            Some((node - 1) * self.bands() + first)
+        } else if first > 0 {
+            let (prior, _) = self.band_group_bounds(first - 1)?;
+            Some((self.leaves() - 1) * self.bands() + prior)
+        } else {
+            None
+        };
+        let next = if node + 1 < self.leaves() {
+            Some((node + 1) * self.bands() + first)
+        } else if first + count < self.bands() {
+            Some(first + count)
+        } else {
+            None
+        };
+        Ok((previous, next))
+    }
     fn records(&self) -> Result<usize> {
         self.layout()
             .records()?
@@ -311,8 +344,9 @@ impl Header {
         ensure!(
             self.leaves()
                 .checked_mul(self.bands())
-                .is_some_and(|n| n <= MAX_LEAF_RECORDS),
-            "SKV v0 exceeds131072 typed leaf chunks; choose a supported chunk edge without changing the source grid"
+                .is_some_and(|n| n <= MAX_LEAF_RECORDS
+                    || (self.grouped() && n <= MAX_LARGE_GROUPED_LEAF_RECORDS)),
+            "SKV v0 exceeds131072 independent typed leaf chunks or16777216 ordered grouped chunks"
         );
         for value in [&self.build_id, &self.logical_digest, &self.directory_digest] {
             ensure!(
@@ -758,6 +792,7 @@ struct ReaderState {
     intervals: Vec<(u64, u64, usize)>,
     started: Instant,
     logical_read_limit: usize,
+    exhaustive_ordered_verify: bool,
 }
 impl ReaderState {
     fn read(
@@ -914,6 +949,7 @@ impl SkvSource {
             pages: VecDeque::with_capacity(PAGE_CACHE),
             intervals: Vec::new(),
             logical_read_limit: MAX_READS,
+            exhaustive_ordered_verify: false,
             started: prefix.as_ref().map_or_else(Instant::now, |p| p.started),
         };
         let bytes = if let Some(prefix) = prefix {
@@ -1046,7 +1082,11 @@ impl SkvSource {
         // Finite Rust-owned capacities: transfer payloads are separately charged
         // by RangeSource; header/decoded metadata and client state have a2MiB
         // reserve. Per-read buffers are additional in read_buffer_bound.
-        let interval_capacity = header.leaves() * header.groups_per_tile()?;
+        let interval_capacity = if header.ordered_large_payloads() {
+            MAX_LEAF_RECORDS
+        } else {
+            header.leaves() * header.groups_per_tile()?
+        };
         let retained = spec
             .http
             .cache_bytes
@@ -1089,7 +1129,8 @@ impl SkvSource {
     fn bounds(&self, node: usize) -> Result<[usize; 4]> {
         self.layout.bounds(&self.header.grid, node)
     }
-    fn record(&self, id: usize, cancel: &AtomicBool) -> Result<[u8; RECORD]> {
+    fn descriptor(&self, id: usize, cancel: &AtomicBool) -> Result<[u8; RECORD]> {
+        check_cancel(cancel)?;
         ensure!(
             id < self.header.records()?,
             "SKV record index out of bounds"
@@ -1152,6 +1193,11 @@ impl SkvSource {
             .page_cache_peak_bytes
             .max(state.pages.len() * PAGE);
         validate_record(&self.header, id, &bytes, state.store.length())?;
+        Ok(bytes)
+    }
+    fn record(&self, id: usize, cancel: &AtomicBool) -> Result<[u8; RECORD]> {
+        let bytes = self.descriptor(id, cancel)?;
+        let mut state = self.state.borrow_mut();
         if id / self.header.bands() < self.header.leaves() {
             let (leader, _) = self.header.canonical_group(id)?;
             if self.header.grouped() && id != leader {
@@ -1172,6 +1218,36 @@ impl SkvSource {
                 u64_at(&bytes, 0),
                 u64_at(&bytes, 0) + u32_at(&bytes, 8) as u64,
             );
+            if self.header.ordered_large_payloads() {
+                let length = state.store.length();
+                drop(state);
+                let (previous, next) = self.header.physical_neighbors(id)?;
+                let expected_begin = if let Some(prior) = previous {
+                    let record = self.descriptor(prior, cancel)?;
+                    u64_at(&record, 0)
+                        .checked_add(u32_at(&record, 8) as u64)
+                        .context("SKV prior payload end overflow")?
+                } else {
+                    self.header.data_offset()?
+                };
+                let expected_end = if let Some(next) = next {
+                    u64_at(&self.descriptor(next, cancel)?, 0)
+                } else {
+                    length
+                };
+                ensure!(
+                    begin == expected_begin && end == expected_end,
+                    "SKV ordered payload gap or overlap"
+                );
+                state = self.state.borrow_mut();
+                // A complete audit checks every adjacency, which proves global
+                // contiguity. Partial serving also retains the historical
+                // cross-visited overlap check in a fixed-capacity set; exhaustion
+                // fails closed rather than dropping evidence or growing memory.
+                if state.exhaustive_ordered_verify {
+                    return Ok(bytes);
+                }
+            }
             match state
                 .intervals
                 .binary_search_by_key(&begin, |entry| entry.0)
@@ -2184,7 +2260,10 @@ fn verify_complete(source: &SkvSource, check_logical: bool, cancel: &AtomicBool)
             .context("SKV verification read budget overflow")?
             .max(prior_limit);
     }
+    let prior_exhaustive = source.state.borrow().exhaustive_ordered_verify;
+    source.state.borrow_mut().exhaustive_ordered_verify = source.header.ordered_large_payloads();
     let result = verify_complete_inner(source, check_logical, cancel);
+    source.state.borrow_mut().exhaustive_ordered_verify = prior_exhaustive;
     source.state.borrow_mut().logical_read_limit = prior_limit;
     result
 }
@@ -2308,18 +2387,25 @@ fn verify_complete_inner(
     {
         let state = source.state.borrow();
         let mut position = header.data_offset()?;
-        ensure!(
-            state.intervals.len() == header.leaves() * header.groups_per_tile()?,
-            "SKV missing typed payload interval"
-        );
-        for &(begin, end, _) in &state.intervals {
-            ensure!(begin == position, "SKV payload gap or overlap");
-            position = end;
+        if !header.ordered_large_payloads() {
+            ensure!(
+                state.intervals.len() == header.leaves() * header.groups_per_tile()?,
+                "SKV missing typed payload interval"
+            );
+            for &(begin, end, _) in &state.intervals {
+                ensure!(begin == position, "SKV payload gap or overlap");
+                position = end;
+            }
+            ensure!(
+                position == state.store.length(),
+                "SKV unreferenced trailing payload"
+            );
+        } else {
+            ensure!(
+                state.intervals.len() <= MAX_LEAF_RECORDS,
+                "SKV ordered visited interval limit exceeded"
+            );
         }
-        ensure!(
-            position == state.store.length(),
-            "SKV unreferenced trailing payload"
-        );
     }
     check_cancel(cancel)?;
     source.verify_immutable()?;
@@ -2965,6 +3051,358 @@ mod tests {
                 .contains("131072")
         );
     }
+    // Sparse capacity fixture: only the first directory range is populated.
+    // It is deliberately not a complete valid object; tests below prove that
+    // accessed descriptors retain fail-closed checks without scanning the file.
+    fn sparse_ordered_fixture(dir: &Path, patch: impl Fn(usize, &mut [u8; RECORD])) -> PathBuf {
+        let (path, _) = built(dir, false);
+        let original = SkvSource::open(&spec(&path), &AtomicBool::new(false)).unwrap();
+        let mut header = original.header.clone();
+        header.grid.width = 430706;
+        header.grid.height = 62971;
+        header.chunk_edge = 256;
+        header.band_group = 10;
+        header.payload_layout = "row_group_v1".into();
+        header.summaries = false;
+        let mut band = header.raw_metadata.bands[0].clone();
+        band.scalar_type = crate::source::RawScalarType::Float32;
+        header.raw_metadata.bands = (0..36)
+            .map(|i| {
+                let mut b = band.clone();
+                b.original_band_index = i;
+                b
+            })
+            .collect();
+        header.raw_metadata.source_band_count = 36;
+        header.hierarchy = HierarchyDescription {
+            tile_edge: 256,
+            levels: SummaryLayout::new(&header.grid, 256, true).unwrap().levels,
+        };
+        let length = 64u64 << 30;
+        let target = dir.join("sparse-ordered.skv");
+        let mut file = File::create(&target).unwrap();
+        file.write_all(&encode_header(&header, length, &AtomicBool::new(false)).unwrap())
+            .unwrap();
+        file.set_len(length).unwrap();
+        for page_id in 0..DIRECTORY_RANGE_PAGES {
+            let mut page = vec![0u8; PAGE];
+            page[..4].copy_from_slice(b"SKVP");
+            page[6..8].copy_from_slice(&(RECORDS_PER_PAGE as u16).to_le_bytes());
+            put_u64(&mut page, 8, page_id as u64);
+            for local in 0..RECORDS_PER_PAGE {
+                let id = page_id * RECORDS_PER_PAGE + local;
+                let mut record = [0u8; RECORD];
+                let (leader, count) = header.canonical_group(id).unwrap();
+                put_u64(
+                    &mut record,
+                    0,
+                    header.data_offset().unwrap() + (id / 36) as u64,
+                );
+                put_u32(&mut record, 8, 1);
+                put_u32(&mut record, 12, (256 * 256 * 5 * count) as u32);
+                put_u64(&mut record, 16, 256 * 256 * 4);
+                put_u32(&mut record, 24, 1);
+                put_u32(&mut record, 28, 1);
+                put_u64(&mut record, 104, id as u64);
+                put_u64(&mut record, 112, leader as u64);
+                put_u32(&mut record, 120, count as u32);
+                patch(id, &mut record);
+                let at = 16 + local * RECORD;
+                page[at..at + RECORD].copy_from_slice(&record);
+            }
+            let digest = blake3::hash(&page[..PAGE - 32]);
+            page[PAGE - 32..].copy_from_slice(digest.as_bytes());
+            file.write_all(&page).unwrap();
+        }
+        target
+    }
+    #[test]
+    fn large_ordered_descriptors_reject_gaps_aliases_and_nonlocal_overlap() {
+        let cancel = AtomicBool::new(false);
+        let dir = tempfile::tempdir().unwrap();
+        let path = sparse_ordered_fixture(dir.path(), |_, _| {});
+        let source = SkvSource::open(&spec(&path), &cancel).unwrap();
+        source.record(0, &cancel).unwrap();
+        source.record(1, &cancel).unwrap();
+        source.record(36, &cancel).unwrap();
+        assert_eq!(source.state.borrow().intervals.len(), 2);
+        assert!(source.state.borrow().metrics.logical_bytes < 1 << 20);
+        let dir = tempfile::tempdir().unwrap();
+        let path = sparse_ordered_fixture(dir.path(), |id, r| {
+            if id == 36 {
+                let offset = u64_at(r, 0) + 1;
+                put_u64(r, 0, offset);
+            }
+        });
+        let source = SkvSource::open(&spec(&path), &cancel).unwrap();
+        assert!(
+            source
+                .record(0, &cancel)
+                .unwrap_err()
+                .to_string()
+                .contains("gap or overlap")
+        );
+        let dir = tempfile::tempdir().unwrap();
+        let path = sparse_ordered_fixture(dir.path(), |id, r| {
+            if id == 1 {
+                r[32] = 1;
+            }
+        });
+        let source = SkvSource::open(&spec(&path), &cancel).unwrap();
+        assert!(
+            source
+                .record(1, &cancel)
+                .unwrap_err()
+                .to_string()
+                .contains("alias differs")
+        );
+        let dir = tempfile::tempdir().unwrap();
+        let path = sparse_ordered_fixture(dir.path(), |id, r| {
+            if (3..=5).contains(&(id / 36)) {
+                let offset = u64_at(r, 0) - 3;
+                put_u64(r, 0, offset);
+            }
+        });
+        let source = SkvSource::open(&spec(&path), &cancel).unwrap();
+        source.record(36, &cancel).unwrap();
+        // Its immediate neighbors are internally contiguous, but it aliases an
+        // already visited non-neighbor: the bounded cross-visited guard catches it.
+        assert!(
+            source
+                .record(144, &cancel)
+                .unwrap_err()
+                .to_string()
+                .contains("overlapping")
+        );
+        cancel.store(true, Ordering::Relaxed);
+        assert!(source.descriptor(400, &cancel).is_err());
+    }
+
+    #[test]
+    fn large_sparse_native_window_checks_all_bands_over64gib_object() {
+        let dir = tempfile::tempdir().unwrap();
+        let path = sparse_ordered_fixture(dir.path(), |_, _| {});
+        let cancel = AtomicBool::new(false);
+        let opened = SkvSource::open(&spec(&path), &cancel).unwrap();
+        let header = opened.header.clone();
+        drop(opened);
+        let base = header.data_offset().unwrap();
+        let starts = [base, 16u64 << 30, 32u64 << 30, 48u64 << 30];
+        let firsts = [0usize, 10, 20, 30];
+        let mut payloads = Vec::new();
+        for first in firsts {
+            let (_, count) = header.band_group_bounds(first).unwrap();
+            payloads.push(
+                group::encode(&vec![0u8; 256 * 256 * 5 * count], 1, 3, &cancel)
+                    .unwrap()
+                    .0,
+            );
+        }
+        let mut ranges = std::collections::BTreeSet::new();
+        for id in [
+            0,
+            10,
+            20,
+            30,
+            (header.leaves() - 1) * 36,
+            (header.leaves() - 1) * 36 + 10,
+            (header.leaves() - 1) * 36 + 20,
+        ] {
+            let first = (id / RECORDS_PER_PAGE) / DIRECTORY_RANGE_PAGES * DIRECTORY_RANGE_PAGES;
+            for page in first..first + DIRECTORY_RANGE_PAGES {
+                ranges.insert(page);
+            }
+        }
+        let mut file = OpenOptions::new().write(true).open(&path).unwrap();
+        for page_id in ranges {
+            let mut page = vec![0u8; PAGE];
+            page[..4].copy_from_slice(b"SKVP");
+            page[6..8].copy_from_slice(&(RECORDS_PER_PAGE as u16).to_le_bytes());
+            put_u64(&mut page, 8, page_id as u64);
+            for local in 0..RECORDS_PER_PAGE {
+                let id = page_id * RECORDS_PER_PAGE + local;
+                let node = id / 36;
+                if node >= header.leaves() {
+                    continue;
+                }
+                let (leader, count) = header.canonical_group(id).unwrap();
+                let group = (leader % 36) / 10;
+                let [x0, y0, x1, y1] = header.layout().bounds(&header.grid, node).unwrap();
+                let cells = (x1 - x0) * (y1 - y0);
+                let mut r = [0u8; RECORD];
+                let encoded = if node == 0 { payloads[group].len() } else { 1 };
+                let offset = if node == 0 {
+                    starts[group]
+                } else if node == 1 {
+                    starts[group] + payloads[group].len() as u64
+                } else if node + 1 == header.leaves() && group < 3 {
+                    starts[group + 1] - 1
+                } else {
+                    starts[group] + payloads[group].len() as u64 + node as u64
+                };
+                put_u64(&mut r, 0, offset);
+                put_u32(&mut r, 8, encoded as u32);
+                put_u32(&mut r, 12, (cells * 5 * count) as u32);
+                put_u64(&mut r, 16, (cells * 4) as u64);
+                put_u32(&mut r, 24, 1);
+                put_u32(&mut r, 28, 1);
+                put_u64(&mut r, 104, id as u64);
+                put_u64(&mut r, 112, leader as u64);
+                put_u32(&mut r, 120, count as u32);
+                if node == 0 {
+                    let hash = payload_hash(&header, id, &r, &payloads[group]).unwrap();
+                    r[32..64].copy_from_slice(hash.as_bytes());
+                }
+                let at = 16 + local * RECORD;
+                page[at..at + RECORD].copy_from_slice(&r);
+            }
+            let hash = blake3::hash(&page[..PAGE - 32]);
+            page[PAGE - 32..].copy_from_slice(hash.as_bytes());
+            file.seek(SeekFrom::Start(
+                BOOTSTRAP as u64 + page_id as u64 * PAGE as u64,
+            ))
+            .unwrap();
+            file.write_all(&page).unwrap();
+        }
+        for (start, payload) in starts.into_iter().zip(payloads) {
+            file.seek(SeekFrom::Start(start)).unwrap();
+            file.write_all(&payload).unwrap();
+        }
+        drop(file);
+        let source = SkvSource::open(&spec(&path), &cancel).unwrap();
+        let bands = (0..36).collect::<Vec<_>>();
+        let (window, _) = source
+            .read_selected_window_cancellable(0, 0, 2, 2, &bands, 128 << 20, &cancel)
+            .unwrap();
+        assert_eq!(window.bands.len(), 36);
+        assert!(window.bands.iter().all(|b| b.valid == vec![false; 4]));
+        assert!(source.retained <= crate::source::NATIVE_SOURCE_RETAINED_BYTES);
+        assert!(source.state.borrow().metrics.logical_bytes < 1 << 20);
+        // Optional export for the installed controlled-HTTP test; sparse holes
+        // outside touched pages are intentional and must not be called a full audit.
+        if let Ok(target) = std::env::var("SKARVE_LARGE_SKV_FIXTURE") {
+            fs::hard_link(&path, target).unwrap();
+        }
+    }
+
+    #[test]
+    fn large_header_capacity_has_fixed_retention_and_checked_group_neighbors() {
+        let dir = tempfile::tempdir().unwrap();
+        let (path, _) = built(dir.path(), false);
+        let original = SkvSource::open(&spec(&path), &AtomicBool::new(false)).unwrap();
+        let mut header = original.header.clone();
+        header.grid.width = 430706;
+        header.grid.height = 62971;
+        header.chunk_edge = 256;
+        header.band_group = 10;
+        header.payload_layout = "row_group_v1".into();
+        let mut band = header.raw_metadata.bands[0].clone();
+        band.scalar_type = crate::source::RawScalarType::Float32;
+        header.raw_metadata.bands = (0..36)
+            .map(|i| {
+                let mut band = band.clone();
+                band.original_band_index = i;
+                band
+            })
+            .collect();
+        header.raw_metadata.source_band_count = 36;
+        header.hierarchy = HierarchyDescription {
+            tile_edge: 256,
+            levels: SummaryLayout::new(&header.grid, 256, true).unwrap().levels,
+        };
+        header.validate().unwrap();
+        assert_eq!(header.leaves() * header.bands(), 14_904_648);
+        assert_eq!(header.data_offset().unwrap(), 2_560_843_584);
+        let last = (header.leaves() - 1) * 36;
+        assert_eq!(header.physical_neighbors(0).unwrap(), (None, Some(36)));
+        assert_eq!(
+            header.physical_neighbors(last).unwrap(),
+            (Some(last - 36), Some(10))
+        );
+        assert_eq!(
+            header.physical_neighbors(10).unwrap(),
+            (Some(last), Some(46))
+        );
+        assert_eq!(
+            header.physical_neighbors(last + 30).unwrap(),
+            (Some(last - 6), None)
+        );
+        assert!(header.physical_neighbors(1).is_err());
+        let target = dir.path().join("large-sparse-header.skv");
+        let length = 64u64 << 30;
+        fs::write(
+            &target,
+            encode_header(&header, length, &AtomicBool::new(false)).unwrap(),
+        )
+        .unwrap();
+        OpenOptions::new()
+            .write(true)
+            .open(&target)
+            .unwrap()
+            .set_len(length)
+            .unwrap();
+        let opened = SkvSource::open(&spec(&target), &AtomicBool::new(false)).unwrap();
+        assert_eq!(opened.state.borrow().intervals.capacity(), MAX_LEAF_RECORDS);
+        assert!(opened.retained <= crate::source::NATIVE_SOURCE_RETAINED_BYTES);
+        assert_eq!(opened.header.version, 0);
+        assert!(opened.record(0, &AtomicBool::new(false)).is_err()); // absent page never accepted
+        header.payload_layout = "band".into();
+        assert!(header.validate().is_err());
+        header.payload_layout = "row_group_v1".into();
+        header.grid.width *= 2;
+        header.hierarchy.levels = SummaryLayout::new(&header.grid, 256, true).unwrap().levels;
+        assert!(header.validate().is_err());
+    }
+
+    #[test]
+    #[ignore = "bounded preparation roundtrip: run separately from ordinary unit tests"]
+    fn large_grouped_complete_verification_streams_without_growing_intervals() {
+        let dir = tempfile::tempdir().unwrap();
+        let path = dir.path().join("large-grouped.tif");
+        let mut dataset = DriverManager::get_driver_by_name("GTiff")
+            .unwrap()
+            .create_with_band_type::<u8, _>(&path, 1, 2049 * 64, 64)
+            .unwrap();
+        dataset
+            .set_geo_transform(&[0., 1., 0., 131136., 0., -1.])
+            .unwrap();
+        dataset
+            .set_spatial_ref(&SpatialRef::from_epsg(3857).unwrap())
+            .unwrap();
+        for band in 1..=64 {
+            dataset
+                .rasterband(band)
+                .unwrap()
+                .fill(band as f64, None)
+                .unwrap();
+        }
+        dataset.flush_cache().unwrap();
+        drop(dataset);
+        let input: SourceSpec = serde_json::from_value(json!({"location":path})).unwrap();
+        let cancel = AtomicBool::new(false);
+        let source = crate::io::open_source_for_compile(&input, &cancel).unwrap();
+        let output = dir.path().join("large-grouped.skv");
+        let options = CompileOptions {
+            chunk_edge: 64,
+            band_group: 64,
+            payload_layout: "row_group_v1".into(),
+            ..Default::default()
+        };
+        compile(source.as_ref(), output.to_str().unwrap(), &options, &cancel).unwrap();
+        let stored = SkvSource::open(&spec(&output), &cancel).unwrap();
+        assert_eq!(stored.header.leaves() * stored.header.bands(), 131136);
+        assert!(stored.header.ordered_large_payloads());
+        let before = stored.state.borrow().intervals.len();
+        verify_complete(&stored, true, &cancel).unwrap();
+        assert_eq!(stored.state.borrow().intervals.len(), before);
+        assert!(!stored.state.borrow().exhaustive_ordered_verify);
+        let (window, _) = stored
+            .read_selected_window_cancellable(0, 131130, 1, 6, &[63, 0], 128 << 20, &cancel)
+            .unwrap();
+        assert_eq!(window.bands[0].values, vec![64.; 6]);
+        assert_eq!(window.bands[1].values, vec![1.; 6]);
+    }
+
     #[test]
     fn extended_capacity_compiles_and_round_trips_above_old_record_limit() {
         let dir = tempfile::tempdir().unwrap();

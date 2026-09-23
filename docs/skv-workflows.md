@@ -38,7 +38,7 @@ not a free metadata check.
 Compilation options are `chunk_edge` (64, 128 or 256; default 256), `band_group`
 (1–64; default 4), `codec` (`deflate` or `none`; default `deflate`),
 `compression_level` (0–9; default 3), `summaries` (default true), `working_bytes`
-(16–256 MiB; default 64 MiB), and `max_output_bytes` (up to 8 GiB; default 2 GiB).
+(16–256 MiB; default 64 MiB), and `max_output_bytes` (up to 128 GiB; default 2 GiB).
 The CLI uses matching hyphenated flags. These are admitted resource bounds; a
 particular physical TIFF layout can still require more memory than requested.
 

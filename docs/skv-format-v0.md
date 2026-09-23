@@ -19,10 +19,11 @@ interpretation; valid nonfinite results reject or are excluded under that same
 contract, never silently repaired.
 
 All dimensions/counts/offsets use checked arithmetic. Grid limits remain the
-engine's limits; a v0 object is at most 8 GiB and 131,072 typed leaf chunks
-(spatial chunks multiplied by stored bands). The latter bounds visited-range
-bookkeeping and explicit verification work; it is an experimental implementation
-limit. Chunk edges are 64, 128 or 256 pixels;
+engine's limits; a v0 object is at most 128 GiB. Independent payloads
+are limited to 131,072 typed leaf records (spatial chunks multiplied by stored
+bands). Ordered grouped payloads are limited to 16,777,216 typed leaf records.
+These are experimental implementation limits; source, reader and verification
+budgets remain separately enforced. Chunk edges are 64, 128 or 256 pixels;
 the summary hierarchy initially uses the same native chunks. Window calls remain
 up to64 selected bands when the source's complete read bound fits the unchanged
 query allowance. SKV advertises that capability; ordinary readers retain20-band
@@ -313,9 +314,13 @@ ordinary `WindowSource` interface; raw reads remain valid without summaries.
 Remote reads use the existing bounded conditional range transport and never read
 the original provenance location. Whole-job failure publishes no successful
 partial answer. Cancellation remains cooperative with declared transport limits.
-The reader retains at most 64 directory pages and reserves visited payload
-intervals from the validated physical payload count (at most 131,072), rather
-than a fixed global maximum. It records at most 4,096 typed trace events. There is no decoded payload cache in
+The reader retains at most 64 directory pages. For previously admitted files,
+it reserves visited payload intervals from the validated physical payload count.
+For larger grouped files, it reserves a fixed 131,072 intervals and checks the
+writer's contiguous group-major payload order against bounded neighboring
+descriptors. Complete verification checks every adjacency; partial reads retain
+a bounded cross-visited overlap check and fail closed when its capacity is
+exhausted. It records at most 4,096 typed trace events. There is no decoded payload cache in
 this first version. The configured transport cache remains bounded separately;
 the reader's aggregate retained bound includes both. A source handle admits at
 most 65,536 lifetime logical reads and the existing configured HTTP request/byte

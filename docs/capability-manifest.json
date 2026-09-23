@@ -80,8 +80,9 @@
     ],
     "maximum_stored_bands": 64,
     "maximum_selected_bands_per_raw_window": 20,
-    "maximum_typed_leaf_chunks": 131072,
-    "maximum_object_bytes": 8589934592,
+    "maximum_independent_typed_leaf_chunks": 131072,
+    "maximum_ordered_grouped_typed_leaf_chunks": 16777216,
+    "maximum_object_bytes": 137438953472,
     "codecs": [
       "none",
       "deflate"
