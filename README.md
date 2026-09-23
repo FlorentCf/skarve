@@ -4,9 +4,9 @@
 
 Skarve owns source opening, decoding, caching, geometry and aggregation. Use a supported TIFF/COG directly, or compile a lossless, self-contained **SKV** snapshot for repeated queries. Serving SKV does not require the original raster. Keep a source open for repeated selections; use `cleave` for shared batch execution across polygons and raster slices.
 
-**Rust · Python · Node.js/TypeScript · CLI**. Source-built package candidate **0.1.1-alpha.4**; SKV v0 is experimental. The prior qualified binary target is **Ubuntu 24.04, Linux x86-64, GDAL 3.8.4 and libdeflate 1.19**. The source-built packages require their own installed checks before a new environment is claimed. Windows/macOS, arbitrary grids and global HM deployment are not claimed. Polygons must already use the source CRS; supported grids are north-up and axis-aligned. [Supported contracts](docs/limitations.md).
+**Rust · Python · Node.js/TypeScript · CLI**. Source-built packages **0.1.1-alpha.4**; SKV v0 is experimental. The prior qualified binary target is **Ubuntu 24.04, Linux x86-64, GDAL 3.8.4 and libdeflate 1.19**. The registry packages were installed on a clean Ubuntu 24.04 host; Debian 13 archive installs were also tested. Windows/macOS, arbitrary grids and global HM deployment are not claimed. Polygons must already use the source CRS; supported grids are north-up and axis-aligned. [Supported contracts](docs/limitations.md).
 
-This is the public **source-only alpha release**. Build from source using the instructions below. Registry packages and prebuilt binary downloads are not yet available. [Build/install from source](docs/INSTALL.md); [source and binary distribution gates](release/DISTRIBUTION.md).
+This is the public **source-only alpha release**. On Linux x86-64, install the system build prerequisites and then use `pip install --pre skarve-engine==0.1.1a4`, `npm install @skarve/engine@0.1.1-alpha.4`, or `cargo install skarve --version 0.1.1-alpha.4 --locked`. Each package builds its native core locally; there are no prebuilt binary downloads. [Registry install steps](docs/REGISTRY_PACKAGES.md); [source and binary distribution gates](release/DISTRIBUTION.md).
 
 ## Try it with generated data
 
