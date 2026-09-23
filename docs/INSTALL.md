@@ -1,6 +1,6 @@
 # Install Skarve
 
-This public source-only alpha is **v0.1.1-alpha.3**, with experimental SKV v0 support. Prebuilt binaries and registry packages are not published; see [the distribution decision](../release/DISTRIBUTION.md). The frozen v0.1.0-beta.2 release remains separate. Binary qualification targets Ubuntu 24.04 Linux x86-64, Python 3.12 and Node 20. The native runtime requires system GDAL 3.8.4 (`libgdal34t64` and `gdal-data`, Ubuntu package version `3.8.4+dfsg-3ubuntu3`). Skarve's core is bundled in the wheel, npm archive and CLI archive. The npm archive also includes its Koffi dependency. These binaries make no manylinux, Windows or macOS compatibility claim. Review [external runtime licenses](RUNTIME_LICENSES.md) before redistributing a binary combination.
+This branch prepares **v0.1.1-alpha.4** source-built registry packages, with experimental SKV v0 support. See [source-built package installation](REGISTRY_PACKAGES.md) for its prerequisites and commands. The previous **v0.1.1-alpha.3** release was source-only; its locally qualified, unpublished binary candidates target Ubuntu 24.04 Linux x86-64, Python 3.12 and Node 20. The frozen v0.1.0-beta.2 release remains separate. Review [the distribution decision](../release/DISTRIBUTION.md) and [external runtime licenses](RUNTIME_LICENSES.md) before redistributing a binary combination.
 
 Linux SKV decoding additionally requires `libdeflate.so.0` with
 `libdeflate_alloc_decompressor_ex`, `libdeflate_zlib_decompress_ex` and
@@ -105,7 +105,7 @@ remain separate immutable artifact sets; pin their actual hashes.
 The standalone installed suite takes the artifact location explicitly and installs into a new directory outside the checkout. Pre-fetch its test wheels when network access is available, then test offline:
 
 ```sh
-python3 -m pip download --only-binary=:all: --dest test-wheelhouse numpy==2.5.3 rasterio==1.5.1
+python3 -m pip download --only-binary=:all: --dest test-wheelhouse numpy==2.5.3 rasterio==1.5.1 blake3==1.0.8
 python3 tests/standalone_suite.py --artifacts dist/skv-v0/native \
   --wheelhouse test-wheelhouse --scratch /tmp/skarve-consumer-skv-v0 \
   --output standalone-result.json

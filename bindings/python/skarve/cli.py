@@ -8,7 +8,7 @@ from raster_engine_lab import EngineError, load_library
 def main():
     binary = Path(__file__).resolve().parent / "_native/skarve"
     if not binary.is_file():
-        print("Skarve CLI is missing. Install the complete private Linux wheel.", file=sys.stderr)
+        print("Skarve CLI is missing. Reinstall the complete Linux package with native build enabled.", file=sys.stderr)
         raise SystemExit(1)
     try:
         load_library()
