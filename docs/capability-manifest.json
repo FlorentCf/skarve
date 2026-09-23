@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "product": "Skarve",
-  "release": "0.1.1-alpha.2",
+  "release": "0.1.1-alpha.3",
   "preserved_milestone": "0.1.0-beta.2",
   "ordinary_source_owned": {
     "policy": "native_grid_planar_fractional",

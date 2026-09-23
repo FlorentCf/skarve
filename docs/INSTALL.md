@@ -1,6 +1,6 @@
 # Install Skarve
 
-This public source-only alpha is **v0.1.1-alpha.2**, with experimental SKV v0 support. Prebuilt binaries and registry packages are not published; see [the distribution decision](../release/DISTRIBUTION.md). The frozen v0.1.0-beta.2 release remains separate. Binary qualification targets Ubuntu 24.04 Linux x86-64, Python 3.12 and Node 20. The native runtime requires system GDAL 3.8.4 (`libgdal34t64` and `gdal-data`, Ubuntu package version `3.8.4+dfsg-3ubuntu3`). Skarve's core is bundled in the wheel, npm archive and CLI archive. The npm archive also includes its Koffi dependency. These binaries make no manylinux, Windows or macOS compatibility claim. Review [external runtime licenses](RUNTIME_LICENSES.md) before redistributing a binary combination.
+This public source-only alpha is **v0.1.1-alpha.3**, with experimental SKV v0 support. Prebuilt binaries and registry packages are not published; see [the distribution decision](../release/DISTRIBUTION.md). The frozen v0.1.0-beta.2 release remains separate. Binary qualification targets Ubuntu 24.04 Linux x86-64, Python 3.12 and Node 20. The native runtime requires system GDAL 3.8.4 (`libgdal34t64` and `gdal-data`, Ubuntu package version `3.8.4+dfsg-3ubuntu3`). Skarve's core is bundled in the wheel, npm archive and CLI archive. The npm archive also includes its Koffi dependency. These binaries make no manylinux, Windows or macOS compatibility claim. Review [external runtime licenses](RUNTIME_LICENSES.md) before redistributing a binary combination.
 
 Linux SKV decoding additionally requires `libdeflate.so.0` with
 `libdeflate_alloc_decompressor_ex`, `libdeflate_zlib_decompress_ex` and
@@ -29,13 +29,13 @@ prebuilt wheel, Node and CLI commands apply only when those assets are included.
 # In the downloaded artifact directory, with the declared system GDAL installed:
 sha256sum -c SHA256SUMS
 python3 -m venv skarve-env
-skarve-env/bin/pip install --no-index --no-deps ./skarve_engine-0.1.1a2-py3-none-linux_x86_64.whl
+skarve-env/bin/pip install --no-index --no-deps ./skarve_engine-0.1.1a3-py3-none-linux_x86_64.whl
 skarve-env/bin/skarve --version
 
-npm install --offline --ignore-scripts --omit=optional --no-audit --no-fund ./skarve-engine-0.1.1-alpha.2.tgz
+npm install --offline --ignore-scripts --omit=optional --no-audit --no-fund ./skarve-engine-0.1.1-alpha.3.tgz
 
-tar -xzf skarve-0.1.1-alpha.2-linux-x86_64.tar.gz
-./skarve-0.1.1-alpha.2-linux-x86_64/bin/skarve --version
+tar -xzf skarve-0.1.1-alpha.3-linux-x86_64.tar.gz
+./skarve-0.1.1-alpha.3-linux-x86_64/bin/skarve --version
 ```
 
 The Python distribution is `skarve-engine`; import `skarve`. The existing `raster_engine_lab` import remains a compatibility alias. The Node package is `@skarve/engine`; its default export and `Skarve`/`RasterEngine` names refer to the same class. Normal source operations need neither NumPy nor rasterio. Python bulk typed-buffer operations additionally need NumPy; original source-window reads return memoryviews without NumPy. Fixture generation below uses rasterio and NumPy as test dependencies. See [source-window APIs and limits](source-windows.md).

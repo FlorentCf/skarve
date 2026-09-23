@@ -1,10 +1,10 @@
 # Distribution decision and owner gates
 
-**Current review scope: source-only 0.1.1-alpha.2.** Apache-2.0 licensing and publication of the separate public source repository were approved for alpha.1. This alpha.2 candidate is being prepared for review; no new publication is authorized by that preparation. Binary packages remain private for qualification. Existing artifacts remain immutable, and a new release receives new hashes. The d15 benchmark remains identified as d15, not a timing claim about rebuilt artifacts.
+**Current release scope: source-only 0.1.1-alpha.3.** Apache-2.0 licensing and publication of the separate public source repository were approved for alpha.1. The owner authorized this focused source-only follow-up after the large grouped SKV capacity change passed review. Binary packages remain private for qualification. Existing artifacts remain immutable, and this release receives new hashes. The d15 benchmark remains identified as d15, not a timing claim about rebuilt artifacts.
 
 | Deliverable | Technical disposition | Owner gate |
 |---|---|---|
-| Curated Skarve Rust/CLI/Python/Node source and SKV v0 specification | Public Apache-2.0 source baseline; alpha.2 changes staged with notices, provenance and synthetic correctness tests | Review this specific alpha.2 candidate and obtain explicit publication approval |
+| Curated Skarve Rust/CLI/Python/Node source and SKV v0 specification | Public Apache-2.0 source baseline; alpha.3 adds bounded large grouped SKV capacity with synthetic correctness tests | Source-only alpha.3 authorized after focused review and checks |
 | crates.io | Rust external-consumer/package checks; `publish = false` retained | Separate name/ownership and explicit registry publication approval; no upload attempted |
 | npm/PyPI | Installable private artifacts; npm remains private | Separate package publication and binary-distribution approval |
 | Native Linux wheels/tarballs or container | Exact dynamic runtime inventory and notices retained; no container bundled | Unresolved combined-distribution obligations require appropriate review before public redistribution |

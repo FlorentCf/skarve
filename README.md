@@ -4,7 +4,7 @@
 
 Skarve owns source opening, decoding, caching, geometry and aggregation. Use a supported TIFF/COG directly, or compile a lossless, self-contained **SKV** snapshot for repeated queries. Serving SKV does not require the original raster. Keep a source open for repeated selections; use `cleave` for shared batch execution across polygons and raster slices.
 
-**Rust · Python · Node.js/TypeScript · CLI**. Launch candidate **0.1.1-alpha.2**; SKV v0 is experimental. The qualified native target is **Ubuntu 24.04, Linux x86-64, GDAL 3.8.4 and libdeflate 1.19**. Windows/macOS, arbitrary grids and global HM deployment are not claimed. Polygons must already use the source CRS; supported grids are north-up and axis-aligned. [Supported contracts](docs/limitations.md).
+**Rust · Python · Node.js/TypeScript · CLI**. Launch candidate **0.1.1-alpha.3**; SKV v0 is experimental. The qualified native target is **Ubuntu 24.04, Linux x86-64, GDAL 3.8.4 and libdeflate 1.19**. Windows/macOS, arbitrary grids and global HM deployment are not claimed. Polygons must already use the source CRS; supported grids are north-up and axis-aligned. [Supported contracts](docs/limitations.md).
 
 This is the public **source-only alpha release**. Build from source using the instructions below. Registry packages and prebuilt binary downloads are not yet available. [Build/install from source](docs/INSTALL.md); [source and binary distribution gates](release/DISTRIBUTION.md).
 
