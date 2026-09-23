@@ -105,7 +105,7 @@ remain separate immutable artifact sets; pin their actual hashes.
 The standalone installed suite takes the artifact location explicitly and installs into a new directory outside the checkout. Pre-fetch its test wheels when network access is available, then test offline:
 
 ```sh
-python3 -m pip download --only-binary=:all: --dest test-wheelhouse numpy==2.5.3 rasterio==1.5.1
+python3 -m pip download --only-binary=:all: --dest test-wheelhouse numpy==2.5.3 rasterio==1.5.1 blake3==1.0.8
 python3 tests/standalone_suite.py --artifacts dist/skv-v0/native \
   --wheelhouse test-wheelhouse --scratch /tmp/skarve-consumer-skv-v0 \
   --output standalone-result.json
