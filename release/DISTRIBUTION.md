@@ -1,12 +1,12 @@
 # Distribution decision and owner gates
 
-**Current release scope: source-only 0.1.1-alpha.3.** Apache-2.0 licensing and publication of the separate public source repository were approved for alpha.1. The owner authorized this focused source-only follow-up after the large grouped SKV capacity change passed review. Binary packages remain private for qualification. Existing artifacts remain immutable, and this release receives new hashes. The d15 benchmark remains identified as d15, not a timing claim about rebuilt artifacts.
+**Current candidate: source-built 0.1.1-alpha.4 registry packages.** Apache-2.0 licensing and publication of the separate public source repository were approved for alpha.1. The owner has now requested public Python, npm and Rust installation with fresh-host testing. The prior alpha.3 source release and local binary candidates remain immutable. Native binary archives remain outside this publication scope. The d15 benchmark remains identified as d15, not a timing claim about rebuilt artifacts.
 
 | Deliverable | Technical disposition | Owner gate |
 |---|---|---|
-| Curated Skarve Rust/CLI/Python/Node source and SKV v0 specification | Public Apache-2.0 source baseline; alpha.3 adds bounded large grouped SKV capacity with synthetic correctness tests | Source-only alpha.3 authorized after focused review and checks |
-| crates.io | Rust external-consumer/package checks; `publish = false` retained | Separate name/ownership and explicit registry publication approval; no upload attempted |
-| npm/PyPI | Installable private artifacts; npm remains private | Separate package publication and binary-distribution approval |
+| Curated Skarve Rust/CLI/Python/Node source and SKV v0 specification | Public Apache-2.0 source baseline; alpha.3 adds bounded large grouped SKV capacity with synthetic correctness tests | Public source baseline already established |
+| crates.io | Source-only crate eligible for publication; external consumer and clean install must pass | Registry ownership and authentication required; no upload yet |
+| npm/PyPI | Source-only packages compile the included native Rust source on the consumer host | Registry scope/name ownership, authentication and fresh-host tests required; no upload yet |
 | Native Linux wheels/tarballs or container | Exact dynamic runtime inventory and notices retained; no container bundled | Unresolved combined-distribution obligations require appropriate review before public redistribution |
 
 ## Approved source license
@@ -26,4 +26,4 @@ The source license is not a declaration that every linked binary is Apache-only.
 - [ ] Alternatively qualify a different compliant dependency closure under a new artifact identity and repeat relevant installation/correctness tests; this pass does not undertake a GDAL rebuild.
 - [ ] Approve a specific binary release manifest only after these obligations are closed.
 
-The complete inventory is in [RUNTIME_LICENSES.md](../docs/RUNTIME_LICENSES.md), [SYSTEM_RUNTIME.json](../third_party/SYSTEM_RUNTIME.json) and [THIRD_PARTY.md](../THIRD_PARTY.md). This technical inventory is not legal clearance. No public binary, registry release, container, production deployment or announcement is authorized by preparing it.
+The complete inventory is in [RUNTIME_LICENSES.md](../docs/RUNTIME_LICENSES.md), [SYSTEM_RUNTIME.json](../third_party/SYSTEM_RUNTIME.json) and [THIRD_PARTY.md](../THIRD_PARTY.md). This technical inventory is not legal clearance. Building a source archive or completing a local test does not itself publish a registry version, binary, container, production deployment or announcement.

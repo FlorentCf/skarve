@@ -1,8 +1,8 @@
 [package]
 name = "skarve"
-version = "0.1.1-alpha.3"
+version = "0.1.1-alpha.4"
 edition = "2024"
-publish = false
+publish = ["crates-io"]
 description = "An embeddable raster query engine with explicit numerical semantics and bounded execution"
 license = "Apache-2.0"
 repository = "https://github.com/FlorentCf/skarve"
@@ -11,7 +11,7 @@ readme = "README.md"
 authors = ["Florent Chif"]
 keywords = ["raster", "geospatial", "statistics", "geotiff", "skv"]
 categories = ["science::geo", "command-line-utilities"]
-# Registry publication remains disabled pending explicit owner approval.
+# This source-only crate is eligible for crates.io verification and publication.
 # Explicit membership prevents private benchmark archives entering a .crate.
 include = [
     "/Cargo.toml", "/Cargo.lock", "/build.rs", "/rust-toolchain.toml",
@@ -20,10 +20,6 @@ include = [
     "/examples/*.rs", "/examples/*.py", "/examples/*.mjs", "/docs/*.md",
     "/scripts/build.py", "/scripts/test-rust-package.py",
     "/third_party/**", "/assets/brand/**", "/release/DISTRIBUTION.md",
-    "/benchmarks/native-skv/**",
-    "/benchmarks/skv-v0/fixtures.py", "/benchmarks/skv-v0/modern_cog.py",
-    "/benchmarks/skv-v0/prepare.py", "/benchmarks/requirements.txt",
-    "/tests/test_native_replication.py",
     "!**/__pycache__/**", "!**/*.pyc",
     "/README.md", "/LICENSE", "/NOTICE", "/THIRD_PARTY.md",
     "/CONTRIBUTING.md", "/SECURITY.md", "/CITATION.cff",
