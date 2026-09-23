@@ -1,11 +1,10 @@
 # Skarve for Node.js
 
-Source-only experimental candidate `0.1.1-alpha.3`; no registry package or public
-prebuilt binary is provided. Build and package locally using the installation
-guide below. When a matching local archive has been prepared, install it with
-`npm install ./skarve-engine-0.1.1-alpha.3.tgz`. Local Node archives include the
-native core and Koffi; the qualified runtime is Ubuntu 24.04 Linux x86-64 with
-GDAL 3.8.4 and libdeflate 1.19.
+Source-only experimental release `0.1.1-alpha.4` is available as
+`npm install @skarve/engine@0.1.1-alpha.4` on Linux x86-64 after
+installing the [system build prerequisites](https://github.com/FlorentCf/skarve/blob/main/docs/REGISTRY_PACKAGES.md).
+The installer compiles the native Rust core locally and includes Koffi. A
+clean Ubuntu 24.04 registry install passed; no prebuilt binary is provided.
 
 See the repository [installation guide](https://github.com/FlorentCf/skarve/blob/main/docs/INSTALL.md)
 and [source-owned workflows](https://github.com/FlorentCf/skarve/blob/main/docs/WORKFLOWS.md).
