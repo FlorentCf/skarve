@@ -51,7 +51,7 @@ jobs:
           assert len(files) == 1
           assert any(item['name'] == files[0].name for item in data['artifacts'])
           PY
-          sha256sum -c dist/registry-source/SHA256SUMS
+          (cd dist/registry-source && sha256sum -c SHA256SUMS)
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: pypi-source
