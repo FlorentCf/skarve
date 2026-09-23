@@ -27,6 +27,10 @@ class BuildWithNative(build_py):
                 raise RuntimeError("Skarve needs Rust 1.98.1 to build from source; install rustup first")
             if not shutil.which("gdal-config") or not shutil.which("pkg-config"):
                 raise RuntimeError("Skarve needs GDAL and libdeflate development packages (libgdal-dev libdeflate-dev) and pkg-config")
+            if subprocess.run(["gdal-config", "--version"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode:
+                raise RuntimeError("Skarve needs working GDAL development files (libgdal-dev)")
+            if subprocess.run(["pkg-config", "--modversion", "libdeflate"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode:
+                raise RuntimeError("Skarve needs libdeflate development files (libdeflate-dev)")
             with tempfile.TemporaryDirectory(prefix="skarve-python-native-") as temporary:
                 env = os.environ.copy()
                 env["CARGO_TARGET_DIR"] = temporary
